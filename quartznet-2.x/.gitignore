@@ -1,0 +1,68 @@
+#OS junk files
+[Tt]humbs.db
+*.DS_Store
+
+#Visual Studio files
+*.[Oo]bj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.[Cc]ache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.sdf
+ipch/
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+Ankh.NoLoad
+*.docstates
+
+#Tooling
+_ReSharper*/
+_dotCover*/
+*.resharper
+[Tt]est[Rr]esult*
+
+#Project files
+[Bb]uild/
+
+#Subversion files
+.svn
+
+# Office Temp Files
+~$*
+
+# Other
+/src/Quartz/Quartz.xml
+*.ReSharper
+*.dotCover
+/package/*
+*.zip
+website
+/doc/apidoc
+*.nupkg
+/packages
+/buildlog.txt
+/src/AssemblyInfo.cs
+
+*project.lock.json
+/.vs
+/.idea
+/.fake
+/*.iml
+jspm_packages

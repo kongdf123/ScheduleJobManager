@@ -1,0 +1,601 @@
+<project name="Quartz.NET" xmlns="http://nant.sf.net/release/0.90/nant.xsd" default="build">
+
+  <!-- what kind of build -->
+  <property name="build.configuration" value="debug" overwrite="false" />
+  <property name="build.optimize" value="false" overwrite="false" />
+  <property name="build.debug" value="Full" overwrite="false" />
+  <property name="build.keyfile" value="quartz.net.snk" />
+
+  <property name="nuget.location" value="tools/NuGet/NuGet.exe" />
+
+  <property name="version.major" value="2" overwrite="false" />
+  <property name="version.minor" value="4" overwrite="false" />
+  <property name="version.revision" value="1" overwrite="false" />
+  <property name="version.build" value="${environment::get-variable('BUILD_NUMBER')}" overwrite="false" if="${environment::variable-exists('BUILD_NUMBER')}" />
+  <property name="version.build" value="0" overwrite="false" unless="${environment::variable-exists('BUILD_NUMBER')}" />
+
+  <property name="version.readable" value="${version.major}.${version.minor}" />
+  <property name="version.readable" value="${version.readable}.${version.revision}" if="${version.revision != '0'}" />
+  
+  <property name="git.hash" value="${environment::get-variable('GIT_COMMIT')}" overwrite="false" if="${environment::variable-exists('GIT_COMMIT')}" />
+  <property name="git.hash" value="" overwrite="false" unless="${environment::variable-exists('GIT_COMMIT')}" />
+  
+  <!-- whether to use C5 collection library -->
+  <property name="c5-collections" value="true" overwrite="false" />
+  <property name="build.defines" value="DEBUG,TRACE" />
+  <if test="${c5-collections}" >
+    <property name="build.defines" value="${build.defines},C5" />
+  </if>
+
+  <property name="net-40.reference.assembly.path" value="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" overwrite="false" />
+  
+  <call target="init" />
+
+  <target name="init">
+   
+    <!-- Check target framework -->
+    <property name="target.framework" value="3.5" overwrite="false" />
+
+    <!-- set global target framework to 3.5 by default -->
+    <property name="nant.settings.currentframework" value="net-3.5" />
+
+    <!-- Set directories -->
+    <property name="dir.src" value="src/" />
+    <property name="dir.server.src" value="server/"/>
+    <property name="dir.doc" value="doc/" />
+    <property name="dir.build" value="build/${target.framework}/${build.configuration}" />
+    <property name="dir.deployment" value="deployment/${target.framework}" />
+
+    
+    <mkdir dir="${dir.build}" />
+
+  </target>
+
+  <target name="restore-nuget-packages" unless="${target::has-executed('restore-nuget-packages')}">
+	<exec program="${nuget.location}" commandline="restore Quartz.2010.sln" />
+	<exec program="${nuget.location}" commandline="restore Quartz.Server.2010.sln" />
+  </target>
+
+  <target name="build">
+    <call target="build-3.5" />
+    <call target="build-4.0" />
+	<call target="build-server" />
+  </target>
+
+  <target name="build-all">
+    <call target="build-mono-2.0" />
+    <call target="build-3.5" />
+    <call target="build-4.0" />
+  </target>
+
+  <target name="build-3.5" depends="restore-nuget-packages">
+    <property name="build.defines" value="${build.defines}" />
+
+    <property name="target.framework" value="3.5" />
+    <property name="buildoutputbasedir" value="build/${target.framework}/${build.configuration}/Quartz" />
+    <call target="generate-assembly-info" />
+    <call target="build-all-csc" />
+  </target>
+
+  <target name="build-4.0" depends="restore-nuget-packages">
+    <property name="build.defines" value="${build.defines},NET_40" />
+
+    <property name="target.framework" value="4.0" />
+    <property name="buildoutputbasedir" value="build/${target.framework}/${build.configuration}/Quartz" />
+    <property name="nant.settings.currentframework" value="net-4.0" />
+    <call target="generate-assembly-info" />
+    <call target="build-all-csc" />
+  </target>
+
+  <target name="build-mono-2.0" depends="restore-nuget-packages">
+    <property name="build.defines" value="${build.defines},MONO" />
+
+    <property name="target.framework" value="mono-2.0" />
+    <property name="buildoutputbasedir" value="build/${target.framework}/${build.configuration}/Quartz" />
+    <property name="nant.settings.currentframework" value="${target.framework}" />
+    <call target="generate-assembly-info" />
+    <call target="build-all-csc" />
+
+  </target>
+
+  <target name="build-quartz" >
+
+    <mkdir dir="${buildoutputbasedir}" />
+
+    <property name="target.dir" value="${buildoutputbasedir}" />
+    <property name="client-profile" value="false" />
+    <call target="compile-quartz" />
+
+    <!-- client profile -->
+    <property name="original.build.defines" value="${build.defines}" />
+    <property name="build.defines" value="${build.defines},ClientProfile" />
+    <property name="target.dir" value="${buildoutputbasedir}/ClientProfile" />
+    <property name="client-profile" value="true" />
+    <call target="compile-quartz" />
+    <property name="build.defines" value="${original.build.defines}" />
+
+    <copy todir="${buildoutputbasedir}/" flatten="true" >
+      <fileset>
+        <include name="${common-logging-dll}" />
+        <include name="${common-logging-core-dll}" />
+      </fileset>
+    </copy>
+    <copy todir="${buildoutputbasedir}/ClientProfile/" flatten="true" >
+        <fileset>
+            <include name="${common-logging-dll}" />
+            <include name="${common-logging-core-dll}" />
+        </fileset>
+    </copy>
+      
+    <!-- ILMerge Quartz with C5 -->
+    <property name="ilmerge.options" value="/targetplatform:&quot;v4,${net-40.reference.assembly.path}&quot;" if="${target.framework == '4.0'}" />
+    <property name="ilmerge.options" value="/targetplatform:&quot;v4&quot;" if="${target.framework == '4.0' and net-40.reference.assembly.path == ''}" />
+    <property name="ilmerge.options" value="/targetplatform:v2" unless="${target.framework == '4.0'}" />
+
+    <foreach item="String" in="Quartz,ClientProfile/Quartz" delim="," property="ilmergefile">
+    <mkdir dir="mergetemp/ClientProfile" />
+        <exec
+        verbose="true"
+        program="tools/ilmerge/ilmerge.exe"
+        commandline="${ilmerge.options} /target:library /keyfile:${build.keyfile} /internalize /out:mergetemp/${ilmergefile}.dll ${buildoutputbasedir}/${ilmergefile}.dll lib/2.0/C5.dll"  />
+        <delete file="${buildoutputbasedir}/${ilmergefile}.dll" />
+        <delete file="${buildoutputbasedir}/${ilmergefile}.pdb" />
+        <move file="mergetemp/${ilmergefile}.dll" tofile="${buildoutputbasedir}/${ilmergefile}.dll" /> 
+        <move file="mergetemp/${ilmergefile}.pdb" tofile="${buildoutputbasedir}/${ilmergefile}.pdb" /> 
+        <delete dir="mergetemp" />
+    </foreach>
+      
+  </target>
+
+  <target name="generate-assembly-info">
+    <asminfo output="src/AssemblyInfo.cs" language="CSharp">
+        <imports>
+            <import namespace="System" />
+            <import namespace="System.Reflection" />
+            <import namespace="System.Runtime.InteropServices" />
+        </imports>
+        <attributes>
+            <attribute type="AssemblyConfigurationAttribute" value="net-${target.framework}.win32; ${build.configuration}" />
+            <attribute type="AssemblyProductAttribute" value="Quarz.NET ${version.readable} for .NET ${target.framework}" />
+            <attribute type="AssemblyDescriptionAttribute" value="Quartz Scheduling Framework for .NET" />
+            <attribute type="AssemblyCopyrightAttribute" value="Copyright 2001-2014 Marko Lahma" />
+            <attribute type="AssemblyTrademarkAttribute" value="Apache License, Version 2.0" />
+            <attribute type="AssemblyCompanyAttribute" value="http://www.quartz-scheduler.net/" />
+            <attribute type="AssemblyCultureAttribute" value="" />
+            <attribute type="ComVisibleAttribute" value="false" />
+            <attribute type="CLSCompliantAttribute" value="true" />
+            <attribute type="AssemblyVersionAttribute" value="${version.major}.${version.minor}.${version.revision}.0" />
+            <attribute type="AssemblyInformationalVersionAttribute" value="${version.major}.${version.minor}.${version.revision}.${version.build} / ${git.hash}" />
+            <attribute type="AssemblyDelaySignAttribute" value="false" />
+            <attribute type="System.Security.AllowPartiallyTrustedCallersAttribute" if="${target.framework == '3.5'}" />
+        </attributes>
+    </asminfo>  
+  </target>
+  
+  <target name="compile-quartz" depends="determine-lib-dirs">
+  
+    <csc
+      target="library"
+      output="${target.dir}/Quartz.dll"
+      doc="${target.dir}/Quartz.xml"
+      debug="${build.debug}"
+      define="${build.defines}"
+      optimize="${build.optimize}"
+      keyfile="${build.keyfile}"
+	  nostdlib="true" noconfig="true">
+      <nowarn>
+        <!-- do not report warnings for missing XML comments -->
+        <warning number="0162" />
+        <warning number="0168" />
+        <warning number="1591" />
+        <warning number="0618" />
+      </nowarn>
+      <sources>
+        <include name="src/AssemblyInfo.cs" />
+        <include name="src/Quartz/**/*.cs" />
+      </sources>
+      <resources dynamicprefix="false" prefix="Quartz">
+        <include name="src/Quartz/quartz.config" />
+      </resources>
+      <resources dynamicprefix="false" prefix="Quartz.Impl.AdoJobStore.Common">
+        <include name="src/Quartz/Impl/AdoJobStore/Common/dbproviders.properties" />
+      </resources>
+      <resources dynamicprefix="false" prefix="Quartz.Xml">
+        <include name="src/Quartz/Xml/job_scheduling_data_2_0.xsd" />
+      </resources>
+      <references>
+        <include name="mscorlib.dll"/>
+        <include name="Microsoft.CSharp.dll"/>
+        <include name="System.Configuration.dll"/>
+        <include name="System.Core.dll"/>
+        <include name="System.dll" />
+        <include name="System.Configuration.dll" />
+        <include name="System.Data.dll" />
+        <include name="System.Runtime.Remoting.dll" />
+        <include name="System.Web.dll" unless="${client-profile}" />
+        <include name="System.Xml.dll" />
+        <include name="${common-logging-dll}" />
+        <include name="${common-logging-core-dll}" />
+        <include name="lib/2.0/C5.dll" if="${c5-collections}" />
+      </references>
+    </csc>
+     
+  </target>
+
+
+  <target name="build-examples" depends="determine-lib-dirs">
+
+    <mkdir dir="${buildoutputbasedir}.Examples" />
+
+    <csc
+      target="exe"
+      output="${buildoutputbasedir}.Examples/Quartz.Examples.exe"
+      debug="${build.debug}" 
+      optimize="${build.optimize}" 
+      define="${build.defines}"
+	  nostdlib="true" noconfig="true">
+      <nowarn>
+        <!-- do not report warnings for missing XML comments -->
+        <warning number="0162" />
+        <warning number="0168" />
+        <!--<warning number="0246" />-->
+        <warning number="0618" />
+      </nowarn>
+      <sources>
+        <include name="src/AssemblyInfo.cs" />
+        <include name="src/Quartz.Examples/**/*.cs" />
+      </sources>
+      <references>
+        <include name="mscorlib.dll"/>
+        <include name="Microsoft.CSharp.dll"/>
+        <include name="System.Configuration.dll"/>
+        <include name="System.Core.dll"/>
+        <include name="System.dll" />
+        <include name="System.Data.dll" />
+        <include name="${common-logging-dll}" />
+        <include name="${common-logging-core-dll}" />
+        <include name="${buildoutputbasedir}/Quartz.dll" />
+        <include name="lib/2.0/C5.dll" if="${c5-collections}" />
+      </references>
+    </csc>
+
+    <copy todir="${buildoutputbasedir}.Examples/" flatten="true" >
+      <fileset>
+        <include name="${buildoutputbasedir}/Quartz.*" />
+        <include name="${common-logging-dll}" />
+        <include name="${common-logging-core-dll}" />
+      </fileset>
+    </copy>
+    <copy file="src/Quartz.Examples/App.config" tofile="${buildoutputbasedir}.Examples/Quartz.Examples.exe.config" />
+  </target>
+
+  <target name="build-server">
+    <call target="build-server-3.5" />
+    <call target="build-server-4.0" />
+  </target>
+  
+  <target name="build-server-3.5">
+    <property name="lib-dir-version" value="2.0" />
+    <property name="build.defines" value="C5" />
+
+    <property name="target.framework" value="3.5" />
+    <property name="nant.settings.currentframework" value="net-${target.framework}" />
+
+    <call target="build-server-internal" />
+  </target>
+
+  <target name="build-server-4.0">
+    <property name="lib-dir-version" value="2.0" />
+    <property name="build.defines" value="NET_40,C5" />
+
+    <property name="target.framework" value="4.0" />
+    <property name="nant.settings.currentframework" value="net-${target.framework}" />
+
+    <call target="build-server-internal" />
+  </target>  
+
+  <target name="build-server-internal" depends="determine-lib-dirs">
+
+    <property name="buildoutputbasedir" value="build/${target.framework}/${build.configuration}/Quartz" />
+
+    <mkdir dir="${buildoutputbasedir}.Server/" />
+
+    <csc
+      target="exe"
+      output="${buildoutputbasedir}.Server/Quartz.Server.exe"
+      debug="${build.debug}" 
+      optimize="${build.optimize}" 
+      define="${build.defines}"
+	  nostdlib="true" noconfig="true">
+      <nowarn>
+      </nowarn>
+      <sources>
+        <include name="${dir.server.src}/AssemblyInfo.cs" />
+        <include name="${dir.server.src}/Quartz.Server/**/*.cs" />
+        <include name="${dir.server.src}/Quartz.Server.Core/**/*.cs" />
+      </sources>
+      <references>
+        <include name="mscorlib.dll"/>
+        <include name="Microsoft.CSharp.dll"/>
+        <include name="System.Configuration.dll"/>
+        <include name="System.Core.dll"/>
+        <include name="System.dll" />
+        <include name="System.Data.dll" />
+        <include name="${common-logging-dll}" />
+        <include name="${common-logging-core-dll}" />
+        <include name="${topshelf-dll}" />
+        <include name="${buildoutputbasedir}/Quartz.dll" />
+      </references>
+    </csc>
+    <copy todir="${buildoutputbasedir}.Server/" flatten="true" >
+      <fileset>
+        <include name="${buildoutputbasedir}/Quartz.dll" />
+        <include name="${buildoutputbasedir}/Quartz.pdb" />
+        <include name="${common-logging-dll}" />
+        <include name="${common-logging-core-dll}" />
+        <include name="${common-logging-log4net-dll}" />
+        <include name="${log4net-dll}" />
+        <include name="${topshelf-dll}" />
+      </fileset>
+    </copy>
+    
+    <copy file="${dir.server.src}/Quartz.Server/App.config" tofile="${buildoutputbasedir}.Server/Quartz.Server.exe.config" />
+    <copy file="${dir.server.src}/Quartz.Server/quartz_jobs.xml" todir="${buildoutputbasedir}.Server" />
+    <copy file="${dir.server.src}/Quartz.Server/quartz.config" todir="${buildoutputbasedir}.Server" />
+
+  </target>
+
+  <target name="build-tests">
+    <property name="test.project" value="Integration" />
+    <call target="build-tests-internal" />
+    <property name="test.project" value="Unit" />
+    <call target="build-tests-internal" />
+  </target>
+
+  <target name="build-tests-internal" depends="determine-lib-dirs">
+
+    <mkdir dir="${buildoutputbasedir}.Tests.${test.project}/" />
+
+    <csc 
+      target="library" 
+      output="${buildoutputbasedir}.Tests.${test.project}/Quartz.Tests.${test.project}.dll" 
+      debug="${build.debug}" 
+      optimize="${build.optimize}" 
+      define="${build.defines}"
+	  nostdlib="true" noconfig="true">
+      <nowarn>
+        <!-- do not report warnings for missing XML comments -->
+        <warning number="0162" />
+        <warning number="0168" />
+        <warning number="0618" />
+      </nowarn>
+      <sources>
+        <include name="src/AssemblyInfo.cs" />
+        <include name="src/Quartz.Tests.${test.project}/**/*.cs" />
+      </sources>
+      <resources dynamicprefix="false" prefix="Quartz.Tests.Unit.Xml.TestData">
+        <include name="src/Quartz.Tests.Unit/Xml/TestData/MinimalConfiguration.xml" />
+        <include name="src/Quartz.Tests.Unit/Xml/TestData/RichConfiguration.xml" />
+        <include name="src/Quartz.Tests.Unit/Xml/TestData/MinimalConfiguration_20.xml" />
+        <include name="src/Quartz.Tests.Unit/Xml/TestData/RichConfiguration_20.xml" />
+      </resources>
+      <references>
+        <include name="mscorlib.dll"/>
+        <include name="Microsoft.CSharp.dll"/>
+        <include name="System.Configuration.dll"/>
+        <include name="System.Core.dll"/>
+        <include name="System.dll" />
+        <include name="System.Data.dll" />
+        <include name="System.Transactions.dll" />
+        <include name="${common-logging-dll}" />
+        <include name="${common-logging-core-dll}" />
+        <include name="${nunit-dll}" />
+        <include name="${rhino-mocks-dll}" />
+        <include name="${buildoutputbasedir}/Quartz.dll" />
+		<include name="${oracle-odp-managed-dll}" />
+      </references>
+    </csc>
+
+    <copy todir="${buildoutputbasedir}.Tests.${test.project}/" flatten="true" >
+      <fileset>
+        <include name="${buildoutputbasedir}/Quartz.*" />
+        <include name="${common-logging-dll}" />
+        <include name="${common-logging-core-dll}" />
+        <include name="${nunit-dll}" />
+        <include name="${rhino-mocks-dll}" />
+      </fileset>
+    </copy>
+
+  </target>
+
+  <target name="unit">
+    <call target="unit-3.5" />
+    <call target="unit-4.0" />
+  </target>
+
+  <target name="unit-3.5" depends="build-3.5">
+    <call target="unit-internal" />
+  </target>
+
+  <target name="unit-4.0" depends="build-4.0">
+    <call target="unit-internal" />
+  </target>
+
+  <target name="unit-internal" depends="build">
+    <property name="test.dll" value="${buildoutputbasedir}.Tests.Unit/Quartz.Tests.Unit.dll" />
+    <echo message="Testing dll: ${test.dll}"  />
+    <nunit2 verbose="true" failonerror="false">
+      <formatter type="Plain" />
+      <test assemblyname="${test.dll}" />
+    </nunit2>
+  </target>
+
+
+  <target name="clean">
+    <echo message="Cleaning old compiled dlls..." />
+    <delete failonerror="false" dir="./build" />
+    <delete failonerror="false" dir="./CloverBuild" />
+    <delete failonerror="false" dir="./CloverReport" />
+    <delete failonerror="false" dir="./package" />
+    <delete failonerror="false" file="./Quartz-x.x.zip" />
+    <echo message="Cleaning old temporary build files (obj and bin dirs)..." />
+    <delete>
+      <fileset>
+        <include name="${dir.src}/**/obj/**" />
+        <include name="${dir.src}/**/bin/**" />
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="apidoc">
+
+    <property name="dir.ndoc.target.binaries" value="${dir.build}/Quartz/" />
+    <echo message="Building documentation...." />
+	
+	<exec
+		program="C:\Program Files (x86)\MSBuild\12.0\Bin\msbuild.exe"
+		commandline="/p:Configuration=Release Quartz.2010.sln" 
+	/>
+	
+	<exec
+		program="C:\Program Files (x86)\MSBuild\12.0\Bin\msbuild.exe"
+		commandline="/p:CleanIntermediates=True /p:Configuration=Release /p:CustomBeforeSHFBTargets=doc/quartznet-2.0.targets &quot;doc/quartznet.shfbproj&quot;" 
+	/>
+
+	<call target="apidoc-post-process" />
+
+  </target>
+  
+  <target name="apidoc-post-process">
+ 	
+	<!-- far easier just to post-process html files than try to get SHFB to work with html in footer -->
+	<loadfile file="doc/header.template" property="header.content" failonerror="true" />
+	<loadfile file="doc/footer.template" property="footer.content" failonerror="true" />
+	<foreach item="File" property="filename">
+		<in>
+			<items>
+				<include name="build/apidoc/**/*.htm" />
+				<include name="build/apidoc/**/*.html" />
+			</items>
+		</in>
+		<do>
+			<loadfile file="${filename}" property="file.to.process">
+				<filterchain>
+					<replacetokens>
+						<token key="FOOTER" value="${footer.content}" />
+						<token key="HEADER" value="${header.content}" />
+					</replacetokens>
+				</filterchain>
+			</loadfile>
+			<echo file="${filename}">${file.to.process}</echo>
+		</do>
+	</foreach>
+  </target>
+
+  <target name="package-release">
+
+    <call target="init" />
+
+    <property name="build.configuration" value="release" />
+    <property name="build.optimize" value="true" />
+    <property name="build.debug" value="PdbOnly" />
+    <property name="build.defines" value="TRACE,STRONG" />
+
+    <if test="${c5-collections}" >
+      <property name="build.defines" value="${build.defines},C5" />
+    </if>
+
+    <call target="clean" />
+    <call target="build-3.5" />
+    <call target="build-server-3.5" />
+    <call target="build-4.0" />
+    <call target="build-server-4.0" />
+
+    <delete dir="package" failonerror="false" />
+    <mkdir dir="package" />
+    <mkdir dir="package/database" />
+    <mkdir dir="package/src" />
+    <mkdir dir="package/server" />
+
+    <copy todir="package">
+      <fileset>
+        <include name="${dir.src}/**" />
+        <include name="${dir.server.src}/**" />
+        <include name="build/**/Quartz/**" />
+        <include name="database/**" />
+        <include name="lib/**" />
+        <include name="*.sln" />
+        <include name="*.txt" />
+        <include name="*.build" />
+
+        <exclude name="lib/other" />
+        <exclude name="**/.svn/**" />
+        <exclude name="**/_svn/**" />
+        <exclude name="**/*.suo" />
+        <exclude name="**/*.user" />
+        <exclude name="**/obj/**" />
+      </fileset>
+    </copy>
+
+    <copy todir="package/server/bin/4.0" flatten="true">
+      <fileset>
+        <include name="build/4.0/${build.configuration}/Quartz.Server/**" />
+      </fileset>
+    </copy>
+
+    <copy todir="package/server/bin/3.5" flatten="true">
+      <fileset>
+        <include name="build/3.5/${build.configuration}/Quartz.Server/**" />
+      </fileset>
+    </copy>
+
+    <copy todir="package/doc/xml" flatten="true">
+      <fileset>
+        <include name="src/**/job_scheduling_data*.xsd" />
+      </fileset>
+    </copy>
+
+    <copy file="src/Quartz.Tests.Unit/Xml/TestData/RichConfiguration.xml" tofile="package/doc/xml/quartz_sample.xml" />
+
+    <!-- sorry *nix folks, couldn't get move to work as expected.. -->
+    <exec program="cmd" commandline="/c move package\build package\bin" />
+
+    <zip zipfile="Quartz.NET-${version.readable}.zip">
+      <fileset basedir="package">
+        <include name="**/*" />
+      </fileset>
+    </zip>
+	
+	<exec program="${nuget.location}" commandline="pack Quartz.nuspec -Version ${version.readable}" />
+
+  </target>
+
+  <target name="build-all-csc">
+    <property name="build.defines" value="" overwrite="false" />
+    <property name="lib-dir-version" value="${target.framework}" overwrite="false" />
+
+    <call target="build-quartz" />
+    <call target="build-examples" />
+    <call target="build-tests" />
+
+  </target>
+
+  <target name="determine-lib-dirs">
+	<property name="nuget-framework" value="net40" />
+	<property name="nuget-framework" value="net35" if="${target.framework == '3.5'}" /> 
+	<property name="common-logging-dll" value="packages/Common.Logging.3.3.1/lib/${nuget-framework}/Common.Logging.dll" />
+	<property name="common-logging-core-dll" value="packages/Common.Logging.Core.3.3.1/lib/${nuget-framework}/Common.Logging.Core.dll" />
+	<property name="common-logging-log4net-dll" value="packages/Common.Logging.Log4Net1213.3.3.1/lib/${nuget-framework}/Common.Logging.Log4Net1213.dll" />
+	<property name="nunit-dll" value="packages/NUnit.2.6.3/lib/nunit.framework.dll" />
+	<property name="rhino-mocks-dll" value="packages/RhinoMocks.3.6.1/lib/net/Rhino.Mocks.dll" />
+    <property name="topshelf-dll" value="packages/TopShelf.3.1.4/lib/net40-full/Topshelf.dll" />
+	<property name="oracle-odp-managed-dll" value="packages/Oracle.ManagedDataAccess.12.1.2400/lib/net40/Oracle.ManagedDataAccess.dll" />
+	
+	<if test="${target.framework == '3.5'}">
+		<property name="topshelf-dll" value="packages/TopShelf.3.1.4/lib/net35/Topshelf.dll" />
+	</if>
+	<property name="log4net-dll" value="packages/log4net.2.0.3/lib/${nuget-framework}-full/log4net.dll" unless="${client-profile}" />
+	<property name="log4net-dll" value="packages/log4net.2.0.3/lib/${nuget-framework}-client/log4net.dll" if="${client-profile}" />
+  </target>
+
+</project>
