@@ -1,6 +1,10 @@
-﻿using System;
+﻿using Quartz;
+using Quartz.Impl;
+using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
@@ -12,17 +16,37 @@ namespace ServiceHost
 {
     partial class QuartzService : ServiceBase
     {
+        ISchedulerFactory factory;
+        IScheduler scheduler;
 
         public QuartzService() {
             InitializeComponent();
+            NameValueCollection config = (NameValueCollection)ConfigurationManager.GetSection("quartz");
+            factory = new StdSchedulerFactory(config);
+            scheduler = factory.GetScheduler();
+
         }
 
         protected override void OnStart(string[] args) {
-            // TODO: Add code here to start your service.
+            if ( !scheduler.IsStarted ) {
+                scheduler.Start();
+            }
+            //TODO
+
+
+
         }
 
         protected override void OnStop() {
-            // TODO: Add code here to perform any tear-down necessary to stop your service.
+            scheduler.Shutdown();
+        }
+
+        protected override void OnPause() {
+            scheduler.PauseAll();
+        }
+
+        protected override void OnContinue() {
+            scheduler.ResumeAll();
         }
     }
 }

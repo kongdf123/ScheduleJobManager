@@ -76,6 +76,13 @@
       <Project>{aef8823b-e45b-4b35-a4d0-c08c1196d017}</Project>
       <Name>Quartz.2010</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{1ecc5501-0eda-4b51-8f35-af2bf0a1cd80}</Project>
+      <Name>Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

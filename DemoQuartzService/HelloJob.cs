@@ -11,6 +11,7 @@ namespace DemoQuartzService
     {
         public void Execute(IJobExecutionContext context) {
             Console.WriteLine("Hell, this is the first job schedule with Quartz.NET.");
+
         }
     }
 }

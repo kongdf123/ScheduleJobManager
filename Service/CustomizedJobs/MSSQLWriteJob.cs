@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service.Jobs
+namespace Service.CustomizedJobs
 {
-    public class MSSQLDataDowloadJob : IJob
+    public class MSSQLWriteJob : IJob
     {
         public void Execute(IJobExecutionContext context) {
             throw new NotImplementedException();

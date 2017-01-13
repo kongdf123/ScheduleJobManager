@@ -54,6 +54,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -63,8 +64,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomizedJobs\MSSQLDataDowloadJob.cs" />
-    <Compile Include="CustomizedJobs\MSSQLDataUploadJob.cs" />
+    <Compile Include="Common\HttpHelper.cs" />
+    <Compile Include="CustomizedJobs\MSSQLReadJob.cs" />
+    <Compile Include="CustomizedJobs\MSSQLWriteJob.cs" />
     <Compile Include="EF\JobDetail.cs" />
     <Compile Include="EF\JobDetailBLL.cs" />
     <Compile Include="EF\QuartzDbContext.cs" />
@@ -77,9 +79,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="EF\quartz-net-mysql.sql" />
   </ItemGroup>
