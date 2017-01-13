@@ -4,8 +4,12 @@ CREATE TABLE `custom_job_details` (
   `JobName` varchar(200) NOT NULL,
   `JobServiceURL` varchar(200) NOT NULL,
   `CreatedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdatedDate` datetime DEFAULT NULL,
   `StartDate` datetime DEFAULT CURRENT_TIMESTAMP,
   `EndDate` datetime DEFAULT CURRENT_TIMESTAMP,
+  `PageSize` int(11) DEFAULT NULL,
+  `Interval` int(11) DEFAULT NULL,
+  `State` tinyint(1) DEFAULT NULL COMMENT '1: enable\n0: disable',
   PRIMARY KEY (`JobId`,`JobName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=big5 COMMENT='to manage parameter records ,which belongs to control custom job actions in practice.';
 
