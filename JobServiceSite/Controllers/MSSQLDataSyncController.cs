@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Service.EF;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,7 +14,22 @@ namespace JobServiceSite.Controllers
             return View();
         }
 
-        public JsonResult SyncTargetTableRecords() {
+        [HttpPost]
+        public JsonResult Download(string jobName) {
+            //TODO
+            JobDetailBLL jobDetailBLL = new JobDetailBLL();
+            var jobDetail = jobDetailBLL.Get(jobName);
+
+            if ( jobDetail == null ) {
+                return Json(new { code = 0 });
+            }
+
+
+            return Json(new { code = 1 });
+        }
+
+        [HttpPost]
+        public JsonResult Upload(string jobName) {
             //TODO
             return Json(new { code = 1 });
         }

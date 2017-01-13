@@ -65,8 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\HttpHelper.cs" />
-    <Compile Include="CustomizedJobs\MSSQLReadJob.cs" />
-    <Compile Include="CustomizedJobs\MSSQLWriteJob.cs" />
+    <Compile Include="Jobs\MSSQLReadJob.cs" />
+    <Compile Include="Jobs\MSSQLWriteJob.cs" />
     <Compile Include="EF\JobDetail.cs" />
     <Compile Include="EF\JobDetailBLL.cs" />
     <Compile Include="EF\QuartzDbContext.cs" />

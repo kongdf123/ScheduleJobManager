@@ -15,11 +15,11 @@ namespace Service.Jobs
             JobDetailBLL jobDetailBLL = new JobDetailBLL();
             var jobDetail = jobDetailBLL.Get(context.JobDetail.Key.Name);
 
-            if ( jobDetail==null ) {
+            if ( jobDetail == null ) {
                 return;
             }
 
-            HttpHelper.SendPost(jobDetail.JobServiceURL, "");
+            HttpHelper.SendPost(jobDetail.JobServiceURL, "jobName=" + jobDetail.JobName);
 
         }
     }

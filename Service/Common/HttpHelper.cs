@@ -125,23 +125,7 @@ namespace ServiceHost.Common
 
             return (HttpWebResponse)request.GetResponse();
         }
-        
-        /// <summary>
-        /// 解析URL返回域名
-        /// </summary>
-        /// <param name="url"></param>
-        /// <returns></returns>
-        public static string PraseDomain(string url) {
-            if ( string.IsNullOrEmpty(url) ) return string.Empty;
-
-            try {
-                Uri uri = new Uri(url);
-                return uri.Host;
-            }
-            catch ( Exception ex ) {
-                throw ex;
-            }
-        }        
+               
     }
 
     public class HttpConfig
