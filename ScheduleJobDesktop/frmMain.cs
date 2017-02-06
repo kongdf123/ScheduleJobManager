@@ -26,7 +26,7 @@ namespace ScheduleJobDesktop
         }
 
         private void menuScheduleJob_Click(object sender, EventArgs e) {
-            panel3
+            
         }
 
 
