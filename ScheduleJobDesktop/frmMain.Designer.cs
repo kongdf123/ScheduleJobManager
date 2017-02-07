@@ -30,8 +30,8 @@
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.tabContainer = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.menu = new System.Windows.Forms.Button();
             this.lblDate = new System.Windows.Forms.Label();
+            this.menu = new System.Windows.Forms.Button();
             this.panelScheduleJob = new System.Windows.Forms.Panel();
             this.linkScheduleJobEdit = new System.Windows.Forms.LinkLabel();
             this.linkScheduleJobList = new System.Windows.Forms.LinkLabel();
@@ -46,6 +46,7 @@
             this.panelMenuContainer = new System.Windows.Forms.Panel();
             this.panelSettings = new System.Windows.Forms.Panel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.statusStrip1.SuspendLayout();
             this.tabContainer.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -55,6 +56,7 @@
             this.menuStrip1.SuspendLayout();
             this.panelMenuContainer.SuspendLayout();
             this.panelSettings.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -83,11 +85,12 @@
             // tabContainer
             // 
             this.tabContainer.Controls.Add(this.tabPage1);
-            this.tabContainer.Location = new System.Drawing.Point(128, 27);
+            this.tabContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabContainer.Location = new System.Drawing.Point(0, 0);
             this.tabContainer.Name = "tabContainer";
             this.tabContainer.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tabContainer.SelectedIndex = 0;
-            this.tabContainer.Size = new System.Drawing.Size(942, 455);
+            this.tabContainer.Size = new System.Drawing.Size(939, 485);
             this.tabContainer.TabIndex = 1;
             // 
             // tabPage1
@@ -96,20 +99,10 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(934, 429);
+            this.tabPage1.Size = new System.Drawing.Size(931, 459);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "首页";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // menu
-            // 
-            this.menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(156)))), ((int)(((byte)(204)))));
-            this.menu.Location = new System.Drawing.Point(1, 2);
-            this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(121, 23);
-            this.menu.TabIndex = 3;
-            this.menu.Text = "系统设置";
-            this.menu.UseVisualStyleBackColor = false;
             // 
             // lblDate
             // 
@@ -120,6 +113,16 @@
             this.lblDate.Size = new System.Drawing.Size(0, 20);
             this.lblDate.TabIndex = 0;
             // 
+            // menu
+            // 
+            this.menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(156)))), ((int)(((byte)(204)))));
+            this.menu.Location = new System.Drawing.Point(1, 2);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(126, 23);
+            this.menu.TabIndex = 3;
+            this.menu.Text = "系统设置";
+            this.menu.UseVisualStyleBackColor = false;
+            // 
             // panelScheduleJob
             // 
             this.panelScheduleJob.BackColor = System.Drawing.SystemColors.Window;
@@ -128,7 +131,7 @@
             this.panelScheduleJob.Controls.Add(this.menuScheduleJob);
             this.panelScheduleJob.Location = new System.Drawing.Point(0, 0);
             this.panelScheduleJob.Name = "panelScheduleJob";
-            this.panelScheduleJob.Size = new System.Drawing.Size(126, 98);
+            this.panelScheduleJob.Size = new System.Drawing.Size(127, 98);
             this.panelScheduleJob.TabIndex = 3;
             // 
             // linkScheduleJobEdit
@@ -164,7 +167,7 @@
             this.menuScheduleJob.ForeColor = System.Drawing.SystemColors.ControlText;
             this.menuScheduleJob.Location = new System.Drawing.Point(0, 0);
             this.menuScheduleJob.Name = "menuScheduleJob";
-            this.menuScheduleJob.Size = new System.Drawing.Size(122, 23);
+            this.menuScheduleJob.Size = new System.Drawing.Size(127, 23);
             this.menuScheduleJob.TabIndex = 0;
             this.menuScheduleJob.Text = "任务管理";
             this.menuScheduleJob.UseVisualStyleBackColor = false;
@@ -176,7 +179,7 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(3, 28);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(123, 17);
+            this.panel2.Size = new System.Drawing.Size(130, 17);
             this.panel2.TabIndex = 4;
             // 
             // label1
@@ -234,7 +237,7 @@
             this.panelMenuContainer.Controls.Add(this.panelScheduleJob);
             this.panelMenuContainer.Location = new System.Drawing.Point(3, 45);
             this.panelMenuContainer.Name = "panelMenuContainer";
-            this.panelMenuContainer.Size = new System.Drawing.Size(123, 437);
+            this.panelMenuContainer.Size = new System.Drawing.Size(130, 437);
             this.panelMenuContainer.TabIndex = 5;
             // 
             // panelSettings
@@ -244,7 +247,7 @@
             this.panelSettings.Controls.Add(this.menu);
             this.panelSettings.Location = new System.Drawing.Point(0, 99);
             this.panelSettings.Name = "panelSettings";
-            this.panelSettings.Size = new System.Drawing.Size(126, 100);
+            this.panelSettings.Size = new System.Drawing.Size(127, 100);
             this.panelSettings.TabIndex = 4;
             // 
             // linkLabel1
@@ -259,18 +262,28 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = ">> 参数设置";
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.tabContainer);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(135, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(939, 485);
+            this.panel3.TabIndex = 6;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1074, 507);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelMenuContainer);
-            this.Controls.Add(this.tabContainer);
             this.Controls.Add(this.statusStrip1);
             this.Name = "frmMain";
             this.Text = "任务调度系统 V1.0";
+            this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.tabContainer.ResumeLayout(false);
@@ -287,6 +300,7 @@
             this.panelMenuContainer.ResumeLayout(false);
             this.panelSettings.ResumeLayout(false);
             this.panelSettings.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -314,6 +328,7 @@
         private System.Windows.Forms.Panel panelMenuContainer;
         private System.Windows.Forms.Panel panelSettings;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Panel panel3;
     }
 }
 

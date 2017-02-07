@@ -26,8 +26,8 @@
         /// </summary>
         private void InitializeComponent() {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCreateScheduleJob = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -49,7 +49,10 @@
             this.JobStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BeginTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -57,32 +60,37 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button6);
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.AutoSize = true;
+            this.panel1.BackColor = System.Drawing.SystemColors.Window;
+            this.panel1.Controls.Add(this.btnCreateScheduleJob);
+            this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Location = new System.Drawing.Point(5, 19);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(924, 75);
+            this.panel1.Size = new System.Drawing.Size(939, 429);
             this.panel1.TabIndex = 0;
             // 
-            // button6
+            // btnCreateScheduleJob
             // 
-            this.button6.Location = new System.Drawing.Point(610, 23);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 3;
-            this.button6.Text = "新增任务";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnCreateScheduleJob.Location = new System.Drawing.Point(610, 23);
+            this.btnCreateScheduleJob.Name = "btnCreateScheduleJob";
+            this.btnCreateScheduleJob.Size = new System.Drawing.Size(75, 23);
+            this.btnCreateScheduleJob.TabIndex = 3;
+            this.btnCreateScheduleJob.Text = "新增任务";
+            this.btnCreateScheduleJob.UseVisualStyleBackColor = true;
+            this.btnCreateScheduleJob.Click += new System.EventHandler(this.btnCreateScheduleJob_Click);
             // 
-            // button2
+            // btnSearch
             // 
-            this.button2.Location = new System.Drawing.Point(506, 23);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "查询";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnSearch.Location = new System.Drawing.Point(506, 23);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 2;
+            this.btnSearch.Text = "查询";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // textBox2
             // 
@@ -118,10 +126,14 @@
             this.JobStatus,
             this.BeginTime,
             this.EndTime,
-            this.Column1});
-            this.dataGridView1.Location = new System.Drawing.Point(5, 3);
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(909, 285);
+            this.dataGridView1.Size = new System.Drawing.Size(924, 291);
             this.dataGridView1.TabIndex = 0;
             // 
             // label1
@@ -257,13 +269,31 @@
             // 
             // Column1
             // 
-            this.Column1.HeaderText = "操作";
+            this.Column1.HeaderText = "查看";
             this.Column1.Name = "Column1";
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column1.Text = "查看";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "删除";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "修改";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "暂停";
+            this.Column4.Name = "Column4";
             // 
             // ScheduleJobListControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -306,8 +336,8 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCreateScheduleJob;
+        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridViewTextBoxColumn ScheduleJobName;
@@ -315,6 +345,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn JobStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn BeginTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn EndTime;
-        private System.Windows.Forms.DataGridViewButtonColumn Column1;
+        private System.Windows.Forms.DataGridViewLinkColumn Column1;
+        private System.Windows.Forms.DataGridViewLinkColumn Column2;
+        private System.Windows.Forms.DataGridViewLinkColumn Column3;
+        private System.Windows.Forms.DataGridViewLinkColumn Column4;
     }
 }

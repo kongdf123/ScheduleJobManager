@@ -301,11 +301,13 @@
             this.btnClose.TabIndex = 26;
             this.btnClose.Text = "关闭";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // frmJobEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(560, 497);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);

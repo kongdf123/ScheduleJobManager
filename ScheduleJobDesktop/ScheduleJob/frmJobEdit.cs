@@ -19,5 +19,10 @@ namespace ScheduleJobDesktop.ScheduleJob
         private void btnSave_Click(object sender, EventArgs e) {
 
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
