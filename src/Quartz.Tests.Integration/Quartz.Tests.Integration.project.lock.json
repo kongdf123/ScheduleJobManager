@@ -1,0 +1,474 @@
+{
+  "locked": false,
+  "version": 1,
+  "targets": {
+    ".NETFramework,Version=v4.5": {
+      "EntityFramework/6.0.0": {
+        "frameworkAssemblies": [
+          "System.ComponentModel.DataAnnotations"
+        ],
+        "compile": {
+          "lib/net45/EntityFramework.SqlServer.dll": {},
+          "lib/net45/EntityFramework.dll": {}
+        },
+        "runtime": {
+          "lib/net45/EntityFramework.SqlServer.dll": {},
+          "lib/net45/EntityFramework.dll": {}
+        }
+      },
+      "FakeItEasy/2.2.0": {
+        "compile": {
+          "lib/net40/FakeItEasy.dll": {}
+        },
+        "runtime": {
+          "lib/net40/FakeItEasy.dll": {}
+        }
+      },
+      "FirebirdSql.Data.FirebirdClient/5.1.0": {
+        "compile": {
+          "lib/net45/FirebirdSql.Data.FirebirdClient.dll": {}
+        },
+        "runtime": {
+          "lib/net45/FirebirdSql.Data.FirebirdClient.dll": {}
+        }
+      },
+      "MySql.Data/6.9.9": {
+        "compile": {
+          "lib/net45/MySql.Data.dll": {}
+        },
+        "runtime": {
+          "lib/net45/MySql.Data.dll": {}
+        }
+      },
+      "Newtonsoft.Json/9.0.1": {
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Npgsql/3.1.7": {
+        "compile": {
+          "lib/net45/Npgsql.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Npgsql.dll": {}
+        }
+      },
+      "NUnit/3.4.1": {
+        "compile": {
+          "lib/net45/nunit.framework.dll": {}
+        },
+        "runtime": {
+          "lib/net45/nunit.framework.dll": {}
+        }
+      },
+      "Oracle.ManagedDataAccess/12.1.24160419": {
+        "compile": {
+          "lib/net40/Oracle.ManagedDataAccess.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Oracle.ManagedDataAccess.dll": {}
+        }
+      },
+      "System.Data.SQLite/1.0.102": {
+        "dependencies": {
+          "System.Data.SQLite.Core": "1.0.102",
+          "System.Data.SQLite.EF6": "1.0.102",
+          "System.Data.SQLite.Linq": "1.0.102"
+        }
+      },
+      "System.Data.SQLite.Core/1.0.102": {
+        "compile": {
+          "lib/net45/System.Data.SQLite.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Data.SQLite.dll": {}
+        }
+      },
+      "System.Data.SQLite.EF6/1.0.102": {
+        "dependencies": {
+          "EntityFramework": "6.0.0"
+        },
+        "compile": {
+          "lib/net45/System.Data.SQLite.EF6.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Data.SQLite.EF6.dll": {}
+        }
+      },
+      "System.Data.SQLite.Linq/1.0.102": {
+        "compile": {
+          "lib/net45/System.Data.SQLite.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Data.SQLite.Linq.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.5/win": {
+      "EntityFramework/6.0.0": {
+        "frameworkAssemblies": [
+          "System.ComponentModel.DataAnnotations"
+        ],
+        "compile": {
+          "lib/net45/EntityFramework.SqlServer.dll": {},
+          "lib/net45/EntityFramework.dll": {}
+        },
+        "runtime": {
+          "lib/net45/EntityFramework.SqlServer.dll": {},
+          "lib/net45/EntityFramework.dll": {}
+        }
+      },
+      "FakeItEasy/2.2.0": {
+        "compile": {
+          "lib/net40/FakeItEasy.dll": {}
+        },
+        "runtime": {
+          "lib/net40/FakeItEasy.dll": {}
+        }
+      },
+      "FirebirdSql.Data.FirebirdClient/5.1.0": {
+        "compile": {
+          "lib/net45/FirebirdSql.Data.FirebirdClient.dll": {}
+        },
+        "runtime": {
+          "lib/net45/FirebirdSql.Data.FirebirdClient.dll": {}
+        }
+      },
+      "MySql.Data/6.9.9": {
+        "compile": {
+          "lib/net45/MySql.Data.dll": {}
+        },
+        "runtime": {
+          "lib/net45/MySql.Data.dll": {}
+        }
+      },
+      "Newtonsoft.Json/9.0.1": {
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Npgsql/3.1.7": {
+        "compile": {
+          "lib/net45/Npgsql.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Npgsql.dll": {}
+        }
+      },
+      "NUnit/3.4.1": {
+        "compile": {
+          "lib/net45/nunit.framework.dll": {}
+        },
+        "runtime": {
+          "lib/net45/nunit.framework.dll": {}
+        }
+      },
+      "Oracle.ManagedDataAccess/12.1.24160419": {
+        "compile": {
+          "lib/net40/Oracle.ManagedDataAccess.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Oracle.ManagedDataAccess.dll": {}
+        }
+      },
+      "System.Data.SQLite/1.0.102": {
+        "dependencies": {
+          "System.Data.SQLite.Core": "1.0.102",
+          "System.Data.SQLite.EF6": "1.0.102",
+          "System.Data.SQLite.Linq": "1.0.102"
+        }
+      },
+      "System.Data.SQLite.Core/1.0.102": {
+        "compile": {
+          "lib/net45/System.Data.SQLite.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Data.SQLite.dll": {}
+        }
+      },
+      "System.Data.SQLite.EF6/1.0.102": {
+        "dependencies": {
+          "EntityFramework": "6.0.0"
+        },
+        "compile": {
+          "lib/net45/System.Data.SQLite.EF6.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Data.SQLite.EF6.dll": {}
+        }
+      },
+      "System.Data.SQLite.Linq/1.0.102": {
+        "compile": {
+          "lib/net45/System.Data.SQLite.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Data.SQLite.Linq.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "EntityFramework/6.0.0": {
+      "sha512": "y6lX/VMghGBV6TvgQS4Q2WK6kAcOoyD+TQxObN9utd0JsMMdMxyqARxKbvgi7KEIbQ8osZ4ZvImaly7l3NDFDw==",
+      "type": "package",
+      "files": [
+        "Content/App.config.transform",
+        "Content/Web.config.transform",
+        "EntityFramework.6.0.0.nupkg.sha512",
+        "EntityFramework.nuspec",
+        "lib/net40/EntityFramework.SqlServer.dll",
+        "lib/net40/EntityFramework.SqlServer.xml",
+        "lib/net40/EntityFramework.dll",
+        "lib/net40/EntityFramework.xml",
+        "lib/net45/EntityFramework.SqlServer.dll",
+        "lib/net45/EntityFramework.SqlServer.xml",
+        "lib/net45/EntityFramework.dll",
+        "lib/net45/EntityFramework.xml",
+        "tools/EntityFramework.PowerShell.Utility.dll",
+        "tools/EntityFramework.PowerShell.dll",
+        "tools/EntityFramework.psd1",
+        "tools/EntityFramework.psm1",
+        "tools/about_EntityFramework.help.txt",
+        "tools/init.ps1",
+        "tools/install.ps1",
+        "tools/migrate.exe"
+      ]
+    },
+    "FakeItEasy/2.2.0": {
+      "sha512": "yVZQMN+/Ti0mbf3U/L6Ju4ccMX+jTV/XrPO+xb11BRN+MHORE3qTmN9YPgTFJAHdEuPxw5JCLMmTh7hEyAChdA==",
+      "type": "package",
+      "files": [
+        "FakeItEasy.2.2.0.nupkg.sha512",
+        "FakeItEasy.nuspec",
+        "lib/net40/FakeItEasy.dll",
+        "lib/net40/FakeItEasy.pdb",
+        "lib/net40/FakeItEasy.xml"
+      ]
+    },
+    "FirebirdSql.Data.FirebirdClient/5.1.0": {
+      "sha512": "6rRKS12mMUhc535CYPmj1AwjNIJCkYB+wlC8XdO6gvBcjyJjlqpIAnQSA87hxyTAdq8eDY26a+7U/ZkR+Dh+OQ==",
+      "type": "package",
+      "files": [
+        "FirebirdSql.Data.FirebirdClient.5.1.0.nupkg.sha512",
+        "FirebirdSql.Data.FirebirdClient.nuspec",
+        "content/app.config.transform",
+        "content/web.config.transform",
+        "lib/net40-client/FirebirdSql.Data.FirebirdClient.dll",
+        "lib/net40-client/FirebirdSql.Data.FirebirdClient.pdb",
+        "lib/net45/FirebirdSql.Data.FirebirdClient.dll",
+        "lib/net45/FirebirdSql.Data.FirebirdClient.pdb",
+        "readme.txt"
+      ]
+    },
+    "MySql.Data/6.9.9": {
+      "sha512": "rhpv2iJBqvvHU9gkhn/OZfhanQT/jZpfovyO9TEbJl5jLKMvABgxSkIPQbubrvR04M2/ZtdTeI9fC9WSkBe2wA==",
+      "type": "package",
+      "files": [
+        "CHANGES",
+        "MySql.Data.6.9.9.nupkg.sha512",
+        "MySql.Data.nuspec",
+        "Readme.txt",
+        "content/app.config.transform",
+        "content/web.config.transform",
+        "lib/net40/MySql.Data.dll",
+        "lib/net45/MySql.Data.dll"
+      ]
+    },
+    "Newtonsoft.Json/9.0.1": {
+      "sha512": "U82mHQSKaIk+lpSVCbWYKNavmNH1i5xrExDEquU1i6I5pV6UMOqRnJRSlKO3cMPfcpp0RgDY+8jUXHdQ4IfXvw==",
+      "type": "package",
+      "files": [
+        "Newtonsoft.Json.9.0.1.nupkg.sha512",
+        "Newtonsoft.Json.nuspec",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.xml",
+        "tools/install.ps1"
+      ]
+    },
+    "Npgsql/3.1.7": {
+      "sha512": "4fRHzkODDkIoCMFO6g9sC8Zf+wWuVfJVHH3Jv3KqYprP137lFsRoHt2agmUI9tAYu9tDCfBEnS0TiApUVu0NHg==",
+      "type": "package",
+      "files": [
+        "Npgsql.3.1.7.nupkg.sha512",
+        "Npgsql.nuspec",
+        "lib/net45/Npgsql.dll",
+        "lib/net45/Npgsql.xml",
+        "lib/net451/Npgsql.dll",
+        "lib/net451/Npgsql.xml",
+        "lib/netstandard1.3/Npgsql.dll",
+        "lib/netstandard1.3/Npgsql.xml"
+      ]
+    },
+    "NUnit/3.4.1": {
+      "sha512": "G/9h/ENn8+GvT5DvBqVNrUhIWuxtAr0/oVGN2ljKVUw50EAZYBzeWSy9s6nqMswaQACpQzljql1sWQ/peE2eJg==",
+      "type": "package",
+      "files": [
+        "CHANGES.txt",
+        "LICENSE.txt",
+        "NOTICES.txt",
+        "NUnit.3.4.1.nupkg.sha512",
+        "NUnit.nuspec",
+        "lib/dotnet/nunit.framework.dll",
+        "lib/dotnet/nunit.framework.xml",
+        "lib/net20/NUnit.System.Linq.dll",
+        "lib/net20/nunit.framework.dll",
+        "lib/net20/nunit.framework.xml",
+        "lib/net35/nunit.framework.dll",
+        "lib/net35/nunit.framework.xml",
+        "lib/net40/nunit.framework.dll",
+        "lib/net40/nunit.framework.xml",
+        "lib/net45/nunit.framework.dll",
+        "lib/net45/nunit.framework.xml",
+        "lib/portable-net45+win8+wp8+wpa81+Xamarin.Mac+MonoAndroid10+MonoTouch10+Xamarin.iOS10/nunit.framework.dll",
+        "lib/portable-net45+win8+wp8+wpa81+Xamarin.Mac+MonoAndroid10+MonoTouch10+Xamarin.iOS10/nunit.framework.xml"
+      ]
+    },
+    "Oracle.ManagedDataAccess/12.1.24160419": {
+      "sha512": "Kbs+IPgSYlNxW7X2L0mXa23JJclS5yb9bgUuSqNVJcELwMnjVji4XX5eS5Mm0N9RoN/LqRsjYhTkLkPGp1JMCQ==",
+      "type": "package",
+      "files": [
+        "Oracle.ManagedDataAccess.12.1.24160419.nupkg.sha512",
+        "Oracle.ManagedDataAccess.nuspec",
+        "bin/x64/Oracle.ManagedDataAccessDTC.dll",
+        "bin/x64/Oracle.ManagedDataAccessIOP.dll",
+        "bin/x86/Oracle.ManagedDataAccessDTC.dll",
+        "bin/x86/Oracle.ManagedDataAccessIOP.dll",
+        "content/net40/App.config.install.xdt",
+        "content/net40/App.config.transform",
+        "content/net40/App.config.uninstall.xdt",
+        "content/net40/Web.config.install.xdt",
+        "content/net40/Web.config.transform",
+        "content/net40/Web.config.uninstall.xdt",
+        "info.txt",
+        "lib/net40/Oracle.ManagedDataAccess.dll",
+        "readme.txt"
+      ]
+    },
+    "System.Data.SQLite/1.0.102": {
+      "sha512": "Zw1z+F/ilg6cA0XJC1AzUwSSYFKzHPoYpzdlj/Iqizp37Nn2iW+4aZXTg+sByg5qq7gmIip+R2pQu3/6jfhjJQ==",
+      "type": "package",
+      "files": [
+        "System.Data.SQLite.1.0.102.nupkg.sha512",
+        "System.Data.SQLite.nuspec"
+      ]
+    },
+    "System.Data.SQLite.Core/1.0.102": {
+      "sha512": "VRmMN+9ue3cePifzOvu4irsSi6sOuClIeNaISmTQcvR5KIyxQgIOpc+MrpTCT6gmxZGjtSmJqwcwEfY4sv4KUQ==",
+      "type": "package",
+      "files": [
+        "System.Data.SQLite.Core.1.0.102.nupkg.sha512",
+        "System.Data.SQLite.Core.nuspec",
+        "build/net20/System.Data.SQLite.Core.targets",
+        "build/net20/x64/SQLite.Interop.dll",
+        "build/net20/x86/SQLite.Interop.dll",
+        "build/net40/System.Data.SQLite.Core.targets",
+        "build/net40/x64/SQLite.Interop.dll",
+        "build/net40/x86/SQLite.Interop.dll",
+        "build/net45/System.Data.SQLite.Core.targets",
+        "build/net45/x64/SQLite.Interop.dll",
+        "build/net45/x86/SQLite.Interop.dll",
+        "build/net451/System.Data.SQLite.Core.targets",
+        "build/net451/x64/SQLite.Interop.dll",
+        "build/net451/x86/SQLite.Interop.dll",
+        "build/net46/System.Data.SQLite.Core.targets",
+        "build/net46/x64/SQLite.Interop.dll",
+        "build/net46/x86/SQLite.Interop.dll",
+        "lib/net20/System.Data.SQLite.dll",
+        "lib/net20/System.Data.SQLite.xml",
+        "lib/net40/System.Data.SQLite.dll",
+        "lib/net40/System.Data.SQLite.xml",
+        "lib/net45/System.Data.SQLite.dll",
+        "lib/net45/System.Data.SQLite.xml",
+        "lib/net451/System.Data.SQLite.dll",
+        "lib/net451/System.Data.SQLite.xml",
+        "lib/net46/System.Data.SQLite.dll",
+        "lib/net46/System.Data.SQLite.xml"
+      ]
+    },
+    "System.Data.SQLite.EF6/1.0.102": {
+      "sha512": "uB1ZZds+w/lN7abtRKKfnVND1v/O2vWi3oyeObPGAAcOumQZQZfDFNxsfY7doQjpK3wK/UzTEmufPzxzCAh2HA==",
+      "type": "package",
+      "files": [
+        "System.Data.SQLite.EF6.1.0.102.nupkg.sha512",
+        "System.Data.SQLite.EF6.nuspec",
+        "content/net40/app.config.install.xdt",
+        "content/net40/app.config.transform",
+        "content/net40/web.config.install.xdt",
+        "content/net40/web.config.transform",
+        "content/net45/app.config.install.xdt",
+        "content/net45/app.config.transform",
+        "content/net45/web.config.install.xdt",
+        "content/net45/web.config.transform",
+        "content/net451/app.config.install.xdt",
+        "content/net451/app.config.transform",
+        "content/net451/web.config.install.xdt",
+        "content/net451/web.config.transform",
+        "content/net46/app.config.install.xdt",
+        "content/net46/app.config.transform",
+        "content/net46/web.config.install.xdt",
+        "content/net46/web.config.transform",
+        "lib/net40/System.Data.SQLite.EF6.dll",
+        "lib/net45/System.Data.SQLite.EF6.dll",
+        "lib/net451/System.Data.SQLite.EF6.dll",
+        "lib/net46/System.Data.SQLite.EF6.dll",
+        "tools/net40/install.ps1",
+        "tools/net45/install.ps1",
+        "tools/net451/install.ps1",
+        "tools/net46/install.ps1"
+      ]
+    },
+    "System.Data.SQLite.Linq/1.0.102": {
+      "sha512": "o6l0uOkQPx/C4FsyEQKpt6f+vwtPTO/I1gkB8fNRq/CBZyyaqhRRFPuagl2M+NPAi4IuDFY07YfuxJMTSM8CQw==",
+      "type": "package",
+      "files": [
+        "System.Data.SQLite.Linq.1.0.102.nupkg.sha512",
+        "System.Data.SQLite.Linq.nuspec",
+        "content/net20/app.config.transform",
+        "content/net20/web.config.transform",
+        "content/net40/app.config.transform",
+        "content/net40/web.config.transform",
+        "content/net45/app.config.transform",
+        "content/net45/web.config.transform",
+        "content/net451/app.config.transform",
+        "content/net451/web.config.transform",
+        "content/net46/app.config.transform",
+        "content/net46/web.config.transform",
+        "lib/net20/System.Data.SQLite.Linq.dll",
+        "lib/net40/System.Data.SQLite.Linq.dll",
+        "lib/net45/System.Data.SQLite.Linq.dll",
+        "lib/net451/System.Data.SQLite.Linq.dll",
+        "lib/net46/System.Data.SQLite.Linq.dll"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "": [
+      "FakeItEasy >= 2.2.0",
+      "FirebirdSql.Data.FirebirdClient >= 5.1.0",
+      "MySql.Data >= 6.9.9",
+      "NUnit >= 3.4.1",
+      "Npgsql >= 3.1.7",
+      "Oracle.ManagedDataAccess >= 12.1.24160419",
+      "System.Data.SQLite >= 1.0.102"
+    ],
+    ".NETFramework,Version=v4.5": []
+  }
+}

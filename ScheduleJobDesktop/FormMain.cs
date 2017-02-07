@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace ScheduleJobDesktop
 {
-    public partial class frmMain : Form
+    public partial class FormMain : Form
     {
-        public frmMain() {
+        public FormMain() {
             InitializeComponent();
             lblDate.Text = "欢迎访问，今天是" + DateTime.Now.ToString("yyyy年MM月dd日");
 
