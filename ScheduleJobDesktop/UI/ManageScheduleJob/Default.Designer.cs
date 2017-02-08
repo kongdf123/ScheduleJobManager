@@ -30,27 +30,27 @@
         {
             this.PnlMainArea = new System.Windows.Forms.Panel();
             this.DgvGrid = new System.Windows.Forms.DataGridView();
+            this.PnlTopTitle = new System.Windows.Forms.Panel();
+            this.PicTitleLine = new System.Windows.Forms.PictureBox();
+            this.PageBar = new ScheduleJobDesktop.UI.UserControls.PageBar();
+            this.LblTip = new System.Windows.Forms.Label();
+            this.PicTitle = new System.Windows.Forms.PictureBox();
+            this.PicLogo = new System.Windows.Forms.PictureBox();
+            this.dataGridViewActionButtonColumn1 = new ScheduleJobDesktop.UI.UserControls.DataGridViewActionButtonColumn();
+            this.PnlFooter = new System.Windows.Forms.Panel();
+            this.BtnCreate = new ScheduleJobDesktop.UserControls.Button();
             this.ScheduleJobName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JobStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColAction = new ScheduleJobDesktop.UI.UserControls.DataGridViewActionButtonColumn();
-            this.PnlTopTitle = new System.Windows.Forms.Panel();
-            this.PageBar = new ScheduleJobDesktop.UI.UserControls.PageBar();
-            this.LblTip = new System.Windows.Forms.Label();
-            this.dataGridViewActionButtonColumn1 = new ScheduleJobDesktop.UI.UserControls.DataGridViewActionButtonColumn();
-            this.PnlFooter = new System.Windows.Forms.Panel();
-            this.BtnCreate = new ScheduleJobDesktop.UserControls.Button();
-            this.PicTitleLine = new System.Windows.Forms.PictureBox();
-            this.PicTitle = new System.Windows.Forms.PictureBox();
-            this.PicLogo = new System.Windows.Forms.PictureBox();
             this.PnlMainArea.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvGrid)).BeginInit();
             this.PnlTopTitle.SuspendLayout();
-            this.PnlFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicTitleLine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicLogo)).BeginInit();
+            this.PnlFooter.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlMainArea
@@ -94,8 +94,107 @@
             this.DgvGrid.TabIndex = 0;
             this.DgvGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvGrid_CellMouseClick);
             // 
+            // PnlTopTitle
+            // 
+            this.PnlTopTitle.Controls.Add(this.PicTitleLine);
+            this.PnlTopTitle.Controls.Add(this.PageBar);
+            this.PnlTopTitle.Controls.Add(this.LblTip);
+            this.PnlTopTitle.Controls.Add(this.PicTitle);
+            this.PnlTopTitle.Controls.Add(this.PicLogo);
+            this.PnlTopTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PnlTopTitle.Location = new System.Drawing.Point(20, 22);
+            this.PnlTopTitle.Name = "PnlTopTitle";
+            this.PnlTopTitle.Size = new System.Drawing.Size(790, 87);
+            this.PnlTopTitle.TabIndex = 0;
+            // 
+            // PicTitleLine
+            // 
+            this.PicTitleLine.Image = global::ScheduleJobDesktop.Properties.Resources.TitleLine;
+            this.PicTitleLine.Location = new System.Drawing.Point(85, 43);
+            this.PicTitleLine.Margin = new System.Windows.Forms.Padding(0);
+            this.PicTitleLine.Name = "PicTitleLine";
+            this.PicTitleLine.Size = new System.Drawing.Size(350, 5);
+            this.PicTitleLine.TabIndex = 4;
+            this.PicTitleLine.TabStop = false;
+            // 
+            // PageBar
+            // 
+            this.PageBar.BackColor = System.Drawing.Color.White;
+            this.PageBar.CurPage = 1;
+            this.PageBar.DataControl = null;
+            this.PageBar.DataSource = null;
+            this.PageBar.Location = new System.Drawing.Point(430, 57);
+            this.PageBar.MinimumSize = new System.Drawing.Size(350, 24);
+            this.PageBar.Name = "PageBar";
+            this.PageBar.PageSize = 15;
+            this.PageBar.Size = new System.Drawing.Size(350, 24);
+            this.PageBar.TabIndex = 8;
+            this.PageBar.PageChanged += new System.EventHandler(this.PageBar_PageChanged);
+            // 
+            // LblTip
+            // 
+            this.LblTip.AutoSize = true;
+            this.LblTip.Location = new System.Drawing.Point(116, 57);
+            this.LblTip.Name = "LblTip";
+            this.LblTip.Size = new System.Drawing.Size(277, 13);
+            this.LblTip.TabIndex = 9;
+            this.LblTip.Text = "提示：单击页面下方的“添加”按钮，添加相应的信息。";
+            this.LblTip.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // PicTitle
+            // 
+            this.PicTitle.Image = global::ScheduleJobDesktop.Properties.Resources.TitleManageScheduleJob_1;
+            this.PicTitle.Location = new System.Drawing.Point(85, 0);
+            this.PicTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.PicTitle.Name = "PicTitle";
+            this.PicTitle.Size = new System.Drawing.Size(350, 43);
+            this.PicTitle.TabIndex = 1;
+            this.PicTitle.TabStop = false;
+            // 
+            // PicLogo
+            // 
+            this.PicLogo.Image = global::ScheduleJobDesktop.Properties.Resources.LogoScheduledTask;
+            this.PicLogo.Location = new System.Drawing.Point(0, 0);
+            this.PicLogo.Margin = new System.Windows.Forms.Padding(20, 22, 10, 22);
+            this.PicLogo.Name = "PicLogo";
+            this.PicLogo.Size = new System.Drawing.Size(75, 81);
+            this.PicLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicLogo.TabIndex = 0;
+            this.PicLogo.TabStop = false;
+            // 
+            // dataGridViewActionButtonColumn1
+            // 
+            this.dataGridViewActionButtonColumn1.DataPropertyName = "Id";
+            this.dataGridViewActionButtonColumn1.HeaderText = "操作";
+            this.dataGridViewActionButtonColumn1.Name = "dataGridViewActionButtonColumn1";
+            this.dataGridViewActionButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewActionButtonColumn1.Width = 120;
+            // 
+            // PnlFooter
+            // 
+            this.PnlFooter.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.FooterBG;
+            this.PnlFooter.Controls.Add(this.BtnCreate);
+            this.PnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PnlFooter.Location = new System.Drawing.Point(0, 602);
+            this.PnlFooter.Name = "PnlFooter";
+            this.PnlFooter.Size = new System.Drawing.Size(830, 48);
+            this.PnlFooter.TabIndex = 1;
+            // 
+            // BtnCreate
+            // 
+            this.BtnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(163)))), ((int)(((byte)(193)))));
+            this.BtnCreate.Location = new System.Drawing.Point(730, 7);
+            this.BtnCreate.Name = "BtnCreate";
+            this.BtnCreate.Padding = new System.Windows.Forms.Padding(1);
+            this.BtnCreate.Size = new System.Drawing.Size(82, 26);
+            this.BtnCreate.TabIndex = 0;
+            this.BtnCreate.Text = "添加";
+            this.BtnCreate.Click += new System.EventHandler(this.BtnCreate_Click);
+            // 
             // ScheduleJobName
             // 
+            this.ScheduleJobName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ScheduleJobName.DataPropertyName = "JobName";
             this.ScheduleJobName.HeaderText = "任务名称";
             this.ScheduleJobName.Name = "ScheduleJobName";
@@ -131,104 +230,6 @@
             this.ColAction.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ColAction.Width = 120;
             // 
-            // PnlTopTitle
-            // 
-            this.PnlTopTitle.Controls.Add(this.PicTitleLine);
-            this.PnlTopTitle.Controls.Add(this.PageBar);
-            this.PnlTopTitle.Controls.Add(this.LblTip);
-            this.PnlTopTitle.Controls.Add(this.PicTitle);
-            this.PnlTopTitle.Controls.Add(this.PicLogo);
-            this.PnlTopTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PnlTopTitle.Location = new System.Drawing.Point(20, 22);
-            this.PnlTopTitle.Name = "PnlTopTitle";
-            this.PnlTopTitle.Size = new System.Drawing.Size(790, 87);
-            this.PnlTopTitle.TabIndex = 0;
-            // 
-            // PageBar
-            // 
-            this.PageBar.BackColor = System.Drawing.Color.White;
-            this.PageBar.CurPage = 1;
-            this.PageBar.DataControl = null;
-            this.PageBar.DataSource = null;
-            this.PageBar.Location = new System.Drawing.Point(430, 57);
-            this.PageBar.MinimumSize = new System.Drawing.Size(350, 24);
-            this.PageBar.Name = "PageBar";
-            this.PageBar.PageSize = 15;
-            this.PageBar.Size = new System.Drawing.Size(350, 24);
-            this.PageBar.TabIndex = 8;
-            this.PageBar.PageChanged += new System.EventHandler(this.PageBar_PageChanged);
-            // 
-            // LblTip
-            // 
-            this.LblTip.AutoSize = true;
-            this.LblTip.Location = new System.Drawing.Point(116, 57);
-            this.LblTip.Name = "LblTip";
-            this.LblTip.Size = new System.Drawing.Size(277, 13);
-            this.LblTip.TabIndex = 9;
-            this.LblTip.Text = "提示：单击页面下方的“添加”按钮，添加相应的信息。";
-            this.LblTip.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // dataGridViewActionButtonColumn1
-            // 
-            this.dataGridViewActionButtonColumn1.DataPropertyName = "Id";
-            this.dataGridViewActionButtonColumn1.HeaderText = "操作";
-            this.dataGridViewActionButtonColumn1.Name = "dataGridViewActionButtonColumn1";
-            this.dataGridViewActionButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewActionButtonColumn1.Width = 120;
-            // 
-            // PnlFooter
-            // 
-            this.PnlFooter.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.FooterBG;
-            this.PnlFooter.Controls.Add(this.BtnCreate);
-            this.PnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PnlFooter.Location = new System.Drawing.Point(0, 602);
-            this.PnlFooter.Name = "PnlFooter";
-            this.PnlFooter.Size = new System.Drawing.Size(830, 48);
-            this.PnlFooter.TabIndex = 1;
-            // 
-            // BtnCreate
-            // 
-            this.BtnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(163)))), ((int)(((byte)(193)))));
-            this.BtnCreate.Location = new System.Drawing.Point(730, 7);
-            this.BtnCreate.Name = "BtnCreate";
-            this.BtnCreate.Padding = new System.Windows.Forms.Padding(1);
-            this.BtnCreate.Size = new System.Drawing.Size(82, 26);
-            this.BtnCreate.TabIndex = 0;
-            this.BtnCreate.Text = "添加";
-            this.BtnCreate.Click += new System.EventHandler(this.BtnCreate_Click);
-            // 
-            // PicTitleLine
-            // 
-            this.PicTitleLine.Image = global::ScheduleJobDesktop.Properties.Resources.TitleLine;
-            this.PicTitleLine.Location = new System.Drawing.Point(85, 43);
-            this.PicTitleLine.Margin = new System.Windows.Forms.Padding(0);
-            this.PicTitleLine.Name = "PicTitleLine";
-            this.PicTitleLine.Size = new System.Drawing.Size(350, 5);
-            this.PicTitleLine.TabIndex = 4;
-            this.PicTitleLine.TabStop = false;
-            // 
-            // PicTitle
-            // 
-            this.PicTitle.Image = global::ScheduleJobDesktop.Properties.Resources.TitleManageScheduleJob_1;
-            this.PicTitle.Location = new System.Drawing.Point(85, 0);
-            this.PicTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.PicTitle.Name = "PicTitle";
-            this.PicTitle.Size = new System.Drawing.Size(350, 43);
-            this.PicTitle.TabIndex = 1;
-            this.PicTitle.TabStop = false;
-            // 
-            // PicLogo
-            // 
-            this.PicLogo.Image = global::ScheduleJobDesktop.Properties.Resources.LogoScheduledTask;
-            this.PicLogo.Location = new System.Drawing.Point(0, 0);
-            this.PicLogo.Margin = new System.Windows.Forms.Padding(20, 22, 10, 22);
-            this.PicLogo.Name = "PicLogo";
-            this.PicLogo.Size = new System.Drawing.Size(75, 81);
-            this.PicLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PicLogo.TabIndex = 0;
-            this.PicLogo.TabStop = false;
-            // 
             // Default
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -242,10 +243,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvGrid)).EndInit();
             this.PnlTopTitle.ResumeLayout(false);
             this.PnlTopTitle.PerformLayout();
-            this.PnlFooter.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PicTitleLine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicTitle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicLogo)).EndInit();
+            this.PnlFooter.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

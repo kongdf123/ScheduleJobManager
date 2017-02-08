@@ -134,171 +134,68 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\BtnDelete.png" />
+    <None Include="Resources\BtnDelete02.png" />
+    <None Include="Resources\BtnGO.png" />
+    <None Include="Resources\BtnModify.png" />
+    <None Include="Resources\BtnModify02.png" />
+    <None Include="Resources\BtnView.png" />
+    <None Include="Resources\BtnView02.png" />
+    <None Include="Resources\ButtonBG01.png" />
+    <None Include="Resources\ButtonBG011.png" />
+    <None Include="Resources\ButtonBG02.png" />
+    <None Include="Resources\CompanyLogo.png" />
+    <None Include="Resources\Delete.png" />
+    <None Include="Resources\DesignerLogo.png" />
+    <None Include="Resources\DesignerLogo_1.png" />
+    <None Include="Resources\FooterBG.png" />
+    <None Include="Resources\HeaderBG.png" />
+    <None Include="Resources\Input.png" />
+    <None Include="Resources\Logo.png" />
+    <None Include="Resources\LogoMain.png" />
+    <None Include="Resources\LogoManageDepartment.png" />
+    <None Include="Resources\LogoManageEmployee.png" />
+    <None Include="Resources\Logo_0.png" />
+    <None Include="Resources\MessageError.png" />
+    <None Include="Resources\MessageInfo.png" />
+    <None Include="Resources\MessageWarn.png" />
+    <None Include="Resources\NavBarBG01.png" />
+    <None Include="Resources\NavBarBG02.png" />
+    <None Include="Resources\NavBtnBG.png" />
+    <None Include="Resources\NavBtnMain.png" />
+    <None Include="Resources\NavBtnManageDepartment.png" />
+    <None Include="Resources\NavBtnManageEmployee.png" />
+    <None Include="Resources\NotNull.png" />
+    <None Include="Resources\PageFirst.png" />
+    <None Include="Resources\PageLast.png" />
+    <None Include="Resources\PageNext.png" />
+    <None Include="Resources\PagePrev.png" />
+    <None Include="Resources\ReadOnly.png" />
+    <None Include="Resources\SideBarBG.png" />
+    <None Include="Resources\TableHeaderBG.png" />
+    <None Include="Resources\TableRowBG.png" />
+    <None Include="Resources\TipError.png" />
+    <None Include="Resources\TipIE.png" />
+    <None Include="Resources\TipInfo.png" />
+    <None Include="Resources\TipScreen.png" />
+    <None Include="Resources\TipService.png" />
+    <None Include="Resources\TipWarn.png" />
+    <None Include="Resources\TitleLine.png" />
+    <None Include="Resources\TitleMain.png" />
+    <None Include="Resources\TitleManageDepartmentCreate.png" />
+    <None Include="Resources\TitleManageDepartmentDelete.png" />
+    <None Include="Resources\TitleManageDepartmentList.png" />
+    <None Include="Resources\TitleManageDepartmentModify.png" />
+    <None Include="Resources\TitleManageEmployeeCreate.png" />
+    <None Include="Resources\TitleManageEmployeeDelete.png" />
+    <None Include="Resources\TitleManageEmployeeDetail.png" />
+    <None Include="Resources\TitleManageEmployeeList.png" />
+    <None Include="Resources\TitleManageEmployeeModify.png" />
+    <None Include="Resources\TitleManageScheduleJob.png" />
+    <None Include="Resources\TitleManageScheduleJob_1.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ButtonBG02.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\CompanyLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Delete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DesignerLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\FooterBG.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\HeaderBG.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Input.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\LogoMain.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\LogoManageDepartment.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\LogoManageEmployee.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\MessageError.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\MessageInfo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\MessageWarn.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NavBarBG01.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NavBarBG02.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NavBtnBG.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NavBtnMain.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NavBtnManageDepartment.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NavBtnManageEmployee.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NotNull.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PageFirst.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PageLast.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PageNext.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PagePrev.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ReadOnly.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SideBarBG.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TableHeaderBG.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TableRowBG.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TipError.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TipIE.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TipInfo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TipScreen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TipService.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TipWarn.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleLine.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleMain.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleManageDepartmentCreate.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleManageDepartmentDelete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleManageDepartmentList.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleManageDepartmentModify.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleManageEmployeeCreate.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleManageEmployeeDelete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleManageEmployeeDetail.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleManageEmployeeList.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleManageEmployeeModify.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnDelete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnDelete02.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnGO.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnModify.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnModify02.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnView.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnView02.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ButtonBG01.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Service\Service.csproj">
@@ -307,15 +204,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ButtonBG011.png" />
+    <None Include="Resources\BtnStart.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\BtnStart.png" />
-    <None Include="Resources\TitleManageScheduleJob_1.png" />
-    <None Include="Resources\DesignerLogo_1.png" />
-    <Content Include="Resources\LogoScheduledTask.png" />
-    <None Include="Resources\Logo_0.png" />
-    <None Include="Resources\TitleManageScheduleJob.png" />
+    <None Include="Resources\LogoScheduledTask.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
