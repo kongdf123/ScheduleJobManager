@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,34 +47,61 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormMain.cs">
+    <Compile Include="Common\CustomException.cs" />
+    <Compile Include="Common\PageData.cs" />
+    <Compile Include="UI\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
+    <Compile Include="UI\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSysMessage.cs">
+    <Compile Include="UI\FormSysMessage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSysMessage.Designer.cs">
+    <Compile Include="UI\FormSysMessage.Designer.cs">
       <DependentUpon>FormSysMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Main\Default.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Main\Default.Designer.cs">
+      <DependentUpon>Default.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScheduleJob\frmJobEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ScheduleJob\frmJobEdit.Designer.cs">
-      <DependentUpon>frmJobEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ScheduleJob\ScheduleJobListControl.cs">
+    <Compile Include="UI\ManageScheduleJob\Default.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ScheduleJob\ScheduleJobListControl.Designer.cs">
-      <DependentUpon>ScheduleJobListControl.cs</DependentUpon>
+    <Compile Include="UI\ManageScheduleJob\Default.Designer.cs">
+      <DependentUpon>Default.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FormMain.resx">
+    <Compile Include="UI\UserControls\Button.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\Button.Designer.cs">
+      <DependentUpon>Button.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserControls\DataGridViewActionButtonColumn.cs" />
+    <Compile Include="UI\UserControls\NavBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\NavBar.Designer.cs">
+      <DependentUpon>NavBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserControls\PageBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\PageBar.Designer.cs">
+      <DependentUpon>PageBar.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UI\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormSysMessage.resx">
+      <DependentUpon>FormSysMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Main\Default.resx">
+      <DependentUpon>Default.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -83,12 +111,19 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ScheduleJob\frmJobEdit.resx">
-      <DependentUpon>frmJobEdit.cs</DependentUpon>
+    <EmbeddedResource Include="UI\ManageScheduleJob\Default.resx">
+      <DependentUpon>Default.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ScheduleJob\ScheduleJobListControl.resx">
-      <DependentUpon>ScheduleJobListControl.cs</DependentUpon>
+    <EmbeddedResource Include="UI\UserControls\Button.resx">
+      <DependentUpon>Button.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserControls\NavBar.resx">
+      <DependentUpon>NavBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserControls\PageBar.resx">
+      <DependentUpon>PageBar.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -104,7 +139,183 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UserControls\" />
+    <None Include="Resources\ButtonBG02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CompanyLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DesignerLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FooterBG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HeaderBG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Input.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LogoMain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LogoManageDepartment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LogoManageEmployee.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MessageError.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MessageInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MessageWarn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NavBarBG01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NavBarBG02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NavBtnBG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NavBtnMain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NavBtnManageDepartment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NavBtnManageEmployee.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotNull.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PageFirst.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PageLast.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PageNext.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PagePrev.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ReadOnly.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SideBarBG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TableHeaderBG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TableRowBG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TipError.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TipIE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TipInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TipScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TipService.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TipWarn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TitleLine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TitleMain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TitleManageDepartmentCreate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TitleManageDepartmentDelete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TitleManageDepartmentList.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TitleManageDepartmentModify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TitleManageEmployeeCreate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TitleManageEmployeeDelete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TitleManageEmployeeDetail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TitleManageEmployeeList.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TitleManageEmployeeModify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnDelete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnDelete02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnGO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnModify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnModify02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnView.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnView02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ButtonBG01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{1ecc5501-0eda-4b51-8f35-af2bf0a1cd80}</Project>
+      <Name>Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ButtonBG011.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\BtnStart.png" />
+    <None Include="Resources\TitleManageScheduleJob_1.png" />
+    <None Include="Resources\DesignerLogo_1.png" />
+    <Content Include="Resources\LogoScheduledTask.png" />
+    <None Include="Resources\Logo_0.png" />
+    <None Include="Resources\TitleManageScheduleJob.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\DataValid.cs" />
     <Compile Include="Common\HttpHelper.cs" />
     <Compile Include="Jobs\MSSQLReadJob.cs" />
     <Compile Include="Jobs\MSSQLWriteJob.cs" />
