@@ -28,8 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PnlMainArea = new System.Windows.Forms.Panel();
             this.DgvGrid = new System.Windows.Forms.DataGridView();
+            this.ScheduleJobName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JobStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColAction = new ScheduleJobDesktop.UI.UserControls.DataGridViewActionButtonColumn();
             this.PnlTopTitle = new System.Windows.Forms.Panel();
             this.PicTitleLine = new System.Windows.Forms.PictureBox();
             this.PageBar = new ScheduleJobDesktop.UI.UserControls.PageBar();
@@ -39,11 +45,6 @@
             this.dataGridViewActionButtonColumn1 = new ScheduleJobDesktop.UI.UserControls.DataGridViewActionButtonColumn();
             this.PnlFooter = new System.Windows.Forms.Panel();
             this.BtnCreate = new ScheduleJobDesktop.UserControls.Button();
-            this.ScheduleJobName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.JobStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColAction = new ScheduleJobDesktop.UI.UserControls.DataGridViewActionButtonColumn();
             this.PnlMainArea.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvGrid)).BeginInit();
             this.PnlTopTitle.SuspendLayout();
@@ -74,6 +75,14 @@
             this.DgvGrid.BackgroundColor = System.Drawing.Color.White;
             this.DgvGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DgvGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("SimSun", 9F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DgvGrid.ColumnHeadersHeight = 30;
             this.DgvGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DgvGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -89,10 +98,56 @@
             this.DgvGrid.Name = "DgvGrid";
             this.DgvGrid.ReadOnly = true;
             this.DgvGrid.RowHeadersVisible = false;
+            this.DgvGrid.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
+            this.DgvGrid.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.DgvGrid.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.DgvGrid.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.DgvGrid.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.DgvGrid.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvGrid.RowTemplate.Height = 30;
+            this.DgvGrid.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.DgvGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvGrid.Size = new System.Drawing.Size(790, 472);
             this.DgvGrid.TabIndex = 0;
             this.DgvGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvGrid_CellMouseClick);
+            // 
+            // ScheduleJobName
+            // 
+            this.ScheduleJobName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ScheduleJobName.DataPropertyName = "JobName";
+            this.ScheduleJobName.HeaderText = "任务名称";
+            this.ScheduleJobName.Name = "ScheduleJobName";
+            this.ScheduleJobName.ReadOnly = true;
+            // 
+            // JobStatus
+            // 
+            this.JobStatus.DataPropertyName = "State";
+            this.JobStatus.HeaderText = "执行状态";
+            this.JobStatus.Name = "JobStatus";
+            this.JobStatus.ReadOnly = true;
+            // 
+            // StartTime
+            // 
+            this.StartTime.DataPropertyName = "StartDate";
+            this.StartTime.HeaderText = "开始时间";
+            this.StartTime.Name = "StartTime";
+            this.StartTime.ReadOnly = true;
+            // 
+            // EndTime
+            // 
+            this.EndTime.DataPropertyName = "EndDate";
+            this.EndTime.HeaderText = "结束时间";
+            this.EndTime.Name = "EndTime";
+            this.EndTime.ReadOnly = true;
+            // 
+            // ColAction
+            // 
+            this.ColAction.DataPropertyName = "JobId";
+            this.ColAction.HeaderText = "操作";
+            this.ColAction.Name = "ColAction";
+            this.ColAction.ReadOnly = true;
+            this.ColAction.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColAction.Width = 120;
             // 
             // PnlTopTitle
             // 
@@ -158,7 +213,7 @@
             this.PicLogo.Margin = new System.Windows.Forms.Padding(20, 22, 10, 22);
             this.PicLogo.Name = "PicLogo";
             this.PicLogo.Size = new System.Drawing.Size(75, 81);
-            this.PicLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PicLogo.TabIndex = 0;
             this.PicLogo.TabStop = false;
             // 
@@ -191,44 +246,6 @@
             this.BtnCreate.TabIndex = 0;
             this.BtnCreate.Text = "添加";
             this.BtnCreate.Click += new System.EventHandler(this.BtnCreate_Click);
-            // 
-            // ScheduleJobName
-            // 
-            this.ScheduleJobName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ScheduleJobName.DataPropertyName = "JobName";
-            this.ScheduleJobName.HeaderText = "任务名称";
-            this.ScheduleJobName.Name = "ScheduleJobName";
-            this.ScheduleJobName.ReadOnly = true;
-            // 
-            // JobStatus
-            // 
-            this.JobStatus.DataPropertyName = "State";
-            this.JobStatus.HeaderText = "执行状态";
-            this.JobStatus.Name = "JobStatus";
-            this.JobStatus.ReadOnly = true;
-            // 
-            // StartTime
-            // 
-            this.StartTime.DataPropertyName = "StartDate";
-            this.StartTime.HeaderText = "开始时间";
-            this.StartTime.Name = "StartTime";
-            this.StartTime.ReadOnly = true;
-            // 
-            // EndTime
-            // 
-            this.EndTime.DataPropertyName = "EndDate";
-            this.EndTime.HeaderText = "结束时间";
-            this.EndTime.Name = "EndTime";
-            this.EndTime.ReadOnly = true;
-            // 
-            // ColAction
-            // 
-            this.ColAction.DataPropertyName = "JobId";
-            this.ColAction.HeaderText = "操作";
-            this.ColAction.Name = "ColAction";
-            this.ColAction.ReadOnly = true;
-            this.ColAction.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColAction.Width = 120;
             // 
             // Default
             // 

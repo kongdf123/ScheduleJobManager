@@ -20,24 +20,35 @@
             base.Dispose(disposing);
         }
 
-        #region Component Designer generated code
+        #region 组件设计器生成的代码
 
         /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
+        /// 设计器支持所需的方法 - 不要
+        /// 使用代码编辑器修改此方法的内容。
         /// </summary>
         private void InitializeComponent()
         {
+            this.PnlLogo = new System.Windows.Forms.Panel();
             this.PnlBackGround = new System.Windows.Forms.Panel();
             this.PnlBottomLine = new System.Windows.Forms.Panel();
-            this.PnlLogo = new System.Windows.Forms.Panel();
+            this.PnlTopLine = new System.Windows.Forms.Panel();
             this.PnlBackGround.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // PnlLogo
+            // 
+            this.PnlLogo.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.DesignerLogo_1;
+            this.PnlLogo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PnlLogo.Location = new System.Drawing.Point(0, 443);
+            this.PnlLogo.Name = "PnlLogo";
+            this.PnlLogo.Size = new System.Drawing.Size(160, 50);
+            this.PnlLogo.TabIndex = 0;
             // 
             // PnlBackGround
             // 
             this.PnlBackGround.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.SideBarBG;
             this.PnlBackGround.Controls.Add(this.PnlBottomLine);
+            this.PnlBackGround.Controls.Add(this.PnlTopLine);
             this.PnlBackGround.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlBackGround.Location = new System.Drawing.Point(0, 0);
             this.PnlBackGround.Name = "PnlBackGround";
@@ -53,14 +64,14 @@
             this.PnlBottomLine.Size = new System.Drawing.Size(153, 1);
             this.PnlBottomLine.TabIndex = 1;
             // 
-            // PnlLogo
+            // PnlTopLine
             // 
-            this.PnlLogo.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.DesignerLogo_1;
-            this.PnlLogo.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PnlLogo.Location = new System.Drawing.Point(0, 443);
-            this.PnlLogo.Name = "PnlLogo";
-            this.PnlLogo.Size = new System.Drawing.Size(160, 50);
-            this.PnlLogo.TabIndex = 0;
+            this.PnlTopLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.PnlTopLine.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PnlTopLine.Location = new System.Drawing.Point(2, 0);
+            this.PnlTopLine.Name = "PnlTopLine";
+            this.PnlTopLine.Size = new System.Drawing.Size(153, 1);
+            this.PnlTopLine.TabIndex = 0;
             // 
             // NavBar
             // 
@@ -69,6 +80,7 @@
             this.Controls.Add(this.PnlLogo);
             this.Name = "NavBar";
             this.Size = new System.Drawing.Size(160, 493);
+            this.SizeChanged += new System.EventHandler(this.NavBar_SizeChanged);
             this.PnlBackGround.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -78,6 +90,7 @@
 
         private System.Windows.Forms.Panel PnlLogo;
         private System.Windows.Forms.Panel PnlBackGround;
+        private System.Windows.Forms.Panel PnlTopLine;
         private System.Windows.Forms.Panel PnlBottomLine;
     }
 }

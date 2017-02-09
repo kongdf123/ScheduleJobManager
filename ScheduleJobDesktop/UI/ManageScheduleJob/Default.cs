@@ -37,7 +37,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
         }
 
         private void BtnCreate_Click(object sender, EventArgs e) {
-            //FormMain.LoadNewControl(Create.Instance); // 载入该模块的添加信息界面至主窗体显示。
+            FormMain.LoadNewControl(Create.Instance); // 载入该模块的添加信息界面至主窗体显示。
         }
 
         private void DgvGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e) {
