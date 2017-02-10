@@ -1,6 +1,6 @@
 ﻿namespace ScheduleJobDesktop.UI.ManageScheduleJob
 {
-    partial class Default
+    partial class SettingParameter
     {
         /// <summary> 
         /// Required designer variable.
@@ -273,7 +273,7 @@
         private System.Windows.Forms.Panel PnlMainArea;
         private System.Windows.Forms.Panel PnlFooter;
         private System.Windows.Forms.Panel PnlTopTitle;
-        private System.Windows.Forms.DataGridView DgvGrid; 
+        private System.Windows.Forms.DataGridView DgvGrid;
         private System.Windows.Forms.PictureBox PicTitle;
         private System.Windows.Forms.PictureBox PicLogo;
         private System.Windows.Forms.Label LblTip;
