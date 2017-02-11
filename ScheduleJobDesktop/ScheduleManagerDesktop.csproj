@@ -346,9 +346,9 @@
     <None Include="Resources\ButtonBG01.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Service\Service.csproj">
+    <ProjectReference Include="..\Service\ServiceOld.csproj">
       <Project>{1ecc5501-0eda-4b51-8f35-af2bf0a1cd80}</Project>
-      <Name>Service</Name>
+      <Name>ServiceOld</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
