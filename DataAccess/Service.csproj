@@ -44,13 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\MySQLHelper.cs" />
+    <Compile Include="BLL\JobDetailBLL.cs" />
+    <Compile Include="DAL\JobDetailDAL.cs" />
+    <Compile Include="DAL\MySqlDBHelper.cs" />
+    <Compile Include="DAL\PageData.cs" />
+    <Compile Include="Entity\JobDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BLL\" />
-    <Folder Include="Entity\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{38fd714f-ee5f-4600-bc1a-cfb94865712a}</Project>

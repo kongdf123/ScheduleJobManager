@@ -63,7 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\CustomException.cs" />
-    <Compile Include="Common\PageData.cs" />
     <Compile Include="UI\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -346,12 +345,6 @@
     <None Include="Resources\ButtonBG01.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Service\ServiceOld.csproj">
-      <Project>{1ecc5501-0eda-4b51-8f35-af2bf0a1cd80}</Project>
-      <Name>ServiceOld</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ButtonBG011.png" />
   </ItemGroup>
   <ItemGroup>
@@ -373,6 +366,16 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess\Service.csproj">
+      <Project>{073f8c3f-4a2c-48bd-8f14-0cd9e8fbb7e0}</Project>
+      <Name>Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{38fd714f-ee5f-4600-bc1a-cfb94865712a}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

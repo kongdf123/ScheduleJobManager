@@ -20,7 +20,6 @@ namespace DemoQuartzService
                 IScheduler scheduler = factory.GetScheduler();
 
                 try {
-
                     scheduler.Clear();
 
                     /* schedule some jobs through code */

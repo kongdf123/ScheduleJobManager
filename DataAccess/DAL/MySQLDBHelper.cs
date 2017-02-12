@@ -9,7 +9,7 @@ using Utility;
 
 namespace DataAccess.DAL
 {
-    public class MySQLHelper
+    public class MySqlDBHelper
     {
         static MySqlConnection GetConnection() {
             MySqlConnection connection = new MySqlConnection();
@@ -24,7 +24,7 @@ namespace DataAccess.DAL
             return connection;
         }
 
-        public static MySqlDataReader ExecuteReader(string commandText,MySqlParameter[] commandParms) {
+        public static MySqlDataReader ExecuteReader(string commandText, MySqlParameter[] commandParms) {
             MySqlConnection mySqlConnection = GetConnection();
             MySqlCommand mySqlCommand = new MySqlCommand(commandText, mySqlConnection);
             PrepareCommand(mySqlCommand, commandParms);
@@ -32,13 +32,32 @@ namespace DataAccess.DAL
                 MySqlDataReader dbReader = mySqlCommand.ExecuteReader(CommandBehavior.CloseConnection);
                 return dbReader;
             }
-            catch ( Exception ex) {
-                mySqlConnection.Close();
-                throw new CustomException("系统对数据库进行操作时发生错误，请您与系统管理员联系。",ExceptionType.Error,"执行语句："+commandText+"\n\t错误信息："+ex.ToString());
+            catch ( Exception ex ) {
+                if ( mySqlConnection.State == ConnectionState.Open ) {
+                    mySqlConnection.Close();
+                }
+                throw new CustomException("系统对数据库进行操作时发生错误，请您与系统管理员联系。", ExceptionType.Error, "执行语句：" + commandText + "\n\t错误信息：" + ex.ToString());
             }
         }
 
-        public static int ExecuteNonQuery(string commandText,MySqlParameter[] commandParms) {
+        public static T ExecuteScalar<T>(string commandText, MySqlParameter[] commandParms) {
+            MySqlConnection mySqlConnection = GetConnection();
+            try {
+                object result = MySqlHelper.ExecuteScalar(mySqlConnection, commandText, commandParms);
+                if ( result != null ) {
+                    return (T)Convert.ChangeType(result, typeof(T));
+                }
+                return default(T);
+            }
+            catch ( Exception ex ) {
+                if ( mySqlConnection.State == ConnectionState.Open ) {
+                    mySqlConnection.Close();
+                }
+                throw new CustomException("系统对数据库进行操作时发生错误，请您与系统管理员联系。", ExceptionType.Error, "执行语句：" + commandText + "\n\t错误信息：" + ex.ToString());
+            }
+        }
+
+        public static int ExecuteNonQuery(string commandText, MySqlParameter[] commandParms) {
             MySqlConnection mySqlConnection = GetConnection();
             MySqlCommand mySqlCommand = new MySqlCommand(commandText, mySqlConnection);
             PrepareCommand(mySqlCommand, commandParms);
@@ -47,17 +66,19 @@ namespace DataAccess.DAL
                 rowCount = mySqlCommand.ExecuteNonQuery();
                 mySqlConnection.Close();
             }
-            catch ( Exception ex) {
-                mySqlConnection.Close();
+            catch ( Exception ex ) {
+                if ( mySqlConnection.State == ConnectionState.Open ) {
+                    mySqlConnection.Close();
+                }
                 throw new CustomException("系统对数据库进行操作时发生错误，请您与系统管理员联系。", ExceptionType.Error, "执行语句：" + commandText + "\n\t错误信息：" + ex.ToString());
             }
             return rowCount;
         }
 
-        static void PrepareCommand(MySqlCommand mySqlCommand,MySqlParameter[] commandParms) {
-            if ( commandParms!=null ) {
+        static void PrepareCommand(MySqlCommand mySqlCommand, MySqlParameter[] commandParms) {
+            if ( commandParms != null ) {
                 foreach ( var parameter in commandParms ) {
-                    if ( parameter.Value==null ) {
+                    if ( parameter.Value == null ) {
                         parameter.Value = DBNull.Value;
                     }
                     mySqlCommand.Parameters.Add(parameter);

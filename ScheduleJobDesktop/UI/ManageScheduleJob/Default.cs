@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ScheduleJobDesktop.UI.UserControls;
 using ScheduleJobDesktop.Common;
-using Service.EF;
+using DataAccess.Entity;
+using DataAccess.BLL;
 
 namespace ScheduleJobDesktop.UI.ManageScheduleJob
 {
@@ -57,42 +58,15 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
         }
 
         private void PageBar_PageChanged(object sender, EventArgs e) {
-            // BindDataGrid(); //重新对DataGridView控件的数据源进行绑定。
+            BindDataGrid(); //重新对DataGridView控件的数据源进行绑定。
         }
 
         /// <summary>
         /// 对DataGridView控件的数据源进行绑定。
         /// </summary>
         public static void BindDataGrid() {
-            instance.PageBar.DataControl = instance.DgvGrid;
-
-            //test data
-            PageData pageData = new PageData();
-            pageData.PageSize = 15;
-            pageData.CurPage = 1;
-            pageData.RecordCount = 3;
-            pageData.PageCount = 1;
-            pageData.PageList = new List<JobDetail> {
-                new JobDetail {
-                    JobId=1,
-                    JobName ="同步MS数据库数据",
-                    State =true,
-                    StartDate =DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                    EndDate =DateTime.Now.AddDays(3).ToString("yyyy-MM-dd HH:mm:ss") },
-            new JobDetail {
-                    JobId=1,
-                    JobName ="同步MS数据库数据",
-                    State =true,
-                    StartDate =DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                    EndDate =DateTime.Now.AddDays(3).ToString("yyyy-MM-dd HH:mm:ss") },
-            new JobDetail {
-                    JobId=1,
-                    JobName ="同步MS数据库数据",
-                    State =true,
-                    StartDate =DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                    EndDate =DateTime.Now.AddDays(3).ToString("yyyy-MM-dd HH:mm:ss") }};
-
-            instance.PageBar.DataSource = pageData; //DepartmentBLL.GetPageList(instance.PageBar.PageSize, instance.PageBar.CurPage);
+            instance.PageBar.DataControl = instance.DgvGrid; 
+            instance.PageBar.DataSource =JobDetailBLL.CreateInstance().GetPageList(instance.PageBar.PageSize, instance.PageBar.CurPage);
             instance.PageBar.DataBind();
         }
 

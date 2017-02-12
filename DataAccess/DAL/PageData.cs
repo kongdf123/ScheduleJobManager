@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace ScheduleJobDesktop.Common
+namespace DataAccess.DAL
 {
     public class PageData
-    { /// <summary>
-      /// [属性]分页过后的数据。
-      /// </summary>
+    {
+        /// <summary>
+        /// [属性]分页过后的数据。
+        /// </summary>
         public IList PageList {
             get;
             set;
@@ -53,8 +53,7 @@ namespace ScheduleJobDesktop.Common
         /// </summary>
         public int PrevPage {
             get {
-                if (CurPage > 1)
-                {
+                if ( CurPage > 1 ) {
                     return CurPage - 1;
                 }
                 return 1;
@@ -66,8 +65,7 @@ namespace ScheduleJobDesktop.Common
         /// </summary>
         public int NextPage {
             get {
-                if (CurPage < PageCount)
-                {
+                if ( CurPage < PageCount ) {
                     return CurPage + 1;
                 }
                 return PageCount;

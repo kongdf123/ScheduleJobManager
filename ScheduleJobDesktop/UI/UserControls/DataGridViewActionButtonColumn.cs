@@ -48,6 +48,7 @@ namespace ScheduleJobDesktop.UI.UserControls
             cellBounds = PrivatePaint(graphics, cellBounds, rowIndex, cellStyle, true);
             base.PaintBorder(graphics, clipBounds, cellBounds, cellStyle, advancedBorderStyle);
             nowColIndex = this.DataGridView.Columns.Count - 1;
+            
         }
 
         /// <summary>

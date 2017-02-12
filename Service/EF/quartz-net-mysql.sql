@@ -2,6 +2,7 @@ CREATE DATABASE `quartz` /*!40100 DEFAULT CHARACTER SET utf8 */;
 CREATE TABLE `custom_job_details` (
   `JobId` int(11) NOT NULL AUTO_INCREMENT,
   `JobName` varchar(200) NOT NULL,
+  `JobChineseName` varchar(100) NOT NULL,
   `JobServiceURL` varchar(200) NOT NULL,
   `CreatedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdatedDate` datetime DEFAULT NULL,
@@ -10,6 +11,7 @@ CREATE TABLE `custom_job_details` (
   `PageSize` int(11) DEFAULT NULL,
   `Interval` int(11) DEFAULT NULL,
   `State` tinyint(1) DEFAULT NULL COMMENT '1: enable\n0: disable',
+  `Description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`JobId`,`JobName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=big5 COMMENT='to manage parameter records ,which belongs to control custom job actions in practice.';
 

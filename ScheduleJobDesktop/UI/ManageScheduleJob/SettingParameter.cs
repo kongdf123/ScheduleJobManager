@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ScheduleJobDesktop.UI.UserControls;
 using ScheduleJobDesktop.Common;
-using Service.EF;
+using DataAccess.DAL;
+using DataAccess.Entity;
 
 namespace ScheduleJobDesktop.UI.ManageScheduleJob
 {
@@ -84,19 +85,19 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                 new JobDetail {
                     JobId=1,
                     JobName ="同步MS数据库数据",
-                    State =true,
+                    State =1,
                     StartDate =DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                     EndDate =DateTime.Now.AddDays(3).ToString("yyyy-MM-dd HH:mm:ss") },
             new JobDetail {
                     JobId=1,
                     JobName ="同步MS数据库数据",
-                    State =true,
+                    State =1,
                     StartDate =DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                     EndDate =DateTime.Now.AddDays(3).ToString("yyyy-MM-dd HH:mm:ss") },
             new JobDetail {
                     JobId=1,
                     JobName ="同步MS数据库数据",
-                    State =true,
+                    State =1,
                     StartDate =DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                     EndDate =DateTime.Now.AddDays(3).ToString("yyyy-MM-dd HH:mm:ss") }};
 
