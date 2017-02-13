@@ -31,27 +31,28 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PnlMainArea = new System.Windows.Forms.Panel();
             this.DgvGrid = new System.Windows.Forms.DataGridView();
+            this.PnlTopTitle = new System.Windows.Forms.Panel();
+            this.PicTitleLine = new System.Windows.Forms.PictureBox();
+            this.PageBar = new ScheduleJobDesktop.UI.UserControls.PageBar();
+            this.LblTip = new System.Windows.Forms.Label();
+            this.PicTitle = new System.Windows.Forms.PictureBox();
+            this.PicLogo = new System.Windows.Forms.PictureBox();
+            this.dataGridViewActionButtonColumn1 = new ScheduleJobDesktop.UI.UserControls.DataGridViewActionButtonColumn();
+            this.PnlFooter = new System.Windows.Forms.Panel();
+            this.BtnCreate = new ScheduleJobDesktop.UserControls.Button();
+            this.JobChineseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ScheduleJobName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JobStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColAction = new ScheduleJobDesktop.UI.UserControls.DataGridViewActionButtonColumn();
-            this.PnlTopTitle = new System.Windows.Forms.Panel();
-            this.PageBar = new ScheduleJobDesktop.UI.UserControls.PageBar();
-            this.LblTip = new System.Windows.Forms.Label();
-            this.dataGridViewActionButtonColumn1 = new ScheduleJobDesktop.UI.UserControls.DataGridViewActionButtonColumn();
-            this.PnlFooter = new System.Windows.Forms.Panel();
-            this.BtnCreate = new ScheduleJobDesktop.UserControls.Button();
-            this.PicTitleLine = new System.Windows.Forms.PictureBox();
-            this.PicTitle = new System.Windows.Forms.PictureBox();
-            this.PicLogo = new System.Windows.Forms.PictureBox();
             this.PnlMainArea.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvGrid)).BeginInit();
             this.PnlTopTitle.SuspendLayout();
-            this.PnlFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicTitleLine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicLogo)).BeginInit();
+            this.PnlFooter.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlMainArea
@@ -86,6 +87,7 @@
             this.DgvGrid.ColumnHeadersHeight = 30;
             this.DgvGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DgvGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.JobChineseName,
             this.ScheduleJobName,
             this.JobStatus,
             this.StartTime,
@@ -111,44 +113,6 @@
             this.DgvGrid.TabIndex = 0;
             this.DgvGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvGrid_CellMouseClick);
             // 
-            // ScheduleJobName
-            // 
-            this.ScheduleJobName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ScheduleJobName.DataPropertyName = "JobName";
-            this.ScheduleJobName.HeaderText = "任务名称";
-            this.ScheduleJobName.Name = "ScheduleJobName";
-            this.ScheduleJobName.ReadOnly = true;
-            // 
-            // JobStatus
-            // 
-            this.JobStatus.DataPropertyName = "State";
-            this.JobStatus.HeaderText = "执行状态";
-            this.JobStatus.Name = "JobStatus";
-            this.JobStatus.ReadOnly = true;
-            // 
-            // StartTime
-            // 
-            this.StartTime.DataPropertyName = "StartDate";
-            this.StartTime.HeaderText = "开始时间";
-            this.StartTime.Name = "StartTime";
-            this.StartTime.ReadOnly = true;
-            // 
-            // EndTime
-            // 
-            this.EndTime.DataPropertyName = "EndDate";
-            this.EndTime.HeaderText = "结束时间";
-            this.EndTime.Name = "EndTime";
-            this.EndTime.ReadOnly = true;
-            // 
-            // ColAction
-            // 
-            this.ColAction.DataPropertyName = "JobId";
-            this.ColAction.HeaderText = "操作";
-            this.ColAction.Name = "ColAction";
-            this.ColAction.ReadOnly = true;
-            this.ColAction.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColAction.Width = 120;
-            // 
             // PnlTopTitle
             // 
             this.PnlTopTitle.Controls.Add(this.PicTitleLine);
@@ -161,6 +125,16 @@
             this.PnlTopTitle.Name = "PnlTopTitle";
             this.PnlTopTitle.Size = new System.Drawing.Size(790, 87);
             this.PnlTopTitle.TabIndex = 0;
+            // 
+            // PicTitleLine
+            // 
+            this.PicTitleLine.Image = global::ScheduleJobDesktop.Properties.Resources.TitleLine;
+            this.PicTitleLine.Location = new System.Drawing.Point(85, 43);
+            this.PicTitleLine.Margin = new System.Windows.Forms.Padding(0);
+            this.PicTitleLine.Name = "PicTitleLine";
+            this.PicTitleLine.Size = new System.Drawing.Size(350, 5);
+            this.PicTitleLine.TabIndex = 4;
+            this.PicTitleLine.TabStop = false;
             // 
             // PageBar
             // 
@@ -185,6 +159,27 @@
             this.LblTip.TabIndex = 9;
             this.LblTip.Text = "提示：单击页面下方的“添加”按钮，添加相应的信息。";
             this.LblTip.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // PicTitle
+            // 
+            this.PicTitle.Image = global::ScheduleJobDesktop.Properties.Resources.TitleManageScheduleJob_1;
+            this.PicTitle.Location = new System.Drawing.Point(85, 0);
+            this.PicTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.PicTitle.Name = "PicTitle";
+            this.PicTitle.Size = new System.Drawing.Size(350, 43);
+            this.PicTitle.TabIndex = 1;
+            this.PicTitle.TabStop = false;
+            // 
+            // PicLogo
+            // 
+            this.PicLogo.Image = global::ScheduleJobDesktop.Properties.Resources.LogoScheduledTask;
+            this.PicLogo.Location = new System.Drawing.Point(0, 0);
+            this.PicLogo.Margin = new System.Windows.Forms.Padding(20, 22, 10, 22);
+            this.PicLogo.Name = "PicLogo";
+            this.PicLogo.Size = new System.Drawing.Size(75, 81);
+            this.PicLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PicLogo.TabIndex = 0;
+            this.PicLogo.TabStop = false;
             // 
             // dataGridViewActionButtonColumn1
             // 
@@ -216,36 +211,50 @@
             this.BtnCreate.Text = "添加";
             this.BtnCreate.Click += new System.EventHandler(this.BtnCreate_Click);
             // 
-            // PicTitleLine
+            // JobChineseName
             // 
-            this.PicTitleLine.Image = global::ScheduleJobDesktop.Properties.Resources.TitleLine;
-            this.PicTitleLine.Location = new System.Drawing.Point(85, 43);
-            this.PicTitleLine.Margin = new System.Windows.Forms.Padding(0);
-            this.PicTitleLine.Name = "PicTitleLine";
-            this.PicTitleLine.Size = new System.Drawing.Size(350, 5);
-            this.PicTitleLine.TabIndex = 4;
-            this.PicTitleLine.TabStop = false;
+            this.JobChineseName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.JobChineseName.DataPropertyName = "JobChineseName";
+            this.JobChineseName.HeaderText = "任务名称";
+            this.JobChineseName.Name = "JobChineseName";
+            this.JobChineseName.ReadOnly = true;
             // 
-            // PicTitle
+            // ScheduleJobName
             // 
-            this.PicTitle.Image = global::ScheduleJobDesktop.Properties.Resources.TitleManageScheduleJob_1;
-            this.PicTitle.Location = new System.Drawing.Point(85, 0);
-            this.PicTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.PicTitle.Name = "PicTitle";
-            this.PicTitle.Size = new System.Drawing.Size(350, 43);
-            this.PicTitle.TabIndex = 1;
-            this.PicTitle.TabStop = false;
+            this.ScheduleJobName.DataPropertyName = "JobName";
+            this.ScheduleJobName.HeaderText = "任务代号";
+            this.ScheduleJobName.Name = "ScheduleJobName";
+            this.ScheduleJobName.ReadOnly = true;
             // 
-            // PicLogo
+            // JobStatus
             // 
-            this.PicLogo.Image = global::ScheduleJobDesktop.Properties.Resources.LogoScheduledTask;
-            this.PicLogo.Location = new System.Drawing.Point(0, 0);
-            this.PicLogo.Margin = new System.Windows.Forms.Padding(20, 22, 10, 22);
-            this.PicLogo.Name = "PicLogo";
-            this.PicLogo.Size = new System.Drawing.Size(75, 81);
-            this.PicLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PicLogo.TabIndex = 0;
-            this.PicLogo.TabStop = false;
+            this.JobStatus.DataPropertyName = "StateDescription";
+            this.JobStatus.HeaderText = "执行状态";
+            this.JobStatus.Name = "JobStatus";
+            this.JobStatus.ReadOnly = true;
+            // 
+            // StartTime
+            // 
+            this.StartTime.DataPropertyName = "StartDate";
+            this.StartTime.HeaderText = "开始时间";
+            this.StartTime.Name = "StartTime";
+            this.StartTime.ReadOnly = true;
+            // 
+            // EndTime
+            // 
+            this.EndTime.DataPropertyName = "EndDate";
+            this.EndTime.HeaderText = "结束时间";
+            this.EndTime.Name = "EndTime";
+            this.EndTime.ReadOnly = true;
+            // 
+            // ColAction
+            // 
+            this.ColAction.DataPropertyName = "JobId";
+            this.ColAction.HeaderText = "操作";
+            this.ColAction.Name = "ColAction";
+            this.ColAction.ReadOnly = true;
+            this.ColAction.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColAction.Width = 120;
             // 
             // Default
             // 
@@ -260,10 +269,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvGrid)).EndInit();
             this.PnlTopTitle.ResumeLayout(false);
             this.PnlTopTitle.PerformLayout();
-            this.PnlFooter.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PicTitleLine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicTitle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicLogo)).EndInit();
+            this.PnlFooter.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -281,6 +290,7 @@
         private UserControls.PageBar PageBar;
         private System.Windows.Forms.PictureBox PicTitleLine;
         private UserControls.DataGridViewActionButtonColumn dataGridViewActionButtonColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JobChineseName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ScheduleJobName;
         private System.Windows.Forms.DataGridViewTextBoxColumn JobStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn StartTime;

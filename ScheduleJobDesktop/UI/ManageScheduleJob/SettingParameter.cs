@@ -76,33 +76,33 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             instance.PageBar.DataControl = instance.DgvGrid;
 
             //test data
-            PageData pageData = new PageData();
-            pageData.PageSize = 15;
-            pageData.CurPage = 1;
-            pageData.RecordCount = 3;
-            pageData.PageCount = 1;
-            pageData.PageList = new List<JobDetail> {
-                new JobDetail {
-                    JobId=1,
-                    JobName ="同步MS数据库数据",
-                    State =1,
-                    StartDate =DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                    EndDate =DateTime.Now.AddDays(3).ToString("yyyy-MM-dd HH:mm:ss") },
-            new JobDetail {
-                    JobId=1,
-                    JobName ="同步MS数据库数据",
-                    State =1,
-                    StartDate =DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                    EndDate =DateTime.Now.AddDays(3).ToString("yyyy-MM-dd HH:mm:ss") },
-            new JobDetail {
-                    JobId=1,
-                    JobName ="同步MS数据库数据",
-                    State =1,
-                    StartDate =DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                    EndDate =DateTime.Now.AddDays(3).ToString("yyyy-MM-dd HH:mm:ss") }};
+            //PageData pageData = new PageData();
+            //pageData.PageSize = 15;
+            //pageData.CurPage = 1;
+            //pageData.RecordCount = 3;
+            //pageData.PageCount = 1;
+            //pageData.PageList = new List<JobDetail> {
+            //    new JobDetail {
+            //        JobId=1,
+            //        JobName ="同步MS数据库数据",
+            //        State =1,
+            //        StartDate =DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+            //        EndDate =DateTime.Now.AddDays(3).ToString("yyyy-MM-dd HH:mm:ss") },
+            //new JobDetail {
+            //        JobId=1,
+            //        JobName ="同步MS数据库数据",
+            //        State =1,
+            //        StartDate =DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+            //        EndDate =DateTime.Now.AddDays(3).ToString("yyyy-MM-dd HH:mm:ss") },
+            //new JobDetail {
+            //        JobId=1,
+            //        JobName ="同步MS数据库数据",
+            //        State =1,
+            //        StartDate =DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+            //        EndDate =DateTime.Now.AddDays(3).ToString("yyyy-MM-dd HH:mm:ss") }};
 
-            instance.PageBar.DataSource = pageData; //DepartmentBLL.GetPageList(instance.PageBar.PageSize, instance.PageBar.CurPage);
-            instance.PageBar.DataBind();
+            //instance.PageBar.DataSource = pageData; //DepartmentBLL.GetPageList(instance.PageBar.PageSize, instance.PageBar.CurPage);
+            //instance.PageBar.DataBind();
         }
 
         /// <summary>

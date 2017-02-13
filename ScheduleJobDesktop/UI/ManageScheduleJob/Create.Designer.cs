@@ -35,18 +35,20 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.PnlInfo = new System.Windows.Forms.Panel();
             this.PnlInfoBack = new System.Windows.Forms.Panel();
             this.PnlControlArea = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.TxtMinute = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.RadioBtnMinute = new System.Windows.Forms.RadioButton();
-            this.label8 = new System.Windows.Forms.Label();
-            this.TxtHour = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.RadioBtnHour = new System.Windows.Forms.RadioButton();
-            this.label7 = new System.Windows.Forms.Label();
-            this.TxtDay = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.RadioBtnDay = new System.Windows.Forms.RadioButton();
-            this.RadioBtnStopping = new System.Windows.Forms.RadioButton();
+            this.PnlJobState = new System.Windows.Forms.Panel();
             this.RadioBtnWaiting = new System.Windows.Forms.RadioButton();
             this.RadioBtnRunning = new System.Windows.Forms.RadioButton();
+            this.RadioBtnStopping = new System.Windows.Forms.RadioButton();
+            this.PnlInterval = new System.Windows.Forms.Panel();
+            this.RadioBtnDay = new System.Windows.Forms.RadioButton();
+            this.label9 = new System.Windows.Forms.Label();
+            this.TxtDay = new ScheduleJobDesktop.UI.UserControls.TextBox();
+            this.TxtMinute = new ScheduleJobDesktop.UI.UserControls.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.RadioBtnMinute = new System.Windows.Forms.RadioButton();
+            this.RadioBtnHour = new System.Windows.Forms.RadioButton();
+            this.label7 = new System.Windows.Forms.Label();
+            this.TxtHour = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.TxtScheduleChineseName = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.TxtRecordNum = new ScheduleJobDesktop.UI.UserControls.TextBox();
@@ -77,12 +79,12 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.PnlFooter = new System.Windows.Forms.Panel();
             this.BtnSave = new ScheduleJobDesktop.UserControls.Button();
             this.BtnCancel = new ScheduleJobDesktop.UserControls.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.PnlJobState = new System.Windows.Forms.Panel();
             this.PnlScrollArea.SuspendLayout();
             this.PnlInfo.SuspendLayout();
             this.PnlInfoBack.SuspendLayout();
             this.PnlControlArea.SuspendLayout();
+            this.PnlJobState.SuspendLayout();
+            this.PnlInterval.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicNotNullScheduleServiceURL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicNotNullScheduleName)).BeginInit();
@@ -91,8 +93,6 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             ((System.ComponentModel.ISupportInitialize)(this.PicLogo)).BeginInit();
             this.PnlInfoTitle.SuspendLayout();
             this.PnlFooter.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.PnlJobState.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlScrollArea
@@ -144,7 +144,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             // 
             this.PnlControlArea.BackColor = System.Drawing.Color.White;
             this.PnlControlArea.Controls.Add(this.PnlJobState);
-            this.PnlControlArea.Controls.Add(this.panel1);
+            this.PnlControlArea.Controls.Add(this.PnlInterval);
             this.PnlControlArea.Controls.Add(this.TxtScheduleChineseName);
             this.PnlControlArea.Controls.Add(this.label6);
             this.PnlControlArea.Controls.Add(this.TxtRecordNum);
@@ -176,115 +176,15 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.PnlControlArea.Size = new System.Drawing.Size(771, 530);
             this.PnlControlArea.TabIndex = 4;
             // 
-            // label9
+            // PnlJobState
             // 
-            this.label9.Location = new System.Drawing.Point(89, 58);
-            this.label9.Margin = new System.Windows.Forms.Padding(0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(37, 21);
-            this.label9.TabIndex = 34;
-            this.label9.Text = "分";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // TxtMinute
-            // 
-            this.TxtMinute.BackColor = System.Drawing.Color.White;
-            this.TxtMinute.Location = new System.Drawing.Point(41, 58);
-            this.TxtMinute.Multiline = false;
-            this.TxtMinute.Name = "TxtMinute";
-            this.TxtMinute.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtMinute.PasswordChar = '\0';
-            this.TxtMinute.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtMinute.Size = new System.Drawing.Size(37, 27);
-            this.TxtMinute.TabIndex = 33;
-            // 
-            // RadioBtnMinute
-            // 
-            this.RadioBtnMinute.AutoSize = true;
-            this.RadioBtnMinute.Location = new System.Drawing.Point(2, 58);
-            this.RadioBtnMinute.Name = "RadioBtnMinute";
-            this.RadioBtnMinute.Size = new System.Drawing.Size(37, 17);
-            this.RadioBtnMinute.TabIndex = 32;
-            this.RadioBtnMinute.TabStop = true;
-            this.RadioBtnMinute.Text = "每";
-            this.RadioBtnMinute.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.Location = new System.Drawing.Point(89, 5);
-            this.label8.Margin = new System.Windows.Forms.Padding(0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(37, 22);
-            this.label8.TabIndex = 31;
-            this.label8.Text = "天";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // TxtHour
-            // 
-            this.TxtHour.BackColor = System.Drawing.Color.White;
-            this.TxtHour.Location = new System.Drawing.Point(41, 30);
-            this.TxtHour.Multiline = false;
-            this.TxtHour.Name = "TxtHour";
-            this.TxtHour.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtHour.PasswordChar = '\0';
-            this.TxtHour.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtHour.Size = new System.Drawing.Size(37, 27);
-            this.TxtHour.TabIndex = 30;
-            // 
-            // RadioBtnHour
-            // 
-            this.RadioBtnHour.AutoSize = true;
-            this.RadioBtnHour.Location = new System.Drawing.Point(2, 33);
-            this.RadioBtnHour.Name = "RadioBtnHour";
-            this.RadioBtnHour.Size = new System.Drawing.Size(37, 17);
-            this.RadioBtnHour.TabIndex = 29;
-            this.RadioBtnHour.TabStop = true;
-            this.RadioBtnHour.Text = "每";
-            this.RadioBtnHour.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            this.label7.Location = new System.Drawing.Point(89, 30);
-            this.label7.Margin = new System.Windows.Forms.Padding(0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(37, 23);
-            this.label7.TabIndex = 28;
-            this.label7.Text = "小时";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // TxtDay
-            // 
-            this.TxtDay.BackColor = System.Drawing.Color.White;
-            this.TxtDay.Location = new System.Drawing.Point(41, 3);
-            this.TxtDay.Multiline = false;
-            this.TxtDay.Name = "TxtDay";
-            this.TxtDay.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtDay.PasswordChar = '\0';
-            this.TxtDay.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtDay.Size = new System.Drawing.Size(37, 27);
-            this.TxtDay.TabIndex = 27;
-            // 
-            // RadioBtnDay
-            // 
-            this.RadioBtnDay.AutoSize = true;
-            this.RadioBtnDay.Location = new System.Drawing.Point(4, 8);
-            this.RadioBtnDay.Name = "RadioBtnDay";
-            this.RadioBtnDay.Size = new System.Drawing.Size(37, 17);
-            this.RadioBtnDay.TabIndex = 26;
-            this.RadioBtnDay.TabStop = true;
-            this.RadioBtnDay.Text = "每";
-            this.RadioBtnDay.UseVisualStyleBackColor = true;
-            // 
-            // RadioBtnStopping
-            // 
-            this.RadioBtnStopping.AutoSize = true;
-            this.RadioBtnStopping.Location = new System.Drawing.Point(152, 5);
-            this.RadioBtnStopping.Name = "RadioBtnStopping";
-            this.RadioBtnStopping.Size = new System.Drawing.Size(49, 17);
-            this.RadioBtnStopping.TabIndex = 25;
-            this.RadioBtnStopping.TabStop = true;
-            this.RadioBtnStopping.Text = "停止";
-            this.RadioBtnStopping.UseVisualStyleBackColor = true;
+            this.PnlJobState.Controls.Add(this.RadioBtnWaiting);
+            this.PnlJobState.Controls.Add(this.RadioBtnRunning);
+            this.PnlJobState.Controls.Add(this.RadioBtnStopping);
+            this.PnlJobState.Location = new System.Drawing.Point(230, 207);
+            this.PnlJobState.Name = "PnlJobState";
+            this.PnlJobState.Size = new System.Drawing.Size(219, 25);
+            this.PnlJobState.TabIndex = 36;
             // 
             // RadioBtnWaiting
             // 
@@ -307,6 +207,132 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.RadioBtnRunning.TabStop = true;
             this.RadioBtnRunning.Text = "运行";
             this.RadioBtnRunning.UseVisualStyleBackColor = true;
+            // 
+            // RadioBtnStopping
+            // 
+            this.RadioBtnStopping.AutoSize = true;
+            this.RadioBtnStopping.Location = new System.Drawing.Point(152, 5);
+            this.RadioBtnStopping.Name = "RadioBtnStopping";
+            this.RadioBtnStopping.Size = new System.Drawing.Size(49, 17);
+            this.RadioBtnStopping.TabIndex = 25;
+            this.RadioBtnStopping.TabStop = true;
+            this.RadioBtnStopping.Text = "停止";
+            this.RadioBtnStopping.UseVisualStyleBackColor = true;
+            // 
+            // PnlInterval
+            // 
+            this.PnlInterval.Controls.Add(this.RadioBtnDay);
+            this.PnlInterval.Controls.Add(this.label9);
+            this.PnlInterval.Controls.Add(this.TxtDay);
+            this.PnlInterval.Controls.Add(this.TxtMinute);
+            this.PnlInterval.Controls.Add(this.label8);
+            this.PnlInterval.Controls.Add(this.RadioBtnMinute);
+            this.PnlInterval.Controls.Add(this.RadioBtnHour);
+            this.PnlInterval.Controls.Add(this.label7);
+            this.PnlInterval.Controls.Add(this.TxtHour);
+            this.PnlInterval.Location = new System.Drawing.Point(229, 311);
+            this.PnlInterval.Name = "PnlInterval";
+            this.PnlInterval.Size = new System.Drawing.Size(200, 93);
+            this.PnlInterval.TabIndex = 35;
+            // 
+            // RadioBtnDay
+            // 
+            this.RadioBtnDay.AutoSize = true;
+            this.RadioBtnDay.Location = new System.Drawing.Point(3, 8);
+            this.RadioBtnDay.Name = "RadioBtnDay";
+            this.RadioBtnDay.Size = new System.Drawing.Size(37, 17);
+            this.RadioBtnDay.TabIndex = 26;
+            this.RadioBtnDay.TabStop = true;
+            this.RadioBtnDay.Text = "每";
+            this.RadioBtnDay.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.Location = new System.Drawing.Point(89, 58);
+            this.label9.Margin = new System.Windows.Forms.Padding(0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(37, 21);
+            this.label9.TabIndex = 34;
+            this.label9.Text = "分";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TxtDay
+            // 
+            this.TxtDay.BackColor = System.Drawing.Color.White;
+            this.TxtDay.Location = new System.Drawing.Point(41, 3);
+            this.TxtDay.Multiline = false;
+            this.TxtDay.Name = "TxtDay";
+            this.TxtDay.Padding = new System.Windows.Forms.Padding(1);
+            this.TxtDay.PasswordChar = '\0';
+            this.TxtDay.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtDay.Size = new System.Drawing.Size(37, 27);
+            this.TxtDay.TabIndex = 27;
+            // 
+            // TxtMinute
+            // 
+            this.TxtMinute.BackColor = System.Drawing.Color.White;
+            this.TxtMinute.Location = new System.Drawing.Point(41, 58);
+            this.TxtMinute.Multiline = false;
+            this.TxtMinute.Name = "TxtMinute";
+            this.TxtMinute.Padding = new System.Windows.Forms.Padding(1);
+            this.TxtMinute.PasswordChar = '\0';
+            this.TxtMinute.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtMinute.Size = new System.Drawing.Size(37, 27);
+            this.TxtMinute.TabIndex = 33;
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(89, 5);
+            this.label8.Margin = new System.Windows.Forms.Padding(0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(37, 22);
+            this.label8.TabIndex = 31;
+            this.label8.Text = "天";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // RadioBtnMinute
+            // 
+            this.RadioBtnMinute.AutoSize = true;
+            this.RadioBtnMinute.Location = new System.Drawing.Point(2, 58);
+            this.RadioBtnMinute.Name = "RadioBtnMinute";
+            this.RadioBtnMinute.Size = new System.Drawing.Size(37, 17);
+            this.RadioBtnMinute.TabIndex = 32;
+            this.RadioBtnMinute.TabStop = true;
+            this.RadioBtnMinute.Text = "每";
+            this.RadioBtnMinute.UseVisualStyleBackColor = true;
+            // 
+            // RadioBtnHour
+            // 
+            this.RadioBtnHour.AutoSize = true;
+            this.RadioBtnHour.Location = new System.Drawing.Point(2, 33);
+            this.RadioBtnHour.Name = "RadioBtnHour";
+            this.RadioBtnHour.Size = new System.Drawing.Size(37, 17);
+            this.RadioBtnHour.TabIndex = 29;
+            this.RadioBtnHour.TabStop = true;
+            this.RadioBtnHour.Text = "每";
+            this.RadioBtnHour.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.Location = new System.Drawing.Point(89, 30);
+            this.label7.Margin = new System.Windows.Forms.Padding(0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(37, 23);
+            this.label7.TabIndex = 28;
+            this.label7.Text = "小时";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TxtHour
+            // 
+            this.TxtHour.BackColor = System.Drawing.Color.White;
+            this.TxtHour.Location = new System.Drawing.Point(41, 30);
+            this.TxtHour.Multiline = false;
+            this.TxtHour.Name = "TxtHour";
+            this.TxtHour.Padding = new System.Windows.Forms.Padding(1);
+            this.TxtHour.PasswordChar = '\0';
+            this.TxtHour.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtHour.Size = new System.Drawing.Size(37, 27);
+            this.TxtHour.TabIndex = 30;
             // 
             // TxtScheduleChineseName
             // 
@@ -354,19 +380,19 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             // 
             // DateTimePickerEnd
             // 
-            this.DateTimePickerEnd.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.DateTimePickerEnd.CustomFormat = "yyyy-MM-dd";
             this.DateTimePickerEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateTimePickerEnd.Location = new System.Drawing.Point(475, 285);
+            this.DateTimePickerEnd.Location = new System.Drawing.Point(475, 279);
             this.DateTimePickerEnd.Name = "DateTimePickerEnd";
             this.DateTimePickerEnd.Size = new System.Drawing.Size(200, 20);
             this.DateTimePickerEnd.TabIndex = 15;
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(445, 276);
+            this.label4.Location = new System.Drawing.Point(445, 270);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(27, 43);
+            this.label4.Size = new System.Drawing.Size(27, 32);
             this.label4.TabIndex = 14;
             this.label4.Text = "至";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -375,9 +401,9 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             // 
             this.DateTimePickerStart.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.DateTimePickerStart.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.DateTimePickerStart.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.DateTimePickerStart.CustomFormat = "yyyy-MM-dd";
             this.DateTimePickerStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateTimePickerStart.Location = new System.Drawing.Point(230, 285);
+            this.DateTimePickerStart.Location = new System.Drawing.Point(231, 279);
             this.DateTimePickerStart.Name = "DateTimePickerStart";
             this.DateTimePickerStart.Size = new System.Drawing.Size(200, 20);
             this.DateTimePickerStart.TabIndex = 13;
@@ -459,7 +485,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             // PicNotNullScheduleServiceURL
             // 
             this.PicNotNullScheduleServiceURL.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
-            this.PicNotNullScheduleServiceURL.Location = new System.Drawing.Point(588, 169);
+            this.PicNotNullScheduleServiceURL.Location = new System.Drawing.Point(588, 170);
             this.PicNotNullScheduleServiceURL.Name = "PicNotNullScheduleServiceURL";
             this.PicNotNullScheduleServiceURL.Size = new System.Drawing.Size(14, 22);
             this.PicNotNullScheduleServiceURL.TabIndex = 4;
@@ -624,32 +650,6 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.BtnCancel.Text = "取消";
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.RadioBtnDay);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.TxtDay);
-            this.panel1.Controls.Add(this.TxtMinute);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.RadioBtnMinute);
-            this.panel1.Controls.Add(this.RadioBtnHour);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.TxtHour);
-            this.panel1.Location = new System.Drawing.Point(229, 311);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 93);
-            this.panel1.TabIndex = 35;
-            // 
-            // PnlJobState
-            // 
-            this.PnlJobState.Controls.Add(this.RadioBtnWaiting);
-            this.PnlJobState.Controls.Add(this.RadioBtnRunning);
-            this.PnlJobState.Controls.Add(this.RadioBtnStopping);
-            this.PnlJobState.Location = new System.Drawing.Point(230, 207);
-            this.PnlJobState.Name = "PnlJobState";
-            this.PnlJobState.Size = new System.Drawing.Size(219, 25);
-            this.PnlJobState.TabIndex = 36;
-            // 
             // Create
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -663,6 +663,10 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.PnlInfo.ResumeLayout(false);
             this.PnlInfoBack.ResumeLayout(false);
             this.PnlControlArea.ResumeLayout(false);
+            this.PnlJobState.ResumeLayout(false);
+            this.PnlJobState.PerformLayout();
+            this.PnlInterval.ResumeLayout(false);
+            this.PnlInterval.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicNotNullScheduleServiceURL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicNotNullScheduleName)).EndInit();
@@ -671,10 +675,6 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             ((System.ComponentModel.ISupportInitialize)(this.PicLogo)).EndInit();
             this.PnlInfoTitle.ResumeLayout(false);
             this.PnlFooter.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.PnlJobState.ResumeLayout(false);
-            this.PnlJobState.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -729,6 +729,6 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
         private UserControls.TextBox TxtMinute;
         private System.Windows.Forms.RadioButton RadioBtnMinute;
         private System.Windows.Forms.Panel PnlJobState;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel PnlInterval;
     }
 }

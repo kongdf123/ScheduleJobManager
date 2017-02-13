@@ -24,7 +24,8 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
         /// </summary>
         public static Default Instance {
             get {
-                if ( instance == null ) {
+                if (instance == null)
+                {
                     instance = new Default();
                 }
                 BindDataGrid(); // 每次返回该控件的实例前，都将对DataGridView控件的数据源进行重新绑定。
@@ -32,48 +33,58 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             }
         }
 
-        public Default() {
+        public Default()
+        {
             InitializeComponent();
             this.Dock = DockStyle.Fill;
         }
 
-        private void BtnCreate_Click(object sender, EventArgs e) {
+        private void BtnCreate_Click(object sender, EventArgs e)
+        {
             FormMain.LoadNewControl(Create.Instance); // 载入该模块的添加信息界面至主窗体显示。
         }
 
-        private void DgvGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e) {
+        private void DgvGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
             //用户单击DataGridView“操作”列中的“修改”按钮。
-            if ( DataGridViewActionButtonCell.IsModifyButtonClick(sender, e) ) {
-                string objectId = DgvGrid["ColAction", e.RowIndex].Value.ToString(); // 获取所要修改关联对象的主键。
-                //Modify.LoadDataById(objectId);                                       // 根据关联对象的主键，从数据库中获取信息。
-                //FormMain.LoadNewControl(Modify.Instance);                            // 载入该模块的修改信息界面至主窗体显示。
+            if (DataGridViewActionButtonCell.IsModifyButtonClick(sender, e))
+            {
+                int jobId = Convert.ToInt32(DgvGrid["ColAction", e.RowIndex].Value.ToString()); // 获取所要修改关联对象的主键。
+                string jobIdentity = DgvGrid["ScheduleJobName", e.RowIndex].Value.ToString();
+
+                JobDetail jobDetail = JobDetailBLL.CreateInstance().Get(jobId, jobIdentity);
+                FormMain.LoadNewControl(Create.BindJobDetail(jobDetail));                            // 载入该模块的修改信息界面至主窗体显示。
             }
 
             //用户单击DataGridView“操作”列中的“删除”按钮。
-            if ( DataGridViewActionButtonCell.IsDeleteButtonClick(sender, e) ) {
+            if (DataGridViewActionButtonCell.IsDeleteButtonClick(sender, e))
+            {
                 string objectId = DgvGrid["ColAction", e.RowIndex].Value.ToString(); // 获取所要删除关联对象的主键。
                 //Delete.LoadDataById(objectId);                                       // 根据关联对象的主键，从数据库中获取信息。
                 //FormMain.LoadNewControl(Delete.Instance);                            // 载入该模块的删除信息界面至主窗体显示。
             }
         }
 
-        private void PageBar_PageChanged(object sender, EventArgs e) {
+        private void PageBar_PageChanged(object sender, EventArgs e)
+        {
             BindDataGrid(); //重新对DataGridView控件的数据源进行绑定。
         }
 
         /// <summary>
         /// 对DataGridView控件的数据源进行绑定。
         /// </summary>
-        public static void BindDataGrid() {
-            instance.PageBar.DataControl = instance.DgvGrid; 
-            instance.PageBar.DataSource =JobDetailBLL.CreateInstance().GetPageList(instance.PageBar.PageSize, instance.PageBar.CurPage);
+        public static void BindDataGrid()
+        {
+            instance.PageBar.DataControl = instance.DgvGrid;
+            instance.PageBar.DataSource = JobDetailBLL.CreateInstance().GetPageList(instance.PageBar.PageSize, instance.PageBar.CurPage);
             instance.PageBar.DataBind();
         }
 
         /// <summary>
         /// 显示最后一页的数据，该方法为静态方法，供外界控制信息列表页数调用。
         /// </summary>
-        public static void GotoLastPage() {
+        public static void GotoLastPage()
+        {
             instance.PageBar.CurPage = int.MaxValue;
         }
     }

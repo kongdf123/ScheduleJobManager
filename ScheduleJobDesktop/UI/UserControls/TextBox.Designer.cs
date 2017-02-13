@@ -63,6 +63,7 @@
             this.TxtInside.BackColor = System.Drawing.Color.White;
             this.TxtInside.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtInside.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.TxtInside.ImeMode = System.Windows.Forms.ImeMode.On;
             this.TxtInside.Location = new System.Drawing.Point(3, 7);
             this.TxtInside.Name = "TxtInside";
             this.TxtInside.Size = new System.Drawing.Size(190, 13);

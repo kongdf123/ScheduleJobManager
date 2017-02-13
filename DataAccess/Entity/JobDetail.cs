@@ -5,6 +5,9 @@ using System.Text;
 
 namespace DataAccess.Entity
 {
+    /// <summary>
+    /// 自定义任务计划-数据表，有别于Quartz.NET里的任务表
+    /// </summary>
     public class JobDetail
     {
         public int JobId { get; set; }
@@ -15,13 +18,15 @@ namespace DataAccess.Entity
 
         public string JobServiceURL { get; set; }
 
-        public string CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
 
-        public string UpdatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
 
-        public string StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
-        public string EndDate { get; set; }
+        public DateTime EndDate { get; set; }
+
+        public byte ExecutedFreq { get; set; }
 
         public string Description { get; set; }
 
@@ -29,16 +34,83 @@ namespace DataAccess.Entity
 
         public int Interval { get; set; }
 
+        public byte IntervalType { get; set; }
+
         public byte State { get; set; }
 
+        public string StateDescription {
+            get {
+                switch ((JobState)State)
+                {
+                    case JobState.Waiting:
+                        return "等待中";
+                    case JobState.Running:
+                        return "运行中";
+                    case JobState.Stopping:
+                        return "已停止";
+                    default:
+                        break;
+                }
+                return "";
+            }
+        }
     }
 
-    public enum JobState:byte
+    /// <summary>
+    /// 执行频率
+    /// </summary>
+    public enum ExecutedFreq : byte
     {
+        /// <summary>
+        /// 只执行一次
+        /// </summary>
+        OnlyOneTime = 0,
+
+        /// <summary>
+        /// 循环执行
+        /// </summary>
+        Forever = 1
+    }
+
+    /// <summary>
+    /// 任务计划执行间隔类型
+    /// </summary>
+    public enum IntervalType : byte
+    {
+        /// <summary>
+        /// 天
+        /// </summary>
+        Day = 1,
+
+        /// <summary>
+        /// 小时
+        /// </summary>
+        Hour = 2,
+
+        /// <summary>
+        /// 分钟
+        /// </summary>
+        Minute = 3
+    }
+
+    /// <summary>
+    /// 任务计划执行情况
+    /// </summary>
+    public enum JobState : byte
+    {
+        /// <summary>
+        /// 等待
+        /// </summary>
         Waiting = 0,
 
+        /// <summary>
+        /// 执行中
+        /// </summary>
         Running = 1,
 
+        /// <summary>
+        /// 停止
+        /// </summary>
         Stopping = 2
     }
 }
