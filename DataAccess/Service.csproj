@@ -44,10 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\DBConfigurationBLL.cs" />
     <Compile Include="BLL\JobDetailBLL.cs" />
+    <Compile Include="DAL\DBConfigurationDAL.cs" />
     <Compile Include="DAL\JobDetailDAL.cs" />
     <Compile Include="DAL\MySqlDBHelper.cs" />
     <Compile Include="DAL\PageData.cs" />
+    <Compile Include="Entity\DBConfiguration.cs" />
     <Compile Include="Entity\JobDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

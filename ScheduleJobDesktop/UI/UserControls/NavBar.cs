@@ -43,13 +43,13 @@ namespace ScheduleJobDesktop.UserControls
                     new ImageButton("任务信息管理","ManageScheduleJob",Resources.LogoScheduledTask)
                 }
             } ,
-            //new ButtonGroup("系统设置")
-            //{
-            //    ImageButtons = new List<ImageButton>()
-            //    {
-            //        new ImageButton("部门管理","ManageDepartment",Resources.NavBtnManageDepartment)
-            //    }
-            //} ,
+            new ButtonGroup("系统设置")
+            {
+                ImageButtons = new List<ImageButton>()
+                {
+                    new ImageButton("部门管理","ManageDepartment",Resources.NavBtnManageDepartment)
+                }
+            } ,
             new ButtonGroup("退出系统")
             {
 

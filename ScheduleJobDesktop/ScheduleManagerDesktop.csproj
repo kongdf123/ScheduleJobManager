@@ -107,6 +107,18 @@
     <Compile Include="UI\ManageScheduleJob\SettingParameterCreate.Designer.cs">
       <DependentUpon>SettingParameterCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ManageSettings\DBConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ManageSettings\DBConfig.Designer.cs">
+      <DependentUpon>DBConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ManageSettings\DBConfigCreate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ManageSettings\DBConfigCreate.Designer.cs">
+      <DependentUpon>DBConfigCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\UserControls\Button.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -156,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ManageScheduleJob\Default.resx">
       <DependentUpon>Default.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ManageSettings\DBConfigCreate.resx">
+      <DependentUpon>DBConfigCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UserControls\Button.resx">
       <DependentUpon>Button.cs</DependentUpon>
@@ -377,6 +392,7 @@
       <Name>Utility</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
