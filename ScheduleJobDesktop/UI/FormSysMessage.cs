@@ -15,10 +15,10 @@ namespace ScheduleJobDesktop
     {
         private static Size detailModeSize = new Size(700, 350);
 
-        public FormSysMessage() {
+        public FormSysMessage()
+        {
             InitializeComponent();
         }
-
 
         /// <summary>
         /// 显示异常信息，该方法为静态方法，可以直接进行调用。
@@ -79,15 +79,22 @@ namespace ScheduleJobDesktop
         /// <summary>
         /// 显示一般类信息提示。
         /// </summary>
-        public static void ShowMessage(string message)
+        public static DialogResult ShowMessage(string message)
         {
             FormSysMessage formSysMessage = new FormSysMessage();
             formSysMessage.LblMessage.Text = message;
-            formSysMessage.ShowDialog();
+            return formSysMessage.ShowDialog();
         }
 
         private void BtnOK_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
     }

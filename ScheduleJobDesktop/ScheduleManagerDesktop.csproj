@@ -113,7 +113,7 @@
     <Compile Include="UI\UserControls\Button.Designer.cs">
       <DependentUpon>Button.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\UserControls\DataGridViewActionButtonColumn.cs" />
+    <Compile Include="UI\UserControls\JobDataGridViewActionButtonColumn.cs" />
     <Compile Include="UI\UserControls\NavBar.cs">
       <SubType>UserControl</SubType>
     </Compile>

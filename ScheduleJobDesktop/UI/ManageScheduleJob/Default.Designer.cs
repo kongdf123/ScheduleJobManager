@@ -33,19 +33,21 @@
             this.DgvGrid = new System.Windows.Forms.DataGridView();
             this.PnlTopTitle = new System.Windows.Forms.Panel();
             this.PicTitleLine = new System.Windows.Forms.PictureBox();
-            this.PageBar = new ScheduleJobDesktop.UI.UserControls.PageBar();
             this.LblTip = new System.Windows.Forms.Label();
             this.PicTitle = new System.Windows.Forms.PictureBox();
             this.PicLogo = new System.Windows.Forms.PictureBox();
-            this.dataGridViewActionButtonColumn1 = new ScheduleJobDesktop.UI.UserControls.DataGridViewActionButtonColumn();
             this.PnlFooter = new System.Windows.Forms.Panel();
+            this.jobDataGridViewActionButtonColumn1 = new ScheduleJobDesktop.UI.UserControls.JobDataGridViewActionButtonColumn();
             this.BtnCreate = new ScheduleJobDesktop.UserControls.Button();
+            this.PageBar = new ScheduleJobDesktop.UI.UserControls.PageBar();
+            this.dataGridViewActionButtonColumn1 = new ScheduleJobDesktop.UI.UserControls.JobDataGridViewActionButtonColumn();
             this.JobChineseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ScheduleJobName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JobStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JobStateCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColAction = new ScheduleJobDesktop.UI.UserControls.DataGridViewActionButtonColumn();
+            this.ColAction = new ScheduleJobDesktop.UI.UserControls.JobDataGridViewActionButtonColumn();
             this.PnlMainArea.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvGrid)).BeginInit();
             this.PnlTopTitle.SuspendLayout();
@@ -90,6 +92,7 @@
             this.JobChineseName,
             this.ScheduleJobName,
             this.JobStatus,
+            this.JobStateCode,
             this.StartTime,
             this.EndTime,
             this.ColAction});
@@ -136,20 +139,6 @@
             this.PicTitleLine.TabIndex = 4;
             this.PicTitleLine.TabStop = false;
             // 
-            // PageBar
-            // 
-            this.PageBar.BackColor = System.Drawing.Color.White;
-            this.PageBar.CurPage = 1;
-            this.PageBar.DataControl = null;
-            this.PageBar.DataSource = null;
-            this.PageBar.Location = new System.Drawing.Point(430, 57);
-            this.PageBar.MinimumSize = new System.Drawing.Size(350, 24);
-            this.PageBar.Name = "PageBar";
-            this.PageBar.PageSize = 15;
-            this.PageBar.Size = new System.Drawing.Size(350, 24);
-            this.PageBar.TabIndex = 8;
-            this.PageBar.PageChanged += new System.EventHandler(this.PageBar_PageChanged);
-            // 
             // LblTip
             // 
             this.LblTip.AutoSize = true;
@@ -181,14 +170,6 @@
             this.PicLogo.TabIndex = 0;
             this.PicLogo.TabStop = false;
             // 
-            // dataGridViewActionButtonColumn1
-            // 
-            this.dataGridViewActionButtonColumn1.DataPropertyName = "Id";
-            this.dataGridViewActionButtonColumn1.HeaderText = "操作";
-            this.dataGridViewActionButtonColumn1.Name = "dataGridViewActionButtonColumn1";
-            this.dataGridViewActionButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewActionButtonColumn1.Width = 120;
-            // 
             // PnlFooter
             // 
             this.PnlFooter.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.FooterBG;
@@ -198,6 +179,14 @@
             this.PnlFooter.Name = "PnlFooter";
             this.PnlFooter.Size = new System.Drawing.Size(830, 48);
             this.PnlFooter.TabIndex = 1;
+            // 
+            // jobDataGridViewActionButtonColumn1
+            // 
+            this.jobDataGridViewActionButtonColumn1.DataPropertyName = "JobId";
+            this.jobDataGridViewActionButtonColumn1.HeaderText = "操作";
+            this.jobDataGridViewActionButtonColumn1.Name = "jobDataGridViewActionButtonColumn1";
+            this.jobDataGridViewActionButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.jobDataGridViewActionButtonColumn1.Width = 120;
             // 
             // BtnCreate
             // 
@@ -210,6 +199,28 @@
             this.BtnCreate.TabIndex = 0;
             this.BtnCreate.Text = "添加";
             this.BtnCreate.Click += new System.EventHandler(this.BtnCreate_Click);
+            // 
+            // PageBar
+            // 
+            this.PageBar.BackColor = System.Drawing.Color.White;
+            this.PageBar.CurPage = 1;
+            this.PageBar.DataControl = null;
+            this.PageBar.DataSource = null;
+            this.PageBar.Location = new System.Drawing.Point(430, 57);
+            this.PageBar.MinimumSize = new System.Drawing.Size(350, 24);
+            this.PageBar.Name = "PageBar";
+            this.PageBar.PageSize = 15;
+            this.PageBar.Size = new System.Drawing.Size(350, 24);
+            this.PageBar.TabIndex = 8;
+            this.PageBar.PageChanged += new System.EventHandler(this.PageBar_PageChanged);
+            // 
+            // dataGridViewActionButtonColumn1
+            // 
+            this.dataGridViewActionButtonColumn1.DataPropertyName = "Id";
+            this.dataGridViewActionButtonColumn1.HeaderText = "操作";
+            this.dataGridViewActionButtonColumn1.Name = "dataGridViewActionButtonColumn1";
+            this.dataGridViewActionButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewActionButtonColumn1.Width = 120;
             // 
             // JobChineseName
             // 
@@ -233,6 +244,14 @@
             this.JobStatus.Name = "JobStatus";
             this.JobStatus.ReadOnly = true;
             // 
+            // JobStateCode
+            // 
+            this.JobStateCode.DataPropertyName = "State";
+            this.JobStateCode.HeaderText = "执行状态代码";
+            this.JobStateCode.Name = "JobStateCode";
+            this.JobStateCode.ReadOnly = true;
+            this.JobStateCode.Visible = false;
+            // 
             // StartTime
             // 
             this.StartTime.DataPropertyName = "StartDate";
@@ -254,7 +273,7 @@
             this.ColAction.Name = "ColAction";
             this.ColAction.ReadOnly = true;
             this.ColAction.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColAction.Width = 120;
+            this.ColAction.Width = 240;
             // 
             // Default
             // 
@@ -289,12 +308,14 @@
         private ScheduleJobDesktop.UserControls.Button BtnCreate;
         private UserControls.PageBar PageBar;
         private System.Windows.Forms.PictureBox PicTitleLine;
-        private UserControls.DataGridViewActionButtonColumn dataGridViewActionButtonColumn1;
+        private UserControls.JobDataGridViewActionButtonColumn dataGridViewActionButtonColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn JobChineseName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ScheduleJobName;
         private System.Windows.Forms.DataGridViewTextBoxColumn JobStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JobStateCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn StartTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn EndTime;
-        private UserControls.DataGridViewActionButtonColumn ColAction;
+        private UserControls.JobDataGridViewActionButtonColumn ColAction;
+        private UserControls.JobDataGridViewActionButtonColumn jobDataGridViewActionButtonColumn1;
     }
 }

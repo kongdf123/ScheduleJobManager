@@ -47,7 +47,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
         private void DgvGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             //用户单击DataGridView“操作”列中的“修改”按钮。
-            if (DataGridViewActionButtonCell.IsModifyButtonClick(sender, e))
+            if (JobDataGridViewActionButtonCell.IsModifyButtonClick(sender, e))
             {
                 string objectId = DgvGrid["ColAction", e.RowIndex].Value.ToString(); // 获取所要修改关联对象的主键。
                 //Modify.LoadDataById(objectId);                                       // 根据关联对象的主键，从数据库中获取信息。
@@ -55,7 +55,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             }
 
             //用户单击DataGridView“操作”列中的“删除”按钮。
-            if (DataGridViewActionButtonCell.IsDeleteButtonClick(sender, e))
+            if (JobDataGridViewActionButtonCell.IsDeleteButtonClick(sender, e))
             {
                 string objectId = DgvGrid["ColAction", e.RowIndex].Value.ToString(); // 获取所要删除关联对象的主键。
                 //Delete.LoadDataById(objectId);                                       // 根据关联对象的主键，从数据库中获取信息。

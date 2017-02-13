@@ -35,11 +35,11 @@
             this.JobStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColAction = new ScheduleJobDesktop.UI.UserControls.DataGridViewActionButtonColumn();
+            this.ColAction = new ScheduleJobDesktop.UI.UserControls.JobDataGridViewActionButtonColumn();
             this.PnlTopTitle = new System.Windows.Forms.Panel();
             this.PageBar = new ScheduleJobDesktop.UI.UserControls.PageBar();
             this.LblTip = new System.Windows.Forms.Label();
-            this.dataGridViewActionButtonColumn1 = new ScheduleJobDesktop.UI.UserControls.DataGridViewActionButtonColumn();
+            this.dataGridViewActionButtonColumn1 = new ScheduleJobDesktop.UI.UserControls.JobDataGridViewActionButtonColumn();
             this.PnlFooter = new System.Windows.Forms.Panel();
             this.BtnCreate = new ScheduleJobDesktop.UserControls.Button();
             this.PicTitleLine = new System.Windows.Forms.PictureBox();
@@ -280,11 +280,11 @@
         private ScheduleJobDesktop.UserControls.Button BtnCreate;
         private UserControls.PageBar PageBar;
         private System.Windows.Forms.PictureBox PicTitleLine;
-        private UserControls.DataGridViewActionButtonColumn dataGridViewActionButtonColumn1;
+        private UserControls.JobDataGridViewActionButtonColumn dataGridViewActionButtonColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ScheduleJobName;
         private System.Windows.Forms.DataGridViewTextBoxColumn JobStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn StartTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn EndTime;
-        private UserControls.DataGridViewActionButtonColumn ColAction;
+        private UserControls.JobDataGridViewActionButtonColumn ColAction;
     }
 }
