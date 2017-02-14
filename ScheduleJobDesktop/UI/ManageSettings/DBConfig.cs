@@ -42,6 +42,10 @@ namespace ScheduleJobDesktop.UI.ManageSettings
 
         private void DgvGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (e.RowIndex<0)
+            {
+                return;
+            }
             int id = Convert.ToInt32(DgvGrid["ColAction", e.RowIndex].Value.ToString()); // 获取所要修改关联对象的主键。
             //用户单击DataGridView“操作”列中的“修改”按钮。
             if (DBConfigDataGridViewActionButtonCell.IsModifyButtonClick(sender, e))
@@ -80,6 +84,12 @@ namespace ScheduleJobDesktop.UI.ManageSettings
         /// </summary>
         public static void GotoLastPage() {
             instance.PageBar.CurPage = int.MaxValue;
+        }
+
+        private void DgvGrid_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            SolidBrush b = new SolidBrush(DgvGrid.RowHeadersDefaultCellStyle.ForeColor);
+            e.Graphics.DrawString((e.RowIndex + 1+ instance.PageBar.PageSize* (instance.PageBar.CurPage-1)).ToString(System.Globalization.CultureInfo.CurrentUICulture), this.DgvGrid.DefaultCellStyle.Font, b, e.RowBounds.Location.X + 20, e.RowBounds.Location.Y + 4);
         }
     }
 }

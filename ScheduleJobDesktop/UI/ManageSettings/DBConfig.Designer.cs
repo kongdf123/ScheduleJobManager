@@ -25,18 +25,15 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PnlMainArea = new System.Windows.Forms.Panel();
-            this.DgvGrid = new System.Windows.Forms.DataGridView();
             this.PnlTopTitle = new System.Windows.Forms.Panel();
             this.PicTitleLine = new System.Windows.Forms.PictureBox();
             this.PageBar = new ScheduleJobDesktop.UI.UserControls.PageBar();
             this.LblTip = new System.Windows.Forms.Label();
             this.PicTitle = new System.Windows.Forms.PictureBox();
             this.PicLogo = new System.Windows.Forms.PictureBox();
-            this.dataGridViewActionButtonColumn1 = new ScheduleJobDesktop.UI.UserControls.JobDataGridViewActionButtonColumn();
-            this.PnlFooter = new System.Windows.Forms.Panel();
-            this.BtnCreate = new ScheduleJobDesktop.UserControls.Button();
+            this.DgvGrid = new System.Windows.Forms.DataGridView();
             this.RowNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ServerIPAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DBName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,73 +41,30 @@
             this.CreatedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UpdatedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColAction = new ScheduleJobDesktop.UI.UserControls.DBConfigDataGridViewActionButtonColumn();
+            this.dataGridViewActionButtonColumn1 = new ScheduleJobDesktop.UI.UserControls.JobDataGridViewActionButtonColumn();
+            this.PnlFooter = new System.Windows.Forms.Panel();
+            this.BtnCreate = new ScheduleJobDesktop.UserControls.Button();
             this.PnlMainArea.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvGrid)).BeginInit();
             this.PnlTopTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicTitleLine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvGrid)).BeginInit();
             this.PnlFooter.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlMainArea
             // 
+            this.PnlMainArea.AutoScroll = true;
             this.PnlMainArea.Controls.Add(this.DgvGrid);
             this.PnlMainArea.Controls.Add(this.PnlTopTitle);
-            this.PnlMainArea.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PnlMainArea.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlMainArea.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.PnlMainArea.Location = new System.Drawing.Point(0, 0);
             this.PnlMainArea.Name = "PnlMainArea";
             this.PnlMainArea.Padding = new System.Windows.Forms.Padding(20, 22, 20, 22);
-            this.PnlMainArea.Size = new System.Drawing.Size(830, 603);
+            this.PnlMainArea.Size = new System.Drawing.Size(830, 650);
             this.PnlMainArea.TabIndex = 4;
-            // 
-            // DgvGrid
-            // 
-            this.DgvGrid.AllowUserToAddRows = false;
-            this.DgvGrid.AllowUserToDeleteRows = false;
-            this.DgvGrid.AllowUserToOrderColumns = true;
-            this.DgvGrid.AllowUserToResizeRows = false;
-            this.DgvGrid.BackgroundColor = System.Drawing.Color.White;
-            this.DgvGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.DgvGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("SimSun", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.DgvGrid.ColumnHeadersHeight = 30;
-            this.DgvGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DgvGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.RowNum,
-            this.ServerIPAddress,
-            this.DBName,
-            this.UserName,
-            this.CreatedDate,
-            this.UpdatedDate,
-            this.ColAction});
-            this.DgvGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DgvGrid.GridColor = System.Drawing.Color.Silver;
-            this.DgvGrid.Location = new System.Drawing.Point(20, 109);
-            this.DgvGrid.MultiSelect = false;
-            this.DgvGrid.Name = "DgvGrid";
-            this.DgvGrid.ReadOnly = true;
-            this.DgvGrid.RowHeadersVisible = false;
-            this.DgvGrid.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
-            this.DgvGrid.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.DgvGrid.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.DgvGrid.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.DgvGrid.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.DgvGrid.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvGrid.RowTemplate.Height = 30;
-            this.DgvGrid.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.DgvGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvGrid.Size = new System.Drawing.Size(790, 472);
-            this.DgvGrid.TabIndex = 0;
-            this.DgvGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvGrid_CellMouseClick);
             // 
             // PnlTopTitle
             // 
@@ -141,7 +95,7 @@
             this.PageBar.CurPage = 1;
             this.PageBar.DataControl = null;
             this.PageBar.DataSource = null;
-            this.PageBar.Location = new System.Drawing.Point(430, 57);
+            this.PageBar.Location = new System.Drawing.Point(419, 57);
             this.PageBar.MinimumSize = new System.Drawing.Size(350, 24);
             this.PageBar.Name = "PageBar";
             this.PageBar.PageSize = 15;
@@ -161,7 +115,7 @@
             // 
             // PicTitle
             // 
-            this.PicTitle.Image = global::ScheduleJobDesktop.Properties.Resources.TitleManageScheduleJob_1;
+            this.PicTitle.Image = global::ScheduleJobDesktop.Properties.Resources.TitleManageDBConfig;
             this.PicTitle.Location = new System.Drawing.Point(85, 0);
             this.PicTitle.Margin = new System.Windows.Forms.Padding(0);
             this.PicTitle.Name = "PicTitle";
@@ -180,35 +134,53 @@
             this.PicLogo.TabIndex = 0;
             this.PicLogo.TabStop = false;
             // 
-            // dataGridViewActionButtonColumn1
+            // DgvGrid
             // 
-            this.dataGridViewActionButtonColumn1.DataPropertyName = "Id";
-            this.dataGridViewActionButtonColumn1.HeaderText = "操作";
-            this.dataGridViewActionButtonColumn1.Name = "dataGridViewActionButtonColumn1";
-            this.dataGridViewActionButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewActionButtonColumn1.Width = 120;
-            // 
-            // PnlFooter
-            // 
-            this.PnlFooter.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.FooterBG;
-            this.PnlFooter.Controls.Add(this.BtnCreate);
-            this.PnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PnlFooter.Location = new System.Drawing.Point(0, 602);
-            this.PnlFooter.Name = "PnlFooter";
-            this.PnlFooter.Size = new System.Drawing.Size(830, 48);
-            this.PnlFooter.TabIndex = 1;
-            // 
-            // BtnCreate
-            // 
-            this.BtnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(163)))), ((int)(((byte)(193)))));
-            this.BtnCreate.Location = new System.Drawing.Point(730, 7);
-            this.BtnCreate.Name = "BtnCreate";
-            this.BtnCreate.Padding = new System.Windows.Forms.Padding(1);
-            this.BtnCreate.Size = new System.Drawing.Size(82, 26);
-            this.BtnCreate.TabIndex = 0;
-            this.BtnCreate.Text = "添加";
-            this.BtnCreate.Click += new System.EventHandler(this.BtnCreate_Click);
+            this.DgvGrid.AllowUserToAddRows = false;
+            this.DgvGrid.AllowUserToDeleteRows = false;
+            this.DgvGrid.AllowUserToOrderColumns = true;
+            this.DgvGrid.AllowUserToResizeRows = false;
+            this.DgvGrid.BackgroundColor = System.Drawing.Color.White;
+            this.DgvGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.DgvGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("SimSun", 9F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.DgvGrid.ColumnHeadersHeight = 30;
+            this.DgvGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.DgvGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.RowNum,
+            this.ServerIPAddress,
+            this.DBName,
+            this.UserName,
+            this.CreatedDate,
+            this.UpdatedDate,
+            this.ColAction});
+            this.DgvGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DgvGrid.GridColor = System.Drawing.Color.Silver;
+            this.DgvGrid.Location = new System.Drawing.Point(20, 109);
+            this.DgvGrid.MultiSelect = false;
+            this.DgvGrid.Name = "DgvGrid";
+            this.DgvGrid.ReadOnly = true;
+            this.DgvGrid.RowHeadersVisible = false;
+            this.DgvGrid.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
+            this.DgvGrid.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.DgvGrid.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.DgvGrid.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.DgvGrid.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.DgvGrid.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvGrid.RowTemplate.Height = 30;
+            this.DgvGrid.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgvGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgvGrid.Size = new System.Drawing.Size(790, 519);
+            this.DgvGrid.TabIndex = 0;
+            this.DgvGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvGrid_CellMouseClick);
+            this.DgvGrid.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvGrid_RowPostPaint);
             // 
             // RowNum
             // 
@@ -263,6 +235,36 @@
             this.ColAction.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ColAction.Width = 120;
             // 
+            // dataGridViewActionButtonColumn1
+            // 
+            this.dataGridViewActionButtonColumn1.DataPropertyName = "Id";
+            this.dataGridViewActionButtonColumn1.HeaderText = "操作";
+            this.dataGridViewActionButtonColumn1.Name = "dataGridViewActionButtonColumn1";
+            this.dataGridViewActionButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewActionButtonColumn1.Width = 120;
+            // 
+            // PnlFooter
+            // 
+            this.PnlFooter.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.FooterBG;
+            this.PnlFooter.Controls.Add(this.BtnCreate);
+            this.PnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PnlFooter.Location = new System.Drawing.Point(0, 602);
+            this.PnlFooter.Name = "PnlFooter";
+            this.PnlFooter.Size = new System.Drawing.Size(830, 48);
+            this.PnlFooter.TabIndex = 1;
+            // 
+            // BtnCreate
+            // 
+            this.BtnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(163)))), ((int)(((byte)(193)))));
+            this.BtnCreate.Location = new System.Drawing.Point(730, 7);
+            this.BtnCreate.Name = "BtnCreate";
+            this.BtnCreate.Padding = new System.Windows.Forms.Padding(1);
+            this.BtnCreate.Size = new System.Drawing.Size(82, 26);
+            this.BtnCreate.TabIndex = 0;
+            this.BtnCreate.Text = "添加";
+            this.BtnCreate.Click += new System.EventHandler(this.BtnCreate_Click);
+            // 
             // DBConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -273,12 +275,12 @@
             this.Name = "DBConfig";
             this.Size = new System.Drawing.Size(830, 650);
             this.PnlMainArea.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DgvGrid)).EndInit();
             this.PnlTopTitle.ResumeLayout(false);
             this.PnlTopTitle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicTitleLine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicTitle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvGrid)).EndInit();
             this.PnlFooter.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -573,6 +573,16 @@ namespace ScheduleJobDesktop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TitleManageDBConfig {
+            get {
+                object obj = ResourceManager.GetObject("TitleManageDBConfig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TitleManageDepartmentCreate {
             get {
                 object obj = ResourceManager.GetObject("TitleManageDepartmentCreate", resourceCulture);

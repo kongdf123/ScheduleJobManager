@@ -175,7 +175,8 @@ namespace DataAccess.DAL
                                 State,
                                 Description,
                                 ExecutedFreq
-                            FROM custom_job_details "+ sqlWhere+" LIMIT " + (curPage - 1) + "," + pageSize;
+                            FROM custom_job_details "+ sqlWhere
+                            +" ORDER BY JobId DESC LIMIT " + (curPage - 1) * pageSize + "," + pageSize;
             List<JobDetail> list = new List<JobDetail>();
             MySqlDataReader sqlDataReader = MySqlDBHelper.ExecuteReader(sqlText, listParms.ToArray());
 

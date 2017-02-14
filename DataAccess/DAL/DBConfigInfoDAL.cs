@@ -130,7 +130,7 @@ namespace DataAccess.DAL
                                     `Password`,
                                     `UpdatedDate`,
                                     `CreatedDate`
-                                FROM `custom_db_config`  " + sqlWhere + " LIMIT " + (curPage - 1) + "," + pageSize;
+                                FROM `custom_db_config`  " + sqlWhere + " ORDER BY Id DESC LIMIT " + (curPage - 1)* pageSize + "," + pageSize;
             List<DBConfigInfo> list = new List<DBConfigInfo>();
             MySqlDataReader sqlDataReader = MySqlDBHelper.ExecuteReader(sqlText, listParms.ToArray());
 
