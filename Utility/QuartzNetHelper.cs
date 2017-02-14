@@ -13,19 +13,15 @@ namespace Utility
     {
         static IScheduler scheduler;
 
-        public static IScheduler GetScheduler() {
-            if ( scheduler == null ) {
-                NameValueCollection config = (NameValueCollection)ConfigurationManager.GetSection("quartz");
-                ISchedulerFactory factory = new StdSchedulerFactory(config);
-                scheduler = factory.GetScheduler();
-            }
+        public static IScheduler Initialize(NameValueCollection config)
+        {
+            ISchedulerFactory factory = new StdSchedulerFactory(config);
+            scheduler = factory.GetScheduler();
             return scheduler;
         }
 
-        public void AddJob() {
-            //TODO
+        public static IScheduler GetScheduler() {
+            return scheduler;
         }
-
-
     }
 }

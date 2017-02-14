@@ -57,7 +57,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                 int jobId = Convert.ToInt32(DgvGrid["ColAction", e.RowIndex].Value.ToString()); // 获取所要修改关联对象的主键。
                 string jobIdentity = DgvGrid["ScheduleJobName", e.RowIndex].Value.ToString();
 
-                JobDetail jobDetail = JobDetailBLL.CreateInstance().Get(jobId, jobIdentity);
+                CustomJobDetail jobDetail = CustomJobDetailBLL.CreateInstance().Get(jobId, jobIdentity);
                 FormMain.LoadNewControl(Create.BindJobDetail(jobDetail));                            // 载入该模块的修改信息界面至主窗体显示。
             }
 
@@ -70,7 +70,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                 DialogResult dialogResult = FormSysMessage.ShowMessage("确定要删除该任务计划吗？");
                 if (dialogResult == DialogResult.OK)
                 {
-                    JobDetailBLL.CreateInstance().Delete(jobId, jobIdentity);
+                    CustomJobDetailBLL.CreateInstance().Delete(jobId, jobIdentity);
                     BindDataGrid();
                 }
             }
@@ -87,7 +87,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
         public static void BindDataGrid()
         {
             instance.PageBar.DataControl = instance.DgvGrid;
-            instance.PageBar.DataSource = JobDetailBLL.CreateInstance().GetPageList(instance.PageBar.PageSize, instance.PageBar.CurPage);
+            instance.PageBar.DataSource = CustomJobDetailBLL.CreateInstance().GetPageList(instance.PageBar.PageSize, instance.PageBar.CurPage);
             instance.PageBar.DataBind();
         }
 

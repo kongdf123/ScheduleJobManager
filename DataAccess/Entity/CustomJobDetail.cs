@@ -8,11 +8,13 @@ namespace DataAccess.Entity
     /// <summary>
     /// 自定义任务计划-数据表，有别于Quartz.NET里的任务表
     /// </summary>
-    public class JobDetail
+    public class CustomJobDetail
     {
         public int JobId { get; set; }
 
         public string JobName { get; set; }
+
+        public string JobGroup { get; set; }
 
         public string JobChineseName { get; set; }
 
@@ -37,6 +39,27 @@ namespace DataAccess.Entity
         public byte IntervalType { get; set; }
 
         public byte State { get; set; }
+
+        public string CronExpression {
+            get {
+                string[] cronArr = new string[] { "*", "*", "*", "*", "*", "*" };//示例 0 10 18 15 3 ?        note:每年三月的第15天，下午6点10分都会被触发
+                switch (IntervalType)
+                {
+                    case (byte)IntervalTypeEnum.Day:
+                        cronArr[3] = "0/" + Interval;
+                        break;
+                    case (byte)IntervalTypeEnum.Hour:
+                        cronArr[2] = "0/" + Interval;
+                        break;
+                    case (byte)IntervalTypeEnum.Minute:
+                        cronArr[1] = "0/" + Interval;
+                        break;
+                    default:
+                        throw new Exception("没有指定任务计划执行方式。");
+                }
+                return string.Join(" ", cronArr);
+            }
+        }
 
         public string StateDescription {
             get {
@@ -75,7 +98,7 @@ namespace DataAccess.Entity
     /// <summary>
     /// 任务计划执行间隔类型
     /// </summary>
-    public enum IntervalType : byte
+    public enum IntervalTypeEnum : byte
     {
         /// <summary>
         /// 天

@@ -45,13 +45,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\DBConfigInfoBLL.cs" />
-    <Compile Include="BLL\JobDetailBLL.cs" />
+    <Compile Include="BLL\CutomJobDetailBLL.cs" />
     <Compile Include="DAL\DBConfigInfoDAL.cs" />
-    <Compile Include="DAL\JobDetailDAL.cs" />
+    <Compile Include="DAL\CustomJobDetailDAL.cs" />
     <Compile Include="DAL\MySqlDBHelper.cs" />
     <Compile Include="DAL\PageData.cs" />
     <Compile Include="Entity\DBConfigInfo.cs" />
-    <Compile Include="Entity\JobDetail.cs" />
+    <Compile Include="Entity\CustomJobDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

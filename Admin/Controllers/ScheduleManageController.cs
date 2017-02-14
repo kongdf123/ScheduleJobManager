@@ -8,10 +8,34 @@ namespace Admin.Controllers
 {
     public class ScheduleManageController : Controller
     {
-        // GET: ScheduleManage
-        public ActionResult Index()
+        [HttpPost]
+        public JsonResult AddJob()
         {
-            return View();
+            //TODO
+
+            return Json(new { });
         }
+
+        [HttpPost]
+        public JsonResult StartJob()
+        {
+            //TODO
+            return Json(new { });
+        }
+
+        [HttpPost]
+        public JsonResult StopJob()
+        {
+            //TODO
+            return Json(new { });
+        }
+
+        [HttpPost]
+        public JsonResult DeleteJob()
+        {
+            //TODO
+            return Json(new { });
+        }
+
     }
 }

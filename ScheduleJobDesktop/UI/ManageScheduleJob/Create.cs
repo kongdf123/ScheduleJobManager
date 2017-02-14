@@ -19,9 +19,9 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
     /// </summary>
     public partial class Create : UserControl
     {
-        JobDetail jobDetail;
+        CustomJobDetail jobDetail;
         static Create instance;
-        
+
         /// <summary>
         /// 返回一个该控件的实例。如果之前该控件已经被创建，直接返回已创建的控件。
         /// 此处采用单键模式对控件实例进行缓存，避免因界面切换重复创建和销毁对象。
@@ -32,13 +32,13 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                 {
                     instance = new Create();
                 }
-                instance.jobDetail = new JobDetail(); // 创建新的关联对象，可以在“数据实体层”中指定对象的默认值。
+                instance.jobDetail = new CustomJobDetail(); // 创建新的关联对象，可以在“数据实体层”中指定对象的默认值。
                 instance.BindObjectToForm(); // 每次返回该控件的实例前，都将关联对象的默认值，绑定至界面控件进行显示。
                 return instance;
             }
         }
-        
-        public static Create BindJobDetail(JobDetail job)
+
+        public static Create BindJobDetail(CustomJobDetail job)
         {
             if (instance == null)
             {
@@ -71,13 +71,13 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
         private void BtnSave_Click(object sender, EventArgs e)
         {
             BindFormlToObject(); // 进行数据绑定
-            if (jobDetail.JobId>0)
+            if (jobDetail.JobId > 0)
             {
-                JobDetailBLL.CreateInstance().Update(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后更新至数据库。
+                CustomJobDetailBLL.CreateInstance().Update(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后更新至数据库。
             }
             else
             {
-                JobDetailBLL.CreateInstance().Insert(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后插入至数据库。
+                CustomJobDetailBLL.CreateInstance().Insert(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后插入至数据库。
             }
             FormSysMessage.ShowSuccessMsg("保存成功，单击“确定”按钮返回。");
             //Default.GotoLastPage();                    // 将该模块的信息列表的页码转至最后一页。
@@ -101,10 +101,11 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
         {
             jobDetail.JobChineseName = DataValid.GetNullOrString(TxtScheduleChineseName.Text);
             jobDetail.JobName = DataValid.GetNullOrString(TxtJobIdentity.Text);
+            jobDetail.JobGroup = jobDetail.JobName + "_Group";
             jobDetail.JobServiceURL = DataValid.GetNullOrString(TxtServiceAddress.Text);
             jobDetail.State = GetJobState();
 
-            if (ComBoxFreq.SelectedValue==null||string.IsNullOrEmpty(ComBoxFreq.SelectedValue.ToString()))
+            if (ComBoxFreq.SelectedValue == null || string.IsNullOrEmpty(ComBoxFreq.SelectedValue.ToString()))
             {
                 throw new CustomException("请选择执行频率！", ExceptionType.Warn);
             }
@@ -160,19 +161,19 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                         {
                             break;
                         }
-                        return Tuple.Create<byte, int>((byte)IntervalType.Day, DataValid.GetNullOrInt(TxtDay.Text).Value);
+                        return Tuple.Create<byte, int>((byte)IntervalTypeEnum.Day, DataValid.GetNullOrInt(TxtDay.Text).Value);
                     case "RadioBtnHour":
                         if (string.IsNullOrEmpty(TxtHour.Text))
                         {
                             break;
                         }
-                        return Tuple.Create<byte, int>((byte)IntervalType.Hour, DataValid.GetNullOrInt(TxtHour.Text).Value);
+                        return Tuple.Create<byte, int>((byte)IntervalTypeEnum.Hour, DataValid.GetNullOrInt(TxtHour.Text).Value);
                     case "RadioBtnMinute":
                         if (string.IsNullOrEmpty(TxtMinute.Text))
                         {
                             break;
                         }
-                        return Tuple.Create<byte, int>((byte)IntervalType.Minute, DataValid.GetNullOrInt(TxtMinute.Text).Value);
+                        return Tuple.Create<byte, int>((byte)IntervalTypeEnum.Minute, DataValid.GetNullOrInt(TxtMinute.Text).Value);
                     default:
                         break;
                 }
@@ -200,17 +201,17 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 
         void SetInterval(byte intervalType, int interval)
         {
-            switch ((IntervalType)intervalType)
+            switch ((IntervalTypeEnum)intervalType)
             {
-                case IntervalType.Day:
+                case IntervalTypeEnum.Day:
                     RadioBtnDay.Checked = true;
                     TxtDay.Text = interval.ToString();
                     break;
-                case IntervalType.Hour:
+                case IntervalTypeEnum.Hour:
                     RadioBtnHour.Checked = true;
                     TxtHour.Text = interval.ToString();
                     break;
-                case IntervalType.Minute:
+                case IntervalTypeEnum.Minute:
                     RadioBtnMinute.Checked = true;
                     TxtMinute.Text = interval.ToString();
                     break;
