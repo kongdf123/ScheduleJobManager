@@ -1,7 +1,19 @@
 ﻿CREATE DATABASE `quartz` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE TABLE `custom_db_config` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `ServerIP` varchar(30) NOT NULL,
+  `DBName` varchar(45) NOT NULL,
+  `UserName` varchar(45) NOT NULL,
+  `Password` varchar(45) NOT NULL,
+  `UpdatedDate` datetime DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='记录数据库连接配置信息';
+
 CREATE TABLE `custom_job_details` (
   `JobId` int(11) NOT NULL AUTO_INCREMENT,
-  `JobName` varchar(200) NOT NULL,
+  `JobName` varchar(100) NOT NULL,
+  `JobGroup` varchar(50) DEFAULT NULL,
   `JobChineseName` varchar(100) NOT NULL,
   `JobServiceURL` varchar(200) NOT NULL,
   `CreatedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -15,7 +27,7 @@ CREATE TABLE `custom_job_details` (
   `Description` varchar(255) DEFAULT NULL,
   `IntervalType` smallint(1) DEFAULT NULL COMMENT '执行间隔类型：\n1：天\n2：小时\n3：分钟',
   PRIMARY KEY (`JobId`,`JobName`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=big5 COMMENT='to manage parameter records ,which belongs to control custom job actions in practice.';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=big5 COMMENT='to manage parameter records ,which belongs to control custom job actions in practice.';
 
 CREATE TABLE `qrtz_blob_triggers` (
   `SCHED_NAME` varchar(120) NOT NULL,
