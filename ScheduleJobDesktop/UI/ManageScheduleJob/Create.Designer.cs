@@ -260,6 +260,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             // 
             this.TxtDay.BackColor = System.Drawing.Color.White;
             this.TxtDay.Location = new System.Drawing.Point(41, 3);
+            this.TxtDay.MaxLength = 32767;
             this.TxtDay.Multiline = false;
             this.TxtDay.Name = "TxtDay";
             this.TxtDay.Padding = new System.Windows.Forms.Padding(1);
@@ -272,6 +273,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             // 
             this.TxtMinute.BackColor = System.Drawing.Color.White;
             this.TxtMinute.Location = new System.Drawing.Point(41, 58);
+            this.TxtMinute.MaxLength = 32767;
             this.TxtMinute.Multiline = false;
             this.TxtMinute.Name = "TxtMinute";
             this.TxtMinute.Padding = new System.Windows.Forms.Padding(1);
@@ -326,6 +328,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             // 
             this.TxtHour.BackColor = System.Drawing.Color.White;
             this.TxtHour.Location = new System.Drawing.Point(41, 30);
+            this.TxtHour.MaxLength = 32767;
             this.TxtHour.Multiline = false;
             this.TxtHour.Name = "TxtHour";
             this.TxtHour.Padding = new System.Windows.Forms.Padding(1);
@@ -338,6 +341,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             // 
             this.TxtScheduleChineseName.BackColor = System.Drawing.Color.White;
             this.TxtScheduleChineseName.Location = new System.Drawing.Point(230, 93);
+            this.TxtScheduleChineseName.MaxLength = 50;
             this.TxtScheduleChineseName.Multiline = false;
             this.TxtScheduleChineseName.Name = "TxtScheduleChineseName";
             this.TxtScheduleChineseName.Padding = new System.Windows.Forms.Padding(1);
@@ -360,6 +364,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             // 
             this.TxtRecordNum.BackColor = System.Drawing.Color.White;
             this.TxtRecordNum.Location = new System.Drawing.Point(230, 410);
+            this.TxtRecordNum.MaxLength = 5;
             this.TxtRecordNum.Multiline = false;
             this.TxtRecordNum.Name = "TxtRecordNum";
             this.TxtRecordNum.Padding = new System.Windows.Forms.Padding(1);
@@ -442,6 +447,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             // 
             this.TxtJobIdentity.BackColor = System.Drawing.Color.White;
             this.TxtJobIdentity.Location = new System.Drawing.Point(230, 133);
+            this.TxtJobIdentity.MaxLength = 20;
             this.TxtJobIdentity.Multiline = false;
             this.TxtJobIdentity.Name = "TxtJobIdentity";
             this.TxtJobIdentity.Padding = new System.Windows.Forms.Padding(1);
@@ -474,6 +480,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             // 
             this.TxtNoteDescription.BackColor = System.Drawing.Color.White;
             this.TxtNoteDescription.Location = new System.Drawing.Point(230, 448);
+            this.TxtNoteDescription.MaxLength = 200;
             this.TxtNoteDescription.Multiline = true;
             this.TxtNoteDescription.Name = "TxtNoteDescription";
             this.TxtNoteDescription.Padding = new System.Windows.Forms.Padding(1);
@@ -524,6 +531,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             // 
             this.TxtServiceAddress.BackColor = System.Drawing.Color.White;
             this.TxtServiceAddress.Location = new System.Drawing.Point(230, 170);
+            this.TxtServiceAddress.MaxLength = 255;
             this.TxtServiceAddress.Multiline = false;
             this.TxtServiceAddress.Name = "TxtServiceAddress";
             this.TxtServiceAddress.Padding = new System.Windows.Forms.Padding(1);

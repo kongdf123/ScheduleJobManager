@@ -95,18 +95,6 @@
     <Compile Include="UI\ManageScheduleJob\Default.Designer.cs">
       <DependentUpon>Default.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ManageScheduleJob\SettingParameter.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UI\ManageScheduleJob\SettingParameter.Designer.cs">
-      <DependentUpon>SettingParameter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\ManageScheduleJob\SettingParameterCreate.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UI\ManageScheduleJob\SettingParameterCreate.Designer.cs">
-      <DependentUpon>SettingParameterCreate.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\ManageSettings\DBConfig.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -125,6 +113,7 @@
     <Compile Include="UI\UserControls\Button.Designer.cs">
       <DependentUpon>Button.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\UserControls\DBConfigDataGridViewActionButtonColumn.cs" />
     <Compile Include="UI\UserControls\JobDataGridViewActionButtonColumn.cs" />
     <Compile Include="UI\UserControls\NavBar.cs">
       <SubType>UserControl</SubType>
@@ -168,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ManageScheduleJob\Default.resx">
       <DependentUpon>Default.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ManageSettings\DBConfig.resx">
+      <DependentUpon>DBConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ManageSettings\DBConfigCreate.resx">
       <DependentUpon>DBConfigCreate.cs</DependentUpon>
@@ -364,6 +356,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\BtnStart.png" />
+    <None Include="Resources\NavBtnManageDBConfig.jpg" />
     <None Include="Resources\TitleManageScheduleJob_1.png" />
     <None Include="Resources\DesignerLogo_1.png" />
     <Content Include="Resources\LogoScheduledTask.png" />

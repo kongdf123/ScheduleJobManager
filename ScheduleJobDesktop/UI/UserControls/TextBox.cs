@@ -26,6 +26,22 @@ namespace ScheduleJobDesktop.UI.UserControls
             TxtInside.Leave += new EventHandler(TxtBox_Leave);
         }
 
+        /// <summary>
+        /// 获取或设置文本框中的内容。
+        /// </summary>
+        [Category("输入字符最大长度")]
+        [Description("获取或设置文本框中的内容字符最大长度。")]
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public int MaxLength {
+            get {
+                return TxtInside.MaxLength;
+            }
+            set {
+                TxtInside.MaxLength = value;
+            }
+        }
+
 
         /// <summary>
         /// 获取或设置文本框中的内容。

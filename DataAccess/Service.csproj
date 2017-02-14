@@ -7,8 +7,8 @@
     <ProjectGuid>{073F8C3F-4A2C-48BD-8F14-0CD9E8FBB7E0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataAccess</RootNamespace>
-    <AssemblyName>DataAccess</AssemblyName>
+    <RootNamespace>Service</RootNamespace>
+    <AssemblyName>Service</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,13 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\DBConfigurationBLL.cs" />
+    <Compile Include="BLL\DBConfigInfoBLL.cs" />
     <Compile Include="BLL\JobDetailBLL.cs" />
-    <Compile Include="DAL\DBConfigurationDAL.cs" />
+    <Compile Include="DAL\DBConfigInfoDAL.cs" />
     <Compile Include="DAL\JobDetailDAL.cs" />
     <Compile Include="DAL\MySqlDBHelper.cs" />
     <Compile Include="DAL\PageData.cs" />
-    <Compile Include="Entity\DBConfiguration.cs" />
+    <Compile Include="Entity\DBConfigInfo.cs" />
     <Compile Include="Entity\JobDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

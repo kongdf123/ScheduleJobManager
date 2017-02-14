@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScheduleJobDesktop.UI.ManageSettings;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -64,6 +65,8 @@ namespace ScheduleJobDesktop
                 case "ManageScheduleJob": // “任务信息管理”功能模块
                     FormMain.LoadNewControl(UI.ManageScheduleJob.Default.Instance);
                     break;
+                case "ManageDbConfig":
+                    LoadNewControl(DBConfig.Instance); break;
                 default: break;
 
             }

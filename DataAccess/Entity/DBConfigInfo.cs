@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataAccess.Entity
 {
-    public class DBConfiguration
+    public class DBConfigInfo
     {
         public int Id { get; set; }
 
@@ -16,5 +16,9 @@ namespace DataAccess.Entity
         public string UserName { get; set; }
 
         public string Password { get; set; }
+
+        public DateTime UpdatedDate { get; set; }
+
+        public DateTime CreatedDate { get; set; }
     }
 }

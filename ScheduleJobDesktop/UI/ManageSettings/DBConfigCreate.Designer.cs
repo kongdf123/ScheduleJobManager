@@ -30,22 +30,22 @@
             this.PnlInfo = new System.Windows.Forms.Panel();
             this.PnlInfoBack = new System.Windows.Forms.Panel();
             this.PnlControlArea = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.TxtPassword = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.TxtServerIP = new ScheduleJobDesktop.UI.UserControls.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.TxtDBName = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.PicNotNullScheduleServiceURL = new System.Windows.Forms.PictureBox();
             this.Lbl_ScheduleName = new System.Windows.Forms.Label();
+            this.PicNotNullScheduleName = new System.Windows.Forms.PictureBox();
             this.Lbl_ManagerName = new System.Windows.Forms.Label();
             this.TxtUserName = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.Lbl_ContactPhone = new System.Windows.Forms.Label();
-            this.PnlInfoTopLine = new System.Windows.Forms.Panel();
-            this.TxtPassword = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.PicNotNullScheduleServiceURL = new System.Windows.Forms.PictureBox();
-            this.PicNotNullScheduleName = new System.Windows.Forms.PictureBox();
             this.PicTitleLine = new System.Windows.Forms.PictureBox();
             this.PicTitle = new System.Windows.Forms.PictureBox();
             this.PicLogo = new System.Windows.Forms.PictureBox();
+            this.PnlInfoTopLine = new System.Windows.Forms.Panel();
             this.PnlInfoTitle = new System.Windows.Forms.Panel();
             this.LblModuleTitle = new System.Windows.Forms.Label();
             this.PnlFooter = new System.Windows.Forms.Panel();
@@ -136,10 +136,33 @@
             this.PnlControlArea.Size = new System.Drawing.Size(771, 530);
             this.PnlControlArea.TabIndex = 4;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
+            this.pictureBox2.Location = new System.Drawing.Point(377, 211);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(14, 22);
+            this.pictureBox2.TabIndex = 36;
+            this.pictureBox2.TabStop = false;
+            // 
+            // TxtPassword
+            // 
+            this.TxtPassword.BackColor = System.Drawing.Color.White;
+            this.TxtPassword.Location = new System.Drawing.Point(230, 206);
+            this.TxtPassword.MaxLength = 45;
+            this.TxtPassword.Multiline = false;
+            this.TxtPassword.Name = "TxtPassword";
+            this.TxtPassword.Padding = new System.Windows.Forms.Padding(1);
+            this.TxtPassword.PasswordChar = '*';
+            this.TxtPassword.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtPassword.Size = new System.Drawing.Size(141, 27);
+            this.TxtPassword.TabIndex = 35;
+            // 
             // TxtServerIP
             // 
             this.TxtServerIP.BackColor = System.Drawing.Color.White;
             this.TxtServerIP.Location = new System.Drawing.Point(230, 93);
+            this.TxtServerIP.MaxLength = 30;
             this.TxtServerIP.Multiline = false;
             this.TxtServerIP.Name = "TxtServerIP";
             this.TxtServerIP.Padding = new System.Windows.Forms.Padding(1);
@@ -148,10 +171,20 @@
             this.TxtServerIP.Size = new System.Drawing.Size(141, 27);
             this.TxtServerIP.TabIndex = 22;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
+            this.pictureBox1.Location = new System.Drawing.Point(377, 135);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(14, 22);
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
+            // 
             // TxtDBName
             // 
             this.TxtDBName.BackColor = System.Drawing.Color.White;
             this.TxtDBName.Location = new System.Drawing.Point(230, 133);
+            this.TxtDBName.MaxLength = 45;
             this.TxtDBName.Multiline = false;
             this.TxtDBName.Name = "TxtDBName";
             this.TxtDBName.Padding = new System.Windows.Forms.Padding(1);
@@ -170,15 +203,33 @@
             this.label2.Text = "数据库名称：";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // PicNotNullScheduleServiceURL
+            // 
+            this.PicNotNullScheduleServiceURL.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
+            this.PicNotNullScheduleServiceURL.Location = new System.Drawing.Point(377, 173);
+            this.PicNotNullScheduleServiceURL.Name = "PicNotNullScheduleServiceURL";
+            this.PicNotNullScheduleServiceURL.Size = new System.Drawing.Size(14, 22);
+            this.PicNotNullScheduleServiceURL.TabIndex = 4;
+            this.PicNotNullScheduleServiceURL.TabStop = false;
+            // 
             // Lbl_ScheduleName
             // 
-            this.Lbl_ScheduleName.Location = new System.Drawing.Point(140, 87);
+            this.Lbl_ScheduleName.Location = new System.Drawing.Point(126, 87);
             this.Lbl_ScheduleName.Margin = new System.Windows.Forms.Padding(0);
             this.Lbl_ScheduleName.Name = "Lbl_ScheduleName";
             this.Lbl_ScheduleName.Size = new System.Drawing.Size(90, 43);
             this.Lbl_ScheduleName.TabIndex = 3;
-            this.Lbl_ScheduleName.Text = "服务器IP：";
+            this.Lbl_ScheduleName.Text = "服务器地址：";
             this.Lbl_ScheduleName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // PicNotNullScheduleName
+            // 
+            this.PicNotNullScheduleName.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
+            this.PicNotNullScheduleName.Location = new System.Drawing.Point(377, 93);
+            this.PicNotNullScheduleName.Name = "PicNotNullScheduleName";
+            this.PicNotNullScheduleName.Size = new System.Drawing.Size(14, 22);
+            this.PicNotNullScheduleName.TabIndex = 0;
+            this.PicNotNullScheduleName.TabStop = false;
             // 
             // Lbl_ManagerName
             // 
@@ -194,12 +245,13 @@
             // 
             this.TxtUserName.BackColor = System.Drawing.Color.White;
             this.TxtUserName.Location = new System.Drawing.Point(230, 173);
+            this.TxtUserName.MaxLength = 45;
             this.TxtUserName.Multiline = false;
             this.TxtUserName.Name = "TxtUserName";
             this.TxtUserName.Padding = new System.Windows.Forms.Padding(1);
             this.TxtUserName.PasswordChar = '\0';
             this.TxtUserName.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtUserName.Size = new System.Drawing.Size(131, 27);
+            this.TxtUserName.Size = new System.Drawing.Size(141, 27);
             this.TxtUserName.TabIndex = 0;
             // 
             // Lbl_ContactPhone
@@ -211,63 +263,6 @@
             this.Lbl_ContactPhone.TabIndex = 3;
             this.Lbl_ContactPhone.Text = "密码：";
             this.Lbl_ContactPhone.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // PnlInfoTopLine
-            // 
-            this.PnlInfoTopLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.PnlInfoTopLine.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PnlInfoTopLine.Location = new System.Drawing.Point(0, 27);
-            this.PnlInfoTopLine.Name = "PnlInfoTopLine";
-            this.PnlInfoTopLine.Size = new System.Drawing.Size(771, 1);
-            this.PnlInfoTopLine.TabIndex = 3;
-            // 
-            // TxtPassword
-            // 
-            this.TxtPassword.BackColor = System.Drawing.Color.White;
-            this.TxtPassword.Location = new System.Drawing.Point(230, 206);
-            this.TxtPassword.Multiline = false;
-            this.TxtPassword.Name = "TxtPassword";
-            this.TxtPassword.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtPassword.PasswordChar = '*';
-            this.TxtPassword.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtPassword.Size = new System.Drawing.Size(131, 27);
-            this.TxtPassword.TabIndex = 35;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
-            this.pictureBox2.Location = new System.Drawing.Point(377, 211);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(14, 22);
-            this.pictureBox2.TabIndex = 36;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
-            this.pictureBox1.Location = new System.Drawing.Point(377, 135);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(14, 22);
-            this.pictureBox1.TabIndex = 9;
-            this.pictureBox1.TabStop = false;
-            // 
-            // PicNotNullScheduleServiceURL
-            // 
-            this.PicNotNullScheduleServiceURL.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
-            this.PicNotNullScheduleServiceURL.Location = new System.Drawing.Point(377, 173);
-            this.PicNotNullScheduleServiceURL.Name = "PicNotNullScheduleServiceURL";
-            this.PicNotNullScheduleServiceURL.Size = new System.Drawing.Size(14, 22);
-            this.PicNotNullScheduleServiceURL.TabIndex = 4;
-            this.PicNotNullScheduleServiceURL.TabStop = false;
-            // 
-            // PicNotNullScheduleName
-            // 
-            this.PicNotNullScheduleName.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
-            this.PicNotNullScheduleName.Location = new System.Drawing.Point(377, 93);
-            this.PicNotNullScheduleName.Name = "PicNotNullScheduleName";
-            this.PicNotNullScheduleName.Size = new System.Drawing.Size(14, 22);
-            this.PicNotNullScheduleName.TabIndex = 0;
-            this.PicNotNullScheduleName.TabStop = false;
             // 
             // PicTitleLine
             // 
@@ -291,7 +286,7 @@
             // 
             // PicLogo
             // 
-            this.PicLogo.Image = global::ScheduleJobDesktop.Properties.Resources.LogoScheduledTask;
+            this.PicLogo.Image = global::ScheduleJobDesktop.Properties.Resources.NavBtnManageDBConfig;
             this.PicLogo.Location = new System.Drawing.Point(20, 22);
             this.PicLogo.Margin = new System.Windows.Forms.Padding(20, 22, 20, 22);
             this.PicLogo.Name = "PicLogo";
@@ -299,6 +294,15 @@
             this.PicLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PicLogo.TabIndex = 0;
             this.PicLogo.TabStop = false;
+            // 
+            // PnlInfoTopLine
+            // 
+            this.PnlInfoTopLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.PnlInfoTopLine.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PnlInfoTopLine.Location = new System.Drawing.Point(0, 27);
+            this.PnlInfoTopLine.Name = "PnlInfoTopLine";
+            this.PnlInfoTopLine.Size = new System.Drawing.Size(771, 1);
+            this.PnlInfoTopLine.TabIndex = 3;
             // 
             // PnlInfoTitle
             // 
@@ -320,7 +324,7 @@
             this.LblModuleTitle.Name = "LblModuleTitle";
             this.LblModuleTitle.Size = new System.Drawing.Size(300, 25);
             this.LblModuleTitle.TabIndex = 1;
-            this.LblModuleTitle.Text = "任务管理";
+            this.LblModuleTitle.Text = "数据库连接信息管理";
             this.LblModuleTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // PnlFooter

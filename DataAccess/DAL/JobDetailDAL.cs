@@ -69,7 +69,10 @@ namespace DataAccess.DAL
             return MySqlDBHelper.ExecuteScalar<int>(sqlText, parameters);
         }
 
-        public int Update(JobDetail jobDetail) {
+        public int Update(JobDetail jobDetail)
+        {
+            jobDetail.UpdatedDate = DateTime.Now;
+
             string sqlText = @"UPDATE custom_job_details
                                 SET `JobName` = @JobName,
                                 `JobChineseName` = @JobChineseName,
@@ -172,7 +175,7 @@ namespace DataAccess.DAL
                                 State,
                                 Description,
                                 ExecutedFreq
-                            FROM custom_job_details LIMIT " + (curPage - 1) + "," + pageSize + " " + sqlWhere;
+                            FROM custom_job_details "+ sqlWhere+" LIMIT " + (curPage - 1) + "," + pageSize;
             List<JobDetail> list = new List<JobDetail>();
             MySqlDataReader sqlDataReader = MySqlDBHelper.ExecuteReader(sqlText, listParms.ToArray());
 
