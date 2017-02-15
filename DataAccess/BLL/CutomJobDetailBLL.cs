@@ -9,34 +9,56 @@ namespace DataAccess.BLL
 {
     public class CustomJobDetailBLL
     {
-        public static CustomJobDetailBLL CreateInstance() {
+        CustomJobDetailDAL _dal;
+        public CustomJobDetailBLL() {
+            _dal = CustomJobDetailDAL.CreateInstance();
+        }
+
+        public static CustomJobDetailBLL CreateInstance()
+        {
             return new CustomJobDetailBLL();
         }
 
-        public void CheckValid(CustomJobDetail jobDetail) {
+        public void CheckValid(CustomJobDetail jobDetail)
+        {
             //TODO
         }
 
-        public int Insert(CustomJobDetail jobDetail) {
+        public int Insert(CustomJobDetail jobDetail)
+        {
             CheckValid(jobDetail);
-            return CustomJobDetailDAL.CreateInstance().Insert(jobDetail);
+            return _dal.Insert(jobDetail);
         }
 
-        public int Update(CustomJobDetail jobDetail) {
+        public int Update(CustomJobDetail jobDetail)
+        {
             CheckValid(jobDetail);
-            return CustomJobDetailDAL.CreateInstance().Update(jobDetail);
+            return _dal.Update(jobDetail);
         }
 
-        public int Delete(int jobId, string jobName) {
-            return CustomJobDetailDAL.CreateInstance().Delete(jobId, jobName);
+        public int Delete(int jobId, string jobName)
+        {
+            return _dal.Delete(jobId, jobName);
         }
 
-        public CustomJobDetail Get(int jobId, string jobName) {
-            return CustomJobDetailDAL.CreateInstance().Get(jobId, jobName);
+        public CustomJobDetail Get(int jobId, string jobName)
+        {
+            return _dal.Get(jobId, jobName);
         }
 
-        public PageData GetPageList(int pageSize, int curPage, string jobName = "") {
-            return CustomJobDetailDAL.CreateInstance().GetPageList(pageSize, curPage, jobName);
+        public CustomJobDetail Get(string jobName)
+        {
+            return _dal.Get(jobName);
+        }
+
+        public PageData GetPageList(int pageSize, int curPage, string jobName = "")
+        {
+            return _dal.GetPageList(pageSize, curPage, jobName);
+        }
+
+        public bool Exists(string jobName)
+        {
+            return _dal.Exists(jobName);
         }
     }
 }

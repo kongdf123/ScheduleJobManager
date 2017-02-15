@@ -48,13 +48,16 @@
     <Compile Include="BLL\CutomJobDetailBLL.cs" />
     <Compile Include="DAL\DBConfigInfoDAL.cs" />
     <Compile Include="DAL\CustomJobDetailDAL.cs" />
-    <Compile Include="DAL\MySqlDBHelper.cs" />
+    <Compile Include="DAL\MsDbHelper.cs" />
+    <Compile Include="DAL\MySqlDbHelper.cs" />
     <Compile Include="DAL\PageData.cs" />
     <Compile Include="Entity\DBConfigInfo.cs" />
     <Compile Include="Entity\CustomJobDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Entity\quartz-net-mysql.sql" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{38fd714f-ee5f-4600-bc1a-cfb94865712a}</Project>

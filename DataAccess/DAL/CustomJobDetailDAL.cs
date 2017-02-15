@@ -71,7 +71,7 @@ namespace DataAccess.DAL
                 new MySqlParameter("@Description", MySqlDbType.VarChar , 255){ Value = jobDetail.Description},
                 new MySqlParameter("@ExecutedFreq", MySqlDbType.Byte){ Value = jobDetail.ExecutedFreq}
             };
-            return MySqlDBHelper.ExecuteScalar<int>(sqlText, parameters);
+            return MySqlDbHelper.ExecuteScalar<int>(sqlText, parameters);
         }
 
         public int Update(CustomJobDetail jobDetail)
@@ -93,7 +93,7 @@ namespace DataAccess.DAL
                                 `State` = @State,
                                 `Description` = @Description,
                                 `ExecutedFreq`=@ExecutedFreq
-                                WHERE `JobId` = @JobId AND `JobName` = @JobName;";
+                                WHERE `JobId` = @JobId;";
             MySqlParameter[] parameters =
             {
                 new MySqlParameter("@JobId", MySqlDbType.Int32 ){ Value = jobDetail.JobId },
@@ -112,7 +112,7 @@ namespace DataAccess.DAL
                 new MySqlParameter("@Description", MySqlDbType.VarChar , 255){ Value = jobDetail.Description},
                 new MySqlParameter("@ExecutedFreq", MySqlDbType.Byte){ Value = jobDetail.ExecutedFreq}
             };
-            return MySqlDBHelper.ExecuteNonQuery(sqlText, parameters);
+            return MySqlDbHelper.ExecuteNonQuery(sqlText, parameters);
         }
 
         public int Delete(int jobId, string jobName)
@@ -123,7 +123,7 @@ namespace DataAccess.DAL
                 new MySqlParameter("@JobId" , MySqlDbType.Int32){ Value = jobId },
                 new MySqlParameter("@JobName", MySqlDbType.VarChar , 100 ){ Value = jobName }
             };
-            return MySqlDBHelper.ExecuteNonQuery(sqlText, parameters);
+            return MySqlDbHelper.ExecuteNonQuery(sqlText, parameters);
         }
 
         public CustomJobDetail Get(int jobId, string jobName)
@@ -152,7 +152,42 @@ namespace DataAccess.DAL
                 new MySqlParameter("@JobName", MySqlDbType.VarChar , 100 ){ Value = jobName }
             };
 
-            MySqlDataReader sqlDataReader = MySqlDBHelper.ExecuteReader(sqlText, parameters);
+            MySqlDataReader sqlDataReader = MySqlDbHelper.ExecuteReader(sqlText, parameters);
+            if (sqlDataReader.Read())
+            {
+                jobDetail = new CustomJobDetail();
+                ReadRecordData(sqlDataReader, jobDetail);
+            }
+            sqlDataReader.Close();
+            return jobDetail;
+        }
+
+        public CustomJobDetail Get(string jobName)
+        {
+            CustomJobDetail jobDetail = null;
+            string sqlText = @" SELECT `JobId`,
+                                `JobName`,
+                                `JobGroup`,
+                                `JobChineseName`,
+                                `JobServiceURL`,
+                                `CreatedDate`,
+                                `UpdatedDate`,
+                                `StartDate`,
+                                `EndDate`,
+                                `ExecutedFreq`,
+                                `PageSize`,
+                                `Interval`,
+                                `State`,
+                                `Description`,
+                                `IntervalType`
+                            FROM `custom_job_details`
+                            WHERE `JobName` = @JobName;";
+            MySqlParameter[] parameters =
+            {
+                new MySqlParameter("@JobName", MySqlDbType.VarChar , 100 ){ Value = jobName }
+            };
+
+            MySqlDataReader sqlDataReader = MySqlDbHelper.ExecuteReader(sqlText, parameters);
             if (sqlDataReader.Read())
             {
                 jobDetail = new CustomJobDetail();
@@ -172,7 +207,7 @@ namespace DataAccess.DAL
                 listParms.Add(new MySqlParameter("@JobName", MySqlDbType.VarChar, 100) { Value = "%" + jobName + "%" });
             }
 
-            int recordsTotal = MySqlDBHelper.ExecuteScalar<int>("SELECT COUNT(*) FROM custom_job_details " + sqlWhere, listParms.ToArray());
+            int recordsTotal = MySqlDbHelper.ExecuteScalar<int>("SELECT COUNT(*) FROM custom_job_details " + sqlWhere, listParms.ToArray());
 
             string sqlText = @" SELECT JobId,
                                 JobName,
@@ -192,7 +227,7 @@ namespace DataAccess.DAL
                             FROM custom_job_details " + sqlWhere
                             + " ORDER BY JobId DESC LIMIT " + (curPage - 1) * pageSize + "," + pageSize;
             List<CustomJobDetail> list = new List<CustomJobDetail>();
-            MySqlDataReader sqlDataReader = MySqlDBHelper.ExecuteReader(sqlText, listParms.ToArray());
+            MySqlDataReader sqlDataReader = MySqlDbHelper.ExecuteReader(sqlText, listParms.ToArray());
 
             PageData pageData = new PageData();
             pageData.PageSize = pageSize;
@@ -212,6 +247,17 @@ namespace DataAccess.DAL
             sqlDataReader.Close();
             pageData.PageList = list;
             return pageData;
+        }
+
+        public bool Exists(string jobName)
+        {
+            string sqlWhere = "";
+            List<MySqlParameter> listParms = new List<MySqlParameter>();
+            sqlWhere = "WHERE JobName = @JobName";
+            listParms.Add(new MySqlParameter("@JobName", MySqlDbType.VarChar, 100) { Value = "%" + jobName + "%" });
+
+            int recordsTotal = MySqlDbHelper.ExecuteScalar<int>("SELECT COUNT(*) FROM custom_job_details " + sqlWhere, listParms.ToArray());
+            return recordsTotal > 0;
         }
 
         void ReadRecordData(IDataReader dataReader, CustomJobDetail jobDetail)

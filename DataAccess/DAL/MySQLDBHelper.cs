@@ -9,7 +9,7 @@ using Utility;
 
 namespace DataAccess.DAL
 {
-    public class MySqlDBHelper
+    public class MySqlDbHelper
     {
         static MySqlConnection GetConnection() {
             MySqlConnection connection = new MySqlConnection();

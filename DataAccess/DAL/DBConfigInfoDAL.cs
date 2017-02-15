@@ -22,7 +22,7 @@ namespace DataAccess.DAL
 
             string sqlText = @"INSERT INTO `custom_db_config`
                                 (`Id`,
-                                `ServerIP`,
+                                `ServerAddress`,
                                 `DBName`,
                                 `UserName`,
                                 `Password`,
@@ -30,7 +30,7 @@ namespace DataAccess.DAL
                                 `CreatedDate`)
                                 VALUES
                                 (@Id,
-                                @ServerIP,
+                                @ServerAddress,
                                 @DBName,
                                 @UserName,
                                 @Password,
@@ -40,13 +40,13 @@ namespace DataAccess.DAL
             {
                 new MySqlParameter("@Id", MySqlDbType.Int32 ){ Value = dbConfigInfo.Id },
                 new MySqlParameter("@DBName", MySqlDbType.VarChar , 45 ){ Value = dbConfigInfo.DBName },
-                new MySqlParameter("@ServerIP", MySqlDbType.VarChar , 30 ){ Value = dbConfigInfo.ServerIP },
+                new MySqlParameter("@ServerAddress", MySqlDbType.VarChar , 30 ){ Value = dbConfigInfo.ServerAddress },
                 new MySqlParameter("@UserName", MySqlDbType.VarChar , 45){ Value = dbConfigInfo.UserName},
                 new MySqlParameter("@Password", MySqlDbType.VarChar, 45){ Value = dbConfigInfo.Password},
                 new MySqlParameter("@UpdatedDate" , MySqlDbType.DateTime){ Value = dbConfigInfo.UpdatedDate },
                 new MySqlParameter("@CreatedDate", MySqlDbType.DateTime){ Value = dbConfigInfo.CreatedDate}
             };
-            return MySqlDBHelper.ExecuteScalar<int>(sqlText, parameters);
+            return MySqlDbHelper.ExecuteScalar<int>(sqlText, parameters);
         }
 
         public int Update(DBConfigInfo dbConfigInfo)
@@ -54,7 +54,7 @@ namespace DataAccess.DAL
             dbConfigInfo.UpdatedDate = DateTime.Now;
             string sqlText = @"UPDATE `custom_db_config`
                                 SET
-                                `ServerIP` = @ServerIP,
+                                `ServerAddress` = @ServerAddress,
                                 `DBName` = @DBName,
                                 `UserName` = @UserName,
                                 `Password` = @Password,
@@ -65,13 +65,13 @@ namespace DataAccess.DAL
             {
                 new MySqlParameter("@Id", MySqlDbType.Int32 ){ Value = dbConfigInfo.Id },
                 new MySqlParameter("@DBName", MySqlDbType.VarChar , 45 ){ Value = dbConfigInfo.DBName },
-                new MySqlParameter("@ServerIP", MySqlDbType.VarChar , 30 ){ Value = dbConfigInfo.ServerIP },
+                new MySqlParameter("@ServerAddress", MySqlDbType.VarChar , 30 ){ Value = dbConfigInfo.ServerAddress },
                 new MySqlParameter("@UserName", MySqlDbType.VarChar , 45){ Value = dbConfigInfo.UserName},
                 new MySqlParameter("@Password", MySqlDbType.VarChar, 45){ Value = dbConfigInfo.Password},
                 new MySqlParameter("@UpdatedDate" , MySqlDbType.DateTime){ Value = dbConfigInfo.UpdatedDate },
                 new MySqlParameter("@CreatedDate", MySqlDbType.DateTime){ Value = dbConfigInfo.CreatedDate}
             };
-            return MySqlDBHelper.ExecuteNonQuery(sqlText, parameters);
+            return MySqlDbHelper.ExecuteNonQuery(sqlText, parameters);
         }
 
         public int Delete(int id)
@@ -81,14 +81,14 @@ namespace DataAccess.DAL
             {
                 new MySqlParameter("@Id" , MySqlDbType.Int32){ Value = id }
             };
-            return MySqlDBHelper.ExecuteNonQuery(sqlText, parameters);
+            return MySqlDbHelper.ExecuteNonQuery(sqlText, parameters);
         }
 
         public DBConfigInfo Get(int id)
         {
             DBConfigInfo dbConfigInfo = null;
             string sqlText = @" SELECT `Id`,
-                                    `ServerIP`,
+                                    `ServerAddress`,
                                     `DBName`,
                                     `UserName`,
                                     `Password`,
@@ -101,7 +101,7 @@ namespace DataAccess.DAL
                  new MySqlParameter("@Id" , MySqlDbType.Int32){ Value = id }
             };
 
-            MySqlDataReader sqlDataReader = MySqlDBHelper.ExecuteReader(sqlText, parameters);
+            MySqlDataReader sqlDataReader = MySqlDbHelper.ExecuteReader(sqlText, parameters);
             if (sqlDataReader.Read())
             {
                 dbConfigInfo = new DBConfigInfo();
@@ -121,10 +121,10 @@ namespace DataAccess.DAL
                 listParms.Add(new MySqlParameter("@DBName", MySqlDbType.VarChar, 45) { Value = "%" + dbName + "%" });
             }
 
-            int recordsTotal = MySqlDBHelper.ExecuteScalar<int>("SELECT COUNT(*) FROM custom_db_config " + sqlWhere, listParms.ToArray());
+            int recordsTotal = MySqlDbHelper.ExecuteScalar<int>("SELECT COUNT(*) FROM custom_db_config " + sqlWhere, listParms.ToArray());
 
             string sqlText = @" SELECT `Id`,
-                                    `ServerIP`,
+                                    `ServerAddress`,
                                     `DBName`,
                                     `UserName`,
                                     `Password`,
@@ -132,7 +132,7 @@ namespace DataAccess.DAL
                                     `CreatedDate`
                                 FROM `custom_db_config`  " + sqlWhere + " ORDER BY Id DESC LIMIT " + (curPage - 1)* pageSize + "," + pageSize;
             List<DBConfigInfo> list = new List<DBConfigInfo>();
-            MySqlDataReader sqlDataReader = MySqlDBHelper.ExecuteReader(sqlText, listParms.ToArray());
+            MySqlDataReader sqlDataReader = MySqlDbHelper.ExecuteReader(sqlText, listParms.ToArray());
 
             PageData pageData = new PageData();
             pageData.PageSize = pageSize;
@@ -159,8 +159,8 @@ namespace DataAccess.DAL
             if (dataReader["Id"] != DBNull.Value)
                 dbConfigInfo.Id = Convert.ToInt32(dataReader["Id"]);
 
-            if (dataReader["ServerIP"] != DBNull.Value)
-                dbConfigInfo.ServerIP = Convert.ToString(dataReader["ServerIP"]);
+            if (dataReader["ServerAddress"] != DBNull.Value)
+                dbConfigInfo.ServerAddress = Convert.ToString(dataReader["ServerAddress"]);
 
             if (dataReader["DBName"] != DBNull.Value)
                 dbConfigInfo.DBName = Convert.ToString(dataReader["DBName"]);

@@ -91,7 +91,7 @@ namespace ScheduleJobDesktop.UI.ManageSettings
         /// </summary>
         private void BindFormlToObject()
         {
-            dbConfigInfo.ServerIP = DataValid.GetNullOrString(TxtServerIP.Text);
+            dbConfigInfo.ServerAddress = DataValid.GetNullOrString(TxtServerIP.Text);
             dbConfigInfo.DBName = DataValid.GetNullOrString(TxtDBName.Text);
             dbConfigInfo.UserName = DataValid.GetNullOrString(TxtUserName.Text);
             dbConfigInfo.Password = DataValid.GetNullOrString(TxtPassword.Text);
@@ -102,7 +102,7 @@ namespace ScheduleJobDesktop.UI.ManageSettings
         /// </summary>
         private void BindObjectToForm()
         {
-            TxtServerIP.Text = dbConfigInfo.ServerIP;
+            TxtServerIP.Text = dbConfigInfo.ServerAddress;
             TxtDBName.Text = dbConfigInfo.DBName;
             TxtUserName.Text = dbConfigInfo.UserName;
             TxtPassword.Text = dbConfigInfo.Password;
