@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace JobHost
+namespace JobHostSite
 {
     public class BundleConfig
     {

@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace JobHost.Controllers
+namespace JobHostSite.Controllers
 {
     public class ValuesController : ApiController
     {

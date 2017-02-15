@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Utility;
 
-namespace JobHost.Controllers
+namespace JobHostSite.Controllers
 {
     public class ScheduleHostServiceController : Controller
     {

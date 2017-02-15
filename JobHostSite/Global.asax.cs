@@ -11,7 +11,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Utility;
 
-namespace JobHost
+namespace JobHostSite
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
@@ -32,7 +32,6 @@ namespace JobHost
             NameValueCollection config = (NameValueCollection)ConfigurationManager.GetSection("quartz");
             scheduler = QuartzNetHelper.Initialize(config);
             scheduler.Start();
-
         }
 
         protected void Application_End(object sender, EventArgs e)

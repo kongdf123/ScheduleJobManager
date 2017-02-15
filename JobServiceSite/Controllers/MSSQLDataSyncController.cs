@@ -1,4 +1,5 @@
-﻿using Service.EF;
+﻿using DataAccess.BLL;
+using DataAccess.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,31 +8,26 @@ using System.Web.Mvc;
 
 namespace JobServiceSite.Controllers
 {
-    public class MSSQLDataSyncController : Controller
+    public class MsSqlDataSyncController : Controller
     {
-        // GET: DataSyncSQLServer
-        public ActionResult Index() {
-            return View();
-        }
-
         [HttpPost]
-        public JsonResult Download(string jobName) {
-            //TODO
-            JobDetailBLL jobDetailBLL = new JobDetailBLL();
-            var jobDetail = jobDetailBLL.Get(jobName);
+        public JsonResult SyncMsSqlData(string jobName)
+        {
+            try
+            { 
+                //TODO
+                CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobName);
 
-            if ( jobDetail == null ) {
-                return Json(new { code = 0 });
+
+                //scheduler.ResumeTrigger(new TriggerKey(jobName, jobGroup));          
             }
+            catch (Exception ex)
+            {
 
-
-            return Json(new { code = 1 });
+                throw;
+            }
+            return Json(new { });
         }
 
-        [HttpPost]
-        public JsonResult Upload(string jobName) {
-            //TODO
-            return Json(new { code = 1 });
-        }
     }
 }
