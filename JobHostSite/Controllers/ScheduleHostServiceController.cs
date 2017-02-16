@@ -51,7 +51,7 @@ namespace JobHostSite.Controllers
         }
 
         [HttpPost]
-        public JsonResult StartJob(FormCollection form)
+        public JsonResult StartJob()
         {
             try
             {
@@ -61,8 +61,8 @@ namespace JobHostSite.Controllers
                 {
                     scheduler.Start();
                 }
-                int jobId =Convert.ToInt32(form["jobId"]);
-                string jobName = form["jobName"];
+                int jobId = Convert.ToInt32(Request["jobId"]);
+                string jobName = Request["jobName"];
                 CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobId, jobName);
                 //scheduler.ResumeTrigger(new TriggerKey(jobName, jobGroup));              
                 scheduler.ResumeJob(JobKey.Create(customJob.JobName, customJob.JobGroup));

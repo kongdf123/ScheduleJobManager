@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 namespace Utility
 {
     public class Log4NetHelper

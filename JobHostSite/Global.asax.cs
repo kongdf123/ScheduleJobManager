@@ -21,7 +21,7 @@ namespace JobHostSite
     public class WebApiApplication : System.Web.HttpApplication
     {
         IScheduler scheduler;
-        protected void Application_Start()
+        protected void Application_Start(object sender, EventArgs e)
         {
             AreaRegistration.RegisterAllAreas();
 
