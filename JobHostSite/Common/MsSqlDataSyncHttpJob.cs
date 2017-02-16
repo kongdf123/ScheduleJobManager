@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using Utility;
 
 namespace JobHost.Common
 {
@@ -20,12 +21,11 @@ namespace JobHost.Common
                 try
                 {
                     CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobName);
-                    HttpHelper.SendPost(customJob.JobServiceURL, "jobName="+customJob.JobName);
+                    HttpHelper.SendPost(customJob.JobServiceURL + "jobName=" + customJob.JobName, "");
                 }
                 catch (Exception ex)
                 {
-
-                    throw;
+                    Log4NetHelper.WriteExcepetion(ex);
                 }
             });
         }
