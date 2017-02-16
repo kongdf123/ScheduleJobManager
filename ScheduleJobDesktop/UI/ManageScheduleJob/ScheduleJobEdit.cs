@@ -21,6 +21,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
     {
         CustomJobDetail jobDetail;
         static ScheduleJobEdit instance;
+        string jobHostSite = System.Configuration.ConfigurationManager.AppSettings["JobHostSite"];
 
         /// <summary>
         /// 返回一个该控件的实例。如果之前该控件已经被创建，直接返回已创建的控件。
@@ -73,12 +74,28 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             BindFormlToObject(); // 进行数据绑定
             if (jobDetail.JobId > 0)
             {
-                CustomJobDetailBLL.CreateInstance().Update(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后更新至数据库。
+                int effected = CustomJobDetailBLL.CreateInstance().Update(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后更新至数据库。
+                if (effected > 0)
+                {
+                    if (jobDetail.State == (byte)JobState.Running)
+                    {
+                        Task.Factory.StartNew(() =>
+                        {
+                            var respResult = HttpHelper.SendPost(jobHostSite + "ScheduleHostService/StartJob", "jobId=" + jobDetail.JobId + "&jobName=" + jobDetail.JobName);
+                            if (!string.IsNullOrEmpty(respResult))
+                            {
+                                ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
+                            }
+                        });
+                    }
+                }
             }
             else
             {
                 CustomJobDetailBLL.CreateInstance().Insert(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后插入至数据库。
             }
+
+
             FormSysMessage.ShowSuccessMsg("保存成功，单击“确定”按钮返回。");
             //Default.GotoLastPage();                    // 将该模块的信息列表的页码转至最后一页。
             FormMain.LoadNewControl(ScheduleJobList.Instance); // 载入该模块的信息列表界面至主窗体显示。
@@ -114,7 +131,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             jobDetail.EndDate = DateTimePickerEnd.Value;
             jobDetail.IntervalType = GetInterval().Item1;
             jobDetail.Interval = GetInterval().Item2;
-            
+
             jobDetail.Description = DataValid.GetNullOrString(TxtNoteDescription.Text);  // 备注说明
         }
 
@@ -137,7 +154,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                 DateTimePickerEnd.Value = jobDetail.EndDate;
             }
             SetInterval(jobDetail.IntervalType, jobDetail.Interval);
-             
+
             TxtNoteDescription.Text = jobDetail.Description;  // 备注说明
         }
 

@@ -11,12 +11,14 @@ using ScheduleJobDesktop.UI.UserControls;
 using ScheduleJobDesktop.Common;
 using DataAccess.Entity;
 using DataAccess.BLL;
+using ServiceHost.Common;
 
 namespace ScheduleJobDesktop.UI.ManageScheduleJob
 {
     public partial class ScheduleJobList : UserControl
     {
         static ScheduleJobList instance;
+        string jobHostSite = System.Configuration.ConfigurationManager.AppSettings["JobHostSite"];
 
         /// <summary>
         /// 返回一个该控件的实例。如果之前该控件已经被创建，直接返回已创建的控件。
@@ -44,6 +46,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             FormMain.LoadNewControl(ScheduleJobEdit.Instance); // 载入该模块的添加信息界面至主窗体显示。
         }
 
+        public delegate void RefreshDataGrid();
         private void DgvGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -73,6 +76,38 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                     CustomJobDetailBLL.CreateInstance().Delete(jobId, jobIdentity);
                     BindDataGrid();
                 }
+            }
+
+            //用户单击DataGridView“操作”列中的“启动”按钮。
+            if (JobDataGridViewActionButtonCell.IsStartButtonClick(sender, e))
+            {
+                int jobId = Convert.ToInt32(DgvGrid["ColAction", e.RowIndex].Value.ToString()); // 获取所要修改关联对象的主键。
+                string jobIdentity = DgvGrid["ScheduleJobName", e.RowIndex].Value.ToString();
+
+                var formSysMessage = FormSysMessage.ShowLoading();
+                Task.Factory.StartNew(() =>
+                {
+                    var respResult = HttpHelper.SendPost(jobHostSite + "ScheduleHostService/StartJob?jobId=" + jobId + "&jobName=" + jobIdentity, "");
+                    if (!string.IsNullOrEmpty(respResult))
+                    {
+                        ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
+                        if (respJson.Code == 1)
+                        {
+                            this.Invoke(new RefreshDataGrid(BindDataGrid));
+                            formSysMessage.SetMessage("执行成功。");
+                        }
+                        else
+                        {
+                            formSysMessage.SetMessage("执行失败，请重试。");
+                        }
+                    }
+                    else
+                    {
+                        formSysMessage.SetMessage("执行失败，请重试。");
+                    }
+                    System.Threading.Thread.Sleep(2000);
+                    formSysMessage.Close();
+                });
             }
         }
 

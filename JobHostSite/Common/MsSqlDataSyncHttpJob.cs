@@ -10,7 +10,7 @@ using System.Web;
 
 namespace JobHost.Common
 {
-    public class HttpJobDetail : IJob
+    public class MsSqlDataSyncHttpJob : IJob
     {
         public void Execute(IJobExecutionContext context)
         {
@@ -21,7 +21,6 @@ namespace JobHost.Common
                 {
                     CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobName);
                     HttpHelper.SendPost(customJob.JobServiceURL, "jobName="+customJob.JobName);
-
                 }
                 catch (Exception ex)
                 {

@@ -1,7 +1,10 @@
-﻿using System.Web.Http;
+﻿using log4net.Config;
+using System;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Utility;
 
 namespace JobServiceSite
 {
@@ -17,7 +20,16 @@ namespace JobServiceSite
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);            
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            XmlConfigurator.Configure();
+
+            Log4NetHelper.WriteInfo("JobServiceSite is started.");
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Log4NetHelper.WriteExcepetion(Server.GetLastError());
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Utility;
 
 namespace JobServiceSite.Controllers
 {
@@ -14,19 +15,21 @@ namespace JobServiceSite.Controllers
         public JsonResult SyncMsSqlData(string jobName)
         {
             try
-            { 
+            {
                 //TODO
                 CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobName);
 
 
-                //scheduler.ResumeTrigger(new TriggerKey(jobName, jobGroup));          
+                //scheduler.ResumeTrigger(new TriggerKey(jobName, jobGroup));  
+
+                Log4NetHelper.WriteInfo("MsSqlDataSync-SyncMsSqlData 执行成功!");  
+                return Json(new { Code = 1, Message = "执行成功!" });
             }
             catch (Exception ex)
             {
-
-                throw;
+                Log4NetHelper.WriteExcepetion(ex);
+                return Json(new { Code = 1, Message = "执行失败!" });
             }
-            return Json(new { });
         }
 
     }

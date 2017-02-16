@@ -86,6 +86,16 @@ namespace ScheduleJobDesktop
             return formSysMessage.ShowDialog();
         }
 
+        public void SetMessage(string message) {
+            this.LblMessage.Text = message;
+        }
+
+        public static FormSysMessage ShowLoading() {
+            FormSysMessage formSysMessage = new FormSysMessage();
+            formSysMessage.LblMessage.Text = "正在执行中，请稍后。。。";
+            return formSysMessage;
+        }
+
         private void BtnOK_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;

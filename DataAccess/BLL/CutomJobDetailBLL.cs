@@ -11,7 +11,8 @@ namespace DataAccess.BLL
     public class CustomJobDetailBLL
     {
         CustomJobDetailDAL _dal;
-        public CustomJobDetailBLL() {
+        public CustomJobDetailBLL()
+        {
             _dal = CustomJobDetailDAL.CreateInstance();
         }
 
@@ -37,7 +38,7 @@ namespace DataAccess.BLL
                 throw new CustomException("请输入需要执行的服务地址。", ExceptionType.Warn);
             }
 
-            if (Exists(jobDetail.JobId,jobDetail.JobName))
+            if (Exists(jobDetail.JobId, jobDetail.JobName))
             {
                 throw new CustomException("任务代号已存在，请重新输入。", ExceptionType.Warn);
             }
@@ -46,7 +47,9 @@ namespace DataAccess.BLL
         public int Insert(CustomJobDetail jobDetail)
         {
             CheckValid(jobDetail);
-            return _dal.Insert(jobDetail);
+            var newId = _dal.Insert(jobDetail);
+            jobDetail.JobId = newId;
+            return newId;
         }
 
         public int Update(CustomJobDetail jobDetail)
@@ -75,9 +78,9 @@ namespace DataAccess.BLL
             return _dal.GetPageList(pageSize, curPage, jobName);
         }
 
-        public bool Exists(int jobId,string jobName)
+        public bool Exists(int jobId, string jobName)
         {
-            return _dal.Exists(jobId,jobName);
+            return _dal.Exists(jobId, jobName);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace ScheduleJobDesktop.UI.UserControls
         private static Image ImageModify = Properties.Resources.BtnModify; // 修改按钮背景图片
         private static Image ImageDelete = Properties.Resources.BtnDelete; // 删除按钮背景图片
         private static Image ImageStart = Properties.Resources.BtnStart;
-        private static Image ImageStop = Properties.Resources.BtnStart;
+        private static Image ImageStop = Properties.Resources.BtnStop;
 
         private static Pen penModify = new Pen(Color.FromArgb(135, 163, 193)); // 修改按钮边框颜色
         private static Pen penDelete = new Pen(Color.FromArgb(162, 144, 77));  // 删除按钮边框颜色
@@ -89,12 +89,12 @@ namespace ScheduleJobDesktop.UI.UserControls
             {
                 if (mouseOnStopButton) // 鼠标移动到修改按钮上，更换背景及边框颜色
                 {
-                    ImageStop = Properties.Resources.BtnStart;
+                    ImageStop = Properties.Resources.BtnStop;
                     penStop = new Pen(Color.FromArgb(162, 144, 77));
                 }
                 else
                 {
-                    ImageStop = Properties.Resources.BtnStart;
+                    ImageStop = Properties.Resources.BtnStop;
                     penStop = new Pen(Color.FromArgb(135, 163, 193));
                 }
             }
@@ -173,11 +173,11 @@ namespace ScheduleJobDesktop.UI.UserControls
             Rectangle recStop = new Rectangle(), recStart = new Rectangle();
             if (jobState == (byte)JobState.Running)
             {
-                recStop = new Rectangle(cellBounds.Location.X + cellBounds.Width / 2 + 2, cellBounds.Location.Y + (cellBounds.Height - ImageStop.Height) / 2, ImageStop.Width, ImageStop.Height);
+                recStop = new Rectangle(cellBounds.Location.X + cellBounds.Width / 2 + 50, cellBounds.Location.Y + (cellBounds.Height - ImageStop.Height) / 2, ImageStop.Width, ImageStop.Height);
             }
             else if (jobState == (byte)JobState.Stopping || jobState == (byte)JobState.Waiting)
             {
-                recStart = new Rectangle(cellBounds.Location.X + cellBounds.Width / 2 + 2, cellBounds.Location.Y + (cellBounds.Height - ImageStart.Height) / 2, ImageStart.Width, ImageStart.Height);
+                recStart = new Rectangle(cellBounds.Location.X + cellBounds.Width / 2 + 50, cellBounds.Location.Y + (cellBounds.Height - ImageStart.Height) / 2, ImageStart.Width, ImageStart.Height);
             }
             Rectangle paintCellBounds = DataGridView.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
 
@@ -340,7 +340,7 @@ namespace ScheduleJobDesktop.UI.UserControls
                 if (DgvGrid.Columns[e.ColumnIndex] is JobDataGridViewActionButtonColumn)
                 {
                     Rectangle cellBounds = DgvGrid[e.ColumnIndex, e.RowIndex].ContentBounds;
-                    Rectangle recStart = new Rectangle(cellBounds.Location.X + cellBounds.Width / 2 + 2, cellBounds.Location.Y + (cellBounds.Height - ImageStart.Height) / 2, ImageStart.Width, ImageStart.Height);
+                    Rectangle recStart = new Rectangle(cellBounds.Location.X + cellBounds.Width / 2 + 50, cellBounds.Location.Y + (cellBounds.Height - ImageStart.Height) / 2, ImageStart.Width, ImageStart.Height);
                     if (IsInRect(e.X, e.Y, recStart))
                         return true;
                 }
@@ -358,7 +358,7 @@ namespace ScheduleJobDesktop.UI.UserControls
                 if (DgvGrid.Columns[e.ColumnIndex] is JobDataGridViewActionButtonColumn)
                 {
                     Rectangle cellBounds = DgvGrid[e.ColumnIndex, e.RowIndex].ContentBounds;
-                    Rectangle recStop = new Rectangle(cellBounds.Location.X + cellBounds.Width / 2 + 2, cellBounds.Location.Y + (cellBounds.Height - ImageStop.Height) / 2, ImageStop.Width, ImageStop.Height);
+                    Rectangle recStop = new Rectangle(cellBounds.Location.X + cellBounds.Width / 2 +50, cellBounds.Location.Y + (cellBounds.Height - ImageStop.Height) / 2, ImageStop.Width, ImageStop.Height);
                     if (IsInRect(e.X, e.Y, recStop))
                         return true;
                 }

@@ -21,7 +21,7 @@ namespace JobHostSite.Controllers
                 CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobId, jobName);
 
                 IScheduler scheduler = QuartzNetHelper.GetScheduler();
-                IJobDetail job = JobBuilder.Create<HttpJobDetail>()
+                IJobDetail job = JobBuilder.Create<MsSqlDataSyncHttpJob>()
                         .WithIdentity(customJob.JobName, customJob.JobGroup)
                         .Build();
                 ICronTrigger trigger = (ICronTrigger)TriggerBuilder.Create()
@@ -38,36 +38,46 @@ namespace JobHostSite.Controllers
                     scheduler.Start();
                 }
 
+                // To test
+                Log4NetHelper.WriteInfo("ScheduleHostService-AddJob");
+
+                return Json(new { Code = 1, Message = "执行成功！" });
             }
             catch (Exception ex)
             {
-
-                throw;
+                Log4NetHelper.WriteExcepetion(ex);
+                return Json(new { Code = 0, Message = "执行失败！" });
             }
-
-            return Json(new { });
         }
 
         [HttpPost]
-        public JsonResult StartJob(int jobId, string jobName)
+        public JsonResult StartJob(FormCollection form)
         {
             try
             {
+                // ToDO
                 IScheduler scheduler = QuartzNetHelper.GetScheduler();
                 if (!scheduler.IsStarted)
                 {
                     scheduler.Start();
                 }
+                int jobId =Convert.ToInt32(form["jobId"]);
+                string jobName = form["jobName"];
                 CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobId, jobName);
                 //scheduler.ResumeTrigger(new TriggerKey(jobName, jobGroup));              
                 scheduler.ResumeJob(JobKey.Create(customJob.JobName, customJob.JobGroup));
+
+
+                // To test
+                Log4NetHelper.WriteInfo("ScheduleHostService-StartJob");
+
+                return Json(new { Code = 1, Message = "执行成功！" });
             }
             catch (Exception ex)
             {
-
-                throw;
+                Log4NetHelper.WriteExcepetion(ex);
+                return Json(new { Code = 0, Message = "执行失败！" });
             }
-            return Json(new { });
         }
 
         [HttpPost]
@@ -83,13 +93,17 @@ namespace JobHostSite.Controllers
                 CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobId, jobName);
                 //scheduler.ResumeTrigger(new TriggerKey(jobName, jobGroup));              
                 scheduler.PauseJob(JobKey.Create(customJob.JobName, customJob.JobGroup));
+
+                // To test
+                Log4NetHelper.WriteInfo("ScheduleHostService-StopJob");
+
+                return Json(new { Code = 1, Message = "执行成功！" });
             }
             catch (Exception ex)
             {
-
-                throw;
+                Log4NetHelper.WriteExcepetion(ex);
+                return Json(new { Code = 0, Message = "执行失败！" });
             }
-            return Json(new { });
         }
 
         [HttpPost]
@@ -107,13 +121,24 @@ namespace JobHostSite.Controllers
                 scheduler.UnscheduleJob(new TriggerKey(customJob.JobName, customJob.JobGroup));
 
                 var result = scheduler.DeleteJob(JobKey.Create(customJob.JobName, customJob.JobGroup));
+
+                // To test
+                Log4NetHelper.WriteInfo("ScheduleHostService-DeleteJob");
+
+                if (result)
+                {
+                    return Json(new { Code = 1, Message = "执行成功！" });
+                }
+                else
+                {
+                    return Json(new { Code = 0, Message = "执行失败！" });
+                }
             }
             catch (Exception ex)
             {
-
-                throw;
+                Log4NetHelper.WriteExcepetion(ex);
+                return Json(new { Code = 0, Message = "执行失败！" });
             }
-            return Json(new { });
         }
 
     }

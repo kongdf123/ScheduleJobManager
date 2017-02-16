@@ -136,6 +136,9 @@
   <data name="BtnStart" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BtnStart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BtnStop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BtnStop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="BtnView" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BtnView.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
