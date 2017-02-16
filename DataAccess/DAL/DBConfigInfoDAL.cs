@@ -27,7 +27,11 @@ namespace DataAccess.DAL
                                 `UserName`,
                                 `Password`,
                                 `UpdatedDate`,
-                                `CreatedDate`)
+                                `CreatedDate`,
+                                `EquipmentNum`,
+                                `PageSize`,
+                                `MaxCapacity`,
+                                `StoredType`)
                                 VALUES
                                 (@Id,
                                 @ServerAddress,
@@ -35,7 +39,11 @@ namespace DataAccess.DAL
                                 @UserName,
                                 @Password,
                                 @UpdatedDate,
-                                @CreatedDate); SELECT LAST_INSERT_ID();";
+                                @CreatedDate,                                
+                                @EquipmentNum,
+                                @PageSize,
+                                @MaxCapacity,
+                                @StoredType); SELECT LAST_INSERT_ID();";
             MySqlParameter[] parameters =
             {
                 new MySqlParameter("@Id", MySqlDbType.Int32 ){ Value = dbConfigInfo.Id },
@@ -44,7 +52,11 @@ namespace DataAccess.DAL
                 new MySqlParameter("@UserName", MySqlDbType.VarChar , 45){ Value = dbConfigInfo.UserName},
                 new MySqlParameter("@Password", MySqlDbType.VarChar, 45){ Value = dbConfigInfo.Password},
                 new MySqlParameter("@UpdatedDate" , MySqlDbType.DateTime){ Value = dbConfigInfo.UpdatedDate },
-                new MySqlParameter("@CreatedDate", MySqlDbType.DateTime){ Value = dbConfigInfo.CreatedDate}
+                new MySqlParameter("@CreatedDate", MySqlDbType.DateTime){ Value = dbConfigInfo.CreatedDate},
+                new MySqlParameter("@EquipmentNum", MySqlDbType.VarChar , 25 ){ Value = dbConfigInfo.EquipmentNum },
+                new MySqlParameter("@PageSize", MySqlDbType.Int32 ){ Value = dbConfigInfo.PageSize },
+                new MySqlParameter("@MaxCapacity", MySqlDbType.Int32 ){ Value = dbConfigInfo.MaxCapacity },
+                new MySqlParameter("@StoredType", MySqlDbType.Byte ){ Value = dbConfigInfo.StoredType }
             };
             return MySqlDbHelper.ExecuteScalar<int>(sqlText, parameters);
         }
@@ -59,7 +71,11 @@ namespace DataAccess.DAL
                                 `UserName` = @UserName,
                                 `Password` = @Password,
                                 `UpdatedDate` = @UpdatedDate,
-                                `CreatedDate` = @CreatedDate
+                                `CreatedDate` = @CreatedDate,
+                                `EquipmentNum`=@EquipmentNum,
+                                `PageSize`=@PageSize,
+                                `MaxCapacity`=@MaxCapacity,
+                                `StoredType`=@StoredType
                                 WHERE `Id` = @Id;";
             MySqlParameter[] parameters =
             {
@@ -69,7 +85,11 @@ namespace DataAccess.DAL
                 new MySqlParameter("@UserName", MySqlDbType.VarChar , 45){ Value = dbConfigInfo.UserName},
                 new MySqlParameter("@Password", MySqlDbType.VarChar, 45){ Value = dbConfigInfo.Password},
                 new MySqlParameter("@UpdatedDate" , MySqlDbType.DateTime){ Value = dbConfigInfo.UpdatedDate },
-                new MySqlParameter("@CreatedDate", MySqlDbType.DateTime){ Value = dbConfigInfo.CreatedDate}
+                new MySqlParameter("@CreatedDate", MySqlDbType.DateTime){ Value = dbConfigInfo.CreatedDate},
+                new MySqlParameter("@EquipmentNum", MySqlDbType.VarChar , 25 ){ Value = dbConfigInfo.EquipmentNum },
+                new MySqlParameter("@PageSize", MySqlDbType.Int32 ){ Value = dbConfigInfo.PageSize },
+                new MySqlParameter("@MaxCapacity", MySqlDbType.Int32 ){ Value = dbConfigInfo.MaxCapacity },
+                new MySqlParameter("@StoredType", MySqlDbType.Byte ){ Value = dbConfigInfo.StoredType }
             };
             return MySqlDbHelper.ExecuteNonQuery(sqlText, parameters);
         }
@@ -93,7 +113,11 @@ namespace DataAccess.DAL
                                     `UserName`,
                                     `Password`,
                                     `UpdatedDate`,
-                                    `CreatedDate`
+                                    `CreatedDate`,
+                                    `EquipmentNum`,
+                                    `PageSize`,
+                                    `MaxCapacity`,
+                                    `StoredType`
                                 FROM `custom_db_config` 
                                 WHERE `Id` = @Id;";
             MySqlParameter[] parameters =
@@ -129,8 +153,12 @@ namespace DataAccess.DAL
                                     `UserName`,
                                     `Password`,
                                     `UpdatedDate`,
-                                    `CreatedDate`
-                                FROM `custom_db_config`  " + sqlWhere + " ORDER BY Id DESC LIMIT " + (curPage - 1)* pageSize + "," + pageSize;
+                                    `CreatedDate`,
+                                    `EquipmentNum`,
+                                    `PageSize`,
+                                    `MaxCapacity`,
+                                    `StoredType`
+                                FROM `custom_db_config`  " + sqlWhere + " ORDER BY Id DESC LIMIT " + (curPage - 1) * pageSize + "," + pageSize;
             List<DBConfigInfo> list = new List<DBConfigInfo>();
             MySqlDataReader sqlDataReader = MySqlDbHelper.ExecuteReader(sqlText, listParms.ToArray());
 
@@ -176,6 +204,23 @@ namespace DataAccess.DAL
 
             if (dataReader["CreatedDate"] != DBNull.Value)
                 dbConfigInfo.CreatedDate = Convert.ToDateTime(dataReader["CreatedDate"]);
+
+            if (dataReader["EquipmentNum"] != DBNull.Value)
+            {
+                dbConfigInfo.EquipmentNum = Convert.ToString(dataReader["EquipmentNum"]);
+            }
+            if (dataReader["StoredType"] != DBNull.Value)
+            {
+                dbConfigInfo.StoredType = Convert.ToByte(dataReader["StoredType"]);
+            }
+            if (dataReader["PageSize"] != DBNull.Value)
+            {
+                dbConfigInfo.PageSize = Convert.ToInt32(dataReader["PageSize"]);
+            }
+            if (dataReader["MaxCapacity"] != DBNull.Value)
+            {
+                dbConfigInfo.MaxCapacity = Convert.ToInt32(dataReader["MaxCapacity"]);
+            }
         }
     }
 }

@@ -249,12 +249,13 @@ namespace DataAccess.DAL
             return pageData;
         }
 
-        public bool Exists(string jobName)
+        public bool Exists(int jobId, string jobName)
         {
             string sqlWhere = "";
             List<MySqlParameter> listParms = new List<MySqlParameter>();
-            sqlWhere = "WHERE JobName = @JobName";
-            listParms.Add(new MySqlParameter("@JobName", MySqlDbType.VarChar, 100) { Value = "%" + jobName + "%" });
+            sqlWhere = "WHERE JobName = @JobName AND JobId<>@JobId";
+            listParms.Add(new MySqlParameter("@JobId", MySqlDbType.Int32, 11) { Value = jobId });
+            listParms.Add(new MySqlParameter("@JobName", MySqlDbType.VarChar, 100) { Value = jobName });
 
             int recordsTotal = MySqlDbHelper.ExecuteScalar<int>("SELECT COUNT(*) FROM custom_job_details " + sqlWhere, listParms.ToArray());
             return recordsTotal > 0;

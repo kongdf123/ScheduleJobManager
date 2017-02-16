@@ -17,20 +17,20 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
     /// <summary>
     /// 任务管理添加界面
     /// </summary>
-    public partial class Create : UserControl
+    public partial class ScheduleJobEdit : UserControl
     {
         CustomJobDetail jobDetail;
-        static Create instance;
+        static ScheduleJobEdit instance;
 
         /// <summary>
         /// 返回一个该控件的实例。如果之前该控件已经被创建，直接返回已创建的控件。
         /// 此处采用单键模式对控件实例进行缓存，避免因界面切换重复创建和销毁对象。
         /// </summary>
-        public static Create Instance {
+        public static ScheduleJobEdit Instance {
             get {
                 if (instance == null)
                 {
-                    instance = new Create();
+                    instance = new ScheduleJobEdit();
                 }
                 instance.jobDetail = new CustomJobDetail(); // 创建新的关联对象，可以在“数据实体层”中指定对象的默认值。
                 instance.BindObjectToForm(); // 每次返回该控件的实例前，都将关联对象的默认值，绑定至界面控件进行显示。
@@ -38,11 +38,11 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             }
         }
 
-        public static Create BindJobDetail(CustomJobDetail job)
+        public static ScheduleJobEdit BindJobDetail(CustomJobDetail job)
         {
             if (instance == null)
             {
-                instance = new Create();
+                instance = new ScheduleJobEdit();
             }
             instance.jobDetail = job; // 创建新的关联对象，可以在“数据实体层”中指定对象的默认值。
             instance.BindObjectToForm(); // 每次返回该控件的实例前，都将关联对象的默认值，绑定至界面控件进行显示。
@@ -52,7 +52,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
         /// <summary>
         /// 私有的控件实例化方法，创建实例只能通过该控件的Instance属性实现。
         /// </summary>
-        private Create()
+        private ScheduleJobEdit()
         {
             InitializeComponent();
             List<KeyValuePair<string, string>> listFreq = new List<KeyValuePair<string, string>>();
@@ -81,7 +81,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             }
             FormSysMessage.ShowSuccessMsg("保存成功，单击“确定”按钮返回。");
             //Default.GotoLastPage();                    // 将该模块的信息列表的页码转至最后一页。
-            FormMain.LoadNewControl(Default.Instance); // 载入该模块的信息列表界面至主窗体显示。
+            FormMain.LoadNewControl(ScheduleJobList.Instance); // 载入该模块的信息列表界面至主窗体显示。
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
         /// </summary>
         private void BtnCancel_Click(object sender, EventArgs e)
         {
-            FormMain.LoadNewControl(Default.Instance); // 载入该模块的信息列表界面至主窗体显示。
+            FormMain.LoadNewControl(ScheduleJobList.Instance); // 载入该模块的信息列表界面至主窗体显示。
         }
 
         #region 界面控件与关联对象之间的绑定方法
@@ -114,13 +114,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             jobDetail.EndDate = DateTimePickerEnd.Value;
             jobDetail.IntervalType = GetInterval().Item1;
             jobDetail.Interval = GetInterval().Item2;
-
-            if (string.IsNullOrEmpty(TxtRecordNum.Text))
-            {
-                throw new CustomException("请输入每次处理的数据条数！", ExceptionType.Warn);
-            }
-            jobDetail.PageSize = DataValid.GetNullOrInt(TxtRecordNum.Text).Value;
-
+            
             jobDetail.Description = DataValid.GetNullOrString(TxtNoteDescription.Text);  // 备注说明
         }
 
@@ -143,8 +137,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                 DateTimePickerEnd.Value = jobDetail.EndDate;
             }
             SetInterval(jobDetail.IntervalType, jobDetail.Interval);
-
-            TxtRecordNum.Text = jobDetail.PageSize.ToString();
+             
             TxtNoteDescription.Text = jobDetail.Description;  // 备注说明
         }
 

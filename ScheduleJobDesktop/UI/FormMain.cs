@@ -63,10 +63,10 @@ namespace ScheduleJobDesktop
                     break;
 
                 case "ManageScheduleJob": // “任务信息管理”功能模块
-                    FormMain.LoadNewControl(UI.ManageScheduleJob.Default.Instance);
+                    FormMain.LoadNewControl(UI.ManageScheduleJob.ScheduleJobList.Instance);
                     break;
                 case "ManageDbConfig":
-                    LoadNewControl(DBConfig.Instance); break;
+                    LoadNewControl(SqlServerDBConfig.Instance); break;
                 default: break;
 
             }

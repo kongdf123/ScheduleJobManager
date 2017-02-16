@@ -2,7 +2,7 @@
 
 namespace ScheduleJobDesktop.UI.ManageScheduleJob
 {
-    partial class Create
+    partial class ScheduleJobEdit
     {
         /// <summary> 
         /// Required designer variable.
@@ -51,8 +51,6 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.TxtHour = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.TxtScheduleChineseName = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.TxtRecordNum = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.DateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.DateTimePickerStart = new System.Windows.Forms.DateTimePicker();
@@ -147,8 +145,6 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.PnlControlArea.Controls.Add(this.PnlInterval);
             this.PnlControlArea.Controls.Add(this.TxtScheduleChineseName);
             this.PnlControlArea.Controls.Add(this.label6);
-            this.PnlControlArea.Controls.Add(this.TxtRecordNum);
-            this.PnlControlArea.Controls.Add(this.label5);
             this.PnlControlArea.Controls.Add(this.DateTimePickerEnd);
             this.PnlControlArea.Controls.Add(this.label4);
             this.PnlControlArea.Controls.Add(this.DateTimePickerStart);
@@ -360,29 +356,6 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.label6.Text = "执行间隔：";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // TxtRecordNum
-            // 
-            this.TxtRecordNum.BackColor = System.Drawing.Color.White;
-            this.TxtRecordNum.Location = new System.Drawing.Point(230, 410);
-            this.TxtRecordNum.MaxLength = 5;
-            this.TxtRecordNum.Multiline = false;
-            this.TxtRecordNum.Name = "TxtRecordNum";
-            this.TxtRecordNum.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtRecordNum.PasswordChar = '\0';
-            this.TxtRecordNum.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtRecordNum.Size = new System.Drawing.Size(131, 27);
-            this.TxtRecordNum.TabIndex = 17;
-            // 
-            // label5
-            // 
-            this.label5.Location = new System.Drawing.Point(140, 402);
-            this.label5.Margin = new System.Windows.Forms.Padding(0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(90, 43);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "数据条数：";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // DateTimePickerEnd
             // 
             this.DateTimePickerEnd.CustomFormat = "yyyy-MM-dd";
@@ -479,7 +452,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             // TxtNoteDescription
             // 
             this.TxtNoteDescription.BackColor = System.Drawing.Color.White;
-            this.TxtNoteDescription.Location = new System.Drawing.Point(230, 448);
+            this.TxtNoteDescription.Location = new System.Drawing.Point(230, 424);
             this.TxtNoteDescription.MaxLength = 200;
             this.TxtNoteDescription.Multiline = true;
             this.TxtNoteDescription.Name = "TxtNoteDescription";
@@ -552,7 +525,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             // 
             // Lbl_NoteDescription
             // 
-            this.Lbl_NoteDescription.Location = new System.Drawing.Point(137, 465);
+            this.Lbl_NoteDescription.Location = new System.Drawing.Point(137, 435);
             this.Lbl_NoteDescription.Margin = new System.Windows.Forms.Padding(0);
             this.Lbl_NoteDescription.Name = "Lbl_NoteDescription";
             this.Lbl_NoteDescription.Size = new System.Drawing.Size(90, 43);
@@ -721,8 +694,6 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker DateTimePickerStart;
         private System.Windows.Forms.Label label6;
-        private UserControls.TextBox TxtRecordNum;
-        private System.Windows.Forms.Label label5;
         private UserControls.TextBox TxtScheduleChineseName;
         private System.Windows.Forms.RadioButton RadioBtnStopping;
         private System.Windows.Forms.RadioButton RadioBtnWaiting;
