@@ -71,7 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\CustomException.cs" />
+    <Compile Include="Common\Constant.cs" />
     <Compile Include="UI\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

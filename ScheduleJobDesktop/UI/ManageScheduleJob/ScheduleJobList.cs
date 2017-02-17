@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ScheduleJobDesktop.UI.UserControls;
-using ScheduleJobDesktop.Common;
 using DataAccess.Entity;
 using DataAccess.BLL;
 using ServiceHost.Common;
+using Utility;
 
 namespace ScheduleJobDesktop.UI.ManageScheduleJob
 {
@@ -46,7 +41,14 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             FormMain.LoadNewControl(ScheduleJobEdit.Instance); // 载入该模块的添加信息界面至主窗体显示。
         }
 
-        public delegate void RefreshDataGrid();
+        public delegate void RefreshDataGrid(FormSysMessage formSysMessage, string message);
+        public void SetLoadingDialog(FormSysMessage formSysMessage,string message) {
+            BindDataGrid();
+            formSysMessage.SetMessage(message);
+            System.Threading.Thread.Sleep(2000);
+            formSysMessage.Close();
+        }
+
         private void DgvGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -78,6 +80,8 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                 }
             }
 
+            #region 启动任务计划
+
             //用户单击DataGridView“操作”列中的“启动”按钮。
             if (JobDataGridViewActionButtonCell.IsStartButtonClick(sender, e))
             {
@@ -87,29 +91,77 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                 var formSysMessage = FormSysMessage.ShowLoading();
                 Task.Factory.StartNew(() =>
                 {
-                    var respResult = HttpHelper.SendPost(jobHostSite + "ScheduleHostService/StartJob?jobId=" + jobId + "&jobName=" + jobIdentity, "");
-                    if (!string.IsNullOrEmpty(respResult))
+                    try
                     {
-                        ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
-                        if (respJson.Code == 1)
+                        var respResult = HttpHelper.SendPost(jobHostSite + "ScheduleHostService/StartJob?jobId=" + jobId + "&jobName=" + jobIdentity, "");
+                        if (!string.IsNullOrEmpty(respResult))
                         {
-                            this.Invoke(new RefreshDataGrid(BindDataGrid));
-                            formSysMessage.SetMessage("执行成功。");
+                            ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
+                            if (respJson.Code == 1)
+                            {
+                                this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "执行成功。");
+                            }
+                            else
+                            {
+                                this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "执行失败，请重试。");
+                            }
                         }
                         else
                         {
-                            formSysMessage.SetMessage("执行失败，请重试。");
+                            this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "执行失败，请重试。");
                         }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        formSysMessage.SetMessage("执行失败，请重试。");
+                        Log4NetHelper.WriteExcepetion(ex);
                     }
-                    System.Threading.Thread.Sleep(2000);
-                    formSysMessage.Close();
                 });
             }
+
+            #endregion
+
+            #region 停止任务计划
+
+            //用户单击DataGridView“操作”列中的“停止”按钮。
+            if (JobDataGridViewActionButtonCell.IsStopButtonClick(sender, e))
+            {
+                int jobId = Convert.ToInt32(DgvGrid["ColAction", e.RowIndex].Value.ToString()); // 获取所要修改关联对象的主键。
+                string jobIdentity = DgvGrid["ScheduleJobName", e.RowIndex].Value.ToString();
+
+                var formSysMessage = FormSysMessage.ShowLoading();
+                Task.Factory.StartNew(() =>
+                {
+                    try
+                    {
+                        var respResult = HttpHelper.SendPost(jobHostSite + "ScheduleHostService/StopJob?jobId=" + jobId + "&jobName=" + jobIdentity, "");
+                        if (!string.IsNullOrEmpty(respResult))
+                        {
+                            ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
+                            if (respJson.Code == 1)
+                            {
+                                this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "执行成功。");
+                            }
+                            else
+                            {
+                                this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "执行失败，请重试。");
+                            }
+                        }
+                        else
+                        {
+                            this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "执行失败，请重试。");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Log4NetHelper.WriteExcepetion(ex);
+                    }
+                });
+            }
+
+            #endregion
         }
+
+
 
         private void PageBar_PageChanged(object sender, EventArgs e)
         {

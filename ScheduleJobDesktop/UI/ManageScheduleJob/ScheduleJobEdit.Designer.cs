@@ -358,7 +358,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             // 
             // DateTimePickerEnd
             // 
-            this.DateTimePickerEnd.CustomFormat = "yyyy-MM-dd";
+            this.DateTimePickerEnd.CustomFormat = "yyyy-MM-dd  HH:mm:ss";
             this.DateTimePickerEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.DateTimePickerEnd.Location = new System.Drawing.Point(475, 279);
             this.DateTimePickerEnd.Name = "DateTimePickerEnd";
@@ -379,7 +379,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             // 
             this.DateTimePickerStart.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.DateTimePickerStart.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.DateTimePickerStart.CustomFormat = "yyyy-MM-dd";
+            this.DateTimePickerStart.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.DateTimePickerStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.DateTimePickerStart.Location = new System.Drawing.Point(231, 279);
             this.DateTimePickerStart.Name = "DateTimePickerStart";
@@ -631,14 +631,14 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.BtnCancel.Text = "取消";
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
-            // Create
+            // ScheduleJobEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.PnlScrollArea);
             this.Controls.Add(this.PnlFooter);
-            this.Name = "Create";
+            this.Name = "ScheduleJobEdit";
             this.Size = new System.Drawing.Size(830, 650);
             this.PnlScrollArea.ResumeLayout(false);
             this.PnlInfo.ResumeLayout(false);

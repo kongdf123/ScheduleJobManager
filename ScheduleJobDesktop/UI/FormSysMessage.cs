@@ -1,13 +1,7 @@
-﻿using ScheduleJobDesktop.Common;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Utility;
 
 namespace ScheduleJobDesktop
 {
@@ -93,6 +87,9 @@ namespace ScheduleJobDesktop
         public static FormSysMessage ShowLoading() {
             FormSysMessage formSysMessage = new FormSysMessage();
             formSysMessage.LblMessage.Text = "正在执行中，请稍后。。。";
+            formSysMessage.BtnOK.Hide();
+            formSysMessage.BtnCancel.Hide();
+            formSysMessage.Show();
             return formSysMessage;
         }
 

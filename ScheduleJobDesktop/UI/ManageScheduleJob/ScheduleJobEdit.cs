@@ -1,16 +1,12 @@
-﻿using System;
+﻿using DataAccess.BLL;
+using DataAccess.Entity;
+using ServiceHost.Common;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DataAccess.Entity;
-using DataAccess.BLL;
-using ServiceHost.Common;
-using ScheduleJobDesktop.Common;
+using Utility;
 
 namespace ScheduleJobDesktop.UI.ManageScheduleJob
 {
@@ -66,39 +62,90 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.Dock = DockStyle.Fill;
         }
 
+        public delegate void CallBackDelegate(FormSysMessage formSysMessage, string message);
+        public void CallBackFunc(FormSysMessage formSysMessage, string message)
+        {
+            formSysMessage.SetMessage(message);
+            System.Threading.Thread.Sleep(2000);
+            formSysMessage.Close();
+
+            FormMain.LoadNewControl(ScheduleJobList.Instance); // 载入该模块的信息列表界面至主窗体显示。
+        }
+
         /// <summary>
         /// 用户单击“保存”按钮时的事件处理方法。
         /// </summary>
         private void BtnSave_Click(object sender, EventArgs e)
         {
+            var formSysMessage = FormSysMessage.ShowLoading();
+
             BindFormlToObject(); // 进行数据绑定
             if (jobDetail.JobId > 0)
             {
                 int effected = CustomJobDetailBLL.CreateInstance().Update(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后更新至数据库。
-                if (effected > 0)
-                {
-                    if (jobDetail.State == (byte)JobState.Running)
-                    {
-                        Task.Factory.StartNew(() =>
-                        {
-                            var respResult = HttpHelper.SendPost(jobHostSite + "ScheduleHostService/StartJob", "jobId=" + jobDetail.JobId + "&jobName=" + jobDetail.JobName);
-                            if (!string.IsNullOrEmpty(respResult))
-                            {
-                                ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
-                            }
-                        });
-                    }
-                }
+
             }
             else
             {
                 CustomJobDetailBLL.CreateInstance().Insert(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后插入至数据库。
             }
 
+            if (jobDetail.State == (byte)JobState.Running)
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    try
+                    {
+                        var respResult = HttpHelper.SendPost(jobHostSite + "ScheduleHostService/StartJob", "jobId=" + jobDetail.JobId + "&jobName=" + jobDetail.JobName);
+                        if (!string.IsNullOrEmpty(respResult))
+                        {
+                            ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
+                            if (respJson.Code == 1)
+                            {
+                                this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "任务启动成功。");
+                            }
+                            else
+                            {
+                                this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "任务启动失败。");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Log4NetHelper.WriteExcepetion(ex);
+                    }
+                });
+            }
+            else if (jobDetail.State == (byte)JobState.Stopping)
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    try
+                    {
+                        var respResult = HttpHelper.SendPost(jobHostSite + "ScheduleHostService/StopJob", "jobId=" + jobDetail.JobId + "&jobName=" + jobDetail.JobName);
+                        if (!string.IsNullOrEmpty(respResult))
+                        {
+                            ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
+                            if (respJson.Code == 1)
+                            {
+                                this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "任务停止成功。");
+                            }
+                            else
+                            {
+                                this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "任务停止失败。");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Log4NetHelper.WriteExcepetion(ex);
+                    }
+                });
+            }
 
-            FormSysMessage.ShowSuccessMsg("保存成功，单击“确定”按钮返回。");
-            //Default.GotoLastPage();                    // 将该模块的信息列表的页码转至最后一页。
-            FormMain.LoadNewControl(ScheduleJobList.Instance); // 载入该模块的信息列表界面至主窗体显示。
+            //FormSysMessage.ShowSuccessMsg("保存成功，单击“确定”按钮返回。");
+            ////Default.GotoLastPage();                    // 将该模块的信息列表的页码转至最后一页。
+            //FormMain.LoadNewControl(ScheduleJobList.Instance); // 载入该模块的信息列表界面至主窗体显示。
         }
 
         /// <summary>

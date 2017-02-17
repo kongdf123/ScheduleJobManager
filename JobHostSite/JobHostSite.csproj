@@ -144,7 +144,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Common\MsSqlDataSyncHttpJob.cs" />
+    <Compile Include="Common\DataSyncHttpJob.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ScheduleHostServiceController.cs" />
     <Compile Include="Global.asax.cs">
@@ -185,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Logfile\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

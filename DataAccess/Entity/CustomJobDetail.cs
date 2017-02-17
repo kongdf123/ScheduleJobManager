@@ -42,7 +42,7 @@ namespace DataAccess.Entity
 
         public string CronExpression {
             get {
-                string[] cronArr = new string[] { "*", "*", "*", "*", "*", "*" };//示例 0 10 18 15 3 ?        note:每年三月的第15天，下午6点10分都会被触发
+                string[] cronArr = new string[] { "0", "0", "*", "*", "*", "?" };//示例 0 10 18 15 3 ?        note:每年三月的第15天，下午6点10分都会被触发
                 switch (IntervalType)
                 {
                     case (byte)IntervalTypeEnum.Day:

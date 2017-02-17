@@ -11,7 +11,7 @@ using Utility;
 
 namespace JobHost.Common
 {
-    public class MsSqlDataSyncHttpJob : IJob
+    public class DataSyncHttpJob : IJob
     {
         public void Execute(IJobExecutionContext context)
         {
@@ -21,7 +21,7 @@ namespace JobHost.Common
                 try
                 {
                     CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobName);
-                    HttpHelper.SendPost(customJob.JobServiceURL + "jobName=" + customJob.JobName, "");
+                    HttpHelper.SendPost(customJob.JobServiceURL + "?jobName=" + customJob.JobName, "");
                 }
                 catch (Exception ex)
                 {

@@ -21,7 +21,7 @@ namespace JobHostSite.Controllers
                 CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobId, jobName);
 
                 IScheduler scheduler = QuartzNetHelper.GetScheduler();
-                IJobDetail job = JobBuilder.Create<MsSqlDataSyncHttpJob>()
+                IJobDetail job = JobBuilder.Create<DataSyncHttpJob>()
                         .WithIdentity(customJob.JobName, customJob.JobGroup)
                         .Build();
                 ICronTrigger trigger = (ICronTrigger)TriggerBuilder.Create()
@@ -39,7 +39,7 @@ namespace JobHostSite.Controllers
                 }
 
                 // To test
-                Log4NetHelper.WriteInfo("ScheduleHostService-AddJob");
+                Log4NetHelper.WriteInfo("ScheduleHostService-AddJob 添加任务计划。");
 
                 return Json(new { Code = 1, Message = "执行成功！" });
             }
@@ -55,7 +55,6 @@ namespace JobHostSite.Controllers
         {
             try
             {
-                // ToDO
                 IScheduler scheduler = QuartzNetHelper.GetScheduler();
                 if (!scheduler.IsStarted)
                 {
@@ -64,9 +63,30 @@ namespace JobHostSite.Controllers
                 int jobId = Convert.ToInt32(Request["jobId"]);
                 string jobName = Request["jobName"];
                 CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobId, jobName);
-                //scheduler.ResumeTrigger(new TriggerKey(jobName, jobGroup));              
-                scheduler.ResumeJob(JobKey.Create(customJob.JobName, customJob.JobGroup));
+                //scheduler.ResumeTrigger(new TriggerKey(jobName, jobGroup));   
+                var jobKey = JobKey.Create(customJob.JobName, customJob.JobGroup);
+                if (scheduler.CheckExists(jobKey))
+                {
+                    scheduler.ResumeJob(jobKey);
+                }
+                else
+                {
+                    IJobDetail job = JobBuilder.Create<DataSyncHttpJob>()
+                            .WithIdentity(customJob.JobName, customJob.JobGroup)
+                            .Build();
+                    ICronTrigger trigger = (ICronTrigger)TriggerBuilder.Create()
+                            .StartAt(customJob.StartDate)
+                            .EndAt(customJob.EndDate)
+                            .WithIdentity(customJob.JobName, customJob.JobGroup)
+                            .WithCronSchedule(customJob.CronExpression)
+                            .WithDescription(customJob.Description)
+                            .Build();
+                    scheduler.ScheduleJob(job, trigger);
+                    scheduler.Start();
+                }
 
+                customJob.State = (byte)JobState.Running;
+                CustomJobDetailBLL.CreateInstance().Update(customJob);
 
                 // To test
                 Log4NetHelper.WriteInfo("ScheduleHostService-StartJob");
@@ -93,6 +113,9 @@ namespace JobHostSite.Controllers
                 CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobId, jobName);
                 //scheduler.ResumeTrigger(new TriggerKey(jobName, jobGroup));              
                 scheduler.PauseJob(JobKey.Create(customJob.JobName, customJob.JobGroup));
+
+                customJob.State = (byte)JobState.Stopping;
+                CustomJobDetailBLL.CreateInstance().Update(customJob);
 
                 // To test
                 Log4NetHelper.WriteInfo("ScheduleHostService-StopJob");
@@ -121,6 +144,11 @@ namespace JobHostSite.Controllers
                 scheduler.UnscheduleJob(new TriggerKey(customJob.JobName, customJob.JobGroup));
 
                 var result = scheduler.DeleteJob(JobKey.Create(customJob.JobName, customJob.JobGroup));
+
+                if (result)
+                {
+                    CustomJobDetailBLL.CreateInstance().Delete(customJob.JobId,customJob.JobName);
+                }
 
                 // To test
                 Log4NetHelper.WriteInfo("ScheduleHostService-DeleteJob");
