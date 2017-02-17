@@ -7,32 +7,32 @@ using Utility;
 
 namespace ScheduleJobDesktop.UI.ManageSettings
 {
-    public partial class SqlServerDBConfigCreate : UserControl
+    public partial class SqlServerConfigEdit : UserControl
     {
-        static SqlServerDBConfigCreate instance;
-        DBConfigInfo dbConfigInfo;
+        static SqlServerConfigEdit instance;
+        SqlServerConfigInfo dbConfigInfo;
 
         /// <summary>
         /// 返回一个该控件的实例。如果之前该控件已经被创建，直接返回已创建的控件。
         /// 此处采用单键模式对控件实例进行缓存，避免因界面切换重复创建和销毁对象。
         /// </summary>
-        public static SqlServerDBConfigCreate Instance {
+        public static SqlServerConfigEdit Instance {
             get {
                 if (instance == null)
                 {
-                    instance = new SqlServerDBConfigCreate();
+                    instance = new SqlServerConfigEdit();
                 }
-                instance.dbConfigInfo = new DBConfigInfo(); // 创建新的关联对象，可以在“数据实体层”中指定对象的默认值。
+                instance.dbConfigInfo = new SqlServerConfigInfo(); // 创建新的关联对象，可以在“数据实体层”中指定对象的默认值。
                 instance.BindObjectToForm(); // 每次返回该控件的实例前，都将关联对象的默认值，绑定至界面控件进行显示。
                 return instance;
             }
         }
 
-        public static SqlServerDBConfigCreate BindJobDetail(DBConfigInfo dbConfigInfo)
+        public static SqlServerConfigEdit BindJobDetail(SqlServerConfigInfo dbConfigInfo)
         {
             if (instance == null)
             {
-                instance = new SqlServerDBConfigCreate();
+                instance = new SqlServerConfigEdit();
             }
             instance.dbConfigInfo = dbConfigInfo; // 创建新的关联对象，可以在“数据实体层”中指定对象的默认值。
             instance.BindObjectToForm(); // 每次返回该控件的实例前，都将关联对象的默认值，绑定至界面控件进行显示。
@@ -42,7 +42,7 @@ namespace ScheduleJobDesktop.UI.ManageSettings
         /// <summary>
         /// 私有的控件实例化方法，创建实例只能通过该控件的Instance属性实现。
         /// </summary>
-        private SqlServerDBConfigCreate()
+        private SqlServerConfigEdit()
         {
             InitializeComponent();
             this.Dock = DockStyle.Fill;
@@ -56,15 +56,15 @@ namespace ScheduleJobDesktop.UI.ManageSettings
             BindFormlToObject(); // 进行数据绑定
             if (dbConfigInfo.Id > 0)
             {
-                DBConfigInfoBLL.CreateInstance().Update(dbConfigInfo);
+                SqlServerConfigInfoBLL.CreateInstance().Update(dbConfigInfo);
             }
             else
             {
-                DBConfigInfoBLL.CreateInstance().Insert(dbConfigInfo);
+                SqlServerConfigInfoBLL.CreateInstance().Insert(dbConfigInfo);
             }
 
             FormSysMessage.ShowSuccessMsg("保存成功，单击“确定”按钮返回列表。");
-            FormMain.LoadNewControl(SqlServerDBConfig.Instance); // 载入该模块的信息列表界面至主窗体显示。
+            FormMain.LoadNewControl(SqlServerConfigList.Instance); // 载入该模块的信息列表界面至主窗体显示。
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace ScheduleJobDesktop.UI.ManageSettings
         /// </summary>
         private void BtnCancel_Click(object sender, EventArgs e)
         {
-            FormMain.LoadNewControl(SqlServerDBConfig.Instance); // 载入该模块的信息列表界面至主窗体显示。
+            FormMain.LoadNewControl(SqlServerConfigList.Instance); // 载入该模块的信息列表界面至主窗体显示。
         }
 
 

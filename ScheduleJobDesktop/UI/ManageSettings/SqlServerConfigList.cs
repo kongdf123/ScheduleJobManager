@@ -13,31 +13,31 @@ using DataAccess.Entity;
 
 namespace ScheduleJobDesktop.UI.ManageSettings
 {
-    public partial class SqlServerDBConfig : UserControl
+    public partial class SqlServerConfigList : UserControl
     {
-        static SqlServerDBConfig instance;
+        static SqlServerConfigList instance;
 
         /// <summary>
         /// 返回一个该控件的实例。如果之前该控件已经被创建，直接返回已创建的控件。
         /// 此处采用单键模式对控件实例进行缓存，避免因界面切换重复创建和销毁对象。
         /// </summary>
-        public static SqlServerDBConfig Instance {
+        public static SqlServerConfigList Instance {
             get {
                 if ( instance == null ) {
-                    instance = new SqlServerDBConfig();
+                    instance = new SqlServerConfigList();
                 }
                 BindDataGrid(); // 每次返回该控件的实例前，都将对DataGridView控件的数据源进行重新绑定。
                 return instance;
             }
         }
 
-        public SqlServerDBConfig() {
+        public SqlServerConfigList() {
             InitializeComponent();
             this.Dock = DockStyle.Fill;
         }
 
         private void BtnCreate_Click(object sender, EventArgs e) {
-            FormMain.LoadNewControl(SqlServerDBConfigCreate.Instance); // 载入该模块的添加信息界面至主窗体显示。
+            FormMain.LoadNewControl(SqlServerConfigEdit.Instance); // 载入该模块的添加信息界面至主窗体显示。
         }
 
         private void DgvGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -50,8 +50,8 @@ namespace ScheduleJobDesktop.UI.ManageSettings
             //用户单击DataGridView“操作”列中的“修改”按钮。
             if (DBConfigDataGridViewActionButtonCell.IsModifyButtonClick(sender, e))
             {
-                DBConfigInfo dbConfigInfo = DBConfigInfoBLL.CreateInstance().Get(id);
-                FormMain.LoadNewControl(SqlServerDBConfigCreate.BindJobDetail(dbConfigInfo));                            // 载入该模块的修改信息界面至主窗体显示。
+                SqlServerConfigInfo dbConfigInfo = SqlServerConfigInfoBLL.CreateInstance().Get(id);
+                FormMain.LoadNewControl(SqlServerConfigEdit.BindJobDetail(dbConfigInfo));                            // 载入该模块的修改信息界面至主窗体显示。
             }
 
             //用户单击DataGridView“操作”列中的“删除”按钮。
@@ -60,7 +60,7 @@ namespace ScheduleJobDesktop.UI.ManageSettings
                 DialogResult dialogResult = FormSysMessage.ShowMessage("确定要删除该任务计划吗？");
                 if (dialogResult == DialogResult.OK)
                 {
-                    DBConfigInfoBLL.CreateInstance().Delete(id);
+                    SqlServerConfigInfoBLL.CreateInstance().Delete(id);
                     BindDataGrid();
                 }
             }
@@ -75,7 +75,7 @@ namespace ScheduleJobDesktop.UI.ManageSettings
         /// </summary>
         public static void BindDataGrid() {
             instance.PageBar.DataControl = instance.DgvGrid;
-            instance.PageBar.DataSource = DBConfigInfoBLL.CreateInstance().GetPageList(instance.PageBar.PageSize, instance.PageBar.CurPage);
+            instance.PageBar.DataSource = SqlServerConfigInfoBLL.CreateInstance().GetPageList(instance.PageBar.PageSize, instance.PageBar.CurPage);
             instance.PageBar.DataBind();
         }
 

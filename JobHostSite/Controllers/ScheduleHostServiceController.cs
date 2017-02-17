@@ -37,10 +37,7 @@ namespace JobHostSite.Controllers
                 {
                     scheduler.Start();
                 }
-
-                // To test
-                Log4NetHelper.WriteInfo("ScheduleHostService-AddJob 添加任务计划。");
-
+                
                 return Json(new { Code = 1, Message = "执行成功！" });
             }
             catch (Exception ex)
@@ -87,10 +84,7 @@ namespace JobHostSite.Controllers
 
                 customJob.State = (byte)JobState.Running;
                 CustomJobDetailBLL.CreateInstance().Update(customJob);
-
-                // To test
-                Log4NetHelper.WriteInfo("ScheduleHostService-StartJob");
-
+                
                 return Json(new { Code = 1, Message = "执行成功！" });
             }
             catch (Exception ex)
@@ -116,10 +110,7 @@ namespace JobHostSite.Controllers
 
                 customJob.State = (byte)JobState.Stopping;
                 CustomJobDetailBLL.CreateInstance().Update(customJob);
-
-                // To test
-                Log4NetHelper.WriteInfo("ScheduleHostService-StopJob");
-
+                
                 return Json(new { Code = 1, Message = "执行成功！" });
             }
             catch (Exception ex)
@@ -149,10 +140,7 @@ namespace JobHostSite.Controllers
                 {
                     CustomJobDetailBLL.CreateInstance().Delete(customJob.JobId,customJob.JobName);
                 }
-
-                // To test
-                Log4NetHelper.WriteInfo("ScheduleHostService-DeleteJob");
-
+                
                 if (result)
                 {
                     return Json(new { Code = 1, Message = "执行成功！" });

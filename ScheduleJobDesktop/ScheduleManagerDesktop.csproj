@@ -104,17 +104,17 @@
     <Compile Include="UI\ManageScheduleJob\ScheduleJobList.Designer.cs">
       <DependentUpon>ScheduleJobList.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ManageSettings\SqlServerDBConfig.cs">
+    <Compile Include="UI\ManageSettings\SqlServerConfigList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\ManageSettings\SqlServerDBConfig.Designer.cs">
-      <DependentUpon>SqlServerDBConfig.cs</DependentUpon>
+    <Compile Include="UI\ManageSettings\SqlServerConfigList.Designer.cs">
+      <DependentUpon>SqlServerConfigList.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ManageSettings\SqlServerDBConfigCreate.cs">
+    <Compile Include="UI\ManageSettings\SqlServerConfigEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\ManageSettings\SqlServerDBConfigCreate.Designer.cs">
-      <DependentUpon>SqlServerDBConfigCreate.cs</DependentUpon>
+    <Compile Include="UI\ManageSettings\SqlServerConfigEdit.Designer.cs">
+      <DependentUpon>SqlServerConfigEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\UserControls\Button.cs">
       <SubType>UserControl</SubType>
@@ -167,11 +167,11 @@
     <EmbeddedResource Include="UI\ManageScheduleJob\ScheduleJobList.resx">
       <DependentUpon>ScheduleJobList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\ManageSettings\SqlServerDBConfig.resx">
-      <DependentUpon>SqlServerDBConfig.cs</DependentUpon>
+    <EmbeddedResource Include="UI\ManageSettings\SqlServerConfigList.resx">
+      <DependentUpon>SqlServerConfigList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\ManageSettings\SqlServerDBConfigCreate.resx">
-      <DependentUpon>SqlServerDBConfigCreate.cs</DependentUpon>
+    <EmbeddedResource Include="UI\ManageSettings\SqlServerConfigEdit.resx">
+      <DependentUpon>SqlServerConfigEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UserControls\Button.resx">
       <DependentUpon>Button.cs</DependentUpon>

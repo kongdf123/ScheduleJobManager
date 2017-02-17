@@ -8,14 +8,14 @@ using System.Text;
 
 namespace DataAccess.DAL
 {
-    public class DBConfigInfoDAL
+    public class SqlServerConfigInfoDAL
     {
-        public static DBConfigInfoDAL CreateInstance()
+        public static SqlServerConfigInfoDAL CreateInstance()
         {
-            return new DBConfigInfoDAL();
+            return new SqlServerConfigInfoDAL();
         }
 
-        public int Insert(DBConfigInfo dbConfigInfo)
+        public int Insert(SqlServerConfigInfo dbConfigInfo)
         {
             dbConfigInfo.UpdatedDate = DateTime.Now;
             dbConfigInfo.CreatedDate = DateTime.Now;
@@ -61,7 +61,7 @@ namespace DataAccess.DAL
             return MySqlDbHelper.ExecuteScalar<int>(sqlText, parameters);
         }
 
-        public int Update(DBConfigInfo dbConfigInfo)
+        public int Update(SqlServerConfigInfo dbConfigInfo)
         {
             dbConfigInfo.UpdatedDate = DateTime.Now;
             string sqlText = @"UPDATE `custom_db_config`
@@ -104,9 +104,9 @@ namespace DataAccess.DAL
             return MySqlDbHelper.ExecuteNonQuery(sqlText, parameters);
         }
 
-        public DBConfigInfo Get(int id)
+        public SqlServerConfigInfo Get(int id)
         {
-            DBConfigInfo dbConfigInfo = null;
+            SqlServerConfigInfo dbConfigInfo = null;
             string sqlText = @" SELECT `Id`,
                                     `ServerAddress`,
                                     `DBName`,
@@ -128,7 +128,7 @@ namespace DataAccess.DAL
             MySqlDataReader sqlDataReader = MySqlDbHelper.ExecuteReader(sqlText, parameters);
             if (sqlDataReader.Read())
             {
-                dbConfigInfo = new DBConfigInfo();
+                dbConfigInfo = new SqlServerConfigInfo();
                 ReadRecordData(sqlDataReader, dbConfigInfo);
             }
             sqlDataReader.Close();
@@ -159,7 +159,7 @@ namespace DataAccess.DAL
                                     `MaxCapacity`,
                                     `StoredType`
                                 FROM `custom_db_config`  " + sqlWhere + " ORDER BY Id DESC LIMIT " + (curPage - 1) * pageSize + "," + pageSize;
-            List<DBConfigInfo> list = new List<DBConfigInfo>();
+            List<SqlServerConfigInfo> list = new List<SqlServerConfigInfo>();
             MySqlDataReader sqlDataReader = MySqlDbHelper.ExecuteReader(sqlText, listParms.ToArray());
 
             PageData pageData = new PageData();
@@ -173,7 +173,7 @@ namespace DataAccess.DAL
 
             while (sqlDataReader.Read())
             {
-                DBConfigInfo dbConfigInfo = new DBConfigInfo();
+                SqlServerConfigInfo dbConfigInfo = new SqlServerConfigInfo();
                 ReadRecordData(sqlDataReader, dbConfigInfo);
                 list.Add(dbConfigInfo);
             }
@@ -182,7 +182,7 @@ namespace DataAccess.DAL
             return pageData;
         }
 
-        void ReadRecordData(IDataReader dataReader, DBConfigInfo dbConfigInfo)
+        void ReadRecordData(IDataReader dataReader, SqlServerConfigInfo dbConfigInfo)
         {
             if (dataReader["Id"] != DBNull.Value)
                 dbConfigInfo.Id = Convert.ToInt32(dataReader["Id"]);

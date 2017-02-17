@@ -1,6 +1,6 @@
 ﻿namespace ScheduleJobDesktop.UI.ManageSettings
 {
-    partial class SqlServerDBConfigCreate
+    partial class SqlServerConfigEdit
     {
         /// <summary> 
         /// Required designer variable.

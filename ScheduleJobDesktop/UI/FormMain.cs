@@ -66,7 +66,7 @@ namespace ScheduleJobDesktop
                     FormMain.LoadNewControl(UI.ManageScheduleJob.ScheduleJobList.Instance);
                     break;
                 case "ManageDbConfig":
-                    LoadNewControl(SqlServerDBConfig.Instance); break;
+                    LoadNewControl(SqlServerConfigList.Instance); break;
                 default: break;
 
             }

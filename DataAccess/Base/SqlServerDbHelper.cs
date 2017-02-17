@@ -9,7 +9,7 @@ using Utility;
 
 namespace Service.DAL
 {
-    public class MsDbHelper
+    public class SqlServerDbHelper
     {
         static SqlConnection GetConnection()
         {
@@ -67,6 +67,26 @@ namespace Service.DAL
         public static SqlDataReader ExecuteReader(string commandText, SqlParameter[] commandParms)
         {
             SqlConnection sqlConnection = GetConnection();
+            SqlCommand sqlCommand = new SqlCommand(commandText, sqlConnection);
+            PrepareCommand(sqlCommand, commandParms);
+            try
+            {
+                SqlDataReader dbReader = sqlCommand.ExecuteReader(CommandBehavior.CloseConnection);
+                return dbReader;
+            }
+            catch (Exception ex)
+            {
+                if (sqlConnection.State == ConnectionState.Open)
+                {
+                    sqlConnection.Close();
+                }
+                throw new CustomException("系统对数据库进行操作时发生错误，请您与系统管理员联系。", ExceptionType.Error, "执行语句：" + commandText + "\n\t错误信息：" + ex.ToString());
+            }
+        }
+
+        public static SqlDataReader ExecuteReader(string connString, string commandText, SqlParameter[] commandParms)
+        {
+            SqlConnection sqlConnection = GetConnection(connString);
             SqlCommand sqlCommand = new SqlCommand(commandText, sqlConnection);
             PrepareCommand(sqlCommand, commandParms);
             try

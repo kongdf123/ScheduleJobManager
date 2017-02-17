@@ -8,14 +8,20 @@ using Utility;
 
 namespace DataAccess.BLL
 {
-    public class DBConfigInfoBLL
+    public class SqlServerConfigInfoBLL
     {
-        public static DBConfigInfoBLL CreateInstance()
-        {
-            return new DBConfigInfoBLL();
+        SqlServerConfigInfoDAL _dal;
+
+        public SqlServerConfigInfoBLL() {
+            _dal = new SqlServerConfigInfoDAL();
         }
 
-        public void CheckValid(DBConfigInfo dbConfigInfo)
+        public static SqlServerConfigInfoBLL CreateInstance()
+        {
+            return new SqlServerConfigInfoBLL();
+        }
+
+        public void CheckValid(SqlServerConfigInfo dbConfigInfo)
         {
             if (string.IsNullOrEmpty(dbConfigInfo.EquipmentNum))
             {
@@ -43,31 +49,49 @@ namespace DataAccess.BLL
             }
         }
 
-        public int Insert(DBConfigInfo dbConfigInfo)
+        public int Insert(SqlServerConfigInfo dbConfigInfo)
         {
             CheckValid(dbConfigInfo);
-            return DBConfigInfoDAL.CreateInstance().Insert(dbConfigInfo);
+            return _dal.Insert(dbConfigInfo);
         }
 
-        public int Update(DBConfigInfo dbConfigInfo)
+        public int Update(SqlServerConfigInfo dbConfigInfo)
         {
             CheckValid(dbConfigInfo);
-            return DBConfigInfoDAL.CreateInstance().Update(dbConfigInfo);
+            return _dal.Update(dbConfigInfo);
         }
 
         public int Delete(int id)
         {
-            return DBConfigInfoDAL.CreateInstance().Delete(id);
+            return _dal.Delete(id);
         }
 
-        public DBConfigInfo Get(int id)
+        public SqlServerConfigInfo Get(int id)
         {
-            return DBConfigInfoDAL.CreateInstance().Get(id);
+            return _dal.Get(id);
+        }
+
+        public List<SqlServerConfigInfo> GetAll() {
+            List<SqlServerConfigInfo> listSqlServerConfig = new List<SqlServerConfigInfo>();
+            PageData pageData =GetPageList(200, 1);
+            if (pageData.PageList != null)
+            {
+                listSqlServerConfig.AddRange(pageData.PageList.Cast<SqlServerConfigInfo>());
+            }
+
+            if (pageData.PageCount > 0)
+            {
+                for (int i = 2; i <= pageData.PageCount; i++)
+                {
+                    listSqlServerConfig.AddRange(GetPageList(200, i).PageList.Cast<SqlServerConfigInfo>());
+                }
+            }
+            return listSqlServerConfig;
         }
 
         public PageData GetPageList(int pageSize, int curPage, string dbName = "")
         {
-            return DBConfigInfoDAL.CreateInstance().GetPageList(pageSize, curPage, dbName);
+            return _dal.GetPageList(pageSize, curPage, dbName);
         }
     }
 }

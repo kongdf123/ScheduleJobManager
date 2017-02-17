@@ -44,19 +44,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\DBConfigInfoBLL.cs" />
+    <Compile Include="BLL\SqlServerConfigInfoBLL.cs" />
     <Compile Include="BLL\CutomJobDetailBLL.cs" />
-    <Compile Include="DAL\DBConfigInfoDAL.cs" />
+    <Compile Include="BLL\EventLogDetailBLL.cs" />
+    <Compile Include="DAL\SqlServerConfigInfoDAL.cs" />
     <Compile Include="DAL\CustomJobDetailDAL.cs" />
-    <Compile Include="DAL\MsDbHelper.cs" />
-    <Compile Include="DAL\MySqlDbHelper.cs" />
-    <Compile Include="DAL\PageData.cs" />
-    <Compile Include="Entity\DBConfigInfo.cs" />
-    <Compile Include="Entity\CustomJobDetail.cs" />
+    <Compile Include="Base\SqlServerDbHelper.cs" />
+    <Compile Include="Base\MySqlDbHelper.cs" />
+    <Compile Include="Base\PageData.cs" />
+    <Compile Include="DAL\EventLogDetailDAL.cs" />
+    <Compile Include="Model\SqlServerConfigInfo.cs" />
+    <Compile Include="Model\CustomJobDetail.cs" />
+    <Compile Include="Model\EventLogDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Entity\quartz-net-mysql.sql" />
+    <Content Include="Model\quartz-net-mysql.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Utility\Utility.csproj">

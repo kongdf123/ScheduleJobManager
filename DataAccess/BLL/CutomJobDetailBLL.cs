@@ -44,6 +44,31 @@ namespace DataAccess.BLL
             }
         }
 
+        /// <summary>
+        /// 获取数据取值范围的开始时间
+        /// </summary>
+        /// <param name="intervalType"></param>
+        /// <param name="interval"></param>
+        /// <returns></returns>
+        public DateTime GetFetchingStartDate(byte intervalType,int interval) {
+            DateTime startDate = DateTime.Now;
+            switch ((IntervalTypeEnum)intervalType)
+            {
+                case IntervalTypeEnum.Day:
+                    startDate = startDate.AddDays(-interval);
+                    break;
+                case IntervalTypeEnum.Hour:
+                    startDate = startDate.AddHours(-interval);
+                    break;
+                case IntervalTypeEnum.Minute:
+                    startDate = startDate.AddMinutes(-interval);
+                    break;
+                default:
+                    break;
+            }
+            return startDate;
+        }
+
         public int Insert(CustomJobDetail jobDetail)
         {
             CheckValid(jobDetail);

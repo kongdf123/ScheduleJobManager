@@ -12,7 +12,7 @@ CREATE TABLE `custom_db_config` (
   `MaxCapacity` int(10) DEFAULT NULL,
   `StoredType` smallint(1) NOT NULL COMMENT '存储方式，1：按每页，2：按数据总量',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='记录数据库连接配置信息';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='记录数据库连接配置信息';
 
 CREATE TABLE `custom_job_details` (
   `JobId` int(11) NOT NULL AUTO_INCREMENT,
