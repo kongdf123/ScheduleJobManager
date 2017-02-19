@@ -1,0 +1,13 @@
+﻿<Window x:Name="TestConnectionBtn" x:Class="TestSqlServerConnect.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestSqlServerConnect"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="423.619" Width="704.56">
+    <Grid Margin="0,0,114,86">
+        <Button x:Name="TestBtn" Content="Test Connection" HorizontalAlignment="Left" Margin="231,153,0,0" VerticalAlignment="Top" Width="231" Height="67" Click="TestBtn_Click"/>
+
+    </Grid>
+</Window>
