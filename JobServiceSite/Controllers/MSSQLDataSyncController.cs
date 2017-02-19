@@ -17,28 +17,18 @@ namespace JobServiceSite.Controllers
     public class MsSqlDataSyncController : Controller
     {
         [HttpPost]
-        public JsonResult SyncMsSqlData(string jobName)
-        {
-            try
-            {
+        public JsonResult SyncMsSqlData(string jobName) {
+            try {
                 Log4NetHelper.WriteInfo("=============同步服务开始==============");
-
-
-                string storedPath = ConfigurationManager.AppSettings["StoredEventLogFile"];
-                if (!System.IO.Directory.Exists(storedPath))
-                {
-                    System.IO.Directory.CreateDirectory(storedPath);
-                }
-
+                
                 List<SqlServerConfigInfo> listSqlServerConfig = SqlServerConfigInfoBLL.CreateInstance().GetAll();
 
                 CustomJobDetail jobDetail = CustomJobDetailBLL.CreateInstance().Get(jobName);
                 DateTime startDate = CustomJobDetailBLL.CreateInstance().GetFetchingStartDate(jobDetail.IntervalType, jobDetail.Interval);
-                Parallel.ForEach(listSqlServerConfig, (sqlServerConfig) =>
-                {
+                Parallel.ForEach(listSqlServerConfig, (sqlServerConfig) => {
                     List<EventLogDetail> listEventLogDetail = EventLogDetailBLL.CreateInstance().GetAll(sqlServerConfig.ConnString, startDate);
 
-                    ExportCVSFile(sqlServerConfig.StoredType, sqlServerConfig.PageSize, sqlServerConfig.MaxCapacity);
+                    ExportCVSFile(listEventLogDetail, sqlServerConfig.EquipmentNum, sqlServerConfig.StoredType, sqlServerConfig.PageSize, sqlServerConfig.MaxCapacity);
                 });
                 Log4NetHelper.WriteInfo("MsSqlDataSync-SyncMsSqlData 执行成功!");
 
@@ -46,25 +36,27 @@ namespace JobServiceSite.Controllers
 
                 return Json(new { Code = 1, Message = "执行成功!" });
             }
-            catch (Exception ex)
-            {
+            catch ( Exception ex ) {
                 Log4NetHelper.WriteExcepetion(ex);
                 return Json(new { Code = 0, Message = "执行失败!" });
             }
         }
 
-        public void ExportCVSFile(byte storedType, int pageSize, int maxCapacity)
-        {
+        void ExportCVSFile(List<EventLogDetail> listEventLogDetail,string equipmentNum,byte storedType, int pageSize, int maxCapacity) {
             int cvsFilePageSize = 1000;
             int cvsFileMaxCapacity = 10000;
-            if (storedType == (byte)StoredTypeEnum.PageSize)
-            {
+            if ( storedType == (byte)StoredTypeEnum.PageSize ) {
                 cvsFilePageSize = pageSize;
             }
-            else if (storedType == (byte)StoredTypeEnum.MaxCapacity)
-            {
+            else if ( storedType == (byte)StoredTypeEnum.MaxCapacity ) {
                 cvsFileMaxCapacity = maxCapacity;
             }
+                        
+            string storedPath = ConfigurationManager.AppSettings["StoredEventLogFile"];
+            if ( !System.IO.Directory.Exists(storedPath) ) {
+                System.IO.Directory.CreateDirectory(storedPath);
+            }
+
 
             //TODO
 
