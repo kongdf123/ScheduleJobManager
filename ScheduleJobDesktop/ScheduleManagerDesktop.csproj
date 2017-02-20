@@ -71,7 +71,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Constant.cs" />
     <Compile Include="UI\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
