@@ -107,6 +107,22 @@ namespace ScheduleJobDesktop.UI.UserControls
             }
         }
 
+
+        /// <summary>
+        /// 获取或设置密码字符。
+        /// </summary>
+        [Category("设置")]
+        [Description("设置背景色。")]
+        [Browsable(true)]
+        public Color BoxBackColor {
+            get {
+                return TxtInside.BackColor;
+            }
+            set {
+                TxtInside.BackColor = value;
+            }
+        }
+
         /// <summary>
         /// 输入焦点丢失时，改变相关子控件的颜色。
         /// </summary>

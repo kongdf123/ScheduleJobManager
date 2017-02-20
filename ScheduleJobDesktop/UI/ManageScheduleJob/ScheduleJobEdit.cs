@@ -19,6 +19,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
         static ScheduleJobEdit instance;
         string jobHostSite = System.Configuration.ConfigurationManager.AppSettings["JobHostSite"];
         JobState preJobState = JobState.Waiting;
+        string preCronExpression = "";
 
         /// <summary>
         /// 返回一个该控件的实例。如果之前该控件已经被创建，直接返回已创建的控件。
@@ -84,6 +85,25 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             if (jobDetail.JobId > 0)
             {
                 int effected = CustomJobDetailBLL.CreateInstance().Update(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后更新至数据库。
+                if (effected == 0)
+                {
+                    return;
+                }
+
+                #region 更新任务计划
+
+                if (preCronExpression != jobDetail.CronExpression)
+                {
+                    try
+                    {
+                        CustomJobDetailBLL.CreateInstance().ModifyJob(jobHostSite, jobDetail.JobId, jobDetail.JobName);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log4NetHelper.WriteExcepetion(ex);
+                    }
+                }
+                #endregion
 
                 #region 开启或关闭任务计划
 
@@ -140,7 +160,11 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             }
             else
             {
-                CustomJobDetailBLL.CreateInstance().Insert(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后插入至数据库。
+                int newId = CustomJobDetailBLL.CreateInstance().Insert(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后插入至数据库。
+                if (newId == 0)
+                {
+                    return;
+                }
 
                 #region 添加任务计划
 
@@ -211,6 +235,12 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
         {
             TxtScheduleChineseName.Text = jobDetail.JobChineseName;
             TxtJobIdentity.Text = jobDetail.JobName;
+            if (jobDetail.JobId > 0)
+            {
+                TxtJobIdentity.Enabled = false;
+                //TxtJobIdentity.BoxBackColor = System.Drawing.Color.Gray;
+            }
+
             TxtServiceAddress.Text = jobDetail.JobServiceURL;
             SetJobState(jobDetail.State);
             preJobState = (JobState)jobDetail.State;
@@ -224,6 +254,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                 DateTimePickerEnd.Value = jobDetail.EndDate;
             }
             SetInterval(jobDetail.IntervalType, jobDetail.Interval);
+            preCronExpression = jobDetail.CronExpression;
 
             TxtNoteDescription.Text = jobDetail.Description;  // 备注说明
         }

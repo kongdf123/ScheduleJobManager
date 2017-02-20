@@ -20,16 +20,18 @@ namespace JobHostSite.Controllers
         /// <param name="jobName"></param>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult AddJob(int jobId, string jobName)
+        public JsonResult AddJob()
         {
             try
             {
+                int jobId = Convert.ToInt32(Request["jobId"]);
+                string jobName = Request["jobName"];
                 CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobId, jobName);
 
                 IScheduler scheduler = QuartzNetHelper.GetScheduler();
                 IJobDetail job = JobBuilder.Create<CustomHttpJob>()
-                        .WithIdentity(customJob.JobName, customJob.JobGroup)
-                        .Build();
+                    .WithIdentity(customJob.JobName, customJob.JobGroup)
+                    .Build();
                 ICronTrigger trigger = (ICronTrigger)TriggerBuilder.Create()
                         .StartAt(customJob.StartDate)
                         .EndAt(customJob.EndDate)
@@ -52,6 +54,48 @@ namespace JobHostSite.Controllers
                 return Json(new { Code = 0, Message = "执行失败！" });
             }
         }
+
+        /// <summary>
+        /// 修改任务
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult ModifyJob()
+        {
+            try
+            {
+                int jobId = Convert.ToInt32(Request["jobId"]);
+                string jobName = Request["jobName"];
+                CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobId, jobName);
+
+                IScheduler scheduler = QuartzNetHelper.GetScheduler();
+                var jobKey = JobKey.Create(customJob.JobName, customJob.JobGroup);
+                if (scheduler.CheckExists(jobKey))
+                {
+                    scheduler.DeleteJob(jobKey);
+                }
+
+                IJobDetail job = JobBuilder.Create<CustomHttpJob>()
+                    .WithIdentity(customJob.JobName, customJob.JobGroup)
+                    .Build();
+                ICronTrigger trigger = (ICronTrigger)TriggerBuilder.Create()
+                        .StartAt(customJob.StartDate)
+                        .EndAt(customJob.EndDate)
+                        .WithIdentity(customJob.JobName, customJob.JobGroup)
+                        .WithCronSchedule(customJob.CronExpression)
+                        .WithDescription(customJob.Description)
+                        .Build();
+                scheduler.ScheduleJob(job, trigger);
+
+                return Json(new { Code = 1, Message = "执行成功！" });
+            }
+            catch (Exception ex)
+            {
+                Log4NetHelper.WriteExcepetion(ex);
+                return Json(new { Code = 0, Message = "执行失败！" });
+            }
+        }
+
 
         /// <summary>
         /// 启动任务计划
@@ -111,7 +155,7 @@ namespace JobHostSite.Controllers
         /// <param name="jobName"></param>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult StopJob(int jobId, string jobName)
+        public JsonResult StopJob()
         {
             try
             {
@@ -120,6 +164,8 @@ namespace JobHostSite.Controllers
                 {
                     scheduler.Start();
                 }
+                int jobId = Convert.ToInt32(Request["jobId"]);
+                string jobName = Request["jobName"];
                 CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobId, jobName);
 
                 var jobKey = JobKey.Create(customJob.JobName, customJob.JobGroup);
@@ -164,7 +210,7 @@ namespace JobHostSite.Controllers
         /// <param name="jobName"></param>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult DeleteJob(int jobId, string jobName)
+        public JsonResult DeleteJob()
         {
             try
             {
@@ -173,6 +219,8 @@ namespace JobHostSite.Controllers
                 {
                     scheduler.Start();
                 }
+                int jobId = Convert.ToInt32(Request["jobId"]);
+                string jobName = Request["jobName"];
                 CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobId, jobName);
                 scheduler.PauseTrigger(new TriggerKey(customJob.JobName, customJob.JobGroup));
                 scheduler.UnscheduleJob(new TriggerKey(customJob.JobName, customJob.JobGroup));

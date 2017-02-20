@@ -42,14 +42,10 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.PnlInterval = new System.Windows.Forms.Panel();
             this.RadioBtnDay = new System.Windows.Forms.RadioButton();
             this.label9 = new System.Windows.Forms.Label();
-            this.TxtDay = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.TxtMinute = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.RadioBtnMinute = new System.Windows.Forms.RadioButton();
             this.RadioBtnHour = new System.Windows.Forms.RadioButton();
             this.label7 = new System.Windows.Forms.Label();
-            this.TxtHour = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.TxtScheduleChineseName = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.DateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
@@ -57,15 +53,12 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.label3 = new System.Windows.Forms.Label();
             this.ComBoxFreq = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.TxtJobIdentity = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.TxtNoteDescription = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.PicNotNullScheduleServiceURL = new System.Windows.Forms.PictureBox();
             this.Lbl_ScheduleName = new System.Windows.Forms.Label();
             this.PicNotNullScheduleName = new System.Windows.Forms.PictureBox();
             this.Lbl_ManagerName = new System.Windows.Forms.Label();
-            this.TxtServiceAddress = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.Lbl_ContactPhone = new System.Windows.Forms.Label();
             this.Lbl_NoteDescription = new System.Windows.Forms.Label();
             this.PicTitleLine = new System.Windows.Forms.PictureBox();
@@ -75,6 +68,13 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.PnlInfoTitle = new System.Windows.Forms.Panel();
             this.LblModuleTitle = new System.Windows.Forms.Label();
             this.PnlFooter = new System.Windows.Forms.Panel();
+            this.TxtDay = new ScheduleJobDesktop.UI.UserControls.TextBox();
+            this.TxtMinute = new ScheduleJobDesktop.UI.UserControls.TextBox();
+            this.TxtHour = new ScheduleJobDesktop.UI.UserControls.TextBox();
+            this.TxtScheduleChineseName = new ScheduleJobDesktop.UI.UserControls.TextBox();
+            this.TxtJobIdentity = new ScheduleJobDesktop.UI.UserControls.TextBox();
+            this.TxtNoteDescription = new ScheduleJobDesktop.UI.UserControls.TextBox();
+            this.TxtServiceAddress = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.BtnSave = new ScheduleJobDesktop.UserControls.Button();
             this.BtnCancel = new ScheduleJobDesktop.UserControls.Button();
             this.PnlScrollArea.SuspendLayout();
@@ -252,32 +252,6 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.label9.Text = "分";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // TxtDay
-            // 
-            this.TxtDay.BackColor = System.Drawing.Color.White;
-            this.TxtDay.Location = new System.Drawing.Point(41, 3);
-            this.TxtDay.MaxLength = 32767;
-            this.TxtDay.Multiline = false;
-            this.TxtDay.Name = "TxtDay";
-            this.TxtDay.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtDay.PasswordChar = '\0';
-            this.TxtDay.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtDay.Size = new System.Drawing.Size(37, 27);
-            this.TxtDay.TabIndex = 27;
-            // 
-            // TxtMinute
-            // 
-            this.TxtMinute.BackColor = System.Drawing.Color.White;
-            this.TxtMinute.Location = new System.Drawing.Point(41, 58);
-            this.TxtMinute.MaxLength = 32767;
-            this.TxtMinute.Multiline = false;
-            this.TxtMinute.Name = "TxtMinute";
-            this.TxtMinute.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtMinute.PasswordChar = '\0';
-            this.TxtMinute.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtMinute.Size = new System.Drawing.Size(37, 27);
-            this.TxtMinute.TabIndex = 33;
-            // 
             // label8
             // 
             this.label8.Location = new System.Drawing.Point(89, 5);
@@ -319,32 +293,6 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.label7.TabIndex = 28;
             this.label7.Text = "小时";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // TxtHour
-            // 
-            this.TxtHour.BackColor = System.Drawing.Color.White;
-            this.TxtHour.Location = new System.Drawing.Point(41, 30);
-            this.TxtHour.MaxLength = 32767;
-            this.TxtHour.Multiline = false;
-            this.TxtHour.Name = "TxtHour";
-            this.TxtHour.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtHour.PasswordChar = '\0';
-            this.TxtHour.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtHour.Size = new System.Drawing.Size(37, 27);
-            this.TxtHour.TabIndex = 30;
-            // 
-            // TxtScheduleChineseName
-            // 
-            this.TxtScheduleChineseName.BackColor = System.Drawing.Color.White;
-            this.TxtScheduleChineseName.Location = new System.Drawing.Point(230, 93);
-            this.TxtScheduleChineseName.MaxLength = 50;
-            this.TxtScheduleChineseName.Multiline = false;
-            this.TxtScheduleChineseName.Name = "TxtScheduleChineseName";
-            this.TxtScheduleChineseName.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtScheduleChineseName.PasswordChar = '\0';
-            this.TxtScheduleChineseName.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtScheduleChineseName.Size = new System.Drawing.Size(199, 27);
-            this.TxtScheduleChineseName.TabIndex = 22;
             // 
             // label6
             // 
@@ -416,19 +364,6 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
-            // TxtJobIdentity
-            // 
-            this.TxtJobIdentity.BackColor = System.Drawing.Color.White;
-            this.TxtJobIdentity.Location = new System.Drawing.Point(230, 133);
-            this.TxtJobIdentity.MaxLength = 20;
-            this.TxtJobIdentity.Multiline = false;
-            this.TxtJobIdentity.Name = "TxtJobIdentity";
-            this.TxtJobIdentity.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtJobIdentity.PasswordChar = '\0';
-            this.TxtJobIdentity.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtJobIdentity.Size = new System.Drawing.Size(131, 27);
-            this.TxtJobIdentity.TabIndex = 8;
-            // 
             // label2
             // 
             this.label2.Location = new System.Drawing.Point(140, 123);
@@ -448,19 +383,6 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.label1.TabIndex = 6;
             this.label1.Text = "执行频率：";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // TxtNoteDescription
-            // 
-            this.TxtNoteDescription.BackColor = System.Drawing.Color.White;
-            this.TxtNoteDescription.Location = new System.Drawing.Point(230, 424);
-            this.TxtNoteDescription.MaxLength = 200;
-            this.TxtNoteDescription.Multiline = true;
-            this.TxtNoteDescription.Name = "TxtNoteDescription";
-            this.TxtNoteDescription.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtNoteDescription.PasswordChar = '\0';
-            this.TxtNoteDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TxtNoteDescription.Size = new System.Drawing.Size(400, 66);
-            this.TxtNoteDescription.TabIndex = 0;
             // 
             // PicNotNullScheduleServiceURL
             // 
@@ -499,19 +421,6 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.Lbl_ManagerName.TabIndex = 3;
             this.Lbl_ManagerName.Text = "服务地址：";
             this.Lbl_ManagerName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // TxtServiceAddress
-            // 
-            this.TxtServiceAddress.BackColor = System.Drawing.Color.White;
-            this.TxtServiceAddress.Location = new System.Drawing.Point(230, 170);
-            this.TxtServiceAddress.MaxLength = 255;
-            this.TxtServiceAddress.Multiline = false;
-            this.TxtServiceAddress.Name = "TxtServiceAddress";
-            this.TxtServiceAddress.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtServiceAddress.PasswordChar = '\0';
-            this.TxtServiceAddress.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtServiceAddress.Size = new System.Drawing.Size(352, 27);
-            this.TxtServiceAddress.TabIndex = 0;
             // 
             // Lbl_ContactPhone
             // 
@@ -606,6 +515,97 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             this.PnlFooter.Name = "PnlFooter";
             this.PnlFooter.Size = new System.Drawing.Size(830, 54);
             this.PnlFooter.TabIndex = 3;
+            // 
+            // TxtDay
+            // 
+            this.TxtDay.BackColor = System.Drawing.Color.White;
+            this.TxtDay.Location = new System.Drawing.Point(41, 3);
+            this.TxtDay.MaxLength = 32767;
+            this.TxtDay.Multiline = false;
+            this.TxtDay.Name = "TxtDay";
+            this.TxtDay.Padding = new System.Windows.Forms.Padding(1);
+            this.TxtDay.PasswordChar = '\0';
+            this.TxtDay.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtDay.Size = new System.Drawing.Size(37, 27);
+            this.TxtDay.TabIndex = 27;
+            // 
+            // TxtMinute
+            // 
+            this.TxtMinute.BackColor = System.Drawing.Color.White;
+            this.TxtMinute.Location = new System.Drawing.Point(41, 58);
+            this.TxtMinute.MaxLength = 32767;
+            this.TxtMinute.Multiline = false;
+            this.TxtMinute.Name = "TxtMinute";
+            this.TxtMinute.Padding = new System.Windows.Forms.Padding(1);
+            this.TxtMinute.PasswordChar = '\0';
+            this.TxtMinute.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtMinute.Size = new System.Drawing.Size(37, 27);
+            this.TxtMinute.TabIndex = 33;
+            // 
+            // TxtHour
+            // 
+            this.TxtHour.BackColor = System.Drawing.Color.White;
+            this.TxtHour.Location = new System.Drawing.Point(41, 30);
+            this.TxtHour.MaxLength = 32767;
+            this.TxtHour.Multiline = false;
+            this.TxtHour.Name = "TxtHour";
+            this.TxtHour.Padding = new System.Windows.Forms.Padding(1);
+            this.TxtHour.PasswordChar = '\0';
+            this.TxtHour.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtHour.Size = new System.Drawing.Size(37, 27);
+            this.TxtHour.TabIndex = 30;
+            // 
+            // TxtScheduleChineseName
+            // 
+            this.TxtScheduleChineseName.BackColor = System.Drawing.Color.White;
+            this.TxtScheduleChineseName.Location = new System.Drawing.Point(230, 93);
+            this.TxtScheduleChineseName.MaxLength = 50;
+            this.TxtScheduleChineseName.Multiline = false;
+            this.TxtScheduleChineseName.Name = "TxtScheduleChineseName";
+            this.TxtScheduleChineseName.Padding = new System.Windows.Forms.Padding(1);
+            this.TxtScheduleChineseName.PasswordChar = '\0';
+            this.TxtScheduleChineseName.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtScheduleChineseName.Size = new System.Drawing.Size(199, 27);
+            this.TxtScheduleChineseName.TabIndex = 22;
+            // 
+            // TxtJobIdentity
+            // 
+            this.TxtJobIdentity.BackColor = System.Drawing.Color.White;
+            this.TxtJobIdentity.Location = new System.Drawing.Point(230, 133);
+            this.TxtJobIdentity.MaxLength = 20;
+            this.TxtJobIdentity.Multiline = false;
+            this.TxtJobIdentity.Name = "TxtJobIdentity";
+            this.TxtJobIdentity.Padding = new System.Windows.Forms.Padding(1);
+            this.TxtJobIdentity.PasswordChar = '\0';
+            this.TxtJobIdentity.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtJobIdentity.Size = new System.Drawing.Size(131, 27);
+            this.TxtJobIdentity.TabIndex = 8;
+            // 
+            // TxtNoteDescription
+            // 
+            this.TxtNoteDescription.BackColor = System.Drawing.Color.White;
+            this.TxtNoteDescription.Location = new System.Drawing.Point(230, 424);
+            this.TxtNoteDescription.MaxLength = 200;
+            this.TxtNoteDescription.Multiline = true;
+            this.TxtNoteDescription.Name = "TxtNoteDescription";
+            this.TxtNoteDescription.Padding = new System.Windows.Forms.Padding(1);
+            this.TxtNoteDescription.PasswordChar = '\0';
+            this.TxtNoteDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtNoteDescription.Size = new System.Drawing.Size(400, 66);
+            this.TxtNoteDescription.TabIndex = 0;
+            // 
+            // TxtServiceAddress
+            // 
+            this.TxtServiceAddress.BackColor = System.Drawing.Color.White;
+            this.TxtServiceAddress.Location = new System.Drawing.Point(230, 170);
+            this.TxtServiceAddress.MaxLength = 255;
+            this.TxtServiceAddress.Multiline = false;
+            this.TxtServiceAddress.Name = "TxtServiceAddress";
+            this.TxtServiceAddress.Padding = new System.Windows.Forms.Padding(1);
+            this.TxtServiceAddress.PasswordChar = '\0';
+            this.TxtServiceAddress.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtServiceAddress.Size = new System.Drawing.Size(352, 27);
+            this.TxtServiceAddress.TabIndex = 0;
             // 
             // BtnSave
             // 

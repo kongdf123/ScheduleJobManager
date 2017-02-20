@@ -47,7 +47,7 @@ namespace DataAccess.BLL
 
         public void AddJob(string jobHostSite, int jobId, string jobName)
         {
-            var respResult = HttpHelper.SendPost(jobHostSite + "ScheduleHostService/AddJob", "jobId=" + jobId + "&jobName=" + jobName);
+            var respResult = HttpHelper.SendPost(jobHostSite + "/ScheduleHostService/AddJob?jobId=" + jobId + "&jobName=" + jobName,"");
             if (!string.IsNullOrEmpty(respResult))
             {
                 ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
@@ -59,9 +59,23 @@ namespace DataAccess.BLL
             throw new CustomException("任务添加失败", ExceptionType.Error);
         }
 
+        public void ModifyJob(string jobHostSite, int jobId, string jobName)
+        {
+            var respResult = HttpHelper.SendPost(jobHostSite + "/ScheduleHostService/ModifyJob?jobId=" + jobId + "&jobName=" + jobName, "");
+            if (!string.IsNullOrEmpty(respResult))
+            {
+                ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
+                if (respJson.Code == 1)
+                {
+                    return;
+                }
+            }
+            throw new CustomException("任务更新失败", ExceptionType.Error);
+        }
+
         public void StartJob(string jobHostSite, int jobId, string jobName)
         {
-            var respResult = HttpHelper.SendPost(jobHostSite + "ScheduleHostService/StartJob", "jobId=" + jobId + "&jobName=" + jobName);
+            var respResult = HttpHelper.SendPost(jobHostSite + "/ScheduleHostService/StartJob?jobId=" + jobId + "&jobName=" + jobName,"");
             if (!string.IsNullOrEmpty(respResult))
             {
                 ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
@@ -74,7 +88,7 @@ namespace DataAccess.BLL
         }
 
         public void StopJob(string jobHostSite,int jobId,string jobName) {
-            var respResult = HttpHelper.SendPost(jobHostSite + "ScheduleHostService/StopJob", "jobId=" + jobId + "&jobName=" + jobName);
+            var respResult = HttpHelper.SendPost(jobHostSite + "/ScheduleHostService/StopJob?jobId=" + jobId + "&jobName=" + jobName,"");
             if (!string.IsNullOrEmpty(respResult))
             {
                 ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
