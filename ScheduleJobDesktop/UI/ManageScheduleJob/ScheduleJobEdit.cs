@@ -84,6 +84,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             BindFormlToObject(); // 进行数据绑定
             if (jobDetail.JobId > 0)
             {
+
                 int effected = CustomJobDetailBLL.CreateInstance().Update(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后更新至数据库。
                 if (effected == 0)
                 {
@@ -272,17 +273,29 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                         {
                             break;
                         }
+                        if (DataValid.GetNullOrInt(TxtDay.Text).Value>30)
+                        {
+                            throw new CustomException("天数间隔不能大于30！", ExceptionType.Warn);
+                        }
                         return Tuple.Create<byte, int>((byte)IntervalTypeEnum.Day, DataValid.GetNullOrInt(TxtDay.Text).Value);
                     case "RadioBtnHour":
                         if (string.IsNullOrEmpty(TxtHour.Text))
                         {
                             break;
                         }
+                        if (DataValid.GetNullOrInt(TxtHour.Text).Value > 60)
+                        {
+                            throw new CustomException("小时间隔不能大于60！", ExceptionType.Warn);
+                        }
                         return Tuple.Create<byte, int>((byte)IntervalTypeEnum.Hour, DataValid.GetNullOrInt(TxtHour.Text).Value);
                     case "RadioBtnMinute":
                         if (string.IsNullOrEmpty(TxtMinute.Text))
                         {
                             break;
+                        }
+                        if (DataValid.GetNullOrInt(TxtMinute.Text).Value > 60)
+                        {
+                            throw new CustomException("分钟间隔不能大于60！", ExceptionType.Warn);
                         }
                         return Tuple.Create<byte, int>((byte)IntervalTypeEnum.Minute, DataValid.GetNullOrInt(TxtMinute.Text).Value);
                     default:

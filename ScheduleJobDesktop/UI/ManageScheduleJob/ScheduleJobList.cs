@@ -7,6 +7,7 @@ using DataAccess.Entity;
 using DataAccess.BLL;
 using ServiceHost.Common;
 using Utility;
+using ScheduleJobDesktop.UI.ManageSettings;
 
 namespace ScheduleJobDesktop.UI.ManageScheduleJob
 {
@@ -158,6 +159,11 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
         {
             SolidBrush b = new SolidBrush(DgvGrid.RowHeadersDefaultCellStyle.ForeColor);
             e.Graphics.DrawString((e.RowIndex + 1 + instance.PageBar.PageSize * (instance.PageBar.CurPage - 1)).ToString(System.Globalization.CultureInfo.CurrentUICulture), this.DgvGrid.DefaultCellStyle.Font, b, e.RowBounds.Location.X + 20, e.RowBounds.Location.Y + 4);
+        }
+
+        private void BtnNavToSqlServerConfig_Click(object sender, EventArgs e)
+        {
+            FormMain.LoadNewControl(SqlServerConfigList.Instance); // 载入该模块的添加信息界面至主窗体显示。
         }
     }
 }

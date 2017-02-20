@@ -31,6 +31,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PnlMainArea = new System.Windows.Forms.Panel();
             this.DgvGrid = new System.Windows.Forms.DataGridView();
+            this.RowNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JobChineseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ScheduleJobName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JobStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JobStateCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColAction = new ScheduleJobDesktop.UI.UserControls.JobDataGridViewActionButtonColumn();
             this.PnlTopTitle = new System.Windows.Forms.Panel();
             this.PicTitleLine = new System.Windows.Forms.PictureBox();
             this.PageBar = new ScheduleJobDesktop.UI.UserControls.PageBar();
@@ -41,14 +49,7 @@
             this.BtnCreate = new ScheduleJobDesktop.UserControls.Button();
             this.jobDataGridViewActionButtonColumn1 = new ScheduleJobDesktop.UI.UserControls.JobDataGridViewActionButtonColumn();
             this.dataGridViewActionButtonColumn1 = new ScheduleJobDesktop.UI.UserControls.JobDataGridViewActionButtonColumn();
-            this.RowNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.JobChineseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ScheduleJobName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.JobStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.JobStateCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColAction = new ScheduleJobDesktop.UI.UserControls.JobDataGridViewActionButtonColumn();
+            this.BtnNavToSqlServerConfig = new ScheduleJobDesktop.UserControls.Button();
             this.PnlMainArea.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvGrid)).BeginInit();
             this.PnlTopTitle.SuspendLayout();
@@ -119,6 +120,70 @@
             this.DgvGrid.TabIndex = 0;
             this.DgvGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvGrid_CellMouseClick);
             this.DgvGrid.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvGrid_RowPostPaint);
+            // 
+            // RowNum
+            // 
+            this.RowNum.DataPropertyName = "RowNum";
+            this.RowNum.HeaderText = "序号";
+            this.RowNum.Name = "RowNum";
+            this.RowNum.ReadOnly = true;
+            this.RowNum.Width = 80;
+            // 
+            // JobChineseName
+            // 
+            this.JobChineseName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.JobChineseName.DataPropertyName = "JobChineseName";
+            this.JobChineseName.HeaderText = "任务名称";
+            this.JobChineseName.Name = "JobChineseName";
+            this.JobChineseName.ReadOnly = true;
+            // 
+            // ScheduleJobName
+            // 
+            this.ScheduleJobName.DataPropertyName = "JobName";
+            this.ScheduleJobName.HeaderText = "任务代号";
+            this.ScheduleJobName.Name = "ScheduleJobName";
+            this.ScheduleJobName.ReadOnly = true;
+            this.ScheduleJobName.Width = 80;
+            // 
+            // JobStatus
+            // 
+            this.JobStatus.DataPropertyName = "StateDescription";
+            this.JobStatus.HeaderText = "执行状态";
+            this.JobStatus.Name = "JobStatus";
+            this.JobStatus.ReadOnly = true;
+            this.JobStatus.Width = 80;
+            // 
+            // JobStateCode
+            // 
+            this.JobStateCode.DataPropertyName = "State";
+            this.JobStateCode.HeaderText = "执行状态代码";
+            this.JobStateCode.Name = "JobStateCode";
+            this.JobStateCode.ReadOnly = true;
+            this.JobStateCode.Visible = false;
+            this.JobStateCode.Width = 10;
+            // 
+            // StartTime
+            // 
+            this.StartTime.DataPropertyName = "StartDate";
+            this.StartTime.HeaderText = "开始时间";
+            this.StartTime.Name = "StartTime";
+            this.StartTime.ReadOnly = true;
+            // 
+            // EndTime
+            // 
+            this.EndTime.DataPropertyName = "EndDate";
+            this.EndTime.HeaderText = "结束时间";
+            this.EndTime.Name = "EndTime";
+            this.EndTime.ReadOnly = true;
+            // 
+            // ColAction
+            // 
+            this.ColAction.DataPropertyName = "JobId";
+            this.ColAction.HeaderText = "操作";
+            this.ColAction.Name = "ColAction";
+            this.ColAction.ReadOnly = true;
+            this.ColAction.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColAction.Width = 240;
             // 
             // PnlTopTitle
             // 
@@ -191,6 +256,7 @@
             // PnlFooter
             // 
             this.PnlFooter.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.FooterBG;
+            this.PnlFooter.Controls.Add(this.BtnNavToSqlServerConfig);
             this.PnlFooter.Controls.Add(this.BtnCreate);
             this.PnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PnlFooter.Location = new System.Drawing.Point(0, 602);
@@ -226,78 +292,25 @@
             this.dataGridViewActionButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewActionButtonColumn1.Width = 120;
             // 
-            // RowNum
+            // BtnNavToSqlServerConfig
             // 
-            this.RowNum.DataPropertyName = "RowNum";
-            this.RowNum.HeaderText = "序号";
-            this.RowNum.Name = "RowNum";
-            this.RowNum.ReadOnly = true;
-            this.RowNum.Width = 80;
+            this.BtnNavToSqlServerConfig.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(163)))), ((int)(((byte)(193)))));
+            this.BtnNavToSqlServerConfig.Location = new System.Drawing.Point(574, 7);
+            this.BtnNavToSqlServerConfig.Name = "BtnNavToSqlServerConfig";
+            this.BtnNavToSqlServerConfig.Padding = new System.Windows.Forms.Padding(1);
+            this.BtnNavToSqlServerConfig.Size = new System.Drawing.Size(134, 26);
+            this.BtnNavToSqlServerConfig.TabIndex = 1;
+            this.BtnNavToSqlServerConfig.Text = "SqlServer7.0 连接管理";
+            this.BtnNavToSqlServerConfig.Click += new System.EventHandler(this.BtnNavToSqlServerConfig_Click);
             // 
-            // JobChineseName
-            // 
-            this.JobChineseName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.JobChineseName.DataPropertyName = "JobChineseName";
-            this.JobChineseName.HeaderText = "任务名称";
-            this.JobChineseName.Name = "JobChineseName";
-            this.JobChineseName.ReadOnly = true;
-            // 
-            // ScheduleJobName
-            // 
-            this.ScheduleJobName.DataPropertyName = "JobName";
-            this.ScheduleJobName.HeaderText = "任务代号";
-            this.ScheduleJobName.Name = "ScheduleJobName";
-            this.ScheduleJobName.ReadOnly = true;
-            this.ScheduleJobName.Width = 80;
-            // 
-            // JobStatus
-            // 
-            this.JobStatus.DataPropertyName = "StateDescription";
-            this.JobStatus.HeaderText = "执行状态";
-            this.JobStatus.Name = "JobStatus";
-            this.JobStatus.ReadOnly = true;
-            this.JobStatus.Width = 80;
-            // 
-            // JobStateCode
-            // 
-            this.JobStateCode.DataPropertyName = "State";
-            this.JobStateCode.HeaderText = "执行状态代码";
-            this.JobStateCode.Name = "JobStateCode";
-            this.JobStateCode.ReadOnly = true;
-            this.JobStateCode.Visible = false;
-            this.JobStateCode.Width = 10;
-            // 
-            // StartTime
-            // 
-            this.StartTime.DataPropertyName = "StartDate";
-            this.StartTime.HeaderText = "开始时间";
-            this.StartTime.Name = "StartTime";
-            this.StartTime.ReadOnly = true;
-            // 
-            // EndTime
-            // 
-            this.EndTime.DataPropertyName = "EndDate";
-            this.EndTime.HeaderText = "结束时间";
-            this.EndTime.Name = "EndTime";
-            this.EndTime.ReadOnly = true;
-            // 
-            // ColAction
-            // 
-            this.ColAction.DataPropertyName = "JobId";
-            this.ColAction.HeaderText = "操作";
-            this.ColAction.Name = "ColAction";
-            this.ColAction.ReadOnly = true;
-            this.ColAction.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColAction.Width = 240;
-            // 
-            // Default
+            // ScheduleJobList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.PnlFooter);
             this.Controls.Add(this.PnlMainArea);
-            this.Name = "Default";
+            this.Name = "ScheduleJobList";
             this.Size = new System.Drawing.Size(830, 650);
             this.PnlMainArea.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgvGrid)).EndInit();
@@ -333,5 +346,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn StartTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn EndTime;
         private UserControls.JobDataGridViewActionButtonColumn ColAction;
+        private ScheduleJobDesktop.UserControls.Button BtnNavToSqlServerConfig;
     }
 }
