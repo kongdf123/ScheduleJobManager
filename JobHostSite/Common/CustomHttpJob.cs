@@ -11,7 +11,7 @@ using Utility;
 
 namespace JobHost.Common
 {
-    public class DataSyncHttpJob : IJob
+    public class CustomHttpJob : IJob
     {
         public void Execute(IJobExecutionContext context)
         {

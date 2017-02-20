@@ -42,7 +42,8 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
         }
 
         public delegate void RefreshDataGrid(FormSysMessage formSysMessage, string message);
-        public void SetLoadingDialog(FormSysMessage formSysMessage,string message) {
+        public void SetLoadingDialog(FormSysMessage formSysMessage, string message)
+        {
             BindDataGrid();
             formSysMessage.SetMessage(message);
             System.Threading.Thread.Sleep(2000);
@@ -56,22 +57,24 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                 return;
             }
 
+            int jobId = Convert.ToInt32(DgvGrid["ColAction", e.RowIndex].Value.ToString()); // 获取所要修改关联对象的主键。
+            string jobIdentity = DgvGrid["ScheduleJobName", e.RowIndex].Value.ToString();
+            CustomJobDetail jobDetail = CustomJobDetailBLL.CreateInstance().Get(jobId, jobIdentity);
+
+            #region 修改
+
             //用户单击DataGridView“操作”列中的“修改”按钮。
             if (JobDataGridViewActionButtonCell.IsModifyButtonClick(sender, e))
             {
-                int jobId = Convert.ToInt32(DgvGrid["ColAction", e.RowIndex].Value.ToString()); // 获取所要修改关联对象的主键。
-                string jobIdentity = DgvGrid["ScheduleJobName", e.RowIndex].Value.ToString();
-
-                CustomJobDetail jobDetail = CustomJobDetailBLL.CreateInstance().Get(jobId, jobIdentity);
                 FormMain.LoadNewControl(ScheduleJobEdit.BindJobDetail(jobDetail));                            // 载入该模块的修改信息界面至主窗体显示。
             }
+            #endregion
+
+            #region 删除
 
             //用户单击DataGridView“操作”列中的“删除”按钮。
             if (JobDataGridViewActionButtonCell.IsDeleteButtonClick(sender, e))
             {
-                int jobId = Convert.ToInt32(DgvGrid["ColAction", e.RowIndex].Value.ToString()); // 获取所要修改关联对象的主键。
-                string jobIdentity = DgvGrid["ScheduleJobName", e.RowIndex].Value.ToString();
-
                 DialogResult dialogResult = FormSysMessage.ShowMessage("确定要删除该任务计划吗？");
                 if (dialogResult == DialogResult.OK)
                 {
@@ -79,41 +82,25 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                     BindDataGrid();
                 }
             }
+            #endregion
 
             #region 启动任务计划
 
             //用户单击DataGridView“操作”列中的“启动”按钮。
             if (JobDataGridViewActionButtonCell.IsStartButtonClick(sender, e))
             {
-                int jobId = Convert.ToInt32(DgvGrid["ColAction", e.RowIndex].Value.ToString()); // 获取所要修改关联对象的主键。
-                string jobIdentity = DgvGrid["ScheduleJobName", e.RowIndex].Value.ToString();
-
                 var formSysMessage = FormSysMessage.ShowLoading();
                 Task.Factory.StartNew(() =>
                 {
                     try
                     {
-                        var respResult = HttpHelper.SendPost(jobHostSite + "ScheduleHostService/StartJob?jobId=" + jobId + "&jobName=" + jobIdentity, "");
-                        if (!string.IsNullOrEmpty(respResult))
-                        {
-                            ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
-                            if (respJson.Code == 1)
-                            {
-                                this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "执行成功。");
-                            }
-                            else
-                            {
-                                this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "执行失败，请重试。");
-                            }
-                        }
-                        else
-                        {
-                            this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "执行失败，请重试。");
-                        }
+                        CustomJobDetailBLL.CreateInstance().StartJob(jobHostSite, jobId, jobIdentity);
+                        this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "启动任务计划成功。");
                     }
                     catch (Exception ex)
                     {
                         Log4NetHelper.WriteExcepetion(ex);
+                        this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "启动任务计划失败。");
                     }
                 });
             }
@@ -125,43 +112,24 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             //用户单击DataGridView“操作”列中的“停止”按钮。
             if (JobDataGridViewActionButtonCell.IsStopButtonClick(sender, e))
             {
-                int jobId = Convert.ToInt32(DgvGrid["ColAction", e.RowIndex].Value.ToString()); // 获取所要修改关联对象的主键。
-                string jobIdentity = DgvGrid["ScheduleJobName", e.RowIndex].Value.ToString();
-
                 var formSysMessage = FormSysMessage.ShowLoading();
                 Task.Factory.StartNew(() =>
                 {
                     try
                     {
-                        var respResult = HttpHelper.SendPost(jobHostSite + "ScheduleHostService/StopJob?jobId=" + jobId + "&jobName=" + jobIdentity, "");
-                        if (!string.IsNullOrEmpty(respResult))
-                        {
-                            ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
-                            if (respJson.Code == 1)
-                            {
-                                this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "执行成功。");
-                            }
-                            else
-                            {
-                                this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "执行失败，请重试。");
-                            }
-                        }
-                        else
-                        {
-                            this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "执行失败，请重试。");
-                        }
+                        CustomJobDetailBLL.CreateInstance().StopJob(jobHostSite, jobId, jobIdentity);
+                        this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "停止任务计划成功。");
                     }
                     catch (Exception ex)
                     {
                         Log4NetHelper.WriteExcepetion(ex);
+                        this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "停止任务计划失败。");
                     }
                 });
             }
 
             #endregion
         }
-
-
 
         private void PageBar_PageChanged(object sender, EventArgs e)
         {

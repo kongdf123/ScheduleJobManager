@@ -20,10 +20,10 @@ namespace Service.DAL
         {
             string sqlWhere = "";
             List<SqlParameter> listParms = new List<SqlParameter>();
-            sqlWhere = " WHERE EventDate>@EventDate ";
+            sqlWhere = " AND EventDate>@EventDate ";
             listParms.Add(new SqlParameter("@EventDate", SqlDbType.DateTime) { Value = startDate.ToString("yyyy-MM-dd HH:mm:ss") });
 
-            int recordsTotal = SqlServerDbHelper.ExecuteScalar<int>("SELECT COUNT(*) FROM mc_event_log " + sqlWhere, listParms.ToArray());
+            int recordsTotal = SqlServerDbHelper.ExecuteScalar<int>("SELECT COUNT(*) FROM mc_event_log WHERE Operator<>'' " + sqlWhere, listParms.ToArray());
 
             string sqlText = " SELECT TOP " + pageSize + @" EventId,
                                 EventDate,
@@ -31,7 +31,8 @@ namespace Service.DAL
                                 ProductName,
                                 UnitStatusID
                             FROM mc_event_log 
-                            " + sqlWhere + " AND EventId NOT IN( SELECT TOP " + (curPage - 1) * pageSize + @" EventId FROM mc_event_log " + sqlWhere + @" ORDER BY EventId DESC) 
+                            WHERE Operator<>''
+                            " + sqlWhere + " AND EventId NOT IN( SELECT TOP " + (curPage - 1) * pageSize + @" EventId FROM mc_event_log WHERE Operator<>'' " + sqlWhere + @" ORDER BY EventId DESC) 
                             ORDER BY EventId DESC ";
             List<EventLogDetail> list = new List<EventLogDetail>();
             SqlDataReader sqlDataReader = SqlServerDbHelper.ExecuteReader(connString, sqlText, listParms.ToArray());

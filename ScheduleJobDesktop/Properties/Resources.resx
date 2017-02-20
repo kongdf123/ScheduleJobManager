@@ -160,9 +160,6 @@
   <data name="Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DesignerLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DesignerLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="DesignerLogo_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DesignerLogo_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -180,12 +177,6 @@
   </data>
   <data name="LogoMain" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LogoMain.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LogoManageDepartment" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LogoManageDepartment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LogoManageEmployee" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LogoManageEmployee.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LogoScheduledTask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LogoScheduledTask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -279,33 +270,6 @@
   </data>
   <data name="TitleManageDepartmentCreate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TitleManageDepartmentCreate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TitleManageDepartmentDelete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TitleManageDepartmentDelete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TitleManageDepartmentList" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TitleManageDepartmentList.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TitleManageDepartmentModify" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TitleManageDepartmentModify.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TitleManageEmployeeCreate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TitleManageEmployeeCreate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TitleManageEmployeeDelete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TitleManageEmployeeDelete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TitleManageEmployeeDetail" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TitleManageEmployeeDetail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TitleManageEmployeeList" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TitleManageEmployeeList.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TitleManageEmployeeModify" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TitleManageEmployeeModify.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TitleManageScheduleJob" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TitleManageScheduleJob.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TitleManageScheduleJob_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TitleManageScheduleJob_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

@@ -13,6 +13,12 @@ namespace JobHostSite.Controllers
 {
     public class ScheduleHostServiceController : Controller
     {
+        /// <summary>
+        /// 添加任务计划
+        /// </summary>
+        /// <param name="jobId"></param>
+        /// <param name="jobName"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult AddJob(int jobId, string jobName)
         {
@@ -21,7 +27,7 @@ namespace JobHostSite.Controllers
                 CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobId, jobName);
 
                 IScheduler scheduler = QuartzNetHelper.GetScheduler();
-                IJobDetail job = JobBuilder.Create<DataSyncHttpJob>()
+                IJobDetail job = JobBuilder.Create<CustomHttpJob>()
                         .WithIdentity(customJob.JobName, customJob.JobGroup)
                         .Build();
                 ICronTrigger trigger = (ICronTrigger)TriggerBuilder.Create()
@@ -37,7 +43,7 @@ namespace JobHostSite.Controllers
                 {
                     scheduler.Start();
                 }
-                
+
                 return Json(new { Code = 1, Message = "执行成功！" });
             }
             catch (Exception ex)
@@ -47,6 +53,10 @@ namespace JobHostSite.Controllers
             }
         }
 
+        /// <summary>
+        /// 启动任务计划
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult StartJob()
         {
@@ -68,7 +78,7 @@ namespace JobHostSite.Controllers
                 }
                 else
                 {
-                    IJobDetail job = JobBuilder.Create<DataSyncHttpJob>()
+                    IJobDetail job = JobBuilder.Create<CustomHttpJob>()
                             .WithIdentity(customJob.JobName, customJob.JobGroup)
                             .Build();
                     ICronTrigger trigger = (ICronTrigger)TriggerBuilder.Create()
@@ -79,12 +89,12 @@ namespace JobHostSite.Controllers
                             .WithDescription(customJob.Description)
                             .Build();
                     scheduler.ScheduleJob(job, trigger);
-                    scheduler.Start();
+                    scheduler.ResumeJob(jobKey);
                 }
 
                 customJob.State = (byte)JobState.Running;
                 CustomJobDetailBLL.CreateInstance().Update(customJob);
-                
+
                 return Json(new { Code = 1, Message = "执行成功！" });
             }
             catch (Exception ex)
@@ -94,6 +104,12 @@ namespace JobHostSite.Controllers
             }
         }
 
+        /// <summary>
+        /// 停止执行任务计划
+        /// </summary>
+        /// <param name="jobId"></param>
+        /// <param name="jobName"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult StopJob(int jobId, string jobName)
         {
@@ -105,12 +121,33 @@ namespace JobHostSite.Controllers
                     scheduler.Start();
                 }
                 CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobId, jobName);
-                //scheduler.ResumeTrigger(new TriggerKey(jobName, jobGroup));              
-                scheduler.PauseJob(JobKey.Create(customJob.JobName, customJob.JobGroup));
+
+                var jobKey = JobKey.Create(customJob.JobName, customJob.JobGroup);
+                if (scheduler.CheckExists(jobKey))
+                {
+                    scheduler.PauseJob(jobKey);
+                }
+                else
+                {
+                    IJobDetail job = JobBuilder.Create<CustomHttpJob>()
+                            .WithIdentity(customJob.JobName, customJob.JobGroup)
+                            .Build();
+                    ICronTrigger trigger = (ICronTrigger)TriggerBuilder.Create()
+                            .StartAt(customJob.StartDate)
+                            .EndAt(customJob.EndDate)
+                            .WithIdentity(customJob.JobName, customJob.JobGroup)
+                            .WithCronSchedule(customJob.CronExpression)
+                            .WithDescription(customJob.Description)
+                            .Build();
+                    scheduler.ScheduleJob(job, trigger);
+                    scheduler.Start();
+                    scheduler.PauseJob(jobKey);
+                }
+
 
                 customJob.State = (byte)JobState.Stopping;
                 CustomJobDetailBLL.CreateInstance().Update(customJob);
-                
+
                 return Json(new { Code = 1, Message = "执行成功！" });
             }
             catch (Exception ex)
@@ -120,6 +157,12 @@ namespace JobHostSite.Controllers
             }
         }
 
+        /// <summary>
+        /// 删除任务计划
+        /// </summary>
+        /// <param name="jobId"></param>
+        /// <param name="jobName"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult DeleteJob(int jobId, string jobName)
         {
@@ -134,21 +177,26 @@ namespace JobHostSite.Controllers
                 scheduler.PauseTrigger(new TriggerKey(customJob.JobName, customJob.JobGroup));
                 scheduler.UnscheduleJob(new TriggerKey(customJob.JobName, customJob.JobGroup));
 
-                var result = scheduler.DeleteJob(JobKey.Create(customJob.JobName, customJob.JobGroup));
+                var jobKey = JobKey.Create(customJob.JobName, customJob.JobGroup);
+                if (scheduler.CheckExists(jobKey))
+                {
+                    var result = scheduler.DeleteJob(jobKey);
 
-                if (result)
-                {
-                    CustomJobDetailBLL.CreateInstance().Delete(customJob.JobId,customJob.JobName);
+                    if (result)
+                    {
+                        CustomJobDetailBLL.CreateInstance().Delete(customJob.JobId, customJob.JobName);
+                    }
+
+                    if (result)
+                    {
+                        return Json(new { Code = 1, Message = "执行成功！" });
+                    }
+                    else
+                    {
+                        return Json(new { Code = 0, Message = "执行失败！" });
+                    }
                 }
-                
-                if (result)
-                {
-                    return Json(new { Code = 1, Message = "执行成功！" });
-                }
-                else
-                {
-                    return Json(new { Code = 0, Message = "执行失败！" });
-                }
+                return Json(new { Code = 1, Message = "执行成功！" });
             }
             catch (Exception ex)
             {

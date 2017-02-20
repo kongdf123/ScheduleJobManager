@@ -1,5 +1,6 @@
 ﻿using DataAccess.DAL;
 using DataAccess.Entity;
+using ServiceHost.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,47 @@ namespace DataAccess.BLL
             {
                 throw new CustomException("任务代号已存在，请重新输入。", ExceptionType.Warn);
             }
+        }
+
+        public void AddJob(string jobHostSite, int jobId, string jobName)
+        {
+            var respResult = HttpHelper.SendPost(jobHostSite + "ScheduleHostService/AddJob", "jobId=" + jobId + "&jobName=" + jobName);
+            if (!string.IsNullOrEmpty(respResult))
+            {
+                ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
+                if (respJson.Code == 1)
+                {
+                    return;
+                }
+            }
+            throw new CustomException("任务添加失败", ExceptionType.Error);
+        }
+
+        public void StartJob(string jobHostSite, int jobId, string jobName)
+        {
+            var respResult = HttpHelper.SendPost(jobHostSite + "ScheduleHostService/StartJob", "jobId=" + jobId + "&jobName=" + jobName);
+            if (!string.IsNullOrEmpty(respResult))
+            {
+                ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
+                if (respJson.Code == 1)
+                {
+                    return;
+                }
+            }
+            throw new CustomException("任务启动失败", ExceptionType.Error);
+        }
+
+        public void StopJob(string jobHostSite,int jobId,string jobName) {
+            var respResult = HttpHelper.SendPost(jobHostSite + "ScheduleHostService/StopJob", "jobId=" + jobId + "&jobName=" + jobName);
+            if (!string.IsNullOrEmpty(respResult))
+            {
+                ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
+                if (respJson.Code == 1)
+                {
+                    return;
+                }
+            }
+            throw new CustomException("任务关闭失败", ExceptionType.Error);
         }
 
         /// <summary>
