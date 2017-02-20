@@ -23,7 +23,7 @@ namespace JobServiceSite.Controllers
         /// <param name="jobName"></param>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult SyncMsSqlData(string jobName)
+        public JsonResult SyncMsSqlData()
         {
             try
             {
@@ -31,6 +31,7 @@ namespace JobServiceSite.Controllers
 
                 List<SqlServerConfigInfo> listSqlServerConfig = SqlServerConfigInfoBLL.CreateInstance().GetAll();
 
+                string jobName = Request["jobName"];
                 CustomJobDetail jobDetail = CustomJobDetailBLL.CreateInstance().Get(jobName);
                 DateTime startDate = CustomJobDetailBLL.CreateInstance().GetFetchingStartDate(jobDetail.IntervalType, jobDetail.Interval);
                 Parallel.ForEach(listSqlServerConfig, (sqlServerConfig) =>
@@ -58,6 +59,7 @@ namespace JobServiceSite.Controllers
                     {
                         Log4NetHelper.WriteExcepetion(ex);
                     }
+                    System.Threading.Thread.Sleep(1000);
                 });
                 Log4NetHelper.WriteInfo("MsSqlDataSync-SyncMsSqlData 执行成功!");
 
@@ -82,11 +84,12 @@ namespace JobServiceSite.Controllers
         /// <param name="maxCapacity"></param>
         void ExportCVSFile(List<EventLogDetail> listEventLogDetail, string equipmentNum, int cvsFileCapacity)
         {
-            string storedFolder = string.Format("{0}/{1}/{2}/{3}",
+            string storedFolder = string.Format("{0}/{1}/{2}/{3}/{4}/",
                                             ConfigurationManager.AppSettings["StoredEventLogFile"],
                                             DateTime.Now.Year,
                                             DateTime.Now.Month,
-                                            DateTime.Now.Day);
+                                            DateTime.Now.Day,
+                                            equipmentNum);
             if (!System.IO.Directory.Exists(storedFolder))
             {
                 System.IO.Directory.CreateDirectory(storedFolder);

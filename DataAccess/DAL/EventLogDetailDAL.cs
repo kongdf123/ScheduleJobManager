@@ -23,8 +23,12 @@ namespace Service.DAL
             sqlWhere = " AND EventDate>@EventDate ";
             listParms.Add(new SqlParameter("@EventDate", SqlDbType.DateTime) { Value = startDate.ToString("yyyy-MM-dd HH:mm:ss") });
 
-            int recordsTotal = SqlServerDbHelper.ExecuteScalar<int>("SELECT COUNT(*) FROM mc_event_log WHERE Operator<>'' " + sqlWhere, listParms.ToArray());
+            int recordsTotal = SqlServerDbHelper.ExecuteScalar<int>(connString,"SELECT COUNT(*) FROM mc_event_log WHERE Operator<>'' " + sqlWhere, listParms.ToArray());
 
+            string sqlWhere2 = "";
+            List<SqlParameter> listParms2 = new List<SqlParameter>();
+            sqlWhere2 = " AND EventDate>@EventDate ";
+            listParms2.Add(new SqlParameter("@EventDate", SqlDbType.DateTime) { Value = startDate.ToString("yyyy-MM-dd HH:mm:ss") });
             string sqlText = " SELECT TOP " + pageSize + @" EventId,
                                 EventDate,
                                 Operator,
@@ -32,10 +36,10 @@ namespace Service.DAL
                                 UnitStatusID
                             FROM mc_event_log 
                             WHERE Operator<>''
-                            " + sqlWhere + " AND EventId NOT IN( SELECT TOP " + (curPage - 1) * pageSize + @" EventId FROM mc_event_log WHERE Operator<>'' " + sqlWhere + @" ORDER BY EventId DESC) 
+                            " + sqlWhere2 + " AND EventId NOT IN( SELECT TOP " + (curPage - 1) * pageSize + @" EventId FROM mc_event_log WHERE Operator<>'' " + sqlWhere2 + @" ORDER BY EventId DESC) 
                             ORDER BY EventId DESC ";
             List<EventLogDetail> list = new List<EventLogDetail>();
-            SqlDataReader sqlDataReader = SqlServerDbHelper.ExecuteReader(connString, sqlText, listParms.ToArray());
+            SqlDataReader sqlDataReader = SqlServerDbHelper.ExecuteReader(connString, sqlText, listParms2.ToArray());
 
             PageData pageData = new PageData();
             pageData.PageSize = pageSize;

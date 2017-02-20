@@ -43,7 +43,8 @@ namespace Service.DAL
             return connection;
         }
 
-        public static DataSet ExecuteDataTable(string connString, string commandText, SqlParameter[] commandParms) {
+        public static DataSet ExecuteDataTable(string connString, string commandText, SqlParameter[] commandParms)
+        {
             SqlConnection sqlConnection = GetConnection(connString);
             SqlCommand sqlCommand = new SqlCommand(commandText, sqlConnection);
             PrepareCommand(sqlCommand, commandParms);
@@ -52,6 +53,7 @@ namespace Service.DAL
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
                 DataSet ds = new DataSet();
                 sqlDataAdapter.Fill(ds);
+                sqlCommand.Parameters.Clear();
                 return ds;
             }
             catch (Exception ex)
@@ -92,7 +94,33 @@ namespace Service.DAL
             try
             {
                 SqlDataReader dbReader = sqlCommand.ExecuteReader(CommandBehavior.CloseConnection);
+                sqlCommand.Parameters.Clear();
                 return dbReader;
+            }
+            catch (Exception ex)
+            {
+                if (sqlConnection.State == ConnectionState.Open)
+                {
+                    sqlConnection.Close();
+                }
+                throw new CustomException("系统对数据库进行操作时发生错误，请您与系统管理员联系。", ExceptionType.Error, "执行语句：" + commandText + "\n\t错误信息：" + ex.ToString());
+            }
+        }
+
+        public static T ExecuteScalar<T>(string connString, string commandText, SqlParameter[] commandParms)
+        {
+            SqlConnection sqlConnection = GetConnection(connString);
+            SqlCommand sqlCommand = new SqlCommand(commandText, sqlConnection);
+            PrepareCommand(sqlCommand, commandParms);
+            try
+            {
+                object result = sqlCommand.ExecuteScalar();
+                sqlCommand.Parameters.Clear();
+                if (result != null)
+                {
+                    return (T)Convert.ChangeType(result, typeof(T));
+                }
+                return default(T);
             }
             catch (Exception ex)
             {
@@ -112,6 +140,7 @@ namespace Service.DAL
             try
             {
                 object result = sqlCommand.ExecuteScalar();
+                sqlCommand.Parameters.Clear();
                 if (result != null)
                 {
                     return (T)Convert.ChangeType(result, typeof(T));
@@ -137,6 +166,7 @@ namespace Service.DAL
             try
             {
                 rowCount = sqlCommand.ExecuteNonQuery();
+                sqlCommand.Parameters.Clear();
                 sqlConnection.Close();
             }
             catch (Exception ex)
@@ -160,7 +190,10 @@ namespace Service.DAL
                     {
                         parameter.Value = DBNull.Value;
                     }
-                    sqlCommand.Parameters.Add(parameter);
+                    if (!sqlCommand.Parameters.Contains(parameter))
+                    {
+                        sqlCommand.Parameters.Add(parameter);
+                    }
                 }
             }
         }
