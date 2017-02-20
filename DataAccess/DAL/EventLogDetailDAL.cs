@@ -36,8 +36,8 @@ namespace Service.DAL
                                 UnitStatusID
                             FROM mc_event_log 
                             WHERE Operator<>''
-                            " + sqlWhere2 + " AND EventId NOT IN( SELECT TOP " + (curPage - 1) * pageSize + @" EventId FROM mc_event_log WHERE Operator<>'' " + sqlWhere2 + @" ORDER BY EventId DESC) 
-                            ORDER BY EventId DESC ";
+                            " + sqlWhere2 + " AND EventId NOT IN( SELECT TOP " + (curPage - 1) * pageSize + @" EventId FROM mc_event_log WHERE Operator<>'' " + sqlWhere2 + @" ORDER BY EventId DESC,EventDate ASC) 
+                            ORDER BY EventId DESC,EventDate ASC ";
             List<EventLogDetail> list = new List<EventLogDetail>();
             SqlDataReader sqlDataReader = SqlServerDbHelper.ExecuteReader(connString, sqlText, listParms2.ToArray());
 
