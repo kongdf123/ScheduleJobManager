@@ -63,7 +63,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\quartz-net-mysql.sql" />
+    <Content Include="Sql\quartz-net-custom-mysql.sql" />
+    <Content Include="Sql\quartz-net-base-tables_mysql_innodb.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Utility\Utility.csproj">
