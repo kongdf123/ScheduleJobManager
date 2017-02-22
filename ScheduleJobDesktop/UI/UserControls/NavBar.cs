@@ -47,7 +47,7 @@ namespace ScheduleJobDesktop.UserControls
             {
                 ImageButtons = new List<ImageButton>()
                 {
-                    new ImageButton("SQL7.0数据库连接信息管理","ManageDbConfig",Resources.NavBtnManageDBConfig)
+                    new ImageButton("SQL7.0数据库连接管理","ManageDbConfig",Resources.NavBtnManageDBConfig)
                 }
             } ,
             new ButtonGroup("退出系统")

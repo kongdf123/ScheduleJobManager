@@ -57,7 +57,7 @@ namespace ScheduleJobDesktop.UI.ManageSettings
             //用户单击DataGridView“操作”列中的“删除”按钮。
             if (DBConfigDataGridViewActionButtonCell.IsDeleteButtonClick(sender, e))
             { 
-                DialogResult dialogResult = FormSysMessage.ShowMessage("确定要删除该任务计划吗？");
+                DialogResult dialogResult = FormSysMessage.ShowMessage("确定要删除该项吗？");
                 if (dialogResult == DialogResult.OK)
                 {
                     SqlServerConfigInfoBLL.CreateInstance().Delete(id);
