@@ -116,7 +116,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                     }
                     else if (jobDetail.State == (byte)JobState.Stopping || jobDetail.State == (byte)JobState.Waiting)
                     {
-                        CustomJobDetailBLL.CreateInstance().StartJob(jobHostSite, jobDetail.JobId, jobDetail.JobName,
+                        CustomJobDetailBLL.CreateInstance().StopJob(jobHostSite, jobDetail.JobId, jobDetail.JobName,
                                           () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "关闭任务计划成功。"); },
                                           () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "关闭任务计划失败。"); });
                     }

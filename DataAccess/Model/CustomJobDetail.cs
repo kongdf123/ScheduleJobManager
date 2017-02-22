@@ -43,19 +43,27 @@ namespace DataAccess.Entity
         public string CronExpression {
             get {
                 string[] cronArr = new string[] { "0", "0", "*", "*", "*", "?" };//示例 0 10 18 15 3 ?        note:每年三月的第15天，下午6点10分都会被触发
+                DateTime start = StartDate;
                 switch (IntervalType)
                 {
                     case (byte)IntervalTypeEnum.Day:
                         cronArr[3] = "0/" + Interval;
+                        start = start.AddDays(Interval);
                         break;
                     case (byte)IntervalTypeEnum.Hour:
                         cronArr[2] = "0/" + Interval;
+                        start = start.AddHours(Interval);
                         break;
                     case (byte)IntervalTypeEnum.Minute:
                         cronArr[1] = "0/" + Interval;
+                        start = start.AddMinutes(Interval);
                         break;
                     default:
                         throw new Exception("没有指定任务计划执行方式。");
+                }
+                if ((ExecutedFreqEnum)ExecutedFreq== ExecutedFreqEnum.OnlyOneTime)
+                {
+                    return start.ToString("ss mm HH dd MM yyyy");
                 }
                 return string.Join(" ", cronArr);
             }
@@ -82,7 +90,7 @@ namespace DataAccess.Entity
     /// <summary>
     /// 执行频率
     /// </summary>
-    public enum ExecutedFreq : byte
+    public enum ExecutedFreqEnum : byte
     {
         /// <summary>
         /// 只执行一次
