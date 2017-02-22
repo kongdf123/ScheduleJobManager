@@ -82,116 +82,65 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             var formSysMessage = FormSysMessage.ShowLoading();
 
             BindFormlToObject(); // 进行数据绑定
-            if (jobDetail.JobId > 0)
+            try
             {
-
-                int effected = CustomJobDetailBLL.CreateInstance().Update(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后更新至数据库。
-                if (effected == 0)
+                if (jobDetail.JobId > 0)
                 {
-                    return;
-                }
-
-                #region 更新任务计划
-
-                if (preCronExpression != jobDetail.CronExpression)
-                {
-                    try
+                    int effected = CustomJobDetailBLL.CreateInstance().Update(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后更新至数据库。
+                    if (effected == 0)
                     {
-                        CustomJobDetailBLL.CreateInstance().ModifyJob(jobHostSite, jobDetail.JobId, jobDetail.JobName);
+                        return;
                     }
-                    catch (Exception ex)
-                    {
-                        Log4NetHelper.WriteExcepetion(ex);
-                    }
-                }
-                #endregion
+                    #region 更新任务计划
 
-                #region 开启或关闭任务计划
-
-                if (jobDetail.State == (byte)JobState.Running)
-                {
-                    Task.Factory.StartNew(() =>
+                    if (preCronExpression != jobDetail.CronExpression)
                     {
-                        bool isSuccess = false;
                         try
                         {
-                            CustomJobDetailBLL.CreateInstance().StartJob(jobHostSite, jobDetail.JobId, jobDetail.JobName);
-                            this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "启动任务计划成功。");
-                            isSuccess = true;
+                            CustomJobDetailBLL.CreateInstance().ModifyJob(jobHostSite, jobDetail.JobId, jobDetail.JobName);
                         }
                         catch (Exception ex)
                         {
-                            isSuccess = false;
                             Log4NetHelper.WriteExcepetion(ex);
-                            this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "启动任务计划失败。");
                         }
-                        if (!isSuccess)
-                        {
-                            jobDetail.State = (byte)preJobState;
-                            CustomJobDetailBLL.CreateInstance().Update(jobDetail);
-                        }
-                    });
-                }
-                else if (jobDetail.State == (byte)JobState.Stopping || jobDetail.State == (byte)JobState.Waiting)
-                {
-                    Task.Factory.StartNew(() =>
-                    {
-                        bool isSuccess = false;
-                        try
-                        {
-                            CustomJobDetailBLL.CreateInstance().StopJob(jobHostSite, jobDetail.JobId, jobDetail.JobName);
-                            this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "关闭任务计划成功。");
-                            isSuccess = true;
-                        }
-                        catch (Exception ex)
-                        {
-                            isSuccess = false;
-                            Log4NetHelper.WriteExcepetion(ex);
-                            this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "关闭任务计划失败。");
-                        }
-                        if (!isSuccess)
-                        {
-                            jobDetail.State = (byte)preJobState;
-                            CustomJobDetailBLL.CreateInstance().Update(jobDetail);
-                        }
-                    });
-                }
-                #endregion
+                    }
+                    #endregion
 
+                    #region 开启或关闭任务计划
+
+                    if (jobDetail.State == (byte)JobState.Running)
+                    {
+                        CustomJobDetailBLL.CreateInstance().StartJob(jobHostSite, jobDetail.JobId, jobDetail.JobName,
+                                       () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "启动任务计划成功。"); },
+                                       () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "启动任务计划失败。"); });
+                    }
+                    else if (jobDetail.State == (byte)JobState.Stopping || jobDetail.State == (byte)JobState.Waiting)
+                    {
+                        CustomJobDetailBLL.CreateInstance().StartJob(jobHostSite, jobDetail.JobId, jobDetail.JobName,
+                                          () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "关闭任务计划成功。"); },
+                                          () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "关闭任务计划失败。"); });
+                    }
+                    #endregion
+                }
+                else
+                {
+                    #region 添加任务计划
+                    int newId = CustomJobDetailBLL.CreateInstance().Insert(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后插入至数据库。
+                    if (newId == 0)
+                    {
+                        return;
+                    }
+                    CustomJobDetailBLL.CreateInstance().AddJob(jobHostSite, jobDetail.JobId, jobDetail.JobName,
+                                          () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "添加任务计划成功。"); },
+                                          () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "添加任务计划失败。"); });
+
+                    #endregion
+                }
             }
-            else
+            catch (Exception ex)
             {
-                int newId = CustomJobDetailBLL.CreateInstance().Insert(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后插入至数据库。
-                if (newId == 0)
-                {
-                    return;
-                }
-
-                #region 添加任务计划
-
-                Task.Factory.StartNew(() =>
-                {
-                    bool isSuccess = false;
-                    try
-                    {
-                        CustomJobDetailBLL.CreateInstance().AddJob(jobHostSite, jobDetail.JobId, jobDetail.JobName);
-                        this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "添加任务计划成功。");
-                        isSuccess = true;
-                    }
-                    catch (Exception ex)
-                    {
-                        isSuccess = false;
-                        Log4NetHelper.WriteExcepetion(ex);
-                        this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "添加任务计划失败。");
-                    }
-                    if (!isSuccess)
-                    {
-                        jobDetail.State = (byte)JobState.Waiting;
-                        CustomJobDetailBLL.CreateInstance().Update(jobDetail);
-                    }
-                });
-
-                #endregion
+                this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "保存失败。");
+                Log4NetHelper.WriteExcepetion(ex);
             }
         }
 
@@ -273,7 +222,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                         {
                             break;
                         }
-                        if (DataValid.GetNullOrInt(TxtDay.Text).Value>30)
+                        if (DataValid.GetNullOrInt(TxtDay.Text).Value > 30)
                         {
                             throw new CustomException("天数间隔不能大于30！", ExceptionType.Warn);
                         }

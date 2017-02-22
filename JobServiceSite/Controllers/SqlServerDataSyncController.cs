@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -17,6 +18,8 @@ namespace JobServiceSite.Controllers
 {
     public class SqlServerDataSyncController : Controller
     {
+        object lockedObj = new object();
+
         /// <summary>
         /// 执行同步任务，定期下载Sql Server 7.0上的数据记录，并以CVS文件格式保存到指定存储地址
         /// </summary>
@@ -34,33 +37,38 @@ namespace JobServiceSite.Controllers
                 string jobName = Request["jobName"];
                 CustomJobDetail jobDetail = CustomJobDetailBLL.CreateInstance().Get(jobName);
                 DateTime startDate = CustomJobDetailBLL.CreateInstance().GetFetchingStartDate(jobDetail.IntervalType, jobDetail.Interval);
-                Parallel.ForEach(listSqlServerConfig, (sqlServerConfig) =>
-                {
-                    try
-                    {
-                        List<EventLogDetail> listEventLogDetail = EventLogDetailBLL.CreateInstance().GetAll(sqlServerConfig.ConnString, startDate);
+                Parallel.ForEach(listSqlServerConfig, new ParallelOptions { MaxDegreeOfParallelism = 5 }, (sqlServerConfig) =>
+                   {
+                       Monitor.Enter(lockedObj);
+                       try
+                       {
+                           List<EventLogDetail> listEventLogDetail = EventLogDetailBLL.CreateInstance().GetAll(sqlServerConfig.ConnString, startDate);
 
-                        if (listEventLogDetail != null && listEventLogDetail.Count > 0)
-                        {
-                            int cvsFileCapacity = 1000;
-                            if (sqlServerConfig.StoredType == (byte)StoredTypeEnum.PageSize)
-                            {
-                                cvsFileCapacity = sqlServerConfig.PageSize;
-                            }
-                            else if (sqlServerConfig.StoredType == (byte)StoredTypeEnum.MaxCapacity)
-                            {
-                                cvsFileCapacity = sqlServerConfig.MaxCapacity;
-                            }
+                           if (listEventLogDetail != null && listEventLogDetail.Count > 0)
+                           {
+                               int cvsFileCapacity = 1000;
+                               if (sqlServerConfig.StoredType == (byte)StoredTypeEnum.PageSize)
+                               {
+                                   cvsFileCapacity = sqlServerConfig.PageSize;
+                               }
+                               else if (sqlServerConfig.StoredType == (byte)StoredTypeEnum.MaxCapacity)
+                               {
+                                   cvsFileCapacity = sqlServerConfig.MaxCapacity;
+                               }
 
-                            ExportCVSFile(listEventLogDetail, sqlServerConfig.EquipmentNum, cvsFileCapacity);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Log4NetHelper.WriteExcepetion(ex);
-                    }
-                    System.Threading.Thread.Sleep(1000);
-                });
+                               ExportCVSFile(listEventLogDetail, sqlServerConfig.EquipmentNum, cvsFileCapacity);
+                           }
+                       }
+                       catch (Exception ex)
+                       {
+                           Log4NetHelper.WriteExcepetion(ex);
+                       }
+                       finally
+                       {
+                           Monitor.Exit(lockedObj);
+                       }
+                       System.Threading.Thread.Sleep(1000);
+                   });
                 Log4NetHelper.WriteInfo("MsSqlDataSync-SyncMsSqlData 执行成功!");
 
                 Log4NetHelper.WriteInfo("=============同步服务结束==============");
@@ -102,7 +110,7 @@ namespace JobServiceSite.Controllers
             {
                 #region 写入CVS文件
 
-                filePartial = listEventLogDetail.Take(cvsFileCapacity).Skip((i - 1) * cvsFileCapacity).ToList();
+                filePartial = listEventLogDetail.Skip((i - 1) * cvsFileCapacity).Take(cvsFileCapacity).ToList();
                 /* 例：WB0G05-20161220-055321-20161220-225003.csv
                     1、WB0G:固定项
                     2、05：机台号05号机

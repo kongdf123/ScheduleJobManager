@@ -25,10 +25,11 @@ namespace ScheduleJobDesktop
             ApplicationEventHandlerClass AppEvents = new ApplicationEventHandlerClass();
             Application.ThreadException += new ThreadExceptionEventHandler(AppEvents.OnThreadException);
 
-            System.Timers.Timer t = new System.Timers.Timer(10000);   //实例化Timer类，设置间隔时间为10000毫秒； 20*60*1000
-            t.Elapsed += new System.Timers.ElapsedEventHandler(ExcutedFunc); //到达时间的时候执行事件；   
-            t.AutoReset = true;   //设置是执行一次（false）还是一直执行(true)；   
-            t.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件； 
+            int wakeupInterval =Convert.ToInt32(ConfigurationManager.AppSettings["WakeupInterval"]);
+            System.Timers.Timer timer = new System.Timers.Timer(wakeupInterval);   //实例化Timer类，设置间隔时间为10000毫秒； 20*60*1000
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(ExcutedFunc); //到达时间的时候执行事件；   
+            timer.AutoReset = true;   //设置是执行一次（false）还是一直执行(true)；   
+            timer.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件； 
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

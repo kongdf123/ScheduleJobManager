@@ -43,7 +43,7 @@ namespace JobHostSite.Controllers
 
                 if (customJob.State == (byte)JobState.Running)
                 {
-                    scheduler.Start();
+                    scheduler.TriggerJob(job.Key);
                 }
 
                 return Json(new { Code = 1, Message = "执行成功！" });
@@ -118,6 +118,7 @@ namespace JobHostSite.Controllers
                 var jobKey = JobKey.Create(customJob.JobName, customJob.JobGroup);
                 if (scheduler.CheckExists(jobKey))
                 {
+                    scheduler.TriggerJob(jobKey);
                     scheduler.ResumeJob(jobKey);
                 }
                 else

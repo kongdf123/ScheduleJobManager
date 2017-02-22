@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Utility;
 
 namespace DataAccess.BLL
@@ -45,18 +46,37 @@ namespace DataAccess.BLL
             }
         }
 
-        public void AddJob(string jobHostSite, int jobId, string jobName)
+        public void AddJob(string jobHostSite, int jobId, string jobName, Action success, Action error)
         {
-            var respResult = HttpHelper.SendPost(jobHostSite + "/ScheduleHostService/AddJob?jobId=" + jobId + "&jobName=" + jobName,"");
-            if (!string.IsNullOrEmpty(respResult))
+            Task.Factory.StartNew(() =>
             {
-                ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
-                if (respJson.Code == 1)
+                try
                 {
-                    return;
+                    bool isSuccess = false;
+                    var respResult = HttpHelper.SendPost(jobHostSite + "/ScheduleHostService/AddJob?jobId=" + jobId + "&jobName=" + jobName, "");
+                    if (!string.IsNullOrEmpty(respResult))
+                    {
+                        ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
+                        if (respJson.Code == 1)
+                        {
+                            isSuccess = true;
+                        }
+                    }
+                    if (isSuccess)
+                    {
+                        success?.Invoke();
+                    }
+                    else
+                    {
+                        error?.Invoke();
+                    }
                 }
-            }
-            throw new CustomException("任务添加失败", ExceptionType.Error);
+                catch (Exception ex)
+                {
+                    Log4NetHelper.WriteExcepetion(ex);
+                    error?.Invoke();
+                }
+            });
         }
 
         public void ModifyJob(string jobHostSite, int jobId, string jobName)
@@ -73,31 +93,103 @@ namespace DataAccess.BLL
             throw new CustomException("任务更新失败", ExceptionType.Error);
         }
 
-        public void StartJob(string jobHostSite, int jobId, string jobName)
+        public void StartJob(string jobHostSite, int jobId, string jobName, Action success, Action error)
         {
-            var respResult = HttpHelper.SendPost(jobHostSite + "/ScheduleHostService/StartJob?jobId=" + jobId + "&jobName=" + jobName,"");
-            if (!string.IsNullOrEmpty(respResult))
+            Task.Factory.StartNew(() =>
             {
-                ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
-                if (respJson.Code == 1)
+                try
                 {
-                    return;
+                    bool isSuccess = false;
+                    var respResult = HttpHelper.SendPost(jobHostSite + "/ScheduleHostService/StartJob?jobId=" + jobId + "&jobName=" + jobName, "");
+                    if (!string.IsNullOrEmpty(respResult))
+                    {
+                        ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
+                        if (respJson.Code == 1)
+                        {
+                            isSuccess = true;
+                        }
+                    }
+                    if (isSuccess)
+                    {
+                        success?.Invoke();
+                    }
+                    else
+                    {
+                        error?.Invoke();
+                    }
                 }
-            }
-            throw new CustomException("任务启动失败", ExceptionType.Error);
+                catch (Exception ex)
+                {
+                    Log4NetHelper.WriteExcepetion(ex);
+                    error?.Invoke();
+                }
+            });
         }
 
-        public void StopJob(string jobHostSite,int jobId,string jobName) {
-            var respResult = HttpHelper.SendPost(jobHostSite + "/ScheduleHostService/StopJob?jobId=" + jobId + "&jobName=" + jobName,"");
-            if (!string.IsNullOrEmpty(respResult))
+        public void DeleteJob(string jobHostSite, int jobId, string jobName, Action success, Action error)
+        {
+            Task.Factory.StartNew(() =>
             {
-                ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
-                if (respJson.Code == 1)
+                try
                 {
-                    return;
+                    bool isSuccess = false;
+                    var respResult = HttpHelper.SendPost(jobHostSite + "/ScheduleHostService/DeleteJob?jobId=" + jobId + "&jobName=" + jobName, "");
+                    if (!string.IsNullOrEmpty(respResult))
+                    {
+                        ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
+                        if (respJson.Code == 1)
+                        {
+                            isSuccess = true;
+                        }
+                    }
+                    if (isSuccess)
+                    {
+                        success?.Invoke();
+                    }
+                    else
+                    {
+                        error?.Invoke();
+                    }
                 }
-            }
-            throw new CustomException("任务关闭失败", ExceptionType.Error);
+                catch (Exception ex)
+                {
+                    Log4NetHelper.WriteExcepetion(ex);
+                    error?.Invoke();
+                }
+            });
+        }
+
+        public void StopJob(string jobHostSite, int jobId, string jobName, Action success, Action error)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    bool isSuccess = false;
+                    var respResult = HttpHelper.SendPost(jobHostSite + "/ScheduleHostService/StopJob?jobId=" + jobId + "&jobName=" + jobName, "");
+                    if (!string.IsNullOrEmpty(respResult))
+                    {
+                        ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
+                        if (respJson.Code == 1)
+                        {
+                            isSuccess = true;
+                        }
+                    }
+                    if (isSuccess)
+                    {
+                        success?.Invoke();
+                    }
+                    else
+                    {
+                        error?.Invoke();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log4NetHelper.WriteExcepetion(ex);
+                    error?.Invoke();
+                }
+            });
         }
 
         /// <summary>
@@ -106,7 +198,8 @@ namespace DataAccess.BLL
         /// <param name="intervalType"></param>
         /// <param name="interval"></param>
         /// <returns></returns>
-        public DateTime GetFetchingStartDate(byte intervalType,int interval) {
+        public DateTime GetFetchingStartDate(byte intervalType, int interval)
+        {
             DateTime startDate = DateTime.Now;
             switch ((IntervalTypeEnum)intervalType)
             {

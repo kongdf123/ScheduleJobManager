@@ -165,5 +165,13 @@ namespace ScheduleJobDesktop.UI.UserControls
             TxtInside.Width = PnlWhiteBG.Width - 6;
             TxtInside.Height = PnlWhiteBG.Height - 10;
         }
+
+        private void TxtInside_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar >= 65296 && e.KeyChar <= 65305)
+            {
+                e.KeyChar -= Convert.ToChar(65248);
+            }
+        }
     }
 }

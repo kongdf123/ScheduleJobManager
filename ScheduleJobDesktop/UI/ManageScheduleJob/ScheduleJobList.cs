@@ -79,7 +79,17 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                 DialogResult dialogResult = FormSysMessage.ShowMessage("确定要删除该任务计划吗？");
                 if (dialogResult == DialogResult.OK)
                 {
-                    CustomJobDetailBLL.CreateInstance().Delete(jobId, jobIdentity);
+                    var formSysMessage = FormSysMessage.ShowLoading();
+                    int effected = CustomJobDetailBLL.CreateInstance().Delete(jobId, jobIdentity);
+                    if (effected > 0)
+                    {
+                        CustomJobDetailBLL.CreateInstance().DeleteJob(
+                                    jobHostSite,
+                                    jobId,
+                                    jobIdentity,
+                                    () => { this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "删除任务计划成功。"); },
+                                    () => { this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "删除任务计划失败。"); });
+                    }
                     BindDataGrid();
                 }
             }
@@ -91,19 +101,9 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             if (JobDataGridViewActionButtonCell.IsStartButtonClick(sender, e))
             {
                 var formSysMessage = FormSysMessage.ShowLoading();
-                Task.Factory.StartNew(() =>
-                {
-                    try
-                    {
-                        CustomJobDetailBLL.CreateInstance().StartJob(jobHostSite, jobId, jobIdentity);
-                        this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "启动任务计划成功。");
-                    }
-                    catch (Exception ex)
-                    {
-                        Log4NetHelper.WriteExcepetion(ex);
-                        this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "启动任务计划失败。");
-                    }
-                });
+                CustomJobDetailBLL.CreateInstance().StartJob(jobHostSite, jobId, jobIdentity,
+                                    () => { this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "启动任务计划成功。"); },
+                                    () => { this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "启动任务计划失败。"); });
             }
 
             #endregion
@@ -114,19 +114,9 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             if (JobDataGridViewActionButtonCell.IsStopButtonClick(sender, e))
             {
                 var formSysMessage = FormSysMessage.ShowLoading();
-                Task.Factory.StartNew(() =>
-                {
-                    try
-                    {
-                        CustomJobDetailBLL.CreateInstance().StopJob(jobHostSite, jobId, jobIdentity);
-                        this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "停止任务计划成功。");
-                    }
-                    catch (Exception ex)
-                    {
-                        Log4NetHelper.WriteExcepetion(ex);
-                        this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "停止任务计划失败。");
-                    }
-                });
+                CustomJobDetailBLL.CreateInstance().StopJob(jobHostSite, jobId, jobIdentity,
+                                   () => { this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "停止任务计划成功。"); },
+                                   () => { this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "停止任务计划失败。"); });
             }
 
             #endregion

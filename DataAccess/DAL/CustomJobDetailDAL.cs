@@ -253,9 +253,16 @@ namespace DataAccess.DAL
         {
             string sqlWhere = "";
             List<MySqlParameter> listParms = new List<MySqlParameter>();
-            sqlWhere = "WHERE JobName = @JobName AND JobId<>@JobId";
-            listParms.Add(new MySqlParameter("@JobId", MySqlDbType.Int32, 11) { Value = jobId });
             listParms.Add(new MySqlParameter("@JobName", MySqlDbType.VarChar, 100) { Value = jobName });
+            if (jobId>0)
+            {
+                sqlWhere = "WHERE JobName = @JobName AND JobId<>@JobId";
+                listParms.Add(new MySqlParameter("@JobId", MySqlDbType.Int32, 11) { Value = jobId });
+            }
+            else
+            {
+                sqlWhere = "WHERE JobName = @JobName";
+            }
 
             int recordsTotal = MySqlDbHelper.ExecuteScalar<int>("SELECT COUNT(*) FROM custom_job_details " + sqlWhere, listParms.ToArray());
             return recordsTotal > 0;

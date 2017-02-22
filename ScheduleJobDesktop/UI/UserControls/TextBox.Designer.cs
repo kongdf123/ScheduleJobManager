@@ -68,6 +68,7 @@
             this.TxtInside.Name = "TxtInside";
             this.TxtInside.Size = new System.Drawing.Size(190, 13);
             this.TxtInside.TabIndex = 2;
+            this.TxtInside.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtInside_KeyPress);
             // 
             // PnlImageBG
             // 
