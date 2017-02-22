@@ -25,6 +25,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.PnlContent = new System.Windows.Forms.Panel();
             this.NavBar = new ScheduleJobDesktop.UserControls.NavBar();
             this.PnlHeader = new System.Windows.Forms.Panel();
@@ -77,6 +78,7 @@
             this.Controls.Add(this.PnlContent);
             this.Controls.Add(this.NavBar);
             this.Controls.Add(this.PnlHeader);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.ImeMode = System.Windows.Forms.ImeMode.On;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

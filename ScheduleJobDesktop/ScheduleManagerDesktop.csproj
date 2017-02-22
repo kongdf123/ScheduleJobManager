@@ -367,6 +367,7 @@
     <None Include="Resources\ButtonBG011.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\bitbug_favicon.ico" />
     <Content Include="Resources\BtnStart.png" />
     <None Include="Resources\TitleManageDBConfig.png" />
     <None Include="Resources\NavBtnManageDBConfig.jpg" />
