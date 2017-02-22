@@ -46,7 +46,7 @@ namespace DataAccess.BLL
             }
         }
 
-        public void AddJob(string jobHostSite, int jobId, string jobName, Action success, Action error)
+        public void AddHostJob(string jobHostSite, int jobId, string jobName, Action success, Action error)
         {
             Task.Factory.StartNew(() =>
             {
@@ -79,21 +79,27 @@ namespace DataAccess.BLL
             });
         }
 
-        public void ModifyJob(string jobHostSite, int jobId, string jobName)
+        public void ModifyHostJob(string jobHostSite, int jobId, string jobName)
         {
-            var respResult = HttpHelper.SendPost(jobHostSite + "/ScheduleHostService/ModifyJob?jobId=" + jobId + "&jobName=" + jobName, "");
-            if (!string.IsNullOrEmpty(respResult))
+            try
             {
-                ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
-                if (respJson.Code == 1)
+                var respResult = HttpHelper.SendPost(jobHostSite + "/ScheduleHostService/ModifyJob?jobId=" + jobId + "&jobName=" + jobName, "");
+                if (!string.IsNullOrEmpty(respResult))
                 {
-                    return;
+                    ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
+                    if (respJson.Code == 1)
+                    {
+                        return;
+                    }
                 }
             }
-            throw new CustomException("任务更新失败", ExceptionType.Error);
+            catch (Exception ex)
+            {
+                Log4NetHelper.WriteExcepetion(ex);
+            }
         }
 
-        public void StartJob(string jobHostSite, int jobId, string jobName, Action success, Action error)
+        public void StartHostJob(string jobHostSite, int jobId, string jobName, Action success, Action error)
         {
             Task.Factory.StartNew(() =>
             {
@@ -126,7 +132,7 @@ namespace DataAccess.BLL
             });
         }
 
-        public void DeleteJob(string jobHostSite, int jobId, string jobName, Action success, Action error)
+        public void DeleteHostJob(string jobHostSite, int jobId, string jobName, Action success, Action error)
         {
             Task.Factory.StartNew(() =>
             {
@@ -159,7 +165,7 @@ namespace DataAccess.BLL
             });
         }
 
-        public void StopJob(string jobHostSite, int jobId, string jobName, Action success, Action error)
+        public void StopHostJob(string jobHostSite, int jobId, string jobName, Action success, Action error)
         {
             Task.Factory.StartNew(() =>
             {

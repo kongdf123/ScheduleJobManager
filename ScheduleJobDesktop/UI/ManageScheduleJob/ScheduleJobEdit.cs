@@ -91,32 +91,21 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                     {
                         return;
                     }
-                    #region 更新任务计划
 
-                    if (preCronExpression != jobDetail.CronExpression)
-                    {
-                        try
-                        {
-                            CustomJobDetailBLL.CreateInstance().ModifyJob(jobHostSite, jobDetail.JobId, jobDetail.JobName);
-                        }
-                        catch (Exception ex)
-                        {
-                            Log4NetHelper.WriteExcepetion(ex);
-                        }
-                    }
-                    #endregion
+                    // 根据新的配置，更新寄宿服务里的任务计划
+                    CustomJobDetailBLL.CreateInstance().ModifyHostJob(jobHostSite, jobDetail.JobId, jobDetail.JobName);
 
                     #region 开启或关闭任务计划
 
                     if (jobDetail.State == (byte)JobState.Running)
                     {
-                        CustomJobDetailBLL.CreateInstance().StartJob(jobHostSite, jobDetail.JobId, jobDetail.JobName,
+                        CustomJobDetailBLL.CreateInstance().StartHostJob(jobHostSite, jobDetail.JobId, jobDetail.JobName,
                                        () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "启动任务计划成功。"); },
                                        () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "启动任务计划失败。"); });
                     }
                     else if (jobDetail.State == (byte)JobState.Stopping || jobDetail.State == (byte)JobState.Waiting)
                     {
-                        CustomJobDetailBLL.CreateInstance().StopJob(jobHostSite, jobDetail.JobId, jobDetail.JobName,
+                        CustomJobDetailBLL.CreateInstance().StopHostJob(jobHostSite, jobDetail.JobId, jobDetail.JobName,
                                           () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "关闭任务计划成功。"); },
                                           () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "关闭任务计划失败。"); });
                     }
@@ -130,7 +119,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                     {
                         return;
                     }
-                    CustomJobDetailBLL.CreateInstance().AddJob(jobHostSite, jobDetail.JobId, jobDetail.JobName,
+                    CustomJobDetailBLL.CreateInstance().AddHostJob(jobHostSite, jobDetail.JobId, jobDetail.JobName,
                                           () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "添加任务计划成功。"); },
                                           () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "添加任务计划失败。"); });
 

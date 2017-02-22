@@ -83,7 +83,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                     int effected = CustomJobDetailBLL.CreateInstance().Delete(jobId, jobIdentity);
                     if (effected > 0)
                     {
-                        CustomJobDetailBLL.CreateInstance().DeleteJob(
+                        CustomJobDetailBLL.CreateInstance().DeleteHostJob(
                                     jobHostSite,
                                     jobId,
                                     jobIdentity,
@@ -101,7 +101,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             if (JobDataGridViewActionButtonCell.IsStartButtonClick(sender, e))
             {
                 var formSysMessage = FormSysMessage.ShowLoading();
-                CustomJobDetailBLL.CreateInstance().StartJob(jobHostSite, jobId, jobIdentity,
+                CustomJobDetailBLL.CreateInstance().StartHostJob(jobHostSite, jobId, jobIdentity,
                                     () => { this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "启动任务计划成功。"); },
                                     () => { this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "启动任务计划失败。"); });
             }
@@ -114,7 +114,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
             if (JobDataGridViewActionButtonCell.IsStopButtonClick(sender, e))
             {
                 var formSysMessage = FormSysMessage.ShowLoading();
-                CustomJobDetailBLL.CreateInstance().StopJob(jobHostSite, jobId, jobIdentity,
+                CustomJobDetailBLL.CreateInstance().StopHostJob(jobHostSite, jobId, jobIdentity,
                                    () => { this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "停止任务计划成功。"); },
                                    () => { this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, "停止任务计划失败。"); });
             }

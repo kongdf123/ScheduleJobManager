@@ -40,9 +40,18 @@ namespace DataAccess.Entity
 
         public byte State { get; set; }
 
+        /*
+            Seconds (秒)         ：可以用数字0－59 表示，
+            Minutes(分)          ：可以用数字0－59 表示，
+            Hours(时)            ：可以用数字0-23表示,
+            Day-of-Month(天)  　 ：可以用数字1-31 中的任一一个值，但要注意一些特别的月份
+            Month(月)            ：可以用0-11 或用字符串  “JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV and DEC” 表示
+            Day-of-Week(每周)　　 :可以用数字1-7表示（1 ＝ 星期日）或用字符口串“SUN, MON, TUE, WED, THU, FRI and SAT”表示
+            Year                 :(可选字段)          empty, 1970-2099
+        */
         public string CronExpression {
             get {
-                string[] cronArr = new string[] { "0", "0", "*", "*", "*", "?" };//示例 0 10 18 15 3 ?        note:每年三月的第15天，下午6点10分都会被触发
+                string[] cronArr = new string[] { "0", "0", "*", "*", "*", "?", "?" };//示例 0 10 18 15 3 ?        note:每年三月的第15天，下午6点10分都会被触发
                 DateTime start = StartDate;
                 switch (IntervalType)
                 {
@@ -63,7 +72,13 @@ namespace DataAccess.Entity
                 }
                 if ((ExecutedFreqEnum)ExecutedFreq== ExecutedFreqEnum.OnlyOneTime)
                 {
-                    return start.ToString("ss mm HH dd MM yyyy");
+                    return string.Format("{0} {1} {2} {3} {4} ? {5}",
+                                start.Second,
+                                start.Minute,
+                                start.Hour,
+                                start.Day,
+                                start.Month,
+                                start.Year);
                 }
                 return string.Join(" ", cronArr);
             }
@@ -95,7 +110,7 @@ namespace DataAccess.Entity
         /// <summary>
         /// 只执行一次
         /// </summary>
-        OnlyOneTime = 0,
+        OnlyOneTime = 2,
 
         /// <summary>
         /// 循环执行
