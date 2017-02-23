@@ -35,10 +35,10 @@ namespace MongoDBAppDemo
             return collection.Find(filter).FirstOrDefault();
         }
 
-        public IList FindMany(string collectionName, Expression<Func<T, bool>> filter)
+        public IFindFluent<T,T> FindMany(string collectionName, Expression<Func<T, bool>> filter)
         {
             var collection = GetCollection(collectionName);
-            return collection.Find(filter).ToList();
+            return collection.Find(filter);
         }
 
         public void Insert(string collectionName, T document)
@@ -53,7 +53,7 @@ namespace MongoDBAppDemo
             collection.InsertMany(documents);
         }
 
-        public long Update(string collectionName, Expression<Func<T, bool>> filter, T document)
+        public long Update(string collectionName, T document, Expression<Func<T, bool>> filter)
         {
             var collection = GetCollection(collectionName);
             BsonDocument docUpdate = document.ToBsonDocument<T>();
