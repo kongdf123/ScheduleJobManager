@@ -71,6 +71,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UI\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,14 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="UI\ManageScheduleJob\ScheduleJobEdit.resx">
       <DependentUpon>ScheduleJobEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -256,12 +256,6 @@
     <None Include="Resources\NavBtnMain.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\NavBtnManageDepartment.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NavBtnManageEmployee.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\NotNull.png" />
   </ItemGroup>
   <ItemGroup>
@@ -311,33 +305,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TitleMain.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleManageDepartmentCreate.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleManageDepartmentDelete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleManageDepartmentList.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleManageDepartmentModify.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleManageEmployeeCreate.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleManageEmployeeDelete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleManageEmployeeDetail.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleManageEmployeeList.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TitleManageEmployeeModify.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BtnDelete.png" />

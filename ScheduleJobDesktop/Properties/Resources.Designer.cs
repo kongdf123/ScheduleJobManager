@@ -353,16 +353,6 @@ namespace ScheduleJobDesktop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DesignerLogo {
-            get {
-                object obj = ResourceManager.GetObject("DesignerLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap DesignerLogo_1 {
             get {
                 object obj = ResourceManager.GetObject("DesignerLogo_1", resourceCulture);
@@ -496,26 +486,6 @@ namespace ScheduleJobDesktop.Properties {
         internal static System.Drawing.Bitmap LogoMain1 {
             get {
                 object obj = ResourceManager.GetObject("LogoMain1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap LogoManageDepartment {
-            get {
-                object obj = ResourceManager.GetObject("LogoManageDepartment", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap LogoManageEmployee {
-            get {
-                object obj = ResourceManager.GetObject("LogoManageEmployee", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -696,46 +666,6 @@ namespace ScheduleJobDesktop.Properties {
         internal static System.Drawing.Bitmap NavBtnManageDBConfig1 {
             get {
                 object obj = ResourceManager.GetObject("NavBtnManageDBConfig1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap NavBtnManageDepartment {
-            get {
-                object obj = ResourceManager.GetObject("NavBtnManageDepartment", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap NavBtnManageDepartment1 {
-            get {
-                object obj = ResourceManager.GetObject("NavBtnManageDepartment1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap NavBtnManageEmployee {
-            get {
-                object obj = ResourceManager.GetObject("NavBtnManageEmployee", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap NavBtnManageEmployee1 {
-            get {
-                object obj = ResourceManager.GetObject("NavBtnManageEmployee1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1096,116 +1026,6 @@ namespace ScheduleJobDesktop.Properties {
         internal static System.Drawing.Bitmap TitleManageDBConfig1 {
             get {
                 object obj = ResourceManager.GetObject("TitleManageDBConfig1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TitleManageDepartmentCreate {
-            get {
-                object obj = ResourceManager.GetObject("TitleManageDepartmentCreate", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TitleManageDepartmentCreate1 {
-            get {
-                object obj = ResourceManager.GetObject("TitleManageDepartmentCreate1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TitleManageDepartmentDelete {
-            get {
-                object obj = ResourceManager.GetObject("TitleManageDepartmentDelete", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TitleManageDepartmentList {
-            get {
-                object obj = ResourceManager.GetObject("TitleManageDepartmentList", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TitleManageDepartmentModify {
-            get {
-                object obj = ResourceManager.GetObject("TitleManageDepartmentModify", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TitleManageEmployeeCreate {
-            get {
-                object obj = ResourceManager.GetObject("TitleManageEmployeeCreate", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TitleManageEmployeeDelete {
-            get {
-                object obj = ResourceManager.GetObject("TitleManageEmployeeDelete", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TitleManageEmployeeDetail {
-            get {
-                object obj = ResourceManager.GetObject("TitleManageEmployeeDetail", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TitleManageEmployeeList {
-            get {
-                object obj = ResourceManager.GetObject("TitleManageEmployeeList", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TitleManageEmployeeModify {
-            get {
-                object obj = ResourceManager.GetObject("TitleManageEmployeeModify", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TitleManageScheduleJob {
-            get {
-                object obj = ResourceManager.GetObject("TitleManageScheduleJob", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
