@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobServiceSite", "JobServic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSqlServerConnect", "TestSqlServerConnect\TestSqlServerConnect.csproj", "{F65AEEA2-0E47-4BC6-A318-BF93A4D4C5EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDBUsageDemo", "MongoDBAppDemo\MongoDBUsageDemo.csproj", "{A522CD2D-E03D-4241-92CB-D5E9DB2F3ED3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{F65AEEA2-0E47-4BC6-A318-BF93A4D4C5EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F65AEEA2-0E47-4BC6-A318-BF93A4D4C5EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F65AEEA2-0E47-4BC6-A318-BF93A4D4C5EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A522CD2D-E03D-4241-92CB-D5E9DB2F3ED3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A522CD2D-E03D-4241-92CB-D5E9DB2F3ED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A522CD2D-E03D-4241-92CB-D5E9DB2F3ED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A522CD2D-E03D-4241-92CB-D5E9DB2F3ED3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,5 +98,6 @@ Global
 		{838BD059-1EAC-4CF7-AF14-483B59CD944C} = {350375B4-28AC-4F3F-AD97-857E1F03EE17}
 		{E72AD1F0-6B42-46C0-935D-9427CB198EC9} = {350375B4-28AC-4F3F-AD97-857E1F03EE17}
 		{F65AEEA2-0E47-4BC6-A318-BF93A4D4C5EA} = {E81E5190-EEE3-401D-8ADD-9C244CA96D6B}
+		{A522CD2D-E03D-4241-92CB-D5E9DB2F3ED3} = {E81E5190-EEE3-401D-8ADD-9C244CA96D6B}
 	EndGlobalSection
 EndGlobal
