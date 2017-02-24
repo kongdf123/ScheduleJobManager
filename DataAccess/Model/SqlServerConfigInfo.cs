@@ -30,10 +30,48 @@ namespace DataAccess.Entity
                 return string.Format("Server={0};Database={1};User Id={2};Password = {3};", ServerAddress, DBName, UserName, Password);
             }
         }
-        
+
+        public byte DBType { get; set; }
+
+        public byte AuthenticatedType { get; set; }
+
+        public byte ServerState { get; set; }
+
         public DateTime UpdatedDate { get; set; }
 
         public DateTime CreatedDate { get; set; }
+    }
+
+    public enum DBTypeEnum
+    {
+        SqlServer = 1,
+        MySQL = 2,
+        Oracle = 3
+    }
+
+    /// <summary>
+    /// 数据库服务器状态
+    /// </summary>
+    public enum ServerStateEnum
+    {
+        Enabled = 1,
+        Disabled = 2
+    }
+
+    /// <summary>
+    /// 数据库登陆验证方式
+    /// </summary>
+    public enum AuthenticatedTypeEnum
+    {
+        /// <summary>
+        /// Sql Server账户
+        /// </summary>
+        SqlServer = 0,
+
+        /// <summary>
+        /// Windows系统集成
+        /// </summary>
+        Windows = 1
     }
 
     /// <summary>

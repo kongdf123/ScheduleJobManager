@@ -31,7 +31,10 @@ namespace DataAccess.DAL
                                 `EquipmentNum`,
                                 `PageSize`,
                                 `MaxCapacity`,
-                                `StoredType`)
+                                `StoredType`,
+                                `DBType`,
+                                `ServerState`,
+                                `AuthenticatedType`)
                                 VALUES
                                 (@Id,
                                 @ServerAddress,
@@ -43,7 +46,10 @@ namespace DataAccess.DAL
                                 @EquipmentNum,
                                 @PageSize,
                                 @MaxCapacity,
-                                @StoredType); SELECT LAST_INSERT_ID();";
+                                @StoredType,
+                                @DBType,
+                                @ServerState,
+                                @AuthenticatedType); SELECT LAST_INSERT_ID();";
             MySqlParameter[] parameters =
             {
                 new MySqlParameter("@Id", MySqlDbType.Int32 ){ Value = dbConfigInfo.Id },
@@ -56,7 +62,10 @@ namespace DataAccess.DAL
                 new MySqlParameter("@EquipmentNum", MySqlDbType.VarChar , 25 ){ Value = dbConfigInfo.EquipmentNum },
                 new MySqlParameter("@PageSize", MySqlDbType.Int32 ){ Value = dbConfigInfo.PageSize },
                 new MySqlParameter("@MaxCapacity", MySqlDbType.Int32 ){ Value = dbConfigInfo.MaxCapacity },
-                new MySqlParameter("@StoredType", MySqlDbType.Byte ){ Value = dbConfigInfo.StoredType }
+                new MySqlParameter("@StoredType", MySqlDbType.Byte ){ Value = dbConfigInfo.StoredType},
+                new MySqlParameter("@DBType", MySqlDbType.Byte ){ Value = dbConfigInfo.DBType},
+                new MySqlParameter("@ServerState", MySqlDbType.Byte ){ Value = dbConfigInfo.ServerState},
+                new MySqlParameter("@AuthenticatedType", MySqlDbType.Byte ){ Value = dbConfigInfo.AuthenticatedType }
             };
             return MySqlDbHelper.ExecuteScalar<int>(sqlText, parameters);
         }
@@ -75,7 +84,10 @@ namespace DataAccess.DAL
                                 `EquipmentNum`=@EquipmentNum,
                                 `PageSize`=@PageSize,
                                 `MaxCapacity`=@MaxCapacity,
-                                `StoredType`=@StoredType
+                                `StoredType`=@StoredType,
+                                `DBType`=@DBType,
+                                `ServerState`=@ServerState,
+                                `AuthenticatedType`=@AuthenticatedType
                                 WHERE `Id` = @Id;";
             MySqlParameter[] parameters =
             {
@@ -89,7 +101,10 @@ namespace DataAccess.DAL
                 new MySqlParameter("@EquipmentNum", MySqlDbType.VarChar , 25 ){ Value = dbConfigInfo.EquipmentNum },
                 new MySqlParameter("@PageSize", MySqlDbType.Int32 ){ Value = dbConfigInfo.PageSize },
                 new MySqlParameter("@MaxCapacity", MySqlDbType.Int32 ){ Value = dbConfigInfo.MaxCapacity },
-                new MySqlParameter("@StoredType", MySqlDbType.Byte ){ Value = dbConfigInfo.StoredType }
+                new MySqlParameter("@StoredType", MySqlDbType.Byte ){ Value = dbConfigInfo.StoredType },
+                new MySqlParameter("@DBType", MySqlDbType.Byte ){ Value = dbConfigInfo.DBType},
+                new MySqlParameter("@ServerState", MySqlDbType.Byte ){ Value = dbConfigInfo.ServerState},
+                new MySqlParameter("@AuthenticatedType", MySqlDbType.Byte ){ Value = dbConfigInfo.AuthenticatedType }
             };
             return MySqlDbHelper.ExecuteNonQuery(sqlText, parameters);
         }
@@ -117,7 +132,10 @@ namespace DataAccess.DAL
                                     `EquipmentNum`,
                                     `PageSize`,
                                     `MaxCapacity`,
-                                    `StoredType`
+                                    `StoredType`,
+                                    `DBType`,
+                                    `ServerState`,
+                                    `AuthenticatedType`
                                 FROM `custom_db_config` 
                                 WHERE `Id` = @Id;";
             MySqlParameter[] parameters =
@@ -157,7 +175,10 @@ namespace DataAccess.DAL
                                     `EquipmentNum`,
                                     `PageSize`,
                                     `MaxCapacity`,
-                                    `StoredType`
+                                    `StoredType`,
+                                    `DBType`,
+                                    `ServerState`,
+                                    `AuthenticatedType`
                                 FROM `custom_db_config`  " + sqlWhere + " ORDER BY Id DESC LIMIT " + (curPage - 1) * pageSize + "," + pageSize;
             List<SqlServerConfigInfo> list = new List<SqlServerConfigInfo>();
             MySqlDataReader sqlDataReader = MySqlDbHelper.ExecuteReader(sqlText, listParms.ToArray());
@@ -220,6 +241,18 @@ namespace DataAccess.DAL
             if (dataReader["MaxCapacity"] != DBNull.Value)
             {
                 dbConfigInfo.MaxCapacity = Convert.ToInt32(dataReader["MaxCapacity"]);
+            }
+            if (dataReader["DBType"] != DBNull.Value)
+            {
+                dbConfigInfo.DBType = Convert.ToByte(dataReader["DBType"]);
+            }
+            if (dataReader["ServerState"] != DBNull.Value)
+            {
+                dbConfigInfo.ServerState = Convert.ToByte(dataReader["ServerState"]);
+            }
+            if (dataReader["AuthenticatedType"] != DBNull.Value)
+            {
+                dbConfigInfo.AuthenticatedType = Convert.ToByte(dataReader["AuthenticatedType"]);
             }
         }
     }

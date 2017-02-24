@@ -126,6 +126,12 @@
     <Compile Include="UI\UserControls\Button.Designer.cs">
       <DependentUpon>Button.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\UserControls\CheckBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\CheckBox.Designer.cs">
+      <DependentUpon>CheckBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\UserControls\DBConfigDataGridViewActionButtonColumn.cs" />
     <Compile Include="UI\UserControls\JobDataGridViewActionButtonColumn.cs" />
     <Compile Include="UI\UserControls\NavBar.cs">
@@ -174,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UserControls\Button.resx">
       <DependentUpon>Button.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserControls\CheckBox.resx">
+      <DependentUpon>CheckBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UserControls\NavBar.resx">
       <DependentUpon>NavBar.cs</DependentUpon>

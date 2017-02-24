@@ -91,7 +91,16 @@ namespace ScheduleJobDesktop.UI.ManageSettings
             dbConfigInfo.StoredType = GetStoredType().Item1;
             dbConfigInfo.PageSize = GetStoredType().Item2;
             dbConfigInfo.MaxCapacity = GetStoredType().Item3;
+            dbConfigInfo.ServerState = GetServerState();
 
+            if (ChkAuthenticatedType.Checked)
+            {
+                dbConfigInfo.AuthenticatedType = (byte)AuthenticatedTypeEnum.Windows;
+            }
+            else
+            {
+                dbConfigInfo.AuthenticatedType = (byte)AuthenticatedTypeEnum.SqlServer;
+            }
         }
 
         /// <summary>
@@ -105,6 +114,45 @@ namespace ScheduleJobDesktop.UI.ManageSettings
             TxtUserName.Text = dbConfigInfo.UserName;
             TxtPassword.Text = dbConfigInfo.Password;
             SetStoredType(dbConfigInfo.StoredType, dbConfigInfo.PageSize, dbConfigInfo.MaxCapacity);
+            SetServerState(dbConfigInfo.ServerState);
+
+            if (dbConfigInfo.AuthenticatedType == (byte)AuthenticatedTypeEnum.Windows)
+            {
+                ChkAuthenticatedType.Checked = true;
+                TxtUserName.SetDisabled();
+                TxtPassword.SetDisabled();
+            }
+            else
+            {
+                ChkAuthenticatedType.Checked = false;
+                TxtUserName.SetEnabled();
+                TxtPassword.SetEnabled();
+            }
+        }
+
+        byte GetServerState()
+        {
+            if (RadioBtnEnable.Checked)
+            {
+                return (byte)ServerStateEnum.Enabled;
+            }
+            else if (RadioBtnDisable.Checked)
+            {
+                return (byte)ServerStateEnum.Disabled;
+            }
+            throw new CustomException("请设置一个数据库状态。", ExceptionType.Warn);
+        }
+
+        void SetServerState(byte serverState)
+        {
+            if (serverState == (byte)ServerStateEnum.Enabled)
+            {
+                RadioBtnEnable.Checked = true;
+            }
+            else if (serverState == (byte)ServerStateEnum.Disabled)
+            {
+                RadioBtnDisable.Checked = true;
+            }
         }
 
         Tuple<byte, int, int> GetStoredType()
@@ -144,5 +192,19 @@ namespace ScheduleJobDesktop.UI.ManageSettings
         }
 
         #endregion 界面控件与关联对象之间的绑定方法
+
+        private void ChkAuthenticatedType_CheckBoxClick(object sender, EventArgs e)
+        {
+            if (ChkAuthenticatedType.Checked)
+            {
+                TxtUserName.SetDisabled();
+                TxtPassword.SetDisabled();
+            }
+            else
+            {
+                TxtUserName.SetEnabled();
+                TxtPassword.SetEnabled();
+            }
+        }
     }
 }

@@ -109,7 +109,7 @@ namespace ScheduleJobDesktop.UI.UserControls
 
 
         /// <summary>
-        /// 获取或设置密码字符。
+        /// 获取或设置背景色。
         /// </summary>
         [Category("设置")]
         [Description("设置背景色。")]
@@ -119,6 +119,8 @@ namespace ScheduleJobDesktop.UI.UserControls
                 return TxtInside.BackColor;
             }
             set {
+                BackColor = value;
+                PnlWhiteBG.BackColor = value;
                 TxtInside.BackColor = value;
             }
         }
@@ -149,6 +151,18 @@ namespace ScheduleJobDesktop.UI.UserControls
         public new void Focus()
         {
             TxtInside.Select();
+        }
+
+        public void SetDisabled()
+        {
+            Enabled = false;
+            BoxBackColor = Color.FromArgb(245, 245, 245);
+        }
+
+        public void SetEnabled()
+        {
+            Enabled = true;
+            BoxBackColor = Color.White;
         }
 
         /// <summary>
