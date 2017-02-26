@@ -10,13 +10,11 @@ namespace DataAccess.DAL
 {
     public class SqlServerConfigInfoDAL
     {
-        public static SqlServerConfigInfoDAL CreateInstance()
-        {
+        public static SqlServerConfigInfoDAL CreateInstance() {
             return new SqlServerConfigInfoDAL();
         }
 
-        public int Insert(SqlServerConfigInfo dbConfigInfo)
-        {
+        public int Insert(SqlServerConfigInfo dbConfigInfo) {
             dbConfigInfo.UpdatedDate = DateTime.Now;
             dbConfigInfo.CreatedDate = DateTime.Now;
 
@@ -70,8 +68,7 @@ namespace DataAccess.DAL
             return MySqlDbHelper.ExecuteScalar<int>(sqlText, parameters);
         }
 
-        public int Update(SqlServerConfigInfo dbConfigInfo)
-        {
+        public int Update(SqlServerConfigInfo dbConfigInfo) {
             dbConfigInfo.UpdatedDate = DateTime.Now;
             string sqlText = @"UPDATE `custom_db_config`
                                 SET
@@ -109,8 +106,7 @@ namespace DataAccess.DAL
             return MySqlDbHelper.ExecuteNonQuery(sqlText, parameters);
         }
 
-        public int Delete(int id)
-        {
+        public int Delete(int id) {
             string sqlText = "DELETE FROM `custom_db_config` WHERE `Id` = @Id;";
             MySqlParameter[] parameters =
             {
@@ -119,8 +115,7 @@ namespace DataAccess.DAL
             return MySqlDbHelper.ExecuteNonQuery(sqlText, parameters);
         }
 
-        public SqlServerConfigInfo Get(int id)
-        {
+        public SqlServerConfigInfo Get(int id) {
             SqlServerConfigInfo dbConfigInfo = null;
             string sqlText = @" SELECT `Id`,
                                     `ServerAddress`,
@@ -144,8 +139,7 @@ namespace DataAccess.DAL
             };
 
             MySqlDataReader sqlDataReader = MySqlDbHelper.ExecuteReader(sqlText, parameters);
-            if (sqlDataReader.Read())
-            {
+            if ( sqlDataReader.Read() ) {
                 dbConfigInfo = new SqlServerConfigInfo();
                 ReadRecordData(sqlDataReader, dbConfigInfo);
             }
@@ -153,17 +147,15 @@ namespace DataAccess.DAL
             return dbConfigInfo;
         }
 
-        public PageData GetPageList(int pageSize, int curPage, string dbName = "")
-        {
+        public PageData GetPageList(int pageSize, int curPage, string dbName = "") {
             string sqlWhere = "";
             List<MySqlParameter> listParms = new List<MySqlParameter>();
-            if (!string.IsNullOrEmpty(dbName))
-            {
-                sqlWhere = "WHERE `DBName` LIKE @DBName";
+            if ( !string.IsNullOrEmpty(dbName) ) {
+                sqlWhere = " AND `DBName` LIKE @DBName";
                 listParms.Add(new MySqlParameter("@DBName", MySqlDbType.VarChar, 45) { Value = "%" + dbName + "%" });
             }
 
-            int recordsTotal = MySqlDbHelper.ExecuteScalar<int>("SELECT COUNT(*) FROM custom_db_config " + sqlWhere, listParms.ToArray());
+            int recordsTotal = MySqlDbHelper.ExecuteScalar<int>("SELECT COUNT(*) FROM custom_db_config WHERE `ServerState`=" + (byte)ServerStateEnum.Enabled + sqlWhere, listParms.ToArray());
 
             string sqlText = @" SELECT `Id`,
                                     `ServerAddress`,
@@ -179,7 +171,10 @@ namespace DataAccess.DAL
                                     `DBType`,
                                     `ServerState`,
                                     `AuthenticatedType`
-                                FROM `custom_db_config`  " + sqlWhere + " ORDER BY Id DESC LIMIT " + (curPage - 1) * pageSize + "," + pageSize;
+                                FROM `custom_db_config`  
+                                WHERE `ServerState`=" + (byte)ServerStateEnum.Enabled
+                                + sqlWhere
+                                + " ORDER BY Id DESC LIMIT " + (curPage - 1) * pageSize + "," + pageSize;
             List<SqlServerConfigInfo> list = new List<SqlServerConfigInfo>();
             MySqlDataReader sqlDataReader = MySqlDbHelper.ExecuteReader(sqlText, listParms.ToArray());
 
@@ -187,13 +182,11 @@ namespace DataAccess.DAL
             pageData.PageSize = pageSize;
             pageData.CurPage = curPage;
             pageData.RecordCount = Math.Max(1, recordsTotal);
-            if (pageData.RecordCount > 0)
-            {
+            if ( pageData.RecordCount > 0 ) {
                 pageData.PageCount = Convert.ToInt32(Math.Ceiling((double)pageData.RecordCount / (double)pageSize));
             }
 
-            while (sqlDataReader.Read())
-            {
+            while ( sqlDataReader.Read() ) {
                 SqlServerConfigInfo dbConfigInfo = new SqlServerConfigInfo();
                 ReadRecordData(sqlDataReader, dbConfigInfo);
                 list.Add(dbConfigInfo);
@@ -203,55 +196,47 @@ namespace DataAccess.DAL
             return pageData;
         }
 
-        void ReadRecordData(IDataReader dataReader, SqlServerConfigInfo dbConfigInfo)
-        {
-            if (dataReader["Id"] != DBNull.Value)
+        void ReadRecordData(IDataReader dataReader, SqlServerConfigInfo dbConfigInfo) {
+            if ( dataReader["Id"] != DBNull.Value )
                 dbConfigInfo.Id = Convert.ToInt32(dataReader["Id"]);
 
-            if (dataReader["ServerAddress"] != DBNull.Value)
+            if ( dataReader["ServerAddress"] != DBNull.Value )
                 dbConfigInfo.ServerAddress = Convert.ToString(dataReader["ServerAddress"]);
 
-            if (dataReader["DBName"] != DBNull.Value)
+            if ( dataReader["DBName"] != DBNull.Value )
                 dbConfigInfo.DBName = Convert.ToString(dataReader["DBName"]);
 
-            if (dataReader["UserName"] != DBNull.Value)
+            if ( dataReader["UserName"] != DBNull.Value )
                 dbConfigInfo.UserName = Convert.ToString(dataReader["UserName"]);
 
-            if (dataReader["Password"] != DBNull.Value)
+            if ( dataReader["Password"] != DBNull.Value )
                 dbConfigInfo.Password = Convert.ToString(dataReader["Password"]);
 
-            if (dataReader["UpdatedDate"] != DBNull.Value)
+            if ( dataReader["UpdatedDate"] != DBNull.Value )
                 dbConfigInfo.UpdatedDate = Convert.ToDateTime(dataReader["UpdatedDate"]);
 
-            if (dataReader["CreatedDate"] != DBNull.Value)
+            if ( dataReader["CreatedDate"] != DBNull.Value )
                 dbConfigInfo.CreatedDate = Convert.ToDateTime(dataReader["CreatedDate"]);
 
-            if (dataReader["EquipmentNum"] != DBNull.Value)
-            {
+            if ( dataReader["EquipmentNum"] != DBNull.Value ) {
                 dbConfigInfo.EquipmentNum = Convert.ToString(dataReader["EquipmentNum"]);
             }
-            if (dataReader["StoredType"] != DBNull.Value)
-            {
+            if ( dataReader["StoredType"] != DBNull.Value ) {
                 dbConfigInfo.StoredType = Convert.ToByte(dataReader["StoredType"]);
             }
-            if (dataReader["PageSize"] != DBNull.Value)
-            {
+            if ( dataReader["PageSize"] != DBNull.Value ) {
                 dbConfigInfo.PageSize = Convert.ToInt32(dataReader["PageSize"]);
             }
-            if (dataReader["MaxCapacity"] != DBNull.Value)
-            {
+            if ( dataReader["MaxCapacity"] != DBNull.Value ) {
                 dbConfigInfo.MaxCapacity = Convert.ToInt32(dataReader["MaxCapacity"]);
             }
-            if (dataReader["DBType"] != DBNull.Value)
-            {
+            if ( dataReader["DBType"] != DBNull.Value ) {
                 dbConfigInfo.DBType = Convert.ToByte(dataReader["DBType"]);
             }
-            if (dataReader["ServerState"] != DBNull.Value)
-            {
+            if ( dataReader["ServerState"] != DBNull.Value ) {
                 dbConfigInfo.ServerState = Convert.ToByte(dataReader["ServerState"]);
             }
-            if (dataReader["AuthenticatedType"] != DBNull.Value)
-            {
+            if ( dataReader["AuthenticatedType"] != DBNull.Value ) {
                 dbConfigInfo.AuthenticatedType = Convert.ToByte(dataReader["AuthenticatedType"]);
             }
         }

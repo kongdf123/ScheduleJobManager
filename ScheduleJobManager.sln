@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduleManagerDesktop", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DgvColumn", "DgvColumn\DgvColumn.csproj", "{7C953CAD-FA19-448C-87CF-D99F08057DD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "DataAccess\Service.csproj", "{073F8C3F-4A2C-48BD-8F14-0CD9E8FBB7E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "DataAccess\Core.csproj", "{073F8C3F-4A2C-48BD-8F14-0CD9E8FBB7E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{38FD714F-EE5F-4600-BC1A-CFB94865712A}"
 EndProject

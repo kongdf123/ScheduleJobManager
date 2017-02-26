@@ -189,9 +189,9 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\Service.csproj">
+    <ProjectReference Include="..\DataAccess\Core.csproj">
       <Project>{073f8c3f-4a2c-48bd-8f14-0cd9e8fbb7e0}</Project>
-      <Name>Service</Name>
+      <Name>Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{38fd714f-ee5f-4600-bc1a-cfb94865712a}</Project>
