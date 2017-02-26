@@ -30,19 +30,31 @@
             this.PnlInfo = new System.Windows.Forms.Panel();
             this.PnlInfoBack = new System.Windows.Forms.Panel();
             this.PnlControlArea = new System.Windows.Forms.Panel();
+            this.PnlServerState = new System.Windows.Forms.Panel();
+            this.RadioBtnDisable = new System.Windows.Forms.RadioButton();
+            this.RadioBtnEnable = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.ChkAuthenticatedType = new ScheduleJobDesktop.UI.UserControls.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.RadioBtnMaxCapacity = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
             this.RadioBtnPageSize = new System.Windows.Forms.RadioButton();
+            this.TxtMaxCapacity = new ScheduleJobDesktop.UI.UserControls.TextBox();
+            this.TxtPageSize = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.TxtEquipmentNum = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.TxtPassword = new ScheduleJobDesktop.UI.UserControls.TextBox();
+            this.TxtServerIP = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.TxtDBName = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.Lbl_ScheduleName = new System.Windows.Forms.Label();
             this.PicNotNullScheduleName = new System.Windows.Forms.PictureBox();
             this.Lbl_ManagerName = new System.Windows.Forms.Label();
+            this.TxtUserName = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.Lbl_ContactPhone = new System.Windows.Forms.Label();
             this.PicTitleLine = new System.Windows.Forms.PictureBox();
             this.PicTitle = new System.Windows.Forms.PictureBox();
@@ -51,24 +63,13 @@
             this.PnlInfoTitle = new System.Windows.Forms.Panel();
             this.LblModuleTitle = new System.Windows.Forms.Label();
             this.PnlFooter = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.PnlServerState = new System.Windows.Forms.Panel();
-            this.RadioBtnDisable = new System.Windows.Forms.RadioButton();
-            this.RadioBtnEnable = new System.Windows.Forms.RadioButton();
-            this.ChkAuthenticatedType = new ScheduleJobDesktop.UI.UserControls.CheckBox();
-            this.TxtMaxCapacity = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.TxtPageSize = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.TxtEquipmentNum = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.TxtPassword = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.TxtServerIP = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.TxtDBName = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.TxtUserName = new ScheduleJobDesktop.UI.UserControls.TextBox();
             this.BtnSave = new ScheduleJobDesktop.UserControls.Button();
             this.BtnCancel = new ScheduleJobDesktop.UserControls.Button();
             this.PnlScrollArea.SuspendLayout();
             this.PnlInfo.SuspendLayout();
             this.PnlInfoBack.SuspendLayout();
             this.PnlControlArea.SuspendLayout();
+            this.PnlServerState.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -78,7 +79,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.PicLogo)).BeginInit();
             this.PnlInfoTitle.SuspendLayout();
             this.PnlFooter.SuspendLayout();
-            this.PnlServerState.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlScrollArea
@@ -157,6 +157,59 @@
             this.PnlControlArea.Size = new System.Drawing.Size(771, 530);
             this.PnlControlArea.TabIndex = 4;
             // 
+            // PnlServerState
+            // 
+            this.PnlServerState.Controls.Add(this.RadioBtnDisable);
+            this.PnlServerState.Controls.Add(this.RadioBtnEnable);
+            this.PnlServerState.Location = new System.Drawing.Point(230, 317);
+            this.PnlServerState.Name = "PnlServerState";
+            this.PnlServerState.Size = new System.Drawing.Size(141, 34);
+            this.PnlServerState.TabIndex = 49;
+            // 
+            // RadioBtnDisable
+            // 
+            this.RadioBtnDisable.AutoSize = true;
+            this.RadioBtnDisable.Location = new System.Drawing.Point(78, 9);
+            this.RadioBtnDisable.Name = "RadioBtnDisable";
+            this.RadioBtnDisable.Size = new System.Drawing.Size(49, 17);
+            this.RadioBtnDisable.TabIndex = 47;
+            this.RadioBtnDisable.Text = "停用";
+            this.RadioBtnDisable.UseVisualStyleBackColor = true;
+            // 
+            // RadioBtnEnable
+            // 
+            this.RadioBtnEnable.AutoSize = true;
+            this.RadioBtnEnable.Checked = true;
+            this.RadioBtnEnable.Location = new System.Drawing.Point(5, 9);
+            this.RadioBtnEnable.Name = "RadioBtnEnable";
+            this.RadioBtnEnable.Size = new System.Drawing.Size(49, 17);
+            this.RadioBtnEnable.TabIndex = 0;
+            this.RadioBtnEnable.TabStop = true;
+            this.RadioBtnEnable.Text = "启用";
+            this.RadioBtnEnable.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(111, 317);
+            this.label3.Margin = new System.Windows.Forms.Padding(0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(85, 43);
+            this.label3.TabIndex = 48;
+            this.label3.Text = "数据库状态：";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // ChkAuthenticatedType
+            // 
+            this.ChkAuthenticatedType.BackColor = System.Drawing.Color.White;
+            this.ChkAuthenticatedType.Checked = false;
+            this.ChkAuthenticatedType.Location = new System.Drawing.Point(377, 240);
+            this.ChkAuthenticatedType.Name = "ChkAuthenticatedType";
+            this.ChkAuthenticatedType.Size = new System.Drawing.Size(87, 31);
+            this.ChkAuthenticatedType.TabIndex = 47;
+            this.ChkAuthenticatedType.Text = "匿名";
+            this.ChkAuthenticatedType.Visible = false;
+            this.ChkAuthenticatedType.CheckBoxClick += new System.EventHandler(this.ChkAuthenticatedType_CheckBoxClick);
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.label7);
@@ -212,6 +265,36 @@
             this.RadioBtnPageSize.Text = "按每";
             this.RadioBtnPageSize.UseVisualStyleBackColor = true;
             // 
+            // TxtMaxCapacity
+            // 
+            this.TxtMaxCapacity.BackColor = System.Drawing.Color.White;
+            this.TxtMaxCapacity.BoxBackColor = System.Drawing.Color.White;
+            this.TxtMaxCapacity.Location = new System.Drawing.Point(64, 52);
+            this.TxtMaxCapacity.MaxLength = 10;
+            this.TxtMaxCapacity.Multiline = false;
+            this.TxtMaxCapacity.Name = "TxtMaxCapacity";
+            this.TxtMaxCapacity.Padding = new System.Windows.Forms.Padding(1);
+            this.TxtMaxCapacity.PasswordChar = '\0';
+            this.TxtMaxCapacity.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtMaxCapacity.Size = new System.Drawing.Size(67, 27);
+            this.TxtMaxCapacity.TabIndex = 43;
+            this.TxtMaxCapacity.Text = "10000";
+            // 
+            // TxtPageSize
+            // 
+            this.TxtPageSize.BackColor = System.Drawing.Color.White;
+            this.TxtPageSize.BoxBackColor = System.Drawing.Color.White;
+            this.TxtPageSize.Location = new System.Drawing.Point(64, 16);
+            this.TxtPageSize.MaxLength = 4;
+            this.TxtPageSize.Multiline = false;
+            this.TxtPageSize.Name = "TxtPageSize";
+            this.TxtPageSize.Padding = new System.Windows.Forms.Padding(1);
+            this.TxtPageSize.PasswordChar = '\0';
+            this.TxtPageSize.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtPageSize.Size = new System.Drawing.Size(67, 27);
+            this.TxtPageSize.TabIndex = 41;
+            this.TxtPageSize.Text = "1000";
+            // 
             // label5
             // 
             this.label5.Location = new System.Drawing.Point(104, 384);
@@ -231,6 +314,20 @@
             this.pictureBox3.TabIndex = 39;
             this.pictureBox3.TabStop = false;
             // 
+            // TxtEquipmentNum
+            // 
+            this.TxtEquipmentNum.BackColor = System.Drawing.Color.White;
+            this.TxtEquipmentNum.BoxBackColor = System.Drawing.Color.White;
+            this.TxtEquipmentNum.Location = new System.Drawing.Point(230, 118);
+            this.TxtEquipmentNum.MaxLength = 30;
+            this.TxtEquipmentNum.Multiline = false;
+            this.TxtEquipmentNum.Name = "TxtEquipmentNum";
+            this.TxtEquipmentNum.Padding = new System.Windows.Forms.Padding(1);
+            this.TxtEquipmentNum.PasswordChar = '\0';
+            this.TxtEquipmentNum.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtEquipmentNum.Size = new System.Drawing.Size(141, 27);
+            this.TxtEquipmentNum.TabIndex = 38;
+            // 
             // label1
             // 
             this.label1.Location = new System.Drawing.Point(137, 107);
@@ -241,6 +338,34 @@
             this.label1.Text = "设备编号：";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // TxtPassword
+            // 
+            this.TxtPassword.BackColor = System.Drawing.Color.White;
+            this.TxtPassword.BoxBackColor = System.Drawing.Color.White;
+            this.TxtPassword.Location = new System.Drawing.Point(230, 282);
+            this.TxtPassword.MaxLength = 45;
+            this.TxtPassword.Multiline = false;
+            this.TxtPassword.Name = "TxtPassword";
+            this.TxtPassword.Padding = new System.Windows.Forms.Padding(1);
+            this.TxtPassword.PasswordChar = '*';
+            this.TxtPassword.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtPassword.Size = new System.Drawing.Size(141, 27);
+            this.TxtPassword.TabIndex = 35;
+            // 
+            // TxtServerIP
+            // 
+            this.TxtServerIP.BackColor = System.Drawing.Color.White;
+            this.TxtServerIP.BoxBackColor = System.Drawing.Color.White;
+            this.TxtServerIP.Location = new System.Drawing.Point(230, 157);
+            this.TxtServerIP.MaxLength = 30;
+            this.TxtServerIP.Multiline = false;
+            this.TxtServerIP.Name = "TxtServerIP";
+            this.TxtServerIP.Padding = new System.Windows.Forms.Padding(1);
+            this.TxtServerIP.PasswordChar = '\0';
+            this.TxtServerIP.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtServerIP.Size = new System.Drawing.Size(141, 27);
+            this.TxtServerIP.TabIndex = 22;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
@@ -249,6 +374,20 @@
             this.pictureBox1.Size = new System.Drawing.Size(14, 22);
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
+            // 
+            // TxtDBName
+            // 
+            this.TxtDBName.BackColor = System.Drawing.Color.White;
+            this.TxtDBName.BoxBackColor = System.Drawing.Color.White;
+            this.TxtDBName.Location = new System.Drawing.Point(230, 199);
+            this.TxtDBName.MaxLength = 45;
+            this.TxtDBName.Multiline = false;
+            this.TxtDBName.Name = "TxtDBName";
+            this.TxtDBName.Padding = new System.Windows.Forms.Padding(1);
+            this.TxtDBName.PasswordChar = '\0';
+            this.TxtDBName.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtDBName.Size = new System.Drawing.Size(141, 27);
+            this.TxtDBName.TabIndex = 8;
             // 
             // label2
             // 
@@ -288,6 +427,20 @@
             this.Lbl_ManagerName.TabIndex = 3;
             this.Lbl_ManagerName.Text = "用户名称：";
             this.Lbl_ManagerName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TxtUserName
+            // 
+            this.TxtUserName.BackColor = System.Drawing.Color.White;
+            this.TxtUserName.BoxBackColor = System.Drawing.Color.White;
+            this.TxtUserName.Location = new System.Drawing.Point(230, 240);
+            this.TxtUserName.MaxLength = 45;
+            this.TxtUserName.Multiline = false;
+            this.TxtUserName.Name = "TxtUserName";
+            this.TxtUserName.Padding = new System.Windows.Forms.Padding(1);
+            this.TxtUserName.PasswordChar = '\0';
+            this.TxtUserName.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtUserName.Size = new System.Drawing.Size(141, 27);
+            this.TxtUserName.TabIndex = 0;
             // 
             // Lbl_ContactPhone
             // 
@@ -373,158 +526,6 @@
             this.PnlFooter.Size = new System.Drawing.Size(830, 54);
             this.PnlFooter.TabIndex = 3;
             // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(111, 317);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 43);
-            this.label3.TabIndex = 48;
-            this.label3.Text = "数据库状态：";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // PnlServerState
-            // 
-            this.PnlServerState.Controls.Add(this.RadioBtnDisable);
-            this.PnlServerState.Controls.Add(this.RadioBtnEnable);
-            this.PnlServerState.Location = new System.Drawing.Point(230, 317);
-            this.PnlServerState.Name = "PnlServerState";
-            this.PnlServerState.Size = new System.Drawing.Size(141, 34);
-            this.PnlServerState.TabIndex = 49;
-            // 
-            // RadioBtnDisable
-            // 
-            this.RadioBtnDisable.AutoSize = true;
-            this.RadioBtnDisable.Location = new System.Drawing.Point(78, 9);
-            this.RadioBtnDisable.Name = "RadioBtnDisable";
-            this.RadioBtnDisable.Size = new System.Drawing.Size(49, 17);
-            this.RadioBtnDisable.TabIndex = 47;
-            this.RadioBtnDisable.Text = "停用";
-            this.RadioBtnDisable.UseVisualStyleBackColor = true;
-            // 
-            // RadioBtnEnable
-            // 
-            this.RadioBtnEnable.AutoSize = true;
-            this.RadioBtnEnable.Checked = true;
-            this.RadioBtnEnable.Location = new System.Drawing.Point(5, 9);
-            this.RadioBtnEnable.Name = "RadioBtnEnable";
-            this.RadioBtnEnable.Size = new System.Drawing.Size(49, 17);
-            this.RadioBtnEnable.TabIndex = 0;
-            this.RadioBtnEnable.TabStop = true;
-            this.RadioBtnEnable.Text = "启用";
-            this.RadioBtnEnable.UseVisualStyleBackColor = true;
-            // 
-            // ChkAuthenticatedType
-            // 
-            this.ChkAuthenticatedType.BackColor = System.Drawing.Color.White;
-            this.ChkAuthenticatedType.Checked = false;
-            this.ChkAuthenticatedType.Location = new System.Drawing.Point(377, 240);
-            this.ChkAuthenticatedType.Name = "ChkAuthenticatedType";
-            this.ChkAuthenticatedType.Size = new System.Drawing.Size(87, 31);
-            this.ChkAuthenticatedType.TabIndex = 47;
-            this.ChkAuthenticatedType.Text = "匿名";
-            this.ChkAuthenticatedType.CheckBoxClick += new System.EventHandler(this.ChkAuthenticatedType_CheckBoxClick);
-            // 
-            // TxtMaxCapacity
-            // 
-            this.TxtMaxCapacity.BackColor = System.Drawing.Color.White;
-            this.TxtMaxCapacity.BoxBackColor = System.Drawing.Color.White;
-            this.TxtMaxCapacity.Location = new System.Drawing.Point(64, 52);
-            this.TxtMaxCapacity.MaxLength = 10;
-            this.TxtMaxCapacity.Multiline = false;
-            this.TxtMaxCapacity.Name = "TxtMaxCapacity";
-            this.TxtMaxCapacity.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtMaxCapacity.PasswordChar = '\0';
-            this.TxtMaxCapacity.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtMaxCapacity.Size = new System.Drawing.Size(67, 27);
-            this.TxtMaxCapacity.TabIndex = 43;
-            this.TxtMaxCapacity.Text = "10000";
-            // 
-            // TxtPageSize
-            // 
-            this.TxtPageSize.BackColor = System.Drawing.Color.White;
-            this.TxtPageSize.BoxBackColor = System.Drawing.Color.White;
-            this.TxtPageSize.Location = new System.Drawing.Point(64, 16);
-            this.TxtPageSize.MaxLength = 4;
-            this.TxtPageSize.Multiline = false;
-            this.TxtPageSize.Name = "TxtPageSize";
-            this.TxtPageSize.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtPageSize.PasswordChar = '\0';
-            this.TxtPageSize.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtPageSize.Size = new System.Drawing.Size(67, 27);
-            this.TxtPageSize.TabIndex = 41;
-            this.TxtPageSize.Text = "1000";
-            // 
-            // TxtEquipmentNum
-            // 
-            this.TxtEquipmentNum.BackColor = System.Drawing.Color.White;
-            this.TxtEquipmentNum.BoxBackColor = System.Drawing.Color.White;
-            this.TxtEquipmentNum.Location = new System.Drawing.Point(230, 118);
-            this.TxtEquipmentNum.MaxLength = 30;
-            this.TxtEquipmentNum.Multiline = false;
-            this.TxtEquipmentNum.Name = "TxtEquipmentNum";
-            this.TxtEquipmentNum.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtEquipmentNum.PasswordChar = '\0';
-            this.TxtEquipmentNum.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtEquipmentNum.Size = new System.Drawing.Size(141, 27);
-            this.TxtEquipmentNum.TabIndex = 38;
-            // 
-            // TxtPassword
-            // 
-            this.TxtPassword.BackColor = System.Drawing.Color.White;
-            this.TxtPassword.BoxBackColor = System.Drawing.Color.White;
-            this.TxtPassword.Location = new System.Drawing.Point(230, 282);
-            this.TxtPassword.MaxLength = 45;
-            this.TxtPassword.Multiline = false;
-            this.TxtPassword.Name = "TxtPassword";
-            this.TxtPassword.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtPassword.PasswordChar = '*';
-            this.TxtPassword.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtPassword.Size = new System.Drawing.Size(141, 27);
-            this.TxtPassword.TabIndex = 35;
-            // 
-            // TxtServerIP
-            // 
-            this.TxtServerIP.BackColor = System.Drawing.Color.White;
-            this.TxtServerIP.BoxBackColor = System.Drawing.Color.White;
-            this.TxtServerIP.Location = new System.Drawing.Point(230, 157);
-            this.TxtServerIP.MaxLength = 30;
-            this.TxtServerIP.Multiline = false;
-            this.TxtServerIP.Name = "TxtServerIP";
-            this.TxtServerIP.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtServerIP.PasswordChar = '\0';
-            this.TxtServerIP.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtServerIP.Size = new System.Drawing.Size(141, 27);
-            this.TxtServerIP.TabIndex = 22;
-            // 
-            // TxtDBName
-            // 
-            this.TxtDBName.BackColor = System.Drawing.Color.White;
-            this.TxtDBName.BoxBackColor = System.Drawing.Color.White;
-            this.TxtDBName.Location = new System.Drawing.Point(230, 199);
-            this.TxtDBName.MaxLength = 45;
-            this.TxtDBName.Multiline = false;
-            this.TxtDBName.Name = "TxtDBName";
-            this.TxtDBName.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtDBName.PasswordChar = '\0';
-            this.TxtDBName.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtDBName.Size = new System.Drawing.Size(141, 27);
-            this.TxtDBName.TabIndex = 8;
-            // 
-            // TxtUserName
-            // 
-            this.TxtUserName.BackColor = System.Drawing.Color.White;
-            this.TxtUserName.BoxBackColor = System.Drawing.Color.White;
-            this.TxtUserName.Location = new System.Drawing.Point(230, 240);
-            this.TxtUserName.MaxLength = 45;
-            this.TxtUserName.Multiline = false;
-            this.TxtUserName.Name = "TxtUserName";
-            this.TxtUserName.Padding = new System.Windows.Forms.Padding(1);
-            this.TxtUserName.PasswordChar = '\0';
-            this.TxtUserName.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtUserName.Size = new System.Drawing.Size(141, 27);
-            this.TxtUserName.TabIndex = 0;
-            // 
             // BtnSave
             // 
             this.BtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -562,6 +563,8 @@
             this.PnlInfo.ResumeLayout(false);
             this.PnlInfoBack.ResumeLayout(false);
             this.PnlControlArea.ResumeLayout(false);
+            this.PnlServerState.ResumeLayout(false);
+            this.PnlServerState.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -572,8 +575,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.PicLogo)).EndInit();
             this.PnlInfoTitle.ResumeLayout(false);
             this.PnlFooter.ResumeLayout(false);
-            this.PnlServerState.ResumeLayout(false);
-            this.PnlServerState.PerformLayout();
             this.ResumeLayout(false);
 
         }

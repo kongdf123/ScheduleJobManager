@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,9 @@ namespace Service.DAL
 {
     public class SqlServerDbHelper
     {
-        static SqlConnection GetConnection()
+        static OleDbConnection GetConnection()
         {
-            SqlConnection connection = new SqlConnection();
+            OleDbConnection connection = new OleDbConnection();
             connection.ConnectionString = ConfigurationManager.AppSettings["SQLServerConnString"];
             try
             {
@@ -27,9 +28,9 @@ namespace Service.DAL
             return connection;
         }
 
-        static SqlConnection GetConnection(string connString)
+        static OleDbConnection GetConnection(string connString)
         {
-            SqlConnection connection = new SqlConnection();
+            OleDbConnection connection = new OleDbConnection();
             connection.ConnectionString = connString;
             try
             {
@@ -43,14 +44,14 @@ namespace Service.DAL
             return connection;
         }
 
-        public static DataSet ExecuteDataTable(string connString, string commandText, SqlParameter[] commandParms)
+        public static DataSet ExecuteDataTable(string connString, string commandText, OleDbParameter[] commandParms)
         {
-            SqlConnection sqlConnection = GetConnection(connString);
-            SqlCommand sqlCommand = new SqlCommand(commandText, sqlConnection);
+            OleDbConnection sqlConnection = GetConnection(connString);
+            OleDbCommand sqlCommand = new OleDbCommand(commandText, sqlConnection);
             PrepareCommand(sqlCommand, commandParms);
             try
             {
-                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                OleDbDataAdapter sqlDataAdapter = new OleDbDataAdapter(sqlCommand);
                 DataSet ds = new DataSet();
                 sqlDataAdapter.Fill(ds);
                 sqlCommand.Parameters.Clear();
@@ -66,14 +67,14 @@ namespace Service.DAL
             }
         }
 
-        public static SqlDataReader ExecuteReader(string commandText, SqlParameter[] commandParms)
+        public static OleDbDataReader ExecuteReader(string commandText, OleDbParameter[] commandParms)
         {
-            SqlConnection sqlConnection = GetConnection();
-            SqlCommand sqlCommand = new SqlCommand(commandText, sqlConnection);
+            OleDbConnection sqlConnection = GetConnection();
+            OleDbCommand sqlCommand = new OleDbCommand(commandText, sqlConnection);
             PrepareCommand(sqlCommand, commandParms);
             try
             {
-                SqlDataReader dbReader = sqlCommand.ExecuteReader(CommandBehavior.CloseConnection);
+                OleDbDataReader dbReader = sqlCommand.ExecuteReader(CommandBehavior.CloseConnection);
                 return dbReader;
             }
             catch (Exception ex)
@@ -86,14 +87,14 @@ namespace Service.DAL
             }
         }
 
-        public static SqlDataReader ExecuteReader(string connString, string commandText, SqlParameter[] commandParms)
+        public static OleDbDataReader ExecuteReader(string connString, string commandText, OleDbParameter[] commandParms)
         {
-            SqlConnection sqlConnection = GetConnection(connString);
-            SqlCommand sqlCommand = new SqlCommand(commandText, sqlConnection);
+            OleDbConnection sqlConnection = GetConnection(connString);
+            OleDbCommand sqlCommand = new OleDbCommand(commandText, sqlConnection);
             PrepareCommand(sqlCommand, commandParms);
             try
             {
-                SqlDataReader dbReader = sqlCommand.ExecuteReader(CommandBehavior.CloseConnection);
+                OleDbDataReader dbReader = sqlCommand.ExecuteReader(CommandBehavior.CloseConnection);
                 sqlCommand.Parameters.Clear();
                 return dbReader;
             }
@@ -107,10 +108,10 @@ namespace Service.DAL
             }
         }
 
-        public static T ExecuteScalar<T>(string connString, string commandText, SqlParameter[] commandParms)
+        public static T ExecuteScalar<T>(string connString, string commandText, OleDbParameter[] commandParms)
         {
-            SqlConnection sqlConnection = GetConnection(connString);
-            SqlCommand sqlCommand = new SqlCommand(commandText, sqlConnection);
+            OleDbConnection sqlConnection = GetConnection(connString);
+            OleDbCommand sqlCommand = new OleDbCommand(commandText, sqlConnection);
             PrepareCommand(sqlCommand, commandParms);
             try
             {
@@ -132,10 +133,10 @@ namespace Service.DAL
             }
         }
 
-        public static T ExecuteScalar<T>(string commandText, SqlParameter[] commandParms)
+        public static T ExecuteScalar<T>(string commandText, OleDbParameter[] commandParms)
         {
-            SqlConnection sqlConnection = GetConnection();
-            SqlCommand sqlCommand = new SqlCommand(commandText, sqlConnection);
+            OleDbConnection sqlConnection = GetConnection();
+            OleDbCommand sqlCommand = new OleDbCommand(commandText, sqlConnection);
             PrepareCommand(sqlCommand, commandParms);
             try
             {
@@ -157,10 +158,10 @@ namespace Service.DAL
             }
         }
 
-        public static int ExecuteNonQuery(string commandText, SqlParameter[] commandParms)
+        public static int ExecuteNonQuery(string commandText, OleDbParameter[] commandParms)
         {
-            SqlConnection sqlConnection = GetConnection();
-            SqlCommand sqlCommand = new SqlCommand(commandText, sqlConnection);
+            OleDbConnection sqlConnection = GetConnection();
+            OleDbCommand sqlCommand = new OleDbCommand(commandText, sqlConnection);
             PrepareCommand(sqlCommand, commandParms);
             int rowCount = 0;
             try
@@ -180,7 +181,7 @@ namespace Service.DAL
             return rowCount;
         }
 
-        static void PrepareCommand(SqlCommand sqlCommand, SqlParameter[] commandParms)
+        static void PrepareCommand(OleDbCommand sqlCommand, OleDbParameter[] commandParms)
         {
             if (commandParms != null)
             {

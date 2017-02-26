@@ -27,7 +27,7 @@ namespace DataAccess.Entity
 
         public string ConnString {
             get {
-                return string.Format("Server={0};Database={1};User Id={2};Password = {3};", ServerAddress, DBName, UserName, Password);
+                return string.Format("Provider=sqloledb;Data Source={0};Initial Catalog={1};User Id = {2}; Password ={3}; ", ServerAddress, DBName, UserName, Password);
             }
         }
 
