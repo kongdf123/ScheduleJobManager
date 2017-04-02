@@ -56,27 +56,28 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			this.DateTimePickerStart = new System.Windows.Forms.DateTimePicker();
 			this.label3 = new System.Windows.Forms.Label();
 			this.ComBoxFreq = new System.Windows.Forms.ComboBox();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.TxtJobIdentity = new ScheduleJobDesktop.UI.UserControls.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.TxtNoteDescription = new ScheduleJobDesktop.UI.UserControls.TextBox();
-			this.PicNotNullScheduleServiceURL = new System.Windows.Forms.PictureBox();
 			this.Lbl_ScheduleName = new System.Windows.Forms.Label();
-			this.PicNotNullScheduleName = new System.Windows.Forms.PictureBox();
 			this.Lbl_ManagerName = new System.Windows.Forms.Label();
 			this.TxtServiceAddress = new ScheduleJobDesktop.UI.UserControls.TextBox();
 			this.Lbl_ContactPhone = new System.Windows.Forms.Label();
 			this.Lbl_NoteDescription = new System.Windows.Forms.Label();
+			this.PnlInfoTopLine = new System.Windows.Forms.Panel();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.PicNotNullScheduleServiceURL = new System.Windows.Forms.PictureBox();
+			this.PicNotNullScheduleName = new System.Windows.Forms.PictureBox();
 			this.PicTitleLine = new System.Windows.Forms.PictureBox();
 			this.PicTitle = new System.Windows.Forms.PictureBox();
 			this.PicLogo = new System.Windows.Forms.PictureBox();
-			this.PnlInfoTopLine = new System.Windows.Forms.Panel();
 			this.PnlInfoTitle = new System.Windows.Forms.Panel();
 			this.LblModuleTitle = new System.Windows.Forms.Label();
 			this.PnlFooter = new System.Windows.Forms.Panel();
 			this.BtnSave = new ScheduleJobDesktop.UserControls.Button();
 			this.BtnCancel = new ScheduleJobDesktop.UserControls.Button();
+			this.label5 = new System.Windows.Forms.Label();
 			this.PnlScrollArea.SuspendLayout();
 			this.PnlInfo.SuspendLayout();
 			this.PnlInfoBack.SuspendLayout();
@@ -141,6 +142,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			// PnlControlArea
 			// 
 			this.PnlControlArea.BackColor = System.Drawing.Color.White;
+			this.PnlControlArea.Controls.Add(this.label5);
 			this.PnlControlArea.Controls.Add(this.PnlJobState);
 			this.PnlControlArea.Controls.Add(this.PnlInterval);
 			this.PnlControlArea.Controls.Add(this.TxtScheduleChineseName);
@@ -177,7 +179,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			this.PnlJobState.Controls.Add(this.RadioBtnWaiting);
 			this.PnlJobState.Controls.Add(this.RadioBtnRunning);
 			this.PnlJobState.Controls.Add(this.RadioBtnStopping);
-			this.PnlJobState.Location = new System.Drawing.Point(230, 207);
+			this.PnlJobState.Location = new System.Drawing.Point(230, 218);
 			this.PnlJobState.Name = "PnlJobState";
 			this.PnlJobState.Size = new System.Drawing.Size(219, 25);
 			this.PnlJobState.TabIndex = 36;
@@ -226,7 +228,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			this.PnlInterval.Controls.Add(this.RadioBtnHour);
 			this.PnlInterval.Controls.Add(this.label7);
 			this.PnlInterval.Controls.Add(this.TxtHour);
-			this.PnlInterval.Location = new System.Drawing.Point(229, 311);
+			this.PnlInterval.Location = new System.Drawing.Point(229, 324);
 			this.PnlInterval.Name = "PnlInterval";
 			this.PnlInterval.Size = new System.Drawing.Size(200, 93);
 			this.PnlInterval.TabIndex = 35;
@@ -352,7 +354,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			// 
 			// label6
 			// 
-			this.label6.Location = new System.Drawing.Point(140, 328);
+			this.label6.Location = new System.Drawing.Point(140, 345);
 			this.label6.Margin = new System.Windows.Forms.Padding(0);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(90, 43);
@@ -364,14 +366,14 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			// 
 			this.DateTimePickerEnd.CustomFormat = "yyyy-MM-dd  HH:mm:ss";
 			this.DateTimePickerEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.DateTimePickerEnd.Location = new System.Drawing.Point(475, 279);
+			this.DateTimePickerEnd.Location = new System.Drawing.Point(475, 286);
 			this.DateTimePickerEnd.Name = "DateTimePickerEnd";
 			this.DateTimePickerEnd.Size = new System.Drawing.Size(200, 20);
 			this.DateTimePickerEnd.TabIndex = 15;
 			// 
 			// label4
 			// 
-			this.label4.Location = new System.Drawing.Point(445, 270);
+			this.label4.Location = new System.Drawing.Point(445, 277);
 			this.label4.Margin = new System.Windows.Forms.Padding(0);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(27, 32);
@@ -385,14 +387,14 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			this.DateTimePickerStart.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
 			this.DateTimePickerStart.CustomFormat = "yyyy-MM-dd HH:mm:ss";
 			this.DateTimePickerStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.DateTimePickerStart.Location = new System.Drawing.Point(231, 279);
+			this.DateTimePickerStart.Location = new System.Drawing.Point(231, 286);
 			this.DateTimePickerStart.Name = "DateTimePickerStart";
 			this.DateTimePickerStart.Size = new System.Drawing.Size(200, 20);
 			this.DateTimePickerStart.TabIndex = 13;
 			// 
 			// label3
 			// 
-			this.label3.Location = new System.Drawing.Point(140, 270);
+			this.label3.Location = new System.Drawing.Point(140, 276);
 			this.label3.Margin = new System.Windows.Forms.Padding(0);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(90, 43);
@@ -406,19 +408,10 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			this.ComBoxFreq.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
 			this.ComBoxFreq.FormattingEnabled = true;
 			this.ComBoxFreq.ItemHeight = 17;
-			this.ComBoxFreq.Location = new System.Drawing.Point(230, 242);
+			this.ComBoxFreq.Location = new System.Drawing.Point(230, 252);
 			this.ComBoxFreq.Name = "ComBoxFreq";
 			this.ComBoxFreq.Size = new System.Drawing.Size(121, 25);
 			this.ComBoxFreq.TabIndex = 11;
-			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
-			this.pictureBox1.Location = new System.Drawing.Point(435, 133);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(14, 22);
-			this.pictureBox1.TabIndex = 9;
-			this.pictureBox1.TabStop = false;
 			// 
 			// TxtJobIdentity
 			// 
@@ -446,7 +439,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(140, 231);
+			this.label1.Location = new System.Drawing.Point(140, 243);
 			this.label1.Margin = new System.Windows.Forms.Padding(0);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(90, 43);
@@ -458,7 +451,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			// 
 			this.TxtNoteDescription.BackColor = System.Drawing.Color.White;
 			this.TxtNoteDescription.BoxBackColor = System.Drawing.Color.White;
-			this.TxtNoteDescription.Location = new System.Drawing.Point(230, 424);
+			this.TxtNoteDescription.Location = new System.Drawing.Point(230, 434);
 			this.TxtNoteDescription.MaxLength = 200;
 			this.TxtNoteDescription.Multiline = true;
 			this.TxtNoteDescription.Name = "TxtNoteDescription";
@@ -467,15 +460,6 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			this.TxtNoteDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.TxtNoteDescription.Size = new System.Drawing.Size(400, 66);
 			this.TxtNoteDescription.TabIndex = 0;
-			// 
-			// PicNotNullScheduleServiceURL
-			// 
-			this.PicNotNullScheduleServiceURL.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
-			this.PicNotNullScheduleServiceURL.Location = new System.Drawing.Point(588, 170);
-			this.PicNotNullScheduleServiceURL.Name = "PicNotNullScheduleServiceURL";
-			this.PicNotNullScheduleServiceURL.Size = new System.Drawing.Size(14, 22);
-			this.PicNotNullScheduleServiceURL.TabIndex = 4;
-			this.PicNotNullScheduleServiceURL.TabStop = false;
 			// 
 			// Lbl_ScheduleName
 			// 
@@ -486,15 +470,6 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			this.Lbl_ScheduleName.TabIndex = 3;
 			this.Lbl_ScheduleName.Text = "任务名称：";
 			this.Lbl_ScheduleName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// PicNotNullScheduleName
-			// 
-			this.PicNotNullScheduleName.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
-			this.PicNotNullScheduleName.Location = new System.Drawing.Point(435, 97);
-			this.PicNotNullScheduleName.Name = "PicNotNullScheduleName";
-			this.PicNotNullScheduleName.Size = new System.Drawing.Size(14, 22);
-			this.PicNotNullScheduleName.TabIndex = 0;
-			this.PicNotNullScheduleName.TabStop = false;
 			// 
 			// Lbl_ManagerName
 			// 
@@ -510,7 +485,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			// 
 			this.TxtServiceAddress.BackColor = System.Drawing.Color.White;
 			this.TxtServiceAddress.BoxBackColor = System.Drawing.Color.White;
-			this.TxtServiceAddress.Location = new System.Drawing.Point(230, 170);
+			this.TxtServiceAddress.Location = new System.Drawing.Point(230, 167);
 			this.TxtServiceAddress.MaxLength = 255;
 			this.TxtServiceAddress.Multiline = false;
 			this.TxtServiceAddress.Name = "TxtServiceAddress";
@@ -522,7 +497,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			// 
 			// Lbl_ContactPhone
 			// 
-			this.Lbl_ContactPhone.Location = new System.Drawing.Point(140, 198);
+			this.Lbl_ContactPhone.Location = new System.Drawing.Point(140, 206);
 			this.Lbl_ContactPhone.Margin = new System.Windows.Forms.Padding(0);
 			this.Lbl_ContactPhone.Name = "Lbl_ContactPhone";
 			this.Lbl_ContactPhone.Size = new System.Drawing.Size(90, 43);
@@ -532,13 +507,49 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			// 
 			// Lbl_NoteDescription
 			// 
-			this.Lbl_NoteDescription.Location = new System.Drawing.Point(137, 435);
+			this.Lbl_NoteDescription.Location = new System.Drawing.Point(137, 446);
 			this.Lbl_NoteDescription.Margin = new System.Windows.Forms.Padding(0);
 			this.Lbl_NoteDescription.Name = "Lbl_NoteDescription";
 			this.Lbl_NoteDescription.Size = new System.Drawing.Size(90, 43);
 			this.Lbl_NoteDescription.TabIndex = 3;
 			this.Lbl_NoteDescription.Text = "备注说明：";
 			this.Lbl_NoteDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// PnlInfoTopLine
+			// 
+			this.PnlInfoTopLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+			this.PnlInfoTopLine.Dock = System.Windows.Forms.DockStyle.Top;
+			this.PnlInfoTopLine.Location = new System.Drawing.Point(0, 27);
+			this.PnlInfoTopLine.Name = "PnlInfoTopLine";
+			this.PnlInfoTopLine.Size = new System.Drawing.Size(771, 1);
+			this.PnlInfoTopLine.TabIndex = 3;
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
+			this.pictureBox1.Location = new System.Drawing.Point(435, 133);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(14, 22);
+			this.pictureBox1.TabIndex = 9;
+			this.pictureBox1.TabStop = false;
+			// 
+			// PicNotNullScheduleServiceURL
+			// 
+			this.PicNotNullScheduleServiceURL.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
+			this.PicNotNullScheduleServiceURL.Location = new System.Drawing.Point(588, 170);
+			this.PicNotNullScheduleServiceURL.Name = "PicNotNullScheduleServiceURL";
+			this.PicNotNullScheduleServiceURL.Size = new System.Drawing.Size(14, 22);
+			this.PicNotNullScheduleServiceURL.TabIndex = 4;
+			this.PicNotNullScheduleServiceURL.TabStop = false;
+			// 
+			// PicNotNullScheduleName
+			// 
+			this.PicNotNullScheduleName.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
+			this.PicNotNullScheduleName.Location = new System.Drawing.Point(435, 97);
+			this.PicNotNullScheduleName.Name = "PicNotNullScheduleName";
+			this.PicNotNullScheduleName.Size = new System.Drawing.Size(14, 22);
+			this.PicNotNullScheduleName.TabIndex = 0;
+			this.PicNotNullScheduleName.TabStop = false;
 			// 
 			// PicTitleLine
 			// 
@@ -570,15 +581,6 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			this.PicLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.PicLogo.TabIndex = 0;
 			this.PicLogo.TabStop = false;
-			// 
-			// PnlInfoTopLine
-			// 
-			this.PnlInfoTopLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-			this.PnlInfoTopLine.Dock = System.Windows.Forms.DockStyle.Top;
-			this.PnlInfoTopLine.Location = new System.Drawing.Point(0, 27);
-			this.PnlInfoTopLine.Name = "PnlInfoTopLine";
-			this.PnlInfoTopLine.Size = new System.Drawing.Size(771, 1);
-			this.PnlInfoTopLine.TabIndex = 3;
 			// 
 			// PnlInfoTitle
 			// 
@@ -638,6 +640,15 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			this.BtnCancel.Text = "返回";
 			this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
 			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(231, 194);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(301, 13);
+			this.label5.TabIndex = 37;
+			this.label5.Text = "如:http://localhost:8080/SqlServerDataSync/SyncMsSqlData";
+			// 
 			// ScheduleJobEdit
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -651,6 +662,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			this.PnlInfo.ResumeLayout(false);
 			this.PnlInfoBack.ResumeLayout(false);
 			this.PnlControlArea.ResumeLayout(false);
+			this.PnlControlArea.PerformLayout();
 			this.PnlJobState.ResumeLayout(false);
 			this.PnlJobState.PerformLayout();
 			this.PnlInterval.ResumeLayout(false);
@@ -716,5 +728,6 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
         private System.Windows.Forms.RadioButton RadioBtnMinute;
         private System.Windows.Forms.Panel PnlJobState;
         private System.Windows.Forms.Panel PnlInterval;
-    }
+		private System.Windows.Forms.Label label5;
+	}
 }

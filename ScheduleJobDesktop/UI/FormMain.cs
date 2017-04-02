@@ -67,8 +67,9 @@ namespace ScheduleJobDesktop
                     break;
                 case "ManageDbConfig":
                     LoadNewControl(SqlServerConfigList.Instance); break;
-                default: break;
-
+				case "ManageEventConfig":
+					LoadNewControl(SqlServerConfigList.Instance); break;
+				default: break;
             }
         }
     }

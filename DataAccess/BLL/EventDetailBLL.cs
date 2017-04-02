@@ -30,5 +30,9 @@ namespace Service.BLL
 			}
 			return _dal.Insert(entityList);
 		}
+
+		public PageData GetPageList(int pageSize, int curPage) {
+			return _dal.GetPageList(pageSize, curPage);
+		}
 	}
 }

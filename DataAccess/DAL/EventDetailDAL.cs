@@ -48,5 +48,52 @@ namespace Service.DAL
 			});
 			return MySqlDbHelper.ExecuteScalar<int>(insertSQLs.ToString(), paramList.ToArray());
 		}
+
+		public PageData GetPageList(int pageSize, int curPage) {
+
+			int recordsTotal = MySqlDbHelper.ExecuteScalar<int>("SELECT COUNT(*) FROM custom_event_details",null);
+
+			string sqlText = @" SELECT `Id`,
+                                    `EventDate`,
+                                    `EventName`,
+                                    `EventId`
+                                FROM `custom_event_details` "  
+								+ " ORDER BY Id DESC LIMIT " + (curPage - 1) * pageSize + "," + pageSize;
+			List<EventDetail> list = new List<EventDetail>();
+			MySqlDataReader sqlDataReader = MySqlDbHelper.ExecuteReader(sqlText, null);
+
+			PageData pageData = new PageData();
+			pageData.PageSize = pageSize;
+			pageData.CurPage = curPage;
+			pageData.RecordCount = Math.Max(1, recordsTotal);
+			if ( pageData.RecordCount > 0 ) {
+				pageData.PageCount = Convert.ToInt32(Math.Ceiling((double)pageData.RecordCount / (double)pageSize));
+			}
+
+			while ( sqlDataReader.Read() ) {
+				EventDetail entity = new EventDetail();
+				ReadRecordData(sqlDataReader, entity);
+				list.Add(entity);
+			}
+			sqlDataReader.Close();
+			pageData.PageList = list;
+			return pageData;
+		}
+
+		void ReadRecordData(IDataReader dataReader, EventDetail entity) {
+			if ( dataReader["Id"] != DBNull.Value ) {
+				entity.Id = Convert.ToInt32(dataReader["Id"]);
+			}
+			if ( dataReader["EventId"] != DBNull.Value ) {
+				entity.EventId = Convert.ToString(dataReader["EventId"]);
+			}
+			if ( dataReader["EventName"] != DBNull.Value ) {
+				entity.EventName = Convert.ToString(dataReader["EventName"]);
+			}
+
+			if ( dataReader["EventDate"] != DBNull.Value ) {
+				entity.EventDate = Convert.ToDateTime(dataReader["EventDate"]);
+			}
+		}
 	}
 }

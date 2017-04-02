@@ -96,6 +96,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\ManageEventConfig\EventConfigEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ManageEventConfig\EventConfigEdit.Designer.cs">
+      <DependentUpon>EventConfigEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ManageEventConfig\EventConfigList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ManageEventConfig\EventConfigList.Designer.cs">
+      <DependentUpon>EventConfigList.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\ManageScheduleJob\ScheduleJobEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -132,6 +144,7 @@
     <Compile Include="UI\UserControls\CheckBox.Designer.cs">
       <DependentUpon>CheckBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\UserControls\EventConfigDataGridViewActionButtonColumn.cs" />
     <Compile Include="UI\UserControls\DBConfigDataGridViewActionButtonColumn.cs" />
     <Compile Include="UI\UserControls\JobDataGridViewActionButtonColumn.cs" />
     <Compile Include="UI\UserControls\NavBar.cs">
@@ -165,6 +178,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ManageEventConfig\EventConfigEdit.resx">
+      <DependentUpon>EventConfigEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ManageEventConfig\EventConfigList.resx">
+      <DependentUpon>EventConfigList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ManageScheduleJob\ScheduleJobEdit.resx">
       <DependentUpon>ScheduleJobEdit.cs</DependentUpon>
@@ -343,6 +362,8 @@
     <None Include="Resources\ButtonBG011.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\TitleManageEventConfig.png" />
+    <None Include="Resources\NavBtnManageEventConfig.jpg" />
     <None Include="Resources\bitbug_favicon.ico" />
     <Content Include="Resources\BtnStart.png" />
     <None Include="Resources\TitleManageDBConfig.png" />
