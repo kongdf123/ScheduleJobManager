@@ -31,19 +31,19 @@
 			this.PnlInfo = new System.Windows.Forms.Panel();
 			this.PnlInfoBack = new System.Windows.Forms.Panel();
 			this.PnlControlArea = new System.Windows.Forms.Panel();
-			this.TxtEventConfigFile = new ScheduleJobDesktop.UI.UserControls.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
+			this.PnlInfoTopLine = new System.Windows.Forms.Panel();
+			this.btnImportEventConfig = new ScheduleJobDesktop.UserControls.Button();
+			this.TxtEventConfigFile = new ScheduleJobDesktop.UI.UserControls.TextBox();
 			this.PicTitleLine = new System.Windows.Forms.PictureBox();
 			this.PicTitle = new System.Windows.Forms.PictureBox();
 			this.PicLogo = new System.Windows.Forms.PictureBox();
-			this.PnlInfoTopLine = new System.Windows.Forms.Panel();
 			this.PnlInfoTitle = new System.Windows.Forms.Panel();
 			this.LblModuleTitle = new System.Windows.Forms.Label();
 			this.PnlFooter = new System.Windows.Forms.Panel();
 			this.BtnSave = new ScheduleJobDesktop.UserControls.Button();
 			this.BtnCancel = new ScheduleJobDesktop.UserControls.Button();
-			this.openEventConfigDialog = new System.Windows.Forms.OpenFileDialog();
-			this.btnImportEventConfig = new ScheduleJobDesktop.UserControls.Button();
+			this.lblEventConfigTemplate = new System.Windows.Forms.LinkLabel();
 			this.PnlScrollArea.SuspendLayout();
 			this.PnlInfo.SuspendLayout();
 			this.PnlInfoBack.SuspendLayout();
@@ -103,6 +103,7 @@
 			// PnlControlArea
 			// 
 			this.PnlControlArea.BackColor = System.Drawing.Color.White;
+			this.PnlControlArea.Controls.Add(this.lblEventConfigTemplate);
 			this.PnlControlArea.Controls.Add(this.btnImportEventConfig);
 			this.PnlControlArea.Controls.Add(this.TxtEventConfigFile);
 			this.PnlControlArea.Controls.Add(this.label1);
@@ -115,6 +116,36 @@
 			this.PnlControlArea.Padding = new System.Windows.Forms.Padding(20, 22, 20, 22);
 			this.PnlControlArea.Size = new System.Drawing.Size(771, 530);
 			this.PnlControlArea.TabIndex = 4;
+			// 
+			// label1
+			// 
+			this.label1.Location = new System.Drawing.Point(137, 107);
+			this.label1.Margin = new System.Windows.Forms.Padding(0);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(90, 43);
+			this.label1.TabIndex = 37;
+			this.label1.Text = "导入文件名称：";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// PnlInfoTopLine
+			// 
+			this.PnlInfoTopLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+			this.PnlInfoTopLine.Dock = System.Windows.Forms.DockStyle.Top;
+			this.PnlInfoTopLine.Location = new System.Drawing.Point(0, 27);
+			this.PnlInfoTopLine.Name = "PnlInfoTopLine";
+			this.PnlInfoTopLine.Size = new System.Drawing.Size(771, 1);
+			this.PnlInfoTopLine.TabIndex = 3;
+			// 
+			// btnImportEventConfig
+			// 
+			this.btnImportEventConfig.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(163)))), ((int)(((byte)(193)))));
+			this.btnImportEventConfig.Location = new System.Drawing.Point(519, 118);
+			this.btnImportEventConfig.Name = "btnImportEventConfig";
+			this.btnImportEventConfig.Padding = new System.Windows.Forms.Padding(1);
+			this.btnImportEventConfig.Size = new System.Drawing.Size(82, 26);
+			this.btnImportEventConfig.TabIndex = 39;
+			this.btnImportEventConfig.Text = "导入事件配置";
+			this.btnImportEventConfig.Click += new System.EventHandler(this.btnImportEventConfig_Click);
 			// 
 			// TxtEventConfigFile
 			// 
@@ -130,16 +161,6 @@
 			this.TxtEventConfigFile.Size = new System.Drawing.Size(283, 27);
 			this.TxtEventConfigFile.TabIndex = 38;
 			this.TxtEventConfigFile.Click += new System.EventHandler(this.TxtEventConfigFile_Click);
-			// 
-			// label1
-			// 
-			this.label1.Location = new System.Drawing.Point(137, 107);
-			this.label1.Margin = new System.Windows.Forms.Padding(0);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(90, 43);
-			this.label1.TabIndex = 37;
-			this.label1.Text = "导入文件名称：";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// PicTitleLine
 			// 
@@ -172,15 +193,6 @@
 			this.PicLogo.TabIndex = 0;
 			this.PicLogo.TabStop = false;
 			// 
-			// PnlInfoTopLine
-			// 
-			this.PnlInfoTopLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-			this.PnlInfoTopLine.Dock = System.Windows.Forms.DockStyle.Top;
-			this.PnlInfoTopLine.Location = new System.Drawing.Point(0, 27);
-			this.PnlInfoTopLine.Name = "PnlInfoTopLine";
-			this.PnlInfoTopLine.Size = new System.Drawing.Size(771, 1);
-			this.PnlInfoTopLine.TabIndex = 3;
-			// 
 			// PnlInfoTitle
 			// 
 			this.PnlInfoTitle.BackColor = System.Drawing.Color.White;
@@ -201,7 +213,7 @@
 			this.LblModuleTitle.Name = "LblModuleTitle";
 			this.LblModuleTitle.Size = new System.Drawing.Size(300, 25);
 			this.LblModuleTitle.TabIndex = 1;
-			this.LblModuleTitle.Text = "SQL7.0数据库连接信息管理";
+			this.LblModuleTitle.Text = "事件基本配置信息管理";
 			this.LblModuleTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// PnlFooter
@@ -224,6 +236,7 @@
 			this.BtnSave.Padding = new System.Windows.Forms.Padding(1);
 			this.BtnSave.Size = new System.Drawing.Size(82, 26);
 			this.BtnSave.TabIndex = 2;
+			this.BtnSave.Text = "按钮";
 			// 
 			// BtnCancel
 			// 
@@ -237,20 +250,16 @@
 			this.BtnCancel.Text = "返回";
 			this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
 			// 
-			// openEventConfigDialog
+			// lblEventConfigTemplate
 			// 
-			this.openEventConfigDialog.FileName = "openFileDialog1";
-			// 
-			// btnImportEventConfig
-			// 
-			this.btnImportEventConfig.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(163)))), ((int)(((byte)(193)))));
-			this.btnImportEventConfig.Location = new System.Drawing.Point(519, 118);
-			this.btnImportEventConfig.Name = "btnImportEventConfig";
-			this.btnImportEventConfig.Padding = new System.Windows.Forms.Padding(1);
-			this.btnImportEventConfig.Size = new System.Drawing.Size(82, 26);
-			this.btnImportEventConfig.TabIndex = 39;
-			this.btnImportEventConfig.Text = "导入事件配置";
-			this.btnImportEventConfig.Click += new System.EventHandler(this.btnImportEventConfig_Click);
+			this.lblEventConfigTemplate.AutoSize = true;
+			this.lblEventConfigTemplate.Location = new System.Drawing.Point(230, 164);
+			this.lblEventConfigTemplate.Name = "lblEventConfigTemplate";
+			this.lblEventConfigTemplate.Size = new System.Drawing.Size(127, 13);
+			this.lblEventConfigTemplate.TabIndex = 40;
+			this.lblEventConfigTemplate.TabStop = true;
+			this.lblEventConfigTemplate.Text = "导入事件数据文件模板";
+			this.lblEventConfigTemplate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblEventConfigTemplate_LinkClicked);
 			// 
 			// EventConfigEdit
 			// 
@@ -265,6 +274,7 @@
 			this.PnlInfo.ResumeLayout(false);
 			this.PnlInfoBack.ResumeLayout(false);
 			this.PnlControlArea.ResumeLayout(false);
+			this.PnlControlArea.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PicTitleLine)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.PicTitle)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.PicLogo)).EndInit();
@@ -293,6 +303,6 @@
         private UserControls.TextBox TxtEventConfigFile;
         private System.Windows.Forms.Label label1;
 		private ScheduleJobDesktop.UserControls.Button btnImportEventConfig;
-		private System.Windows.Forms.OpenFileDialog openEventConfigDialog;
+		private System.Windows.Forms.LinkLabel lblEventConfigTemplate;
 	}
 }

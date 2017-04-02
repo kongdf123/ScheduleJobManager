@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ScheduleJobDesktop.UI.ManageEventConfig;
 
 namespace ScheduleJobDesktop
 {
@@ -68,7 +69,7 @@ namespace ScheduleJobDesktop
                 case "ManageDbConfig":
                     LoadNewControl(SqlServerConfigList.Instance); break;
 				case "ManageEventConfig":
-					LoadNewControl(SqlServerConfigList.Instance); break;
+					LoadNewControl(EventConfigList.Instance); break;
 				default: break;
             }
         }

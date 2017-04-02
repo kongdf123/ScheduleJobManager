@@ -242,6 +242,7 @@
     <None Include="Resources\DesignerLogo.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\EventConfigTemplate.xlsx" />
     <None Include="Resources\FooterBG.png" />
   </ItemGroup>
   <ItemGroup>
