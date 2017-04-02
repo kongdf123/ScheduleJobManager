@@ -10,7 +10,7 @@ namespace JobServiceSite.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+			return Content("JobServiceSite is started!");
         }
     }
 }

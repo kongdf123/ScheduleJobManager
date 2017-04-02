@@ -72,12 +72,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\quartznet-2.x\src\Quartz\Quartz.2010.csproj">
-      <Project>{aef8823b-e45b-4b35-a4d0-c08c1196d017}</Project>
-      <Name>Quartz.2010</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

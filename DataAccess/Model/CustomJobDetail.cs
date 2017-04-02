@@ -67,8 +67,8 @@ namespace DataAccess.Entity
                         cronArr[1] = "0/" + Interval;
                         start = start.AddMinutes(Interval);
                         break;
-                    default:
-                        throw new Exception("没有指定任务计划执行方式。");
+                    //default:
+                    //    throw new Exception("没有指定任务计划执行方式。");
                 }
                 if ((ExecutedFreqEnum)ExecutedFreq== ExecutedFreqEnum.OnlyOneTime)
                 {

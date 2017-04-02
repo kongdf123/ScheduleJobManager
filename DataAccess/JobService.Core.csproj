@@ -7,8 +7,8 @@
     <ProjectGuid>{073F8C3F-4A2C-48BD-8F14-0CD9E8FBB7E0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Service</RootNamespace>
-    <AssemblyName>Service</AssemblyName>
+    <RootNamespace>JobService.Core</RootNamespace>
+    <AssemblyName>JobService.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -48,15 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\EventDetailBLL.cs" />
     <Compile Include="BLL\SqlServerConfigInfoBLL.cs" />
     <Compile Include="BLL\CutomJobDetailBLL.cs" />
     <Compile Include="BLL\EventLogDetailBLL.cs" />
+    <Compile Include="DAL\EventDetailDAL.cs" />
     <Compile Include="DAL\SqlServerConfigInfoDAL.cs" />
     <Compile Include="DAL\CustomJobDetailDAL.cs" />
     <Compile Include="Base\SqlServerDbHelper.cs" />
     <Compile Include="Base\MySqlDbHelper.cs" />
     <Compile Include="Base\PageData.cs" />
     <Compile Include="DAL\EventLogDetailDAL.cs" />
+    <Compile Include="Model\EventDetail.cs" />
     <Compile Include="Model\SqlServerConfigInfo.cs" />
     <Compile Include="Model\CustomJobDetail.cs" />
     <Compile Include="Model\EventLogDetail.cs" />
