@@ -30,12 +30,11 @@ namespace Service.DAL
 							`EventDate`,
 							`EventName`,
 							`EventId`)
-                        VALUES
                         SELECT 
 							@Id_{0},
 							@EventDate_{0},
 							@EventName_{0},
-							@EventId_{0})
+							@EventId_{0}
 						FROM DUAL
 						WHERE NOT EXISTS (SELECT * FROM custom_event_details WHERE EventId = @EventId_{0});", flag);
 				paramList.AddRange(new List<MySqlParameter> {
@@ -78,6 +77,28 @@ namespace Service.DAL
 			sqlDataReader.Close();
 			pageData.PageList = list;
 			return pageData;
+		}
+		
+		public EventDetail Get(string eventId) {
+			EventDetail entity = null;
+			string sqlText = @" SELECT `Id`,
+                                    `EventDate`,
+                                    `EventName`,
+                                    `EventId`
+                                FROM `custom_event_details` 
+                                WHERE `EventId` = @EventId;";
+			MySqlParameter[] parameters =
+			{
+				 new MySqlParameter("@EventId" , MySqlDbType.VarChar,10){ Value = eventId }
+			};
+
+			MySqlDataReader sqlDataReader = MySqlDbHelper.ExecuteReader(sqlText, parameters);
+			if ( sqlDataReader.Read() ) {
+				entity = new EventDetail();
+				ReadRecordData(sqlDataReader, entity);
+			}
+			sqlDataReader.Close();
+			return entity;
 		}
 
 		void ReadRecordData(IDataReader dataReader, EventDetail entity) {

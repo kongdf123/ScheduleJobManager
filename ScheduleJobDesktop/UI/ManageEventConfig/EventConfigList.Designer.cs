@@ -72,7 +72,7 @@
 			this.DgvGrid.AllowUserToResizeRows = false;
 			this.DgvGrid.BackgroundColor = System.Drawing.Color.White;
 			this.DgvGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.DgvGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+			this.DgvGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
 			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
 			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
 			dataGridViewCellStyle1.Font = new System.Drawing.Font("SimSun", 9F);

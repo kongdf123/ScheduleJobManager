@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Utility;
 
 namespace Service.BLL
 {
@@ -33,6 +34,17 @@ namespace Service.BLL
 
 		public PageData GetPageList(int pageSize, int curPage) {
 			return _dal.GetPageList(pageSize, curPage);
+		}
+
+		public EventDetail Get(string eventId) {
+			EventDetail entity = CacheHelper.CreateInstance().GetCache<EventDetail>(eventId);
+			if ( entity == null ) {
+				entity = _dal.Get(eventId);
+				if ( entity != null ) {
+					CacheHelper.CreateInstance().SetCache(entity, eventId, DateTime.Now.AddHours(12));
+				}
+			}
+			return entity;
 		}
 	}
 }

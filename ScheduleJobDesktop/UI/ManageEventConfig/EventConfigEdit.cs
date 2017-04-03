@@ -1,7 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
 using ScheduleJobDesktop.Properties;
+using Service.BLL;
+using Service.Model;
 using Utility;
 
 namespace ScheduleJobDesktop.UI.ManageEventConfig
@@ -39,7 +45,33 @@ namespace ScheduleJobDesktop.UI.ManageEventConfig
 		}
 
 		private void btnImportEventConfig_Click(object sender, EventArgs e) {
-			//TODO
+			var formSysMessage = FormSysMessage.ShowLoading();
+			var filePath = TxtEventConfigFile.Text;
+			if ( string.IsNullOrEmpty(filePath) || !File.Exists(filePath) ) {
+				throw new CustomException("请输入上传文件存储地址！", ExceptionType.Warn);
+			}
+			List<EventDetail> listEventDetail = new List<EventDetail>();
+			using ( var fileStream = new FileStream(filePath, FileMode.Open) ) {
+				IWorkbook workbook = new XSSFWorkbook(fileStream);
+				ISheet sheet = workbook.GetSheetAt(0);
+				for ( int i = (sheet.FirstRowNum + 1); i < sheet.LastRowNum-1; i++ ) {
+					IRow row = sheet.GetRow(i);
+					EventDetail entity = new EventDetail();
+					if ( string.IsNullOrEmpty(row.GetCell(0).ToString()) ||
+						string.IsNullOrEmpty(row.GetCell(1).ToString()) ) {
+						continue;
+					}
+					entity.EventId = row.GetCell(0).ToString();
+					entity.EventName = row.GetCell(1).ToString();
+					entity.EventDate = Convert.ToDateTime(row.GetCell(2).ToString());
+					listEventDetail.Add(entity);
+				}
+			}
+			if ( listEventDetail.Any() ) {
+				EventDetailBLL.CreateInstance().Insert(listEventDetail);
+			}
+			formSysMessage.SetMessage("上传成功！");
+			FormMain.LoadNewControl(EventConfigList.Instance); // 载入该模块的信息列表界面至主窗体显示。
 		}
 
 		private void TxtEventConfigFile_Click(object sender, EventArgs e) {
@@ -54,7 +86,6 @@ namespace ScheduleJobDesktop.UI.ManageEventConfig
 		}
 
 		private void lblEventConfigTemplate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-			//Resources.EventConfigTemplate.
 			string templatePath = Application.StartupPath + "\\EventConfigTemplate.xlsx";
 			if ( !File.Exists(templatePath) ) {
 				var bytes = Resources.EventConfigTemplate;
