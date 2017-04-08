@@ -8,7 +8,7 @@ A simple management tool for schedule job ,which is based on Quartz.NET, integra
 .NET Framework	4.0+
 MySQL	MySQL Community Server 5.6 +
 IIS 7.0	
-二.	各个应用安装
+二.	各个应用安装http://www.cnblogs.com/kongdf/p/6429775.html
 1.	数据库创建
 在MySQL 数据库里依次执行以下SQL脚本——
 •	quartz-net-custom-mysql.sql
