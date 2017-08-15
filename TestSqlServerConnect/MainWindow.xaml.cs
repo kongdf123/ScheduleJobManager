@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -27,10 +28,10 @@ namespace TestSqlServerConnect
 
         private void TestBtn_Click(object sender, RoutedEventArgs e) {
             string connectionStr = ConfigurationManager.AppSettings["SqlServer70"];
-            SqlConnection conn = new SqlConnection(connectionStr);
+            OleDbConnection conn = new OleDbConnection(connectionStr);
             try {
                 conn.Open();
-                SqlCommand comm = new SqlCommand("SELECT COUNT(*) FROM syscolumns", conn);
+                OleDbCommand comm = new OleDbCommand("SELECT COUNT(*) FROM syscolumns", conn);
                 MessageBox.Show(comm.ExecuteScalar().ToString());
                 conn.Close();
             }

@@ -10,10 +10,11 @@ using System.Windows.Forms;
 
 namespace ScheduleJobDesktop.UI.UserControls
 {
-    /// <summary>
-    /// 自定义输入框
-    /// </summary>
-    [DefaultProperty("Text")]
+	/// <summary>
+	/// 自定义输入框
+	/// </summary>
+	[DefaultEvent("Click")]
+	[DefaultProperty("Text")]
     public partial class TextBox : UserControl
     {
         public TextBox()
@@ -24,12 +25,20 @@ namespace ScheduleJobDesktop.UI.UserControls
             TxtInside.Width = PnlWhiteBG.Width - 6;
             TxtInside.GotFocus += new EventHandler(TxtBox_GotFocus);
             TxtInside.Leave += new EventHandler(TxtBox_Leave);
-        }
+			TxtInside.Click += new EventHandler(TxtInside_Click);
+		}
 
-        /// <summary>
-        /// 获取或设置文本框中的内容。
-        /// </summary>
-        [Category("输入字符最大长度")]
+		/// <summary>
+		/// 用户单击输入框，触发单击事件。
+		/// </summary>
+		void TxtInside_Click(object sender, EventArgs e) {
+			this.OnClick(e);
+		}
+
+		/// <summary>
+		/// 获取或设置文本框中的内容。
+		/// </summary>
+		[Category("输入字符最大长度")]
         [Description("获取或设置文本框中的内容字符最大长度。")]
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -109,7 +118,7 @@ namespace ScheduleJobDesktop.UI.UserControls
 
 
         /// <summary>
-        /// 获取或设置密码字符。
+        /// 获取或设置背景色。
         /// </summary>
         [Category("设置")]
         [Description("设置背景色。")]
@@ -119,6 +128,8 @@ namespace ScheduleJobDesktop.UI.UserControls
                 return TxtInside.BackColor;
             }
             set {
+                BackColor = value;
+                PnlWhiteBG.BackColor = value;
                 TxtInside.BackColor = value;
             }
         }
@@ -149,6 +160,18 @@ namespace ScheduleJobDesktop.UI.UserControls
         public new void Focus()
         {
             TxtInside.Select();
+        }
+
+        public void SetDisabled()
+        {
+            Enabled = false;
+            BoxBackColor = Color.FromArgb(245, 245, 245);
+        }
+
+        public void SetEnabled()
+        {
+            Enabled = true;
+            BoxBackColor = Color.White;
         }
 
         /// <summary>

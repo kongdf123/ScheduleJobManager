@@ -3,6 +3,7 @@ using Service.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -19,16 +20,16 @@ namespace Service.DAL
         public PageData GetPageList(string connString, int pageSize, int curPage, DateTime startDate)
         {
             string sqlWhere = "";
-            List<SqlParameter> listParms = new List<SqlParameter>();
+            List<OleDbParameter> listParms = new List<OleDbParameter>();
             sqlWhere = " AND EventDate>@EventDate ";
-            listParms.Add(new SqlParameter("@EventDate", SqlDbType.DateTime) { Value = startDate.ToString("yyyy-MM-dd HH:mm:ss") });
+            listParms.Add(new OleDbParameter("@EventDate", SqlDbType.DateTime) { Value = startDate.ToString("yyyy-MM-dd HH:mm:ss") });
 
             int recordsTotal = SqlServerDbHelper.ExecuteScalar<int>(connString,"SELECT COUNT(*) FROM mc_event_log WHERE Operator<>'' " + sqlWhere, listParms.ToArray());
 
             string sqlWhere2 = "";
-            List<SqlParameter> listParms2 = new List<SqlParameter>();
+            List<OleDbParameter> listParms2 = new List<OleDbParameter>();
             sqlWhere2 = " AND EventDate>@EventDate ";
-            listParms2.Add(new SqlParameter("@EventDate", SqlDbType.DateTime) { Value = startDate.ToString("yyyy-MM-dd HH:mm:ss") });
+            listParms2.Add(new OleDbParameter("@EventDate", SqlDbType.DateTime) { Value = startDate.ToString("yyyy-MM-dd HH:mm:ss") });
             string sqlText = " SELECT TOP " + pageSize + @" EventId,
                                 EventDate,
                                 Operator,
@@ -39,7 +40,7 @@ namespace Service.DAL
                             " + sqlWhere2 + " AND EventId NOT IN( SELECT TOP " + (curPage - 1) * pageSize + @" EventId FROM mc_event_log WHERE Operator<>'' " + sqlWhere2 + @" ORDER BY EventDate ASC) 
                             ORDER BY EventDate ASC ";
             List<EventLogDetail> list = new List<EventLogDetail>();
-            SqlDataReader sqlDataReader = SqlServerDbHelper.ExecuteReader(connString, sqlText, listParms2.ToArray());
+            OleDbDataReader sqlDataReader = SqlServerDbHelper.ExecuteReader(connString, sqlText, listParms2.ToArray());
 
             PageData pageData = new PageData();
             pageData.PageSize = pageSize;

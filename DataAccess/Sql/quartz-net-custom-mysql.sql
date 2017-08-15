@@ -1,4 +1,7 @@
 ﻿CREATE DATABASE `quartz` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+DROP TABLE IF EXISTS custom_db_config;
+DROP TABLE IF EXISTS custom_job_details;
+DROP TABLE IF EXISTS custom_event_details;
 CREATE TABLE `custom_db_config` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `ServerAddress` varchar(30) NOT NULL,
@@ -11,6 +14,9 @@ CREATE TABLE `custom_db_config` (
   `PageSize` int(5) DEFAULT NULL,
   `MaxCapacity` int(10) DEFAULT NULL,
   `StoredType` smallint(1) NOT NULL COMMENT '存储方式，1：按每页，2：按数据总量',
+  `DBType` smallint(1) DEFAULT NULL COMMENT 'SqlServer = 1,\nMySQL = 2,\nOracle = 3',
+  `ServerState` smallint(1) DEFAULT NULL COMMENT 'Enable = 1,\nDisabled = 2',
+  `AuthenticatedType` smallint(1) DEFAULT NULL COMMENT 'Sql Server账户:0\nWindows系统集成:1 ',
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='记录数据库连接配置信息';
 
@@ -32,3 +38,13 @@ CREATE TABLE `custom_job_details` (
   `IntervalType` smallint(1) DEFAULT NULL COMMENT '执行间隔类型：\n1：天\n2：小时\n3：分钟',
   PRIMARY KEY (`JobId`,`JobName`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='to manage parameter records ,which belongs to control custom job actions in practice.';
+
+CREATE TABLE `quartz`.`custom_event_details` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `EventDate` DATETIME NULL,
+  `EventName` VARCHAR(45) NULL,
+  `EventId` VARCHAR(10) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+

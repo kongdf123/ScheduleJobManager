@@ -371,6 +371,16 @@ namespace ScheduleJobDesktop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] EventConfigTemplate {
+            get {
+                object obj = ResourceManager.GetObject("EventConfigTemplate", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap FooterBG {
@@ -666,6 +676,16 @@ namespace ScheduleJobDesktop.Properties {
         internal static System.Drawing.Bitmap NavBtnManageDBConfig1 {
             get {
                 object obj = ResourceManager.GetObject("NavBtnManageDBConfig1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NavBtnManageEventConfig {
+            get {
+                object obj = ResourceManager.GetObject("NavBtnManageEventConfig", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1026,6 +1046,16 @@ namespace ScheduleJobDesktop.Properties {
         internal static System.Drawing.Bitmap TitleManageDBConfig1 {
             get {
                 object obj = ResourceManager.GetObject("TitleManageDBConfig1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TitleManageEventConfig {
+            get {
+                object obj = ResourceManager.GetObject("TitleManageEventConfig", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
