@@ -7,7 +7,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 
-namespace Utility
+namespace JobMonitor.Utility
 {
     public class QuartzNetHelper
     {

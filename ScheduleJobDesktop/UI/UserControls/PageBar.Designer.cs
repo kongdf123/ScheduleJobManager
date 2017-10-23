@@ -1,4 +1,4 @@
-﻿namespace ScheduleJobDesktop.UI.UserControls
+﻿namespace JobMonitor.Desktop.UI.UserControls
 {
     partial class PageBar
     {
@@ -53,7 +53,7 @@
             this.BtnPrev.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnPrev.FlatAppearance.BorderSize = 0;
             this.BtnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnPrev.Image = global::ScheduleJobDesktop.Properties.Resources.PagePrev;
+            this.BtnPrev.Image = global::JobMonitor.Desktop.Properties.Resources.PagePrev;
             this.BtnPrev.Location = new System.Drawing.Point(195, 0);
             this.BtnPrev.Margin = new System.Windows.Forms.Padding(5);
             this.BtnPrev.Name = "BtnPrev";
@@ -68,7 +68,7 @@
             this.BtnNext.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnNext.FlatAppearance.BorderSize = 0;
             this.BtnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnNext.Image = global::ScheduleJobDesktop.Properties.Resources.PageNext;
+            this.BtnNext.Image = global::JobMonitor.Desktop.Properties.Resources.PageNext;
             this.BtnNext.Location = new System.Drawing.Point(266, 0);
             this.BtnNext.Margin = new System.Windows.Forms.Padding(5);
             this.BtnNext.Name = "BtnNext";
@@ -83,7 +83,7 @@
             this.BtnLast.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnLast.FlatAppearance.BorderSize = 0;
             this.BtnLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnLast.Image = global::ScheduleJobDesktop.Properties.Resources.PageLast;
+            this.BtnLast.Image = global::JobMonitor.Desktop.Properties.Resources.PageLast;
             this.BtnLast.Location = new System.Drawing.Point(282, 0);
             this.BtnLast.Margin = new System.Windows.Forms.Padding(5);
             this.BtnLast.Name = "BtnLast";
@@ -98,7 +98,7 @@
             this.BtnGO.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnGO.FlatAppearance.BorderSize = 0;
             this.BtnGO.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnGO.Image = global::ScheduleJobDesktop.Properties.Resources.BtnGO;
+            this.BtnGO.Image = global::JobMonitor.Desktop.Properties.Resources.BtnGO;
             this.BtnGO.Location = new System.Drawing.Point(328, 0);
             this.BtnGO.Name = "BtnGO";
             this.BtnGO.Size = new System.Drawing.Size(22, 24);
@@ -137,7 +137,7 @@
             this.BtnFirst.FlatAppearance.BorderSize = 0;
             this.BtnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnFirst.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.BtnFirst.Image = global::ScheduleJobDesktop.Properties.Resources.PageFirst;
+            this.BtnFirst.Image = global::JobMonitor.Desktop.Properties.Resources.PageFirst;
             this.BtnFirst.Location = new System.Drawing.Point(179, 0);
             this.BtnFirst.Margin = new System.Windows.Forms.Padding(5);
             this.BtnFirst.Name = "BtnFirst";

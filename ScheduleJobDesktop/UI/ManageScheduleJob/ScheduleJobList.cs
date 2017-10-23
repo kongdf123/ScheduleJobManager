@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Drawing;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ScheduleJobDesktop.UI.UserControls;
+using JobMonitor.Desktop.UI.UserControls;
 using DataAccess.Entity;
 using DataAccess.BLL;
-using ServiceHost.Common;
-using Utility;
-using ScheduleJobDesktop.UI.ManageSettings;
+using JobMonitor.Desktop.UI.ManageSettings;
 
-namespace ScheduleJobDesktop.UI.ManageScheduleJob
+namespace JobMonitor.Desktop.UI.ManageScheduleJob
 {
     public partial class ScheduleJobList : UserControl
     {

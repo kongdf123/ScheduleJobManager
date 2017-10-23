@@ -1,4 +1,4 @@
-﻿namespace ScheduleJobDesktop.UI.ManageEventConfig
+﻿namespace JobMonitor.Desktop.UI.ManageEventConfig
 {
     partial class EventConfigList
 	{
@@ -35,13 +35,13 @@
 			this.EventDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.PnlTopTitle = new System.Windows.Forms.Panel();
 			this.PicTitleLine = new System.Windows.Forms.PictureBox();
-			this.PageBar = new ScheduleJobDesktop.UI.UserControls.PageBar();
+			this.PageBar = new JobMonitor.Desktop.UI.UserControls.PageBar();
 			this.LblTip = new System.Windows.Forms.Label();
 			this.PicTitle = new System.Windows.Forms.PictureBox();
 			this.PicLogo = new System.Windows.Forms.PictureBox();
-			this.dataGridViewActionButtonColumn1 = new ScheduleJobDesktop.UI.UserControls.JobDataGridViewActionButtonColumn();
+			this.dataGridViewActionButtonColumn1 = new JobMonitor.Desktop.UI.UserControls.JobDataGridViewActionButtonColumn();
 			this.PnlFooter = new System.Windows.Forms.Panel();
-			this.BtnCreate = new ScheduleJobDesktop.UserControls.Button();
+			this.BtnCreate = new JobMonitor.Desktop.UserControls.Button();
 			this.PnlMainArea.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.DgvGrid)).BeginInit();
 			this.PnlTopTitle.SuspendLayout();
@@ -155,7 +155,7 @@
 			// 
 			// PicTitleLine
 			// 
-			this.PicTitleLine.Image = global::ScheduleJobDesktop.Properties.Resources.TitleLine;
+			this.PicTitleLine.Image = global::JobMonitor.Desktop.Properties.Resources.TitleLine;
 			this.PicTitleLine.Location = new System.Drawing.Point(85, 43);
 			this.PicTitleLine.Margin = new System.Windows.Forms.Padding(0);
 			this.PicTitleLine.Name = "PicTitleLine";
@@ -199,7 +199,7 @@
 			// 
 			// PicLogo
 			// 
-			this.PicLogo.Image = global::ScheduleJobDesktop.Properties.Resources.NavBtnManageEventConfig;
+			this.PicLogo.Image = global::JobMonitor.Desktop.Properties.Resources.NavBtnManageEventConfig;
 			this.PicLogo.Location = new System.Drawing.Point(0, 0);
 			this.PicLogo.Margin = new System.Windows.Forms.Padding(20, 22, 10, 22);
 			this.PicLogo.Name = "PicLogo";
@@ -218,7 +218,7 @@
 			// 
 			// PnlFooter
 			// 
-			this.PnlFooter.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.FooterBG;
+			this.PnlFooter.BackgroundImage = global::JobMonitor.Desktop.Properties.Resources.FooterBG;
 			this.PnlFooter.Controls.Add(this.BtnCreate);
 			this.PnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.PnlFooter.Location = new System.Drawing.Point(0, 602);
@@ -268,7 +268,7 @@
         private System.Windows.Forms.PictureBox PicTitle;
         private System.Windows.Forms.PictureBox PicLogo;
         private System.Windows.Forms.Label LblTip;
-        private ScheduleJobDesktop.UserControls.Button BtnCreate;
+        private JobMonitor.Desktop.UserControls.Button BtnCreate;
         private UserControls.PageBar PageBar;
         private System.Windows.Forms.PictureBox PicTitleLine;
         private UserControls.JobDataGridViewActionButtonColumn dataGridViewActionButtonColumn1;

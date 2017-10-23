@@ -12,7 +12,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Utility;
+using JobMonitor.Utility;
+using JobMonitor.Core.Model;
 
 namespace JobServiceSite.Controllers
 {
@@ -47,11 +48,11 @@ namespace JobServiceSite.Controllers
                            if (listEventLogDetail != null && listEventLogDetail.Count > 0)
                            {
                                int cvsFileCapacity = 1000;
-                               if (sqlServerConfig.StoredType == (byte)StoredTypeEnum.PageSize)
+                               if (sqlServerConfig.StoredType == (byte)StoredType.PageSize)
                                {
                                    cvsFileCapacity = sqlServerConfig.PageSize;
                                }
-                               else if (sqlServerConfig.StoredType == (byte)StoredTypeEnum.MaxCapacity)
+                               else if (sqlServerConfig.StoredType == (byte)StoredType.MaxCapacity)
                                {
                                    cvsFileCapacity = sqlServerConfig.MaxCapacity;
                                }

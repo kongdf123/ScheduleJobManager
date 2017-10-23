@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using JobMonitor.Core.Model;
 
 namespace DataAccess.DAL
 {
@@ -155,7 +156,7 @@ namespace DataAccess.DAL
                 listParms.Add(new MySqlParameter("@DBName", MySqlDbType.VarChar, 45) { Value = "%" + dbName + "%" });
             }
 
-            int recordsTotal = MySqlDbHelper.ExecuteScalar<int>("SELECT COUNT(*) FROM custom_db_config WHERE `ServerState`=" + (byte)ServerStateEnum.Enabled + sqlWhere, listParms.ToArray());
+            int recordsTotal = MySqlDbHelper.ExecuteScalar<int>("SELECT COUNT(*) FROM custom_db_config WHERE `ServerState`=" + (byte)Status.Enabled + sqlWhere, listParms.ToArray());
 
             string sqlText = @" SELECT `Id`,
                                     `ServerAddress`,
@@ -172,7 +173,7 @@ namespace DataAccess.DAL
                                     `ServerState`,
                                     `AuthenticatedType`
                                 FROM `custom_db_config`  
-                                WHERE `ServerState`=" + (byte)ServerStateEnum.Enabled
+                                WHERE `ServerState`=" + (byte)Status.Enabled
                                 + sqlWhere
                                 + " ORDER BY Id DESC LIMIT " + (curPage - 1) * pageSize + "," + pageSize;
             List<SqlServerConfigInfo> list = new List<SqlServerConfigInfo>();

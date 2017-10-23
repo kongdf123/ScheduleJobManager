@@ -1,14 +1,13 @@
 ﻿using DataAccess.BLL;
 using DataAccess.Entity;
-using ServiceHost.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Utility;
+using JobMonitor.Utility;
+using JobMonitor.Core.Model;
 
-namespace ScheduleJobDesktop.UI.ManageScheduleJob
+namespace JobMonitor.Desktop.UI.ManageScheduleJob
 {
     /// <summary>
     /// 任务管理添加界面
@@ -215,7 +214,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                         {
                             throw new CustomException("天数间隔不能大于30！", ExceptionType.Warn);
                         }
-                        return Tuple.Create<byte, int>((byte)IntervalTypeEnum.Day, DataValid.GetNullOrInt(TxtDay.Text).Value);
+                        return Tuple.Create<byte, int>((byte)IntervalType.Day, DataValid.GetNullOrInt(TxtDay.Text).Value);
                     case "RadioBtnHour":
                         if (string.IsNullOrEmpty(TxtHour.Text))
                         {
@@ -225,7 +224,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                         {
                             throw new CustomException("小时间隔不能大于60！", ExceptionType.Warn);
                         }
-                        return Tuple.Create<byte, int>((byte)IntervalTypeEnum.Hour, DataValid.GetNullOrInt(TxtHour.Text).Value);
+                        return Tuple.Create<byte, int>((byte)IntervalType.Hour, DataValid.GetNullOrInt(TxtHour.Text).Value);
                     case "RadioBtnMinute":
                         if (string.IsNullOrEmpty(TxtMinute.Text))
                         {
@@ -235,7 +234,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
                         {
                             throw new CustomException("分钟间隔不能大于60！", ExceptionType.Warn);
                         }
-                        return Tuple.Create<byte, int>((byte)IntervalTypeEnum.Minute, DataValid.GetNullOrInt(TxtMinute.Text).Value);
+                        return Tuple.Create<byte, int>((byte)IntervalType.Minute, DataValid.GetNullOrInt(TxtMinute.Text).Value);
                     default:
                         break;
                 }
@@ -263,17 +262,17 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 
         void SetInterval(byte intervalType, int interval)
         {
-            switch ((IntervalTypeEnum)intervalType)
+            switch ((IntervalType)intervalType)
             {
-                case IntervalTypeEnum.Day:
+                case IntervalType.Day:
                     RadioBtnDay.Checked = true;
                     TxtDay.Text = interval.ToString();
                     break;
-                case IntervalTypeEnum.Hour:
+                case IntervalType.Hour:
                     RadioBtnHour.Checked = true;
                     TxtHour.Text = interval.ToString();
                     break;
-                case IntervalTypeEnum.Minute:
+                case IntervalType.Minute:
                     RadioBtnMinute.Checked = true;
                     TxtMinute.Text = interval.ToString();
                     break;

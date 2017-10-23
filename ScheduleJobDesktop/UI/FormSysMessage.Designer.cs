@@ -1,4 +1,4 @@
-﻿namespace ScheduleJobDesktop
+﻿namespace JobMonitor.Desktop
 {
     partial class FormSysMessage
     {
@@ -31,9 +31,9 @@
             this.PicTitle = new System.Windows.Forms.PictureBox();
             this.PnlButtonArea = new System.Windows.Forms.Panel();
             this.LblLine = new System.Windows.Forms.Label();
-            this.BtnOK = new ScheduleJobDesktop.UserControls.Button();
+            this.BtnOK = new JobMonitor.Desktop.UserControls.Button();
             this.LblDetailMessage = new System.Windows.Forms.Label();
-            this.BtnCancel = new ScheduleJobDesktop.UserControls.Button();
+            this.BtnCancel = new JobMonitor.Desktop.UserControls.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PicLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicTitle)).BeginInit();
             this.PnlButtonArea.SuspendLayout();
@@ -51,7 +51,7 @@
             // 
             // PicLogo
             // 
-            this.PicLogo.Image = global::ScheduleJobDesktop.Properties.Resources.TipInfo;
+            this.PicLogo.Image = global::JobMonitor.Desktop.Properties.Resources.TipInfo;
             this.PicLogo.Location = new System.Drawing.Point(12, 16);
             this.PicLogo.Name = "PicLogo";
             this.PicLogo.Size = new System.Drawing.Size(100, 108);
@@ -60,7 +60,7 @@
             // 
             // PicTitle
             // 
-            this.PicTitle.Image = global::ScheduleJobDesktop.Properties.Resources.MessageInfo;
+            this.PicTitle.Image = global::JobMonitor.Desktop.Properties.Resources.MessageInfo;
             this.PicTitle.Location = new System.Drawing.Point(140, 22);
             this.PicTitle.Name = "PicTitle";
             this.PicTitle.Size = new System.Drawing.Size(350, 46);

@@ -1,4 +1,4 @@
-﻿namespace ScheduleJobDesktop.UserControls
+﻿namespace JobMonitor.Desktop.UserControls
 {
     partial class NavBar
     {
@@ -37,7 +37,7 @@
             // 
             // PnlLogo
             // 
-            this.PnlLogo.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.DesignerLogo_1;
+            this.PnlLogo.BackgroundImage = global::JobMonitor.Desktop.Properties.Resources.DesignerLogo_1;
             this.PnlLogo.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PnlLogo.Location = new System.Drawing.Point(0, 443);
             this.PnlLogo.Name = "PnlLogo";
@@ -46,7 +46,7 @@
             // 
             // PnlBackGround
             // 
-            this.PnlBackGround.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.SideBarBG;
+            this.PnlBackGround.BackgroundImage = global::JobMonitor.Desktop.Properties.Resources.SideBarBG;
             this.PnlBackGround.Controls.Add(this.PnlBottomLine);
             this.PnlBackGround.Controls.Add(this.PnlTopLine);
             this.PnlBackGround.Dock = System.Windows.Forms.DockStyle.Fill;

@@ -1,4 +1,4 @@
-﻿namespace ScheduleJobDesktop.UI.ManageScheduleJob
+﻿namespace JobMonitor.Desktop.UI.ManageScheduleJob
 {
     partial class ScheduleJobList
     {
@@ -38,18 +38,18 @@
             this.JobStateCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColAction = new ScheduleJobDesktop.UI.UserControls.JobDataGridViewActionButtonColumn();
+            this.ColAction = new JobMonitor.Desktop.UI.UserControls.JobDataGridViewActionButtonColumn();
             this.PnlTopTitle = new System.Windows.Forms.Panel();
             this.PicTitleLine = new System.Windows.Forms.PictureBox();
-            this.PageBar = new ScheduleJobDesktop.UI.UserControls.PageBar();
+            this.PageBar = new JobMonitor.Desktop.UI.UserControls.PageBar();
             this.LblTip = new System.Windows.Forms.Label();
             this.PicTitle = new System.Windows.Forms.PictureBox();
             this.PicLogo = new System.Windows.Forms.PictureBox();
             this.PnlFooter = new System.Windows.Forms.Panel();
-            this.BtnCreate = new ScheduleJobDesktop.UserControls.Button();
-            this.jobDataGridViewActionButtonColumn1 = new ScheduleJobDesktop.UI.UserControls.JobDataGridViewActionButtonColumn();
-            this.dataGridViewActionButtonColumn1 = new ScheduleJobDesktop.UI.UserControls.JobDataGridViewActionButtonColumn();
-            this.BtnNavToSqlServerConfig = new ScheduleJobDesktop.UserControls.Button();
+            this.BtnCreate = new JobMonitor.Desktop.UserControls.Button();
+            this.jobDataGridViewActionButtonColumn1 = new JobMonitor.Desktop.UI.UserControls.JobDataGridViewActionButtonColumn();
+            this.dataGridViewActionButtonColumn1 = new JobMonitor.Desktop.UI.UserControls.JobDataGridViewActionButtonColumn();
+            this.BtnNavToSqlServerConfig = new JobMonitor.Desktop.UserControls.Button();
             this.PnlMainArea.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvGrid)).BeginInit();
             this.PnlTopTitle.SuspendLayout();
@@ -200,7 +200,7 @@
             // 
             // PicTitleLine
             // 
-            this.PicTitleLine.Image = global::ScheduleJobDesktop.Properties.Resources.TitleLine;
+            this.PicTitleLine.Image = global::JobMonitor.Desktop.Properties.Resources.TitleLine;
             this.PicTitleLine.Location = new System.Drawing.Point(85, 43);
             this.PicTitleLine.Margin = new System.Windows.Forms.Padding(0);
             this.PicTitleLine.Name = "PicTitleLine";
@@ -234,7 +234,7 @@
             // 
             // PicTitle
             // 
-            this.PicTitle.Image = global::ScheduleJobDesktop.Properties.Resources.TitleManageScheduleJob_1;
+            this.PicTitle.Image = global::JobMonitor.Desktop.Properties.Resources.TitleManageScheduleJob_1;
             this.PicTitle.Location = new System.Drawing.Point(85, 0);
             this.PicTitle.Margin = new System.Windows.Forms.Padding(0);
             this.PicTitle.Name = "PicTitle";
@@ -244,7 +244,7 @@
             // 
             // PicLogo
             // 
-            this.PicLogo.Image = global::ScheduleJobDesktop.Properties.Resources.LogoScheduledTask;
+            this.PicLogo.Image = global::JobMonitor.Desktop.Properties.Resources.LogoScheduledTask;
             this.PicLogo.Location = new System.Drawing.Point(0, 0);
             this.PicLogo.Margin = new System.Windows.Forms.Padding(20, 22, 10, 22);
             this.PicLogo.Name = "PicLogo";
@@ -255,7 +255,7 @@
             // 
             // PnlFooter
             // 
-            this.PnlFooter.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.FooterBG;
+            this.PnlFooter.BackgroundImage = global::JobMonitor.Desktop.Properties.Resources.FooterBG;
             this.PnlFooter.Controls.Add(this.BtnNavToSqlServerConfig);
             this.PnlFooter.Controls.Add(this.BtnCreate);
             this.PnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -333,7 +333,7 @@
         private System.Windows.Forms.PictureBox PicTitle;
         private System.Windows.Forms.PictureBox PicLogo;
         private System.Windows.Forms.Label LblTip;
-        private ScheduleJobDesktop.UserControls.Button BtnCreate;
+        private JobMonitor.Desktop.UserControls.Button BtnCreate;
         private UserControls.PageBar PageBar;
         private System.Windows.Forms.PictureBox PicTitleLine;
         private UserControls.JobDataGridViewActionButtonColumn dataGridViewActionButtonColumn1;
@@ -346,6 +346,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn StartTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn EndTime;
         private UserControls.JobDataGridViewActionButtonColumn ColAction;
-        private ScheduleJobDesktop.UserControls.Button BtnNavToSqlServerConfig;
+        private JobMonitor.Desktop.UserControls.Button BtnNavToSqlServerConfig;
     }
 }

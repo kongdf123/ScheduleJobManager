@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ScheduleJobDesktop.UI.UserControls
+namespace JobMonitor.Desktop.UI.UserControls
 {
     /// <summary>
     /// 自定义DataGridView操作按钮列（修改、删除）

@@ -7,8 +7,8 @@
     <ProjectGuid>{0CB85382-CC94-4E42-84DF-0912AC3BDD58}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ScheduleJobDesktop</RootNamespace>
-    <AssemblyName>ScheduleJobDesktop</AssemblyName>
+    <RootNamespace>JobMonitor.Desktop</RootNamespace>
+    <AssemblyName>JobMonitor.Desktop</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -109,6 +109,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UI\ApplicationEventHandlerClass.cs" />
+    <Compile Include="UI\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +205,9 @@
     <Compile Include="UI\UserControls\TextBox.Designer.cs">
       <DependentUpon>TextBox.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -423,16 +433,18 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\JobService.Core.csproj">
+    <ProjectReference Include="..\DataAccess\JobMonitor.Core.csproj">
       <Project>{073f8c3f-4a2c-48bd-8f14-0cd9e8fbb7e0}</Project>
-      <Name>JobService.Core</Name>
+      <Name>JobMonitor.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Utility\Utility.csproj">
+    <ProjectReference Include="..\Utility\JobMonitor.Utility.csproj">
       <Project>{38fd714f-ee5f-4600-bc1a-cfb94865712a}</Project>
-      <Name>Utility</Name>
+      <Name>JobMonitor.Utility</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UI\SysSettings\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

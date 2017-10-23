@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Utility;
+using JobMonitor.Utility;
 
-namespace ScheduleJobDesktop
+namespace JobMonitor.Desktop
 {
     public partial class FormSysMessage : Form
     {
@@ -28,18 +28,18 @@ namespace ScheduleJobDesktop
                 switch (customException.Type)
                 {
                     case ExceptionType.Info: // 提示信息
-                        formSysMessage.PicLogo.Image = ScheduleJobDesktop.Properties.Resources.TipInfo;
-                        formSysMessage.PicTitle.Image = ScheduleJobDesktop.Properties.Resources.MessageInfo;
+                        formSysMessage.PicLogo.Image = JobMonitor.Desktop.Properties.Resources.TipInfo;
+                        formSysMessage.PicTitle.Image = JobMonitor.Desktop.Properties.Resources.MessageInfo;
                         break;
 
                     case ExceptionType.Warn: // 警告信息
-                        formSysMessage.PicLogo.Image = ScheduleJobDesktop.Properties.Resources.TipWarn;
-                        formSysMessage.PicTitle.Image = ScheduleJobDesktop.Properties.Resources.MessageWarn;
+                        formSysMessage.PicLogo.Image = JobMonitor.Desktop.Properties.Resources.TipWarn;
+                        formSysMessage.PicTitle.Image = JobMonitor.Desktop.Properties.Resources.MessageWarn;
                         break;
 
                     default:                 // 错误信息
-                        formSysMessage.PicLogo.Image = ScheduleJobDesktop.Properties.Resources.TipError;
-                        formSysMessage.PicTitle.Image = ScheduleJobDesktop.Properties.Resources.MessageError;
+                        formSysMessage.PicLogo.Image = JobMonitor.Desktop.Properties.Resources.TipError;
+                        formSysMessage.PicTitle.Image = JobMonitor.Desktop.Properties.Resources.MessageError;
                         break;
                 }
 

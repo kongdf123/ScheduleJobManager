@@ -149,13 +149,13 @@
     <Folder Include="Logfile\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\JobService.Core.csproj">
+    <ProjectReference Include="..\DataAccess\JobMonitor.Core.csproj">
       <Project>{073f8c3f-4a2c-48bd-8f14-0cd9e8fbb7e0}</Project>
-      <Name>JobService.Core</Name>
+      <Name>JobMonitor.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Utility\Utility.csproj">
+    <ProjectReference Include="..\Utility\JobMonitor.Utility.csproj">
       <Project>{38fd714f-ee5f-4600-bc1a-cfb94865712a}</Project>
-      <Name>Utility</Name>
+      <Name>JobMonitor.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

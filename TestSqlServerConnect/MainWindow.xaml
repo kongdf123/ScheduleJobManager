@@ -6,8 +6,16 @@
         xmlns:local="clr-namespace:TestSqlServerConnect"
         mc:Ignorable="d"
         Title="MainWindow" Height="423.619" Width="704.56">
-    <Grid Margin="0,0,114,86">
-        <Button x:Name="TestBtn" Content="Test Connection" HorizontalAlignment="Left" Margin="231,153,0,0" VerticalAlignment="Top" Width="231" Height="67" Click="TestBtn_Click"/>
+    <Grid Margin="19,30,16,8">
+        <Button x:Name="TestBtn" Content="Test Connection" HorizontalAlignment="Left" Margin="247,287,0,0" VerticalAlignment="Top" Width="184" Height="36" Click="TestBtn_Click"/>
+        <Label x:Name="label" Content="User Name" HorizontalAlignment="Left" Margin="132,27,0,0" VerticalAlignment="Top" Width="92"/>
+        <TextBox x:Name="txtUserName" HorizontalAlignment="Left" Height="23" Margin="247,31,0,0" TextWrapping="Wrap" Text="sa" VerticalAlignment="Top" Width="184"/>
+        <Label x:Name="label1" Content="DB Server IP" HorizontalAlignment="Left" Margin="132,79,0,0" VerticalAlignment="Top" Width="92"/>
+        <TextBox x:Name="txtDBServerIP" HorizontalAlignment="Left" Height="23" Margin="247,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Text="192.168.211.245"/>
+        <Label x:Name="label2" Content="DB Name" HorizontalAlignment="Left" Margin="132,128,0,0" VerticalAlignment="Top" Width="92"/>
+        <TextBox x:Name="txtDBName" HorizontalAlignment="Left" Height="23" Margin="247,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Text="master"/>
+        <Label x:Name="label3" Content="SQL Text" HorizontalAlignment="Left" Margin="132,189,0,0" VerticalAlignment="Top" Width="92"/>
+        <TextBox x:Name="txtSqlText" HorizontalAlignment="Left" Height="76" Margin="247,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="309" Text="SELECT COUNT(*) FROM syscolumns"/>
 
     </Grid>
 </Window>

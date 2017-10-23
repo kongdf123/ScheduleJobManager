@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ScheduleJobDesktop.Properties;
+using JobMonitor.Desktop.Properties;
 
-namespace ScheduleJobDesktop.UserControls
+namespace JobMonitor.Desktop.UserControls
 {
     /// <summary>
     /// 自定义按钮

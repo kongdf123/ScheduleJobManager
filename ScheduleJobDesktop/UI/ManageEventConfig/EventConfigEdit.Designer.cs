@@ -1,4 +1,4 @@
-﻿namespace ScheduleJobDesktop.UI.ManageEventConfig
+﻿namespace JobMonitor.Desktop.UI.ManageEventConfig
 {
     partial class EventConfigEdit
 	{
@@ -33,16 +33,16 @@
 			this.PnlControlArea = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.PnlInfoTopLine = new System.Windows.Forms.Panel();
-			this.btnImportEventConfig = new ScheduleJobDesktop.UserControls.Button();
-			this.TxtEventConfigFile = new ScheduleJobDesktop.UI.UserControls.TextBox();
+			this.btnImportEventConfig = new JobMonitor.Desktop.UserControls.Button();
+			this.TxtEventConfigFile = new JobMonitor.Desktop.UI.UserControls.TextBox();
 			this.PicTitleLine = new System.Windows.Forms.PictureBox();
 			this.PicTitle = new System.Windows.Forms.PictureBox();
 			this.PicLogo = new System.Windows.Forms.PictureBox();
 			this.PnlInfoTitle = new System.Windows.Forms.Panel();
 			this.LblModuleTitle = new System.Windows.Forms.Label();
 			this.PnlFooter = new System.Windows.Forms.Panel();
-			this.BtnSave = new ScheduleJobDesktop.UserControls.Button();
-			this.BtnCancel = new ScheduleJobDesktop.UserControls.Button();
+			this.BtnSave = new JobMonitor.Desktop.UserControls.Button();
+			this.BtnCancel = new JobMonitor.Desktop.UserControls.Button();
 			this.lblEventConfigTemplate = new System.Windows.Forms.LinkLabel();
 			this.PnlScrollArea.SuspendLayout();
 			this.PnlInfo.SuspendLayout();
@@ -164,7 +164,7 @@
 			// 
 			// PicTitleLine
 			// 
-			this.PicTitleLine.Image = global::ScheduleJobDesktop.Properties.Resources.TitleLine;
+			this.PicTitleLine.Image = global::JobMonitor.Desktop.Properties.Resources.TitleLine;
 			this.PicTitleLine.Location = new System.Drawing.Point(140, 65);
 			this.PicTitleLine.Margin = new System.Windows.Forms.Padding(0);
 			this.PicTitleLine.Name = "PicTitleLine";
@@ -184,7 +184,7 @@
 			// 
 			// PicLogo
 			// 
-			this.PicLogo.Image = global::ScheduleJobDesktop.Properties.Resources.NavBtnManageEventConfig;
+			this.PicLogo.Image = global::JobMonitor.Desktop.Properties.Resources.NavBtnManageEventConfig;
 			this.PicLogo.Location = new System.Drawing.Point(20, 22);
 			this.PicLogo.Margin = new System.Windows.Forms.Padding(20, 22, 20, 22);
 			this.PicLogo.Name = "PicLogo";
@@ -196,7 +196,7 @@
 			// PnlInfoTitle
 			// 
 			this.PnlInfoTitle.BackColor = System.Drawing.Color.White;
-			this.PnlInfoTitle.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.TableHeaderBG;
+			this.PnlInfoTitle.BackgroundImage = global::JobMonitor.Desktop.Properties.Resources.TableHeaderBG;
 			this.PnlInfoTitle.Controls.Add(this.LblModuleTitle);
 			this.PnlInfoTitle.Dock = System.Windows.Forms.DockStyle.Top;
 			this.PnlInfoTitle.Location = new System.Drawing.Point(0, 0);
@@ -218,7 +218,7 @@
 			// 
 			// PnlFooter
 			// 
-			this.PnlFooter.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.FooterBG;
+			this.PnlFooter.BackgroundImage = global::JobMonitor.Desktop.Properties.Resources.FooterBG;
 			this.PnlFooter.Controls.Add(this.BtnSave);
 			this.PnlFooter.Controls.Add(this.BtnCancel);
 			this.PnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -298,11 +298,11 @@
         private System.Windows.Forms.Panel PnlInfoTitle;
         private System.Windows.Forms.Label LblModuleTitle;
         private System.Windows.Forms.Panel PnlFooter;
-        private ScheduleJobDesktop.UserControls.Button BtnSave;
-        private ScheduleJobDesktop.UserControls.Button BtnCancel;
+        private JobMonitor.Desktop.UserControls.Button BtnSave;
+        private JobMonitor.Desktop.UserControls.Button BtnCancel;
         private UserControls.TextBox TxtEventConfigFile;
         private System.Windows.Forms.Label label1;
-		private ScheduleJobDesktop.UserControls.Button btnImportEventConfig;
+		private JobMonitor.Desktop.UserControls.Button btnImportEventConfig;
 		private System.Windows.Forms.LinkLabel lblEventConfigTemplate;
 	}
 }

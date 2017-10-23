@@ -6,7 +6,7 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using Utility;
+using JobMonitor.Utility;
 
 namespace Service.DAL
 {

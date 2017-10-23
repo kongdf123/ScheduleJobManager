@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ScheduleJobDesktop.UI.UserControls;
+using JobMonitor.Desktop.UI.UserControls;
 using DataAccess.BLL;
 using DataAccess.Entity;
 using Service.BLL;
 
-namespace ScheduleJobDesktop.UI.ManageEventConfig
+namespace JobMonitor.Desktop.UI.ManageEventConfig
 {
     public partial class EventConfigList : UserControl
     {

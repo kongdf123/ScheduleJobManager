@@ -5,7 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Text;
-using Utility;
+using JobMonitor.Utility;
 
 namespace DataAccess.DAL
 {

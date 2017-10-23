@@ -1,12 +1,9 @@
 ﻿using DataAccess.DAL;
 using DataAccess.Entity;
-using ServiceHost.Common;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Utility;
+using JobMonitor.Utility;
+using JobMonitor.Core.Model;
 
 namespace DataAccess.BLL
 {
@@ -207,15 +204,15 @@ namespace DataAccess.BLL
         public DateTime GetFetchingStartDate(byte intervalType, int interval)
         {
             DateTime startDate = DateTime.Now;
-            switch ((IntervalTypeEnum)intervalType)
+            switch ((IntervalType)intervalType)
             {
-                case IntervalTypeEnum.Day:
+                case IntervalType.Day:
                     startDate = startDate.AddDays(-interval);
                     break;
-                case IntervalTypeEnum.Hour:
+                case IntervalType.Hour:
                     startDate = startDate.AddHours(-interval);
                     break;
-                case IntervalTypeEnum.Minute:
+                case IntervalType.Minute:
                     startDate = startDate.AddMinutes(-interval);
                     break;
                 default:

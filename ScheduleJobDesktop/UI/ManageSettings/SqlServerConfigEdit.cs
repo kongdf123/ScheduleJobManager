@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
 using DataAccess.Entity;
-using ServiceHost.Common;
 using DataAccess.BLL;
-using Utility;
+using JobMonitor.Utility;
+using JobMonitor.Core.Model;
 
-namespace ScheduleJobDesktop.UI.ManageSettings
+namespace JobMonitor.Desktop.UI.ManageSettings
 {
     public partial class SqlServerConfigEdit : UserControl
     {
@@ -95,11 +95,11 @@ namespace ScheduleJobDesktop.UI.ManageSettings
 
             if (ChkAuthenticatedType.Checked)
             {
-                dbConfigInfo.AuthenticatedType = (byte)AuthenticatedTypeEnum.Windows;
+                dbConfigInfo.AuthenticatedType = (byte)AuthenticatedType.Windows;
             }
             else
             {
-                dbConfigInfo.AuthenticatedType = (byte)AuthenticatedTypeEnum.SqlServer;
+                dbConfigInfo.AuthenticatedType = (byte)AuthenticatedType.SqlServer;
             }
         }
 
@@ -116,7 +116,7 @@ namespace ScheduleJobDesktop.UI.ManageSettings
             SetStoredType(dbConfigInfo.StoredType, dbConfigInfo.PageSize, dbConfigInfo.MaxCapacity);
             SetServerState(dbConfigInfo.ServerState);
 
-            if (dbConfigInfo.AuthenticatedType == (byte)AuthenticatedTypeEnum.Windows)
+            if (dbConfigInfo.AuthenticatedType == (byte)AuthenticatedType.Windows)
             {
                 ChkAuthenticatedType.Checked = true;
                 TxtUserName.SetDisabled();
@@ -134,22 +134,22 @@ namespace ScheduleJobDesktop.UI.ManageSettings
         {
             if (RadioBtnEnable.Checked)
             {
-                return (byte)ServerStateEnum.Enabled;
+                return (byte)Status.Enabled;
             }
             else if (RadioBtnDisable.Checked)
             {
-                return (byte)ServerStateEnum.Disabled;
+                return (byte)Status.Disabled;
             }
             throw new CustomException("请设置一个数据库状态。", ExceptionType.Warn);
         }
 
         void SetServerState(byte serverState)
         {
-            if (serverState == (byte)ServerStateEnum.Enabled)
+            if (serverState == (byte)Status.Enabled)
             {
                 RadioBtnEnable.Checked = true;
             }
-            else if (serverState == (byte)ServerStateEnum.Disabled)
+            else if (serverState == (byte)Status.Disabled)
             {
                 RadioBtnDisable.Checked = true;
             }
@@ -161,14 +161,14 @@ namespace ScheduleJobDesktop.UI.ManageSettings
             {
                 if (!string.IsNullOrEmpty(TxtPageSize.Text))
                 {
-                    return Tuple.Create<byte, int, int>((byte)StoredTypeEnum.PageSize, Convert.ToInt32(TxtPageSize.Text), 0);
+                    return Tuple.Create<byte, int, int>((byte)StoredType.PageSize, Convert.ToInt32(TxtPageSize.Text), 0);
                 }
             }
             else if (RadioBtnMaxCapacity.Checked)
             {
                 if (!string.IsNullOrEmpty(TxtMaxCapacity.Text))
                 {
-                    return Tuple.Create<byte, int, int>((byte)StoredTypeEnum.MaxCapacity, 0, Convert.ToInt32(TxtMaxCapacity.Text));
+                    return Tuple.Create<byte, int, int>((byte)StoredType.MaxCapacity, 0, Convert.ToInt32(TxtMaxCapacity.Text));
                 }
             }
             throw new CustomException("请选择一个存储方式并填写数据条数。", ExceptionType.Warn);
@@ -178,11 +178,11 @@ namespace ScheduleJobDesktop.UI.ManageSettings
         {
             switch (storedType)
             {
-                case (byte)StoredTypeEnum.PageSize:
+                case (byte)StoredType.PageSize:
                     RadioBtnPageSize.Checked = true;
                     TxtPageSize.Text = pageSize.ToString();
                     break;
-                case (byte)StoredTypeEnum.MaxCapacity:
+                case (byte)StoredType.MaxCapacity:
                     RadioBtnMaxCapacity.Checked = true;
                     TxtMaxCapacity.Text = maxCapacity.ToString();
                     break;

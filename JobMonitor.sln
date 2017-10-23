@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{E81E5190-E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoQuartzService", "DemoQuartzService\DemoQuartzService.csproj", "{E779F16D-5373-4E29-BF66-F8DF7DCDC970}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduleManagerDesktop", "ScheduleJobDesktop\ScheduleManagerDesktop.csproj", "{0CB85382-CC94-4E42-84DF-0912AC3BDD58}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobMonitor.Desktop", "ScheduleJobDesktop\JobMonitor.Desktop.csproj", "{0CB85382-CC94-4E42-84DF-0912AC3BDD58}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DgvColumn", "DgvColumn\DgvColumn.csproj", "{7C953CAD-FA19-448C-87CF-D99F08057DD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobService.Core", "DataAccess\JobService.Core.csproj", "{073F8C3F-4A2C-48BD-8F14-0CD9E8FBB7E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobMonitor.Core", "DataAccess\JobMonitor.Core.csproj", "{073F8C3F-4A2C-48BD-8F14-0CD9E8FBB7E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{38FD714F-EE5F-4600-BC1A-CFB94865712A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobMonitor.Utility", "Utility\JobMonitor.Utility.csproj", "{38FD714F-EE5F-4600-BC1A-CFB94865712A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobHostSite", "JobHostSite\JobHostSite.csproj", "{838BD059-1EAC-4CF7-AF14-483B59CD944C}"
 EndProject

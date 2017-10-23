@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Utility
+namespace JobMonitor.Utility
 {
     public class CustomException : ApplicationException
     {

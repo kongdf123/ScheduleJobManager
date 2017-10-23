@@ -1,4 +1,4 @@
-﻿namespace ScheduleJobDesktop
+﻿namespace JobMonitor.Desktop
 {
     partial class FormMain
     {
@@ -27,7 +27,7 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.PnlContent = new System.Windows.Forms.Panel();
-            this.NavBar = new ScheduleJobDesktop.UserControls.NavBar();
+            this.NavBar = new JobMonitor.Desktop.UserControls.NavBar();
             this.PnlHeader = new System.Windows.Forms.Panel();
             this.PicLogo = new System.Windows.Forms.PictureBox();
             this.PnlHeader.SuspendLayout();
@@ -50,11 +50,11 @@
             this.NavBar.Size = new System.Drawing.Size(160, 577);
             this.NavBar.TabIndex = 3;
             this.NavBar.QuitSystemClick += new System.EventHandler(this.NavBar_QuitSystemClick);
-            this.NavBar.ImageButtonClick += new ScheduleJobDesktop.UserControls.NavBar.ButtonClickHander(this.NavBar_ImageButtonClick);
+            this.NavBar.ImageButtonClick += new JobMonitor.Desktop.UserControls.NavBar.ButtonClickHander(this.NavBar_ImageButtonClick);
             // 
             // PnlHeader
             // 
-            this.PnlHeader.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.HeaderBG;
+            this.PnlHeader.BackgroundImage = global::JobMonitor.Desktop.Properties.Resources.HeaderBG;
             this.PnlHeader.Controls.Add(this.PicLogo);
             this.PnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.PnlHeader.Location = new System.Drawing.Point(0, 0);
@@ -64,7 +64,7 @@
             // 
             // PicLogo
             // 
-            this.PicLogo.Image = global::ScheduleJobDesktop.Properties.Resources.Logo_0;
+            this.PicLogo.Image = global::JobMonitor.Desktop.Properties.Resources.Logo_0;
             this.PicLogo.Location = new System.Drawing.Point(0, 20);
             this.PicLogo.Name = "PicLogo";
             this.PicLogo.Size = new System.Drawing.Size(400, 45);

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using ServiceHost.Common;
+using JobMonitor.Utility;
 using DataAccess.DAL;
 
-namespace ScheduleJobDesktop.UI.UserControls
+namespace JobMonitor.Desktop.UI.UserControls
 {
     /// <summary>
     /// 分页控件

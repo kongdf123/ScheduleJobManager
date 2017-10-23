@@ -1,4 +1,4 @@
-﻿namespace ScheduleJobDesktop.UI.UserControls
+﻿namespace JobMonitor.Desktop.UI.UserControls
 {
     partial class TextBox
     {
@@ -72,7 +72,7 @@
             // 
             // PnlImageBG
             // 
-            this.PnlImageBG.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.Input;
+            this.PnlImageBG.BackgroundImage = global::JobMonitor.Desktop.Properties.Resources.Input;
             this.PnlImageBG.Dock = System.Windows.Forms.DockStyle.Top;
             this.PnlImageBG.Location = new System.Drawing.Point(1, 1);
             this.PnlImageBG.Name = "PnlImageBG";

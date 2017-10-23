@@ -5,12 +5,12 @@ using System.Linq;
 using System.Windows.Forms;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
-using ScheduleJobDesktop.Properties;
+using JobMonitor.Desktop.Properties;
 using Service.BLL;
 using Service.Model;
-using Utility;
+using JobMonitor.Utility;
 
-namespace ScheduleJobDesktop.UI.ManageEventConfig
+namespace JobMonitor.Desktop.UI.ManageEventConfig
 {
 	public partial class EventConfigEdit : UserControl
 	{

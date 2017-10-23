@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace ServiceHost.Common
+namespace JobMonitor.Utility
 {
     public class HttpHelper
     {

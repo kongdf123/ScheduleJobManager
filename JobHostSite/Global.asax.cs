@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using log4net.Config;
 using Quartz;
-using Utility;
+using JobMonitor.Utility;
 
 namespace JobHostSite
 {

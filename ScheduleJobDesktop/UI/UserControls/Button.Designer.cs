@@ -1,4 +1,4 @@
-﻿namespace ScheduleJobDesktop.UserControls
+﻿namespace JobMonitor.Desktop.UserControls
 {
     partial class Button
     {
@@ -35,7 +35,7 @@
             // 
             // PnlBG
             // 
-            this.PnlBG.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.ButtonBG01;
+            this.PnlBG.BackgroundImage = global::JobMonitor.Desktop.Properties.Resources.ButtonBG01;
             this.PnlBG.Controls.Add(this.LblText);
             this.PnlBG.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlBG.Location = new System.Drawing.Point(1, 1);

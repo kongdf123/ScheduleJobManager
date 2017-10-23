@@ -1,13 +1,9 @@
 ﻿using DataAccess.BLL;
 using DataAccess.Entity;
 using Quartz;
-using ServiceHost.Common;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using Utility;
+using JobMonitor.Utility;
 
 namespace JobHost.Common
 {

@@ -1,4 +1,4 @@
-﻿namespace ScheduleJobDesktop.Main
+﻿namespace JobMonitor.Desktop.Main
 {
     partial class Default
     {
@@ -69,7 +69,7 @@
             // 
             // PnlFooter
             // 
-            this.PnlFooter.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.FooterBG;
+            this.PnlFooter.BackgroundImage = global::JobMonitor.Desktop.Properties.Resources.FooterBG;
             this.PnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PnlFooter.Location = new System.Drawing.Point(0, 596);
             this.PnlFooter.Name = "PnlFooter";
@@ -106,7 +106,7 @@
             // 
             // PicLogo
             // 
-            this.PicLogo.Image = global::ScheduleJobDesktop.Properties.Resources.LogoMain;
+            this.PicLogo.Image = global::JobMonitor.Desktop.Properties.Resources.LogoMain;
             this.PicLogo.Location = new System.Drawing.Point(20, 22);
             this.PicLogo.Margin = new System.Windows.Forms.Padding(20, 22, 20, 22);
             this.PicLogo.Name = "PicLogo";
@@ -116,7 +116,7 @@
             // 
             // PicTitle
             // 
-            this.PicTitle.Image = global::ScheduleJobDesktop.Properties.Resources.TitleMain;
+            this.PicTitle.Image = global::JobMonitor.Desktop.Properties.Resources.TitleMain;
             this.PicTitle.Location = new System.Drawing.Point(140, 22);
             this.PicTitle.Margin = new System.Windows.Forms.Padding(0);
             this.PicTitle.Name = "PicTitle";
@@ -136,7 +136,7 @@
             // 
             // PicReq1
             // 
-            this.PicReq1.Image = global::ScheduleJobDesktop.Properties.Resources.TipScreen;
+            this.PicReq1.Image = global::JobMonitor.Desktop.Properties.Resources.TipScreen;
             this.PicReq1.Location = new System.Drawing.Point(140, 130);
             this.PicReq1.Margin = new System.Windows.Forms.Padding(0);
             this.PicReq1.Name = "PicReq1";
@@ -178,7 +178,7 @@
             // 
             // PicTitleLine
             // 
-            this.PicTitleLine.Image = global::ScheduleJobDesktop.Properties.Resources.TitleLine;
+            this.PicTitleLine.Image = global::JobMonitor.Desktop.Properties.Resources.TitleLine;
             this.PicTitleLine.Location = new System.Drawing.Point(140, 65);
             this.PicTitleLine.Margin = new System.Windows.Forms.Padding(0);
             this.PicTitleLine.Name = "PicTitleLine";
@@ -199,7 +199,7 @@
             // 
             // PicReq3
             // 
-            this.PicReq3.Image = global::ScheduleJobDesktop.Properties.Resources.TipService;
+            this.PicReq3.Image = global::JobMonitor.Desktop.Properties.Resources.TipService;
             this.PicReq3.Location = new System.Drawing.Point(140, 173);
             this.PicReq3.Margin = new System.Windows.Forms.Padding(0);
             this.PicReq3.Name = "PicReq3";

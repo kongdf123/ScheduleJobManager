@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace Utility
+namespace JobMonitor.Utility
 {
 	public class CacheHelper
 	{

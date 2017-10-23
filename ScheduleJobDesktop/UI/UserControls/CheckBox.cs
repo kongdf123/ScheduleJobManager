@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace ScheduleJobDesktop.UI.UserControls
+namespace JobMonitor.Desktop.UI.UserControls
 {
     [DefaultProperty("Text")]
     public partial class CheckBox : UserControl

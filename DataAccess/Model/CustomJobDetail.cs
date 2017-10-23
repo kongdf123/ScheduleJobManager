@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JobMonitor.Core.Model;
 
 namespace DataAccess.Entity
 {
@@ -53,24 +54,24 @@ namespace DataAccess.Entity
             get {
                 string[] cronArr = new string[] { "0", "0", "*", "*", "*", "?", "?" };//示例 0 10 18 15 3 ?        note:每年三月的第15天，下午6点10分都会被触发
                 DateTime start = StartDate;
-                switch (IntervalType)
+                switch ( IntervalType )
                 {
-                    case (byte)IntervalTypeEnum.Day:
+                    case (byte)JobMonitor.Core.Model.IntervalType.Day:
                         cronArr[3] = "0/" + Interval;
                         start = start.AddDays(Interval);
                         break;
-                    case (byte)IntervalTypeEnum.Hour:
+                    case (byte)JobMonitor.Core.Model.IntervalType.Hour:
                         cronArr[2] = "0/" + Interval;
                         start = start.AddHours(Interval);
                         break;
-                    case (byte)IntervalTypeEnum.Minute:
+                    case (byte)JobMonitor.Core.Model.IntervalType.Minute:
                         cronArr[1] = "0/" + Interval;
                         start = start.AddMinutes(Interval);
                         break;
                     //default:
                     //    throw new Exception("没有指定任务计划执行方式。");
                 }
-                if ((ExecutedFreqEnum)ExecutedFreq== ExecutedFreqEnum.OnlyOneTime)
+                if ((ExecutedFreq)ExecutedFreq == JobMonitor.Core.Model.ExecutedFreq.OnlyOneTime)
                 {
                     return string.Format("{0} {1} {2} {3} {4} ? {5}",
                                 start.Second,
@@ -100,63 +101,5 @@ namespace DataAccess.Entity
                 return "";
             }
         }
-    }
-
-    /// <summary>
-    /// 执行频率
-    /// </summary>
-    public enum ExecutedFreqEnum : byte
-    {
-        /// <summary>
-        /// 只执行一次
-        /// </summary>
-        OnlyOneTime = 2,
-
-        /// <summary>
-        /// 循环执行
-        /// </summary>
-        Forever = 1
-    }
-
-    /// <summary>
-    /// 任务计划执行间隔类型
-    /// </summary>
-    public enum IntervalTypeEnum : byte
-    {
-        /// <summary>
-        /// 天
-        /// </summary>
-        Day = 1,
-
-        /// <summary>
-        /// 小时
-        /// </summary>
-        Hour = 2,
-
-        /// <summary>
-        /// 分钟
-        /// </summary>
-        Minute = 3
-    }
-
-    /// <summary>
-    /// 任务计划执行情况
-    /// </summary>
-    public enum JobState : byte
-    {
-        /// <summary>
-        /// 等待
-        /// </summary>
-        Waiting = 0,
-
-        /// <summary>
-        /// 执行中
-        /// </summary>
-        Running = 1,
-
-        /// <summary>
-        /// 停止
-        /// </summary>
-        Stopping = 2
     }
 }

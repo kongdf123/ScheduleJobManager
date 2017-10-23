@@ -1,4 +1,4 @@
-﻿namespace ScheduleJobDesktop.UI.ManageSettings
+﻿namespace JobMonitor.Desktop.UI.ManageSettings
 {
     partial class SqlServerConfigEdit
     {
@@ -55,16 +55,16 @@
             this.PnlInfoTitle = new System.Windows.Forms.Panel();
             this.LblModuleTitle = new System.Windows.Forms.Label();
             this.PnlFooter = new System.Windows.Forms.Panel();
-            this.ChkAuthenticatedType = new ScheduleJobDesktop.UI.UserControls.CheckBox();
-            this.TxtMaxCapacity = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.TxtPageSize = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.TxtEquipmentNum = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.TxtPassword = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.TxtServerIP = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.TxtDBName = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.TxtUserName = new ScheduleJobDesktop.UI.UserControls.TextBox();
-            this.BtnSave = new ScheduleJobDesktop.UserControls.Button();
-            this.BtnCancel = new ScheduleJobDesktop.UserControls.Button();
+            this.ChkAuthenticatedType = new JobMonitor.Desktop.UI.UserControls.CheckBox();
+            this.TxtMaxCapacity = new JobMonitor.Desktop.UI.UserControls.TextBox();
+            this.TxtPageSize = new JobMonitor.Desktop.UI.UserControls.TextBox();
+            this.TxtEquipmentNum = new JobMonitor.Desktop.UI.UserControls.TextBox();
+            this.TxtPassword = new JobMonitor.Desktop.UI.UserControls.TextBox();
+            this.TxtServerIP = new JobMonitor.Desktop.UI.UserControls.TextBox();
+            this.TxtDBName = new JobMonitor.Desktop.UI.UserControls.TextBox();
+            this.TxtUserName = new JobMonitor.Desktop.UI.UserControls.TextBox();
+            this.BtnSave = new JobMonitor.Desktop.UserControls.Button();
+            this.BtnCancel = new JobMonitor.Desktop.UserControls.Button();
             this.PnlScrollArea.SuspendLayout();
             this.PnlInfo.SuspendLayout();
             this.PnlInfoBack.SuspendLayout();
@@ -265,7 +265,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
+            this.pictureBox3.Image = global::JobMonitor.Desktop.Properties.Resources.NotNull;
             this.pictureBox3.Location = new System.Drawing.Point(377, 123);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(14, 22);
@@ -284,7 +284,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
+            this.pictureBox1.Image = global::JobMonitor.Desktop.Properties.Resources.NotNull;
             this.pictureBox1.Location = new System.Drawing.Point(377, 202);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(14, 22);
@@ -313,7 +313,7 @@
             // 
             // PicNotNullScheduleName
             // 
-            this.PicNotNullScheduleName.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
+            this.PicNotNullScheduleName.Image = global::JobMonitor.Desktop.Properties.Resources.NotNull;
             this.PicNotNullScheduleName.Location = new System.Drawing.Point(377, 161);
             this.PicNotNullScheduleName.Name = "PicNotNullScheduleName";
             this.PicNotNullScheduleName.Size = new System.Drawing.Size(14, 22);
@@ -342,7 +342,7 @@
             // 
             // PicTitleLine
             // 
-            this.PicTitleLine.Image = global::ScheduleJobDesktop.Properties.Resources.TitleLine;
+            this.PicTitleLine.Image = global::JobMonitor.Desktop.Properties.Resources.TitleLine;
             this.PicTitleLine.Location = new System.Drawing.Point(140, 65);
             this.PicTitleLine.Margin = new System.Windows.Forms.Padding(0);
             this.PicTitleLine.Name = "PicTitleLine";
@@ -352,7 +352,7 @@
             // 
             // PicTitle
             // 
-            this.PicTitle.Image = global::ScheduleJobDesktop.Properties.Resources.TitleManageDBConfig;
+            this.PicTitle.Image = global::JobMonitor.Desktop.Properties.Resources.TitleManageDBConfig;
             this.PicTitle.Location = new System.Drawing.Point(140, 22);
             this.PicTitle.Margin = new System.Windows.Forms.Padding(0);
             this.PicTitle.Name = "PicTitle";
@@ -362,7 +362,7 @@
             // 
             // PicLogo
             // 
-            this.PicLogo.Image = global::ScheduleJobDesktop.Properties.Resources.NavBtnManageDBConfig;
+            this.PicLogo.Image = global::JobMonitor.Desktop.Properties.Resources.NavBtnManageDBConfig;
             this.PicLogo.Location = new System.Drawing.Point(20, 22);
             this.PicLogo.Margin = new System.Windows.Forms.Padding(20, 22, 20, 22);
             this.PicLogo.Name = "PicLogo";
@@ -383,7 +383,7 @@
             // PnlInfoTitle
             // 
             this.PnlInfoTitle.BackColor = System.Drawing.Color.White;
-            this.PnlInfoTitle.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.TableHeaderBG;
+            this.PnlInfoTitle.BackgroundImage = global::JobMonitor.Desktop.Properties.Resources.TableHeaderBG;
             this.PnlInfoTitle.Controls.Add(this.LblModuleTitle);
             this.PnlInfoTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.PnlInfoTitle.Location = new System.Drawing.Point(0, 0);
@@ -405,7 +405,7 @@
             // 
             // PnlFooter
             // 
-            this.PnlFooter.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.FooterBG;
+            this.PnlFooter.BackgroundImage = global::JobMonitor.Desktop.Properties.Resources.FooterBG;
             this.PnlFooter.Controls.Add(this.BtnSave);
             this.PnlFooter.Controls.Add(this.BtnCancel);
             this.PnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -593,12 +593,12 @@
         private System.Windows.Forms.Panel PnlInfoTitle;
         private System.Windows.Forms.Label LblModuleTitle;
         private System.Windows.Forms.Panel PnlFooter;
-        private ScheduleJobDesktop.UserControls.Button BtnSave;
-        private ScheduleJobDesktop.UserControls.Button BtnCancel;
+        private JobMonitor.Desktop.UserControls.Button BtnSave;
+        private JobMonitor.Desktop.UserControls.Button BtnCancel;
         private System.Windows.Forms.Label Lbl_ScheduleName;
         private System.Windows.Forms.PictureBox PicNotNullScheduleName;
         private System.Windows.Forms.Label Lbl_ManagerName;
-        ScheduleJobDesktop.UI.UserControls.TextBox TxtUserName;
+        JobMonitor.Desktop.UI.UserControls.TextBox TxtUserName;
         private System.Windows.Forms.Label Lbl_ContactPhone;
         private System.Windows.Forms.PictureBox pictureBox1;
         private UserControls.TextBox TxtDBName;

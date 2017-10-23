@@ -3,7 +3,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using log4net.Config;
-using Utility;
+using JobMonitor.Utility;
 
 namespace JobServiceSite
 {

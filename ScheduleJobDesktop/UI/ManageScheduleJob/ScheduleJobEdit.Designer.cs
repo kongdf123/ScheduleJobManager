@@ -1,6 +1,6 @@
-﻿using ScheduleJobDesktop.Properties;
+﻿using JobMonitor.Desktop.Properties;
 
-namespace ScheduleJobDesktop.UI.ManageScheduleJob
+namespace JobMonitor.Desktop.UI.ManageScheduleJob
 {
     partial class ScheduleJobEdit
     {
@@ -42,27 +42,27 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			this.PnlInterval = new System.Windows.Forms.Panel();
 			this.RadioBtnDay = new System.Windows.Forms.RadioButton();
 			this.label9 = new System.Windows.Forms.Label();
-			this.TxtDay = new ScheduleJobDesktop.UI.UserControls.TextBox();
-			this.TxtMinute = new ScheduleJobDesktop.UI.UserControls.TextBox();
+			this.TxtDay = new JobMonitor.Desktop.UI.UserControls.TextBox();
+			this.TxtMinute = new JobMonitor.Desktop.UI.UserControls.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.RadioBtnMinute = new System.Windows.Forms.RadioButton();
 			this.RadioBtnHour = new System.Windows.Forms.RadioButton();
 			this.label7 = new System.Windows.Forms.Label();
-			this.TxtHour = new ScheduleJobDesktop.UI.UserControls.TextBox();
-			this.TxtScheduleChineseName = new ScheduleJobDesktop.UI.UserControls.TextBox();
+			this.TxtHour = new JobMonitor.Desktop.UI.UserControls.TextBox();
+			this.TxtScheduleChineseName = new JobMonitor.Desktop.UI.UserControls.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.DateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
 			this.label4 = new System.Windows.Forms.Label();
 			this.DateTimePickerStart = new System.Windows.Forms.DateTimePicker();
 			this.label3 = new System.Windows.Forms.Label();
 			this.ComBoxFreq = new System.Windows.Forms.ComboBox();
-			this.TxtJobIdentity = new ScheduleJobDesktop.UI.UserControls.TextBox();
+			this.TxtJobIdentity = new JobMonitor.Desktop.UI.UserControls.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this.TxtNoteDescription = new ScheduleJobDesktop.UI.UserControls.TextBox();
+			this.TxtNoteDescription = new JobMonitor.Desktop.UI.UserControls.TextBox();
 			this.Lbl_ScheduleName = new System.Windows.Forms.Label();
 			this.Lbl_ManagerName = new System.Windows.Forms.Label();
-			this.TxtServiceAddress = new ScheduleJobDesktop.UI.UserControls.TextBox();
+			this.TxtServiceAddress = new JobMonitor.Desktop.UI.UserControls.TextBox();
 			this.Lbl_ContactPhone = new System.Windows.Forms.Label();
 			this.Lbl_NoteDescription = new System.Windows.Forms.Label();
 			this.PnlInfoTopLine = new System.Windows.Forms.Panel();
@@ -75,8 +75,8 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			this.PnlInfoTitle = new System.Windows.Forms.Panel();
 			this.LblModuleTitle = new System.Windows.Forms.Label();
 			this.PnlFooter = new System.Windows.Forms.Panel();
-			this.BtnSave = new ScheduleJobDesktop.UserControls.Button();
-			this.BtnCancel = new ScheduleJobDesktop.UserControls.Button();
+			this.BtnSave = new JobMonitor.Desktop.UserControls.Button();
+			this.BtnCancel = new JobMonitor.Desktop.UserControls.Button();
 			this.label5 = new System.Windows.Forms.Label();
 			this.PnlScrollArea.SuspendLayout();
 			this.PnlInfo.SuspendLayout();
@@ -526,7 +526,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			// 
 			// pictureBox1
 			// 
-			this.pictureBox1.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
+			this.pictureBox1.Image = global::JobMonitor.Desktop.Properties.Resources.NotNull;
 			this.pictureBox1.Location = new System.Drawing.Point(435, 133);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(14, 22);
@@ -535,7 +535,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			// 
 			// PicNotNullScheduleServiceURL
 			// 
-			this.PicNotNullScheduleServiceURL.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
+			this.PicNotNullScheduleServiceURL.Image = global::JobMonitor.Desktop.Properties.Resources.NotNull;
 			this.PicNotNullScheduleServiceURL.Location = new System.Drawing.Point(588, 170);
 			this.PicNotNullScheduleServiceURL.Name = "PicNotNullScheduleServiceURL";
 			this.PicNotNullScheduleServiceURL.Size = new System.Drawing.Size(14, 22);
@@ -544,7 +544,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			// 
 			// PicNotNullScheduleName
 			// 
-			this.PicNotNullScheduleName.Image = global::ScheduleJobDesktop.Properties.Resources.NotNull;
+			this.PicNotNullScheduleName.Image = global::JobMonitor.Desktop.Properties.Resources.NotNull;
 			this.PicNotNullScheduleName.Location = new System.Drawing.Point(435, 97);
 			this.PicNotNullScheduleName.Name = "PicNotNullScheduleName";
 			this.PicNotNullScheduleName.Size = new System.Drawing.Size(14, 22);
@@ -553,7 +553,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			// 
 			// PicTitleLine
 			// 
-			this.PicTitleLine.Image = global::ScheduleJobDesktop.Properties.Resources.TitleLine;
+			this.PicTitleLine.Image = global::JobMonitor.Desktop.Properties.Resources.TitleLine;
 			this.PicTitleLine.Location = new System.Drawing.Point(140, 65);
 			this.PicTitleLine.Margin = new System.Windows.Forms.Padding(0);
 			this.PicTitleLine.Name = "PicTitleLine";
@@ -563,7 +563,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			// 
 			// PicTitle
 			// 
-			this.PicTitle.Image = global::ScheduleJobDesktop.Properties.Resources.TitleManageScheduleJob_1;
+			this.PicTitle.Image = global::JobMonitor.Desktop.Properties.Resources.TitleManageScheduleJob_1;
 			this.PicTitle.Location = new System.Drawing.Point(140, 22);
 			this.PicTitle.Margin = new System.Windows.Forms.Padding(0);
 			this.PicTitle.Name = "PicTitle";
@@ -573,7 +573,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			// 
 			// PicLogo
 			// 
-			this.PicLogo.Image = global::ScheduleJobDesktop.Properties.Resources.LogoScheduledTask;
+			this.PicLogo.Image = global::JobMonitor.Desktop.Properties.Resources.LogoScheduledTask;
 			this.PicLogo.Location = new System.Drawing.Point(20, 22);
 			this.PicLogo.Margin = new System.Windows.Forms.Padding(20, 22, 20, 22);
 			this.PicLogo.Name = "PicLogo";
@@ -585,7 +585,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			// PnlInfoTitle
 			// 
 			this.PnlInfoTitle.BackColor = System.Drawing.Color.White;
-			this.PnlInfoTitle.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.TableHeaderBG;
+			this.PnlInfoTitle.BackgroundImage = global::JobMonitor.Desktop.Properties.Resources.TableHeaderBG;
 			this.PnlInfoTitle.Controls.Add(this.LblModuleTitle);
 			this.PnlInfoTitle.Dock = System.Windows.Forms.DockStyle.Top;
 			this.PnlInfoTitle.Location = new System.Drawing.Point(0, 0);
@@ -607,7 +607,7 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
 			// 
 			// PnlFooter
 			// 
-			this.PnlFooter.BackgroundImage = global::ScheduleJobDesktop.Properties.Resources.FooterBG;
+			this.PnlFooter.BackgroundImage = global::JobMonitor.Desktop.Properties.Resources.FooterBG;
 			this.PnlFooter.Controls.Add(this.BtnSave);
 			this.PnlFooter.Controls.Add(this.BtnCancel);
 			this.PnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -693,15 +693,15 @@ namespace ScheduleJobDesktop.UI.ManageScheduleJob
         private System.Windows.Forms.Panel PnlInfoTitle;
         private System.Windows.Forms.Label LblModuleTitle;
         private System.Windows.Forms.Panel PnlFooter;
-        private ScheduleJobDesktop.UserControls.Button BtnSave;
-        private ScheduleJobDesktop.UserControls.Button BtnCancel;
+        private JobMonitor.Desktop.UserControls.Button BtnSave;
+        private JobMonitor.Desktop.UserControls.Button BtnCancel;
         private System.Windows.Forms.Label Lbl_ScheduleName;
         private System.Windows.Forms.PictureBox PicNotNullScheduleName;
         private System.Windows.Forms.Label Lbl_ManagerName;
-        ScheduleJobDesktop.UI.UserControls.TextBox TxtServiceAddress;
+        JobMonitor.Desktop.UI.UserControls.TextBox TxtServiceAddress;
         private System.Windows.Forms.Label Lbl_ContactPhone;
         private System.Windows.Forms.Label Lbl_NoteDescription;
-        ScheduleJobDesktop.UI.UserControls.TextBox TxtNoteDescription;
+        JobMonitor.Desktop.UI.UserControls.TextBox TxtNoteDescription;
         private System.Windows.Forms.PictureBox PicNotNullScheduleServiceURL;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;

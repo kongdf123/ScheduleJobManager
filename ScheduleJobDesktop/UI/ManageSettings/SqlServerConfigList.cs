@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ScheduleJobDesktop.UI.UserControls;
+using JobMonitor.Desktop.UI.UserControls;
 using DataAccess.BLL;
 using DataAccess.Entity;
 
-namespace ScheduleJobDesktop.UI.ManageSettings
+namespace JobMonitor.Desktop.UI.ManageSettings
 {
     public partial class SqlServerConfigList : UserControl
     {

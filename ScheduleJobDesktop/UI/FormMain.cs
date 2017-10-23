@@ -1,4 +1,4 @@
-﻿using ScheduleJobDesktop.UI.ManageSettings;
+﻿using JobMonitor.Desktop.UI.ManageSettings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ScheduleJobDesktop.UI.ManageEventConfig;
+using JobMonitor.Desktop.UI.ManageEventConfig;
 
-namespace ScheduleJobDesktop
+namespace JobMonitor.Desktop
 {
     /// <summary>
     /// 主窗口

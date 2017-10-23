@@ -1,4 +1,4 @@
-﻿namespace ScheduleJobDesktop.UI.UserControls
+﻿namespace JobMonitor.Desktop.UI.UserControls
 {
     partial class CheckBox
     {
