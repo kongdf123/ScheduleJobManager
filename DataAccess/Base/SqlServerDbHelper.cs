@@ -31,7 +31,7 @@ namespace Service.DAL
         static OleDbConnection GetConnection(string connString)
         {
             OleDbConnection connection = new OleDbConnection();
-            connection.ConnectionString = connString;
+            connection.ConnectionString = connString; 
             try
             {
                 connection.Open();

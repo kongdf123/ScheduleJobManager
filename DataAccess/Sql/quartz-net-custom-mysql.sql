@@ -7,7 +7,7 @@ CREATE TABLE `custom_db_config` (
   `ServerAddress` varchar(30) NOT NULL,
   `DBName` varchar(45) NOT NULL,
   `UserName` varchar(45) NOT NULL,
-  `Password` varchar(45) NOT NULL,
+  `Password` varchar(45) NULL,
   `UpdatedDate` datetime DEFAULT NULL,
   `CreatedDate` datetime DEFAULT NULL,
   `EquipmentNum` varchar(25) NOT NULL,
