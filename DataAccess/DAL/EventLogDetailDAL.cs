@@ -21,14 +21,14 @@ namespace Service.DAL
         {
             string sqlWhere = "";
             List<OleDbParameter> listParms = new List<OleDbParameter>();
-            sqlWhere = " AND EventDate>@EventDate ";
+            sqlWhere = $" AND EventDate>'{startDate.ToString("yyyy-MM-dd HH:mm:ss")}' ";
             listParms.Add(new OleDbParameter("@EventDate", SqlDbType.DateTime) { Value = startDate.ToString("yyyy-MM-dd HH:mm:ss") });
 
             int recordsTotal = SqlServerDbHelper.ExecuteScalar<int>(connString,"SELECT COUNT(*) FROM mc_event_log WHERE Operator<>'' " + sqlWhere, listParms.ToArray());
 
             string sqlWhere2 = "";
             List<OleDbParameter> listParms2 = new List<OleDbParameter>();
-            sqlWhere2 = " AND EventDate>@EventDate ";
+            sqlWhere2 = $" AND EventDate>'{startDate.ToString("yyyy-MM-dd HH:mm:ss")}' ";
             listParms2.Add(new OleDbParameter("@EventDate", SqlDbType.DateTime) { Value = startDate.ToString("yyyy-MM-dd HH:mm:ss") });
             string sqlText = " SELECT TOP " + pageSize + @" EventId,
                                 EventDate,
@@ -86,7 +86,7 @@ namespace Service.DAL
 
             if (dataReader["UnitStatusID"] != DBNull.Value)
             {
-                eventLogDetail.UnitStatusID = Convert.ToByte(dataReader["UnitStatusID"]);
+                eventLogDetail.UnitStatusID = Convert.ToInt32(dataReader["UnitStatusID"]);
             }
         }
     }

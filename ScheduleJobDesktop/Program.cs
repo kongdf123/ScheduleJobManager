@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using JobMonitor.Utility;
 using JobMonitor.Desktop.UI;
+using System.Collections.Specialized;
+using Quartz;
 
 namespace JobMonitor.Desktop
 {
@@ -31,6 +33,13 @@ namespace JobMonitor.Desktop
             //timer.Elapsed += new System.Timers.ElapsedEventHandler(ExcutedFunc); //到达时间的时候执行事件；   
             //timer.AutoReset = true;   //设置是执行一次（false）还是一直执行(true)；   
             //timer.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件； 
+
+            //初始化quart.net 
+            NameValueCollection config = (NameValueCollection)ConfigurationManager.GetSection("quartz");
+            IScheduler scheduler = QuartzNetHelper.Initialize(config);
+            scheduler.Start();
+
+            Log4NetHelper.WriteInfo("JobMonitor Application is started.");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

@@ -61,6 +61,7 @@
     <Compile Include="DAL\EventLogDetailDAL.cs" />
     <Compile Include="Model\Enums.cs" />
     <Compile Include="Model\EventDetail.cs" />
+    <Compile Include="Model\ResultModel.cs" />
     <Compile Include="Model\SqlServerConfigInfo.cs" />
     <Compile Include="Model\CustomJobDetail.cs" />
     <Compile Include="Model\EventLogDetail.cs" />

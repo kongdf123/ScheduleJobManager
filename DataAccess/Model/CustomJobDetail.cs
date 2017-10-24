@@ -52,12 +52,12 @@ namespace DataAccess.Entity
         */
         public string CronExpression {
             get {
-                string[] cronArr = new string[] { "0", "0", "*", "*", "*", "?", "?" };//示例 0 10 18 15 3 ?        note:每年三月的第15天，下午6点10分都会被触发
+                string[] cronArr = new string[] { "0", "0", "*", "?", "*", "?" };//示例 0 10 18 15 3 ?        note:每年三月的第15天，下午6点10分都会被触发
                 DateTime start = StartDate;
                 switch ( IntervalType )
                 {
                     case (byte)JobMonitor.Core.Model.IntervalType.Day:
-                        cronArr[3] = "0/" + Interval;
+                        cronArr[3] = "1/" + Interval;
                         start = start.AddDays(Interval);
                         break;
                     case (byte)JobMonitor.Core.Model.IntervalType.Hour:

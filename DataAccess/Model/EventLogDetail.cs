@@ -17,7 +17,7 @@ namespace Service.Model
 
         public string ProductName { get; set; }
 
-        public byte UnitStatusID { get; set; }
+        public int UnitStatusID { get; set; }
 
         public string UnitStatusDescription {
             get {
