@@ -55,6 +55,7 @@
             this.PnlInfoTitle = new System.Windows.Forms.Panel();
             this.LblModuleTitle = new System.Windows.Forms.Label();
             this.PnlFooter = new System.Windows.Forms.Panel();
+            this.btnTestConnection = new JobMonitor.Desktop.UserControls.Button();
             this.ChkAuthenticatedType = new JobMonitor.Desktop.UI.UserControls.CheckBox();
             this.TxtMaxCapacity = new JobMonitor.Desktop.UI.UserControls.TextBox();
             this.TxtPageSize = new JobMonitor.Desktop.UI.UserControls.TextBox();
@@ -129,6 +130,7 @@
             // PnlControlArea
             // 
             this.PnlControlArea.BackColor = System.Drawing.Color.White;
+            this.PnlControlArea.Controls.Add(this.btnTestConnection);
             this.PnlControlArea.Controls.Add(this.PnlServerState);
             this.PnlControlArea.Controls.Add(this.label3);
             this.PnlControlArea.Controls.Add(this.ChkAuthenticatedType);
@@ -161,7 +163,7 @@
             // 
             this.PnlServerState.Controls.Add(this.RadioBtnDisable);
             this.PnlServerState.Controls.Add(this.RadioBtnEnable);
-            this.PnlServerState.Location = new System.Drawing.Point(230, 317);
+            this.PnlServerState.Location = new System.Drawing.Point(230, 358);
             this.PnlServerState.Name = "PnlServerState";
             this.PnlServerState.Size = new System.Drawing.Size(141, 34);
             this.PnlServerState.TabIndex = 49;
@@ -190,7 +192,7 @@
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(111, 317);
+            this.label3.Location = new System.Drawing.Point(111, 353);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(85, 43);
@@ -206,7 +208,7 @@
             this.panel1.Controls.Add(this.RadioBtnPageSize);
             this.panel1.Controls.Add(this.TxtMaxCapacity);
             this.panel1.Controls.Add(this.TxtPageSize);
-            this.panel1.Location = new System.Drawing.Point(230, 360);
+            this.panel1.Location = new System.Drawing.Point(230, 407);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(360, 97);
             this.panel1.TabIndex = 46;
@@ -255,7 +257,7 @@
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(104, 384);
+            this.label5.Location = new System.Drawing.Point(104, 432);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(90, 43);
@@ -413,6 +415,18 @@
             this.PnlFooter.Name = "PnlFooter";
             this.PnlFooter.Size = new System.Drawing.Size(830, 54);
             this.PnlFooter.TabIndex = 3;
+            // 
+            // btnTestConnection
+            // 
+            this.btnTestConnection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(163)))), ((int)(((byte)(193)))));
+            this.btnTestConnection.Location = new System.Drawing.Point(393, 283);
+            this.btnTestConnection.Name = "btnTestConnection";
+            this.btnTestConnection.Padding = new System.Windows.Forms.Padding(1);
+            this.btnTestConnection.Size = new System.Drawing.Size(133, 26);
+            this.btnTestConnection.TabIndex = 50;
+            this.btnTestConnection.TabStop = false;
+            this.btnTestConnection.Text = "测试连接";
+            this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
             // 
             // ChkAuthenticatedType
             // 
@@ -621,5 +635,6 @@
         private System.Windows.Forms.RadioButton RadioBtnDisable;
         private System.Windows.Forms.RadioButton RadioBtnEnable;
         private System.Windows.Forms.Label label3;
+        private Desktop.UserControls.Button btnTestConnection;
     }
 }
