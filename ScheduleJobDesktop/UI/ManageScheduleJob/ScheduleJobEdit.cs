@@ -6,6 +6,8 @@ using System.Linq;
 using System.Windows.Forms;
 using JobMonitor.Utility;
 using JobMonitor.Core.Model;
+using JobMonitor.Desktop.Biz;
+using System.Threading;
 
 namespace JobMonitor.Desktop.UI.ManageScheduleJob
 {
@@ -16,7 +18,6 @@ namespace JobMonitor.Desktop.UI.ManageScheduleJob
     {
         CustomJobDetail jobDetail;
         static ScheduleJobEdit instance;
-        string jobHostSite = System.Configuration.ConfigurationManager.AppSettings["JobHostSite"];
         JobState preJobState = JobState.Waiting;
         string preCronExpression = "";
 
@@ -26,8 +27,7 @@ namespace JobMonitor.Desktop.UI.ManageScheduleJob
         /// </summary>
         public static ScheduleJobEdit Instance {
             get {
-                if (instance == null)
-                {
+                if ( instance == null ) {
                     instance = new ScheduleJobEdit();
                 }
                 instance.jobDetail = new CustomJobDetail(); // 创建新的关联对象，可以在“数据实体层”中指定对象的默认值。
@@ -36,10 +36,8 @@ namespace JobMonitor.Desktop.UI.ManageScheduleJob
             }
         }
 
-        public static ScheduleJobEdit BindJobDetail(CustomJobDetail job)
-        {
-            if (instance == null)
-            {
+        public static ScheduleJobEdit BindJobDetail(CustomJobDetail job) {
+            if ( instance == null ) {
                 instance = new ScheduleJobEdit();
             }
             instance.jobDetail = job; // 创建新的关联对象，可以在“数据实体层”中指定对象的默认值。
@@ -50,8 +48,7 @@ namespace JobMonitor.Desktop.UI.ManageScheduleJob
         /// <summary>
         /// 私有的控件实例化方法，创建实例只能通过该控件的Instance属性实现。
         /// </summary>
-        private ScheduleJobEdit()
-        {
+        private ScheduleJobEdit() {
             InitializeComponent();
             List<KeyValuePair<string, string>> listFreq = new List<KeyValuePair<string, string>>();
             listFreq.Add(new KeyValuePair<string, string>("循环执行", "1"));
@@ -63,71 +60,47 @@ namespace JobMonitor.Desktop.UI.ManageScheduleJob
             this.Dock = DockStyle.Fill;
         }
 
-        public delegate void CallBackDelegate(FormSysMessage formSysMessage, string message);
-        public void CallBackFunc(FormSysMessage formSysMessage, string message)
-        {
-            formSysMessage.SetMessage(message);
-            System.Threading.Thread.Sleep(2000);
-            formSysMessage.Close();
-
-            FormMain.LoadNewControl(ScheduleJobList.Instance); // 载入该模块的信息列表界面至主窗体显示。
-        }
-
         /// <summary>
         /// 用户单击“保存”按钮时的事件处理方法。
         /// </summary>
-        private void BtnSave_Click(object sender, EventArgs e)
-        {
+        private void BtnSave_Click(object sender, EventArgs e) {
+            BindFormlToObject(); // 进行数据绑定
+            Thread thread = new Thread(SaveScheduleJob);
+            thread.Start();
+        }
+
+        void SaveScheduleJob() {
             var formSysMessage = FormSysMessage.ShowLoading();
 
-            BindFormlToObject(); // 进行数据绑定
-            try
-            {
-                if (jobDetail.JobId > 0)
-                {
-                    int effected = CustomJobDetailBLL.CreateInstance().Update(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后更新至数据库。
-                    if (effected == 0)
-                    {
-                        return;
-                    }
-
-                    // 根据新的配置，更新寄宿服务里的任务计划
-                    CustomJobDetailBLL.CreateInstance().ModifyHostJob(jobHostSite, jobDetail.JobId, jobDetail.JobName);
-
-                    #region 开启或关闭任务计划
-
-                    if (jobDetail.State == (byte)JobState.Running)
-                    {
-                        CustomJobDetailBLL.CreateInstance().StartHostJob(jobHostSite, jobDetail.JobId, jobDetail.JobName,
-                                       () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "启动任务计划成功。"); },
-                                       () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "启动任务计划失败。"); });
-                    }
-                    else if (jobDetail.State == (byte)JobState.Stopping || jobDetail.State == (byte)JobState.Waiting)
-                    {
-                        CustomJobDetailBLL.CreateInstance().StopHostJob(jobHostSite, jobDetail.JobId, jobDetail.JobName,
-                                          () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "关闭任务计划成功。"); },
-                                          () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "关闭任务计划失败。"); });
-                    }
-                    #endregion
+            try {
+                var jobDetailBLL = CustomJobDetailBLL.GetInstance();
+                var effected = 0;
+                if ( jobDetail.JobId > 0 ) {
+                    effected = jobDetailBLL.Update(jobDetail);
                 }
-                else
-                {
-                    #region 添加任务计划
-                    int newId = CustomJobDetailBLL.CreateInstance().Insert(jobDetail); // 调用“业务逻辑层”的方法，检查有效性后插入至数据库。
-                    if (newId == 0)
-                    {
-                        return;
-                    }
-                    CustomJobDetailBLL.CreateInstance().AddHostJob(jobHostSite, jobDetail.JobId, jobDetail.JobName,
-                                          () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "添加任务计划成功。"); },
-                                          () => { this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "添加任务计划失败。"); });
+                else {
+                    effected = jobDetailBLL.Insert(jobDetail);
+                }
+                if ( effected == 0 ) {
+                    formSysMessage.Close();
+                    FormSysMessage.ShowMessage("数据保存失败!");
+                    return;
+                }
 
-                    #endregion
+                var jobSettingResult = SqlServerSyncJobHost.GetInstance().StoreJob(jobDetail.JobId, jobDetail.JobName);
+                formSysMessage.Close();
+                if ( jobSettingResult.State == ResultState.Success ) {
+                    FormSysMessage.ShowMessage("保存成功。");
+                }
+                else {
+                    jobDetail.State = (byte)JobState.Waiting;
+                    jobDetailBLL.Update(jobDetail);
+                    FormSysMessage.ShowMessage("任务计划状态设置失败！");
                 }
             }
-            catch (Exception ex)
-            {
-                this.Invoke(new CallBackDelegate(CallBackFunc), formSysMessage, "保存失败。");
+            catch ( Exception ex ) {
+                formSysMessage.Close();
+                FormSysMessage.ShowMessage($"保存出错!异常信息：{ex.Message}");
                 Log4NetHelper.WriteExcepetion(ex);
             }
         }
@@ -135,8 +108,7 @@ namespace JobMonitor.Desktop.UI.ManageScheduleJob
         /// <summary>
         /// 用户单击“取消”按钮时的事件处理方法。
         /// </summary>
-        private void BtnCancel_Click(object sender, EventArgs e)
-        {
+        private void BtnCancel_Click(object sender, EventArgs e) {
             FormMain.LoadNewControl(ScheduleJobList.Instance); // 载入该模块的信息列表界面至主窗体显示。
         }
 
@@ -145,16 +117,14 @@ namespace JobMonitor.Desktop.UI.ManageScheduleJob
         /// <summary>
         /// 将界面控件中的值，绑定给关联对象。
         /// </summary>
-        private void BindFormlToObject()
-        {
+        private void BindFormlToObject() {
             jobDetail.JobChineseName = DataValid.GetNullOrString(TxtScheduleChineseName.Text);
             jobDetail.JobName = DataValid.GetNullOrString(TxtJobIdentity.Text);
             jobDetail.JobGroup = jobDetail.JobName + "_Group";
             jobDetail.JobServiceURL = DataValid.GetNullOrString(TxtServiceAddress.Text);
             jobDetail.State = GetJobState();
 
-            if (ComBoxFreq.SelectedValue == null || string.IsNullOrEmpty(ComBoxFreq.SelectedValue.ToString()))
-            {
+            if ( ComBoxFreq.SelectedValue == null || string.IsNullOrEmpty(ComBoxFreq.SelectedValue.ToString()) ) {
                 throw new CustomException("请选择执行频率！", ExceptionType.Warn);
             }
             jobDetail.ExecutedFreq = Convert.ToByte(ComBoxFreq.SelectedValue);
@@ -169,26 +139,25 @@ namespace JobMonitor.Desktop.UI.ManageScheduleJob
         /// <summary>
         /// 将关联对象中的值，绑定至界面控件进行显示。
         /// </summary>
-        internal void BindObjectToForm()
-        {
+        internal void BindObjectToForm() {
             TxtScheduleChineseName.Text = jobDetail.JobChineseName;
             TxtJobIdentity.Text = jobDetail.JobName;
-            if (jobDetail.JobId > 0)
-            {
+            if ( jobDetail.JobId > 0 ) {
                 TxtJobIdentity.Enabled = false;
                 //TxtJobIdentity.BoxBackColor = System.Drawing.Color.Gray;
+            }
+            else {
+                TxtJobIdentity.Enabled = true;
             }
 
             TxtServiceAddress.Text = jobDetail.JobServiceURL;
             SetJobState(jobDetail.State);
             preJobState = (JobState)jobDetail.State;
             ComBoxFreq.SelectedValue = jobDetail.ExecutedFreq.ToString();
-            if (jobDetail.StartDate > DateTime.MinValue)
-            {
+            if ( jobDetail.StartDate > DateTime.MinValue ) {
                 DateTimePickerStart.Value = jobDetail.StartDate;
             }
-            if (jobDetail.EndDate > DateTime.MinValue)
-            {
+            if ( jobDetail.EndDate > DateTime.MinValue ) {
                 DateTimePickerEnd.Value = jobDetail.EndDate;
             }
             SetInterval(jobDetail.IntervalType, jobDetail.Interval);
@@ -197,41 +166,32 @@ namespace JobMonitor.Desktop.UI.ManageScheduleJob
             TxtNoteDescription.Text = jobDetail.Description;  // 备注说明
         }
 
-        Tuple<byte, int> GetInterval()
-        {
+        Tuple<byte, int> GetInterval() {
             var radioButtons = PnlInterval.Controls.OfType<RadioButton>();
-            if (radioButtons.Any(t => t.Checked))
-            {
+            if ( radioButtons.Any(t => t.Checked) ) {
                 var selected = radioButtons.First(t => t.Checked);
-                switch (selected.Name)
-                {
+                switch ( selected.Name ) {
                     case "RadioBtnDay":
-                        if (string.IsNullOrEmpty(TxtDay.Text))
-                        {
+                        if ( string.IsNullOrEmpty(TxtDay.Text) ) {
                             break;
                         }
-                        if (DataValid.GetNullOrInt(TxtDay.Text).Value > 30)
-                        {
+                        if ( DataValid.GetNullOrInt(TxtDay.Text).Value > 30 ) {
                             throw new CustomException("天数间隔不能大于30！", ExceptionType.Warn);
                         }
                         return Tuple.Create<byte, int>((byte)IntervalType.Day, DataValid.GetNullOrInt(TxtDay.Text).Value);
                     case "RadioBtnHour":
-                        if (string.IsNullOrEmpty(TxtHour.Text))
-                        {
+                        if ( string.IsNullOrEmpty(TxtHour.Text) ) {
                             break;
                         }
-                        if (DataValid.GetNullOrInt(TxtHour.Text).Value > 60)
-                        {
+                        if ( DataValid.GetNullOrInt(TxtHour.Text).Value > 60 ) {
                             throw new CustomException("小时间隔不能大于60！", ExceptionType.Warn);
                         }
                         return Tuple.Create<byte, int>((byte)IntervalType.Hour, DataValid.GetNullOrInt(TxtHour.Text).Value);
                     case "RadioBtnMinute":
-                        if (string.IsNullOrEmpty(TxtMinute.Text))
-                        {
+                        if ( string.IsNullOrEmpty(TxtMinute.Text) ) {
                             break;
                         }
-                        if (DataValid.GetNullOrInt(TxtMinute.Text).Value > 60)
-                        {
+                        if ( DataValid.GetNullOrInt(TxtMinute.Text).Value > 60 ) {
                             throw new CustomException("分钟间隔不能大于60！", ExceptionType.Warn);
                         }
                         return Tuple.Create<byte, int>((byte)IntervalType.Minute, DataValid.GetNullOrInt(TxtMinute.Text).Value);
@@ -242,14 +202,11 @@ namespace JobMonitor.Desktop.UI.ManageScheduleJob
             throw new CustomException("请选择一个任务间隔类型并填写执行间隔！", ExceptionType.Warn);
         }
 
-        byte GetJobState()
-        {
+        byte GetJobState() {
             var radioButtons = PnlJobState.Controls.OfType<RadioButton>();
-            if (radioButtons.Any(t => t.Checked))
-            {
+            if ( radioButtons.Any(t => t.Checked) ) {
                 var selected = radioButtons.First(t => t.Checked);
-                switch (selected.Name)
-                {
+                switch ( selected.Name ) {
                     case "RadioBtnWaiting": return (byte)JobState.Waiting;
                     case "RadioBtnRunning": return (byte)JobState.Running;
                     case "RadioBtnStopping": return (byte)JobState.Stopping;
@@ -260,10 +217,8 @@ namespace JobMonitor.Desktop.UI.ManageScheduleJob
             throw new CustomException("请选择一个任务状态！", ExceptionType.Warn);
         }
 
-        void SetInterval(byte intervalType, int interval)
-        {
-            switch ((IntervalType)intervalType)
-            {
+        void SetInterval(byte intervalType, int interval) {
+            switch ( (IntervalType)intervalType ) {
                 case IntervalType.Day:
                     RadioBtnDay.Checked = true;
                     TxtDay.Text = interval.ToString();
@@ -281,10 +236,8 @@ namespace JobMonitor.Desktop.UI.ManageScheduleJob
             }
         }
 
-        void SetJobState(byte jobState)
-        {
-            switch ((JobState)jobState)
-            {
+        void SetJobState(byte jobState) {
+            switch ( (JobState)jobState ) {
                 case JobState.Waiting:
                     RadioBtnWaiting.Checked = true;
                     break;

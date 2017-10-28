@@ -36,8 +36,8 @@ namespace JobServiceSite.Controllers
                 List<SqlServerConfigInfo> listSqlServerConfig = SqlServerConfigInfoBLL.CreateInstance().GetAll();
 
                 string jobName = Request["jobName"];
-                CustomJobDetail jobDetail = CustomJobDetailBLL.CreateInstance().Get(jobName);
-                DateTime startDate = CustomJobDetailBLL.CreateInstance().GetFetchingStartDate(jobDetail.IntervalType, jobDetail.Interval);
+                CustomJobDetail jobDetail = CustomJobDetailBLL.GetInstance().Get(jobName);
+                DateTime startDate = CustomJobDetailBLL.GetInstance().GetFetchingStartDate(jobDetail.IntervalType, jobDetail.Interval);
                 Parallel.ForEach(listSqlServerConfig, new ParallelOptions { MaxDegreeOfParallelism = 5 }, (sqlServerConfig) =>
                    {
                        Monitor.Enter(lockedObj);

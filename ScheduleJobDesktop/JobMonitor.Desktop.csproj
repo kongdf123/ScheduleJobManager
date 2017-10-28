@@ -118,7 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Biz\SqlServerSyncJob.cs" />
-    <Compile Include="Biz\JobHostManager.cs" />
+    <Compile Include="Biz\SqlServerSyncJobHost.cs" />
     <Compile Include="Biz\SqlServerSyncService.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -287,7 +287,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Content Include="quartz.config" />
     <None Include="ScheduleManagerDesktop_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

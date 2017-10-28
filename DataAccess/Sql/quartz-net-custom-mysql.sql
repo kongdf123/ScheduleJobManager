@@ -39,7 +39,7 @@ CREATE TABLE `custom_job_details` (
   PRIMARY KEY (`JobId`,`JobName`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='to manage parameter records ,which belongs to control custom job actions in practice.';
 
-CREATE TABLE `quartz`.`custom_event_details` (
+CREATE TABLE `custom_event_details` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `EventDate` DATETIME NULL,
   `EventName` VARCHAR(45) NULL,

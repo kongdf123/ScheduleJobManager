@@ -16,9 +16,7 @@ namespace JobMonitor.Desktop.Biz
             string jobName = context.JobDetail.Key.Name;
             Task.Factory.StartNew(() => {
                 try {
-                    CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobName);
-                    var syncService = new SqlServerSyncService();
-                    syncService.SyncMsSqlData(customJob.JobName);
+                    new SqlServerSyncService().SyncMsSqlData(jobName);
                 }
                 catch ( Exception ex ) {
                     Log4NetHelper.WriteExcepetion(ex);

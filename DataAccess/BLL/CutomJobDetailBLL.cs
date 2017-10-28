@@ -15,7 +15,7 @@ namespace DataAccess.BLL
             _dal = CustomJobDetailDAL.CreateInstance();
         }
 
-        public static CustomJobDetailBLL CreateInstance()
+        public static CustomJobDetailBLL GetInstance()
         {
             return new CustomJobDetailBLL();
         }
@@ -32,167 +32,10 @@ namespace DataAccess.BLL
                 throw new CustomException("请输入任务代号。", ExceptionType.Warn);
             }
 
-            if (string.IsNullOrEmpty(jobDetail.JobServiceURL))
-            {
-                throw new CustomException("请输入需要执行的服务地址。", ExceptionType.Warn);
-            }
-
             if (Exists(jobDetail.JobId, jobDetail.JobName))
             {
                 throw new CustomException("任务代号已存在，请重新输入。", ExceptionType.Warn);
             }
-        }
-
-        public void AddHostJob(string jobHostSite, int jobId, string jobName, Action success, Action error)
-        {
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    bool isSuccess = false;
-                    var respResult = HttpHelper.SendPost(jobHostSite + "/ScheduleHostService/AddJob?jobId=" + jobId + "&jobName=" + jobName, "");
-                    if (!string.IsNullOrEmpty(respResult))
-                    {
-                        ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
-                        if (respJson.Code == 1)
-                        {
-                            isSuccess = true;
-                        }
-                    }
-                    if (isSuccess)
-                    {
-                        success?.Invoke();
-                    }
-                    else
-                    {
-                        error?.Invoke();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log4NetHelper.WriteExcepetion(ex);
-                    error?.Invoke();
-                }
-            });
-        }
-
-        public void ModifyHostJob(string jobHostSite, int jobId, string jobName)
-        {
-            try
-            {
-                var respResult = HttpHelper.SendPost(jobHostSite + "/ScheduleHostService/ModifyJob?jobId=" + jobId + "&jobName=" + jobName, "");
-                if (!string.IsNullOrEmpty(respResult))
-                {
-                    ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
-                    if (respJson.Code == 1)
-                    {
-                        return;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log4NetHelper.WriteExcepetion(ex);
-            }
-        }
-
-        public void StartHostJob(string jobHostSite, int jobId, string jobName, Action success, Action error)
-        {
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    bool isSuccess = false;
-                    var respResult = HttpHelper.SendPost(jobHostSite + "/ScheduleHostService/StartJob?jobId=" + jobId + "&jobName=" + jobName, "");
-                    if (!string.IsNullOrEmpty(respResult))
-                    {
-                        ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
-                        if (respJson.Code == 1)
-                        {
-                            isSuccess = true;
-                        }
-                    }
-                    if (isSuccess)
-                    {
-                        success?.Invoke();
-                    }
-                    else
-                    {
-                        error?.Invoke();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log4NetHelper.WriteExcepetion(ex);
-                    error?.Invoke();
-                }
-            });
-        }
-
-        public void DeleteHostJob(string jobHostSite, int jobId, string jobName, Action success, Action error)
-        {
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    bool isSuccess = false;
-                    var respResult = HttpHelper.SendPost(jobHostSite + "/ScheduleHostService/DeleteJob?jobId=" + jobId + "&jobName=" + jobName, "");
-                    if (!string.IsNullOrEmpty(respResult))
-                    {
-                        ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
-                        if (respJson.Code == 1)
-                        {
-                            isSuccess = true;
-                        }
-                    }
-                    if (isSuccess)
-                    {
-                        success?.Invoke();
-                    }
-                    else
-                    {
-                        error?.Invoke();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log4NetHelper.WriteExcepetion(ex);
-                    error?.Invoke();
-                }
-            });
-        }
-
-        public void StopHostJob(string jobHostSite, int jobId, string jobName, Action success, Action error)
-        {
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    bool isSuccess = false;
-                    var respResult = HttpHelper.SendPost(jobHostSite + "/ScheduleHostService/StopJob?jobId=" + jobId + "&jobName=" + jobName, "");
-                    if (!string.IsNullOrEmpty(respResult))
-                    {
-                        ResponseJson respJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseJson>(respResult);
-                        if (respJson.Code == 1)
-                        {
-                            isSuccess = true;
-                        }
-                    }
-                    if (isSuccess)
-                    {
-                        success?.Invoke();
-                    }
-                    else
-                    {
-                        error?.Invoke();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log4NetHelper.WriteExcepetion(ex);
-                    error?.Invoke();
-                }
-            });
         }
 
         /// <summary>

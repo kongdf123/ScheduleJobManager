@@ -6,13 +6,14 @@ using DataAccess.Entity;
 using DataAccess.BLL;
 using JobMonitor.Desktop.UI.ManageSettings;
 using JobMonitor.Desktop.Biz;
+using System.Threading;
+using JobMonitor.Core.Model;
 
 namespace JobMonitor.Desktop.UI.ManageScheduleJob
 {
     public partial class ScheduleJobList : UserControl
     {
         static ScheduleJobList instance;
-        string jobHostSite = System.Configuration.ConfigurationManager.AppSettings["JobHostSite"];
 
         /// <summary>
         /// 返回一个该控件的实例。如果之前该控件已经被创建，直接返回已创建的控件。
@@ -37,14 +38,6 @@ namespace JobMonitor.Desktop.UI.ManageScheduleJob
             FormMain.LoadNewControl(ScheduleJobEdit.Instance); // 载入该模块的添加信息界面至主窗体显示。
         }
 
-        public delegate void RefreshDataGrid(FormSysMessage formSysMessage, string message);
-        public void SetLoadingDialog(FormSysMessage formSysMessage, string message) {
-            BindDataGrid();
-            formSysMessage.SetMessage(message);
-            System.Threading.Thread.Sleep(2000);
-            formSysMessage.Close();
-        }
-
         private void DgvGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e) {
             if ( e.RowIndex < 0 ) {
                 return;
@@ -52,58 +45,58 @@ namespace JobMonitor.Desktop.UI.ManageScheduleJob
 
             int jobId = Convert.ToInt32(DgvGrid["ColAction", e.RowIndex].Value.ToString()); // 获取所要修改关联对象的主键。
             string jobIdentity = DgvGrid["ScheduleJobName", e.RowIndex].Value.ToString();
-            CustomJobDetail jobDetail = CustomJobDetailBLL.CreateInstance().Get(jobId, jobIdentity);
-
-            #region 修改
+            CustomJobDetail jobDetail = CustomJobDetailBLL.GetInstance().Get(jobId, jobIdentity);
 
             //用户单击DataGridView“操作”列中的“修改”按钮。
             if ( JobDataGridViewActionButtonCell.IsModifyButtonClick(sender, e) ) {
                 FormMain.LoadNewControl(ScheduleJobEdit.BindJobDetail(jobDetail));                            // 载入该模块的修改信息界面至主窗体显示。
             }
-            #endregion
-
-            #region 删除
 
             //用户单击DataGridView“操作”列中的“删除”按钮。
             if ( JobDataGridViewActionButtonCell.IsDeleteButtonClick(sender, e) ) {
-                DialogResult dialogResult = FormSysMessage.ShowMessage("确定要删除该任务计划吗？");
-                if ( dialogResult == DialogResult.OK ) {
-                    var formSysMessage = FormSysMessage.ShowLoading();
-                    int effected = CustomJobDetailBLL.CreateInstance().Delete(jobId, jobIdentity);
-                    if ( effected > 0 ) {
-
-                        var result = JobHostManager.GetInstance().DeleteJob(jobId, jobIdentity);
-                        var message = result.State == Core.Model.ResultState.Success ? "删除任务计划成功。" : "删除任务计划失败。";
-                        this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, message);
-                    }
-                    BindDataGrid();
-                }
+                DeleteJobRecord(jobId, jobIdentity);
             }
-            #endregion
-
-            #region 启动任务计划
 
             //用户单击DataGridView“操作”列中的“启动”按钮。
             if ( JobDataGridViewActionButtonCell.IsStartButtonClick(sender, e) ) {
                 var formSysMessage = FormSysMessage.ShowLoading();
-                var result = JobHostManager.GetInstance().StartJob(jobId, jobIdentity);
+                var result = SqlServerSyncJobHost.GetInstance().StartJob(jobId, jobIdentity);
+                if ( result.State == ResultState.Success ) {
+                    jobDetail.State = (byte)JobState.Running;
+                    CustomJobDetailBLL.GetInstance().Update(jobDetail);
+                }
                 var message = result.State == Core.Model.ResultState.Success ? "启动任务计划成功。" : "启动任务计划失败。";
-                this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, message);
+                formSysMessage.Close();
+                FormSysMessage.ShowMessage(message);
             }
-
-            #endregion
-
-            #region 停止任务计划
 
             //用户单击DataGridView“操作”列中的“停止”按钮。
             if ( JobDataGridViewActionButtonCell.IsStopButtonClick(sender, e) ) {
                 var formSysMessage = FormSysMessage.ShowLoading();
-                var result = JobHostManager.GetInstance().StopJob(jobId, jobIdentity);
+                var result = SqlServerSyncJobHost.GetInstance().StopJob(jobId, jobIdentity);
+                if ( result.State == ResultState.Success ) {
+                    jobDetail.State = (byte)JobState.Stopping;
+                    CustomJobDetailBLL.GetInstance().Update(jobDetail);
+                }
                 var message = result.State == Core.Model.ResultState.Success ? "停止任务计划成功。" : "停止任务计划失败。";
-                this.Invoke(new RefreshDataGrid(SetLoadingDialog), formSysMessage, message);
+                formSysMessage.Close();
+                FormSysMessage.ShowMessage(message);
             }
 
-            #endregion
+            BindDataGrid();
+        }
+
+        void DeleteJobRecord(int jobId, string jobIdentity) {
+            DialogResult dialogResult = FormSysMessage.ShowMessage("确定要删除该任务计划吗？");
+            if ( dialogResult == DialogResult.OK ) {
+                var formSysMessage = FormSysMessage.ShowLoading();
+                int effected = CustomJobDetailBLL.GetInstance().Delete(jobId, jobIdentity);
+                if ( effected > 0 ) {
+                    SqlServerSyncJobHost.GetInstance().DeleteJob(jobId, jobIdentity);
+                }
+                formSysMessage.Close();
+                FormSysMessage.ShowMessage(effected > 0 ? "删除成功。" : "删除失败。");
+            }
         }
 
         private void PageBar_PageChanged(object sender, EventArgs e) {
@@ -115,7 +108,7 @@ namespace JobMonitor.Desktop.UI.ManageScheduleJob
         /// </summary>
         public static void BindDataGrid() {
             instance.PageBar.DataControl = instance.DgvGrid;
-            instance.PageBar.DataSource = CustomJobDetailBLL.CreateInstance().GetPageList(instance.PageBar.PageSize, instance.PageBar.CurPage);
+            instance.PageBar.DataSource = CustomJobDetailBLL.GetInstance().GetPageList(instance.PageBar.PageSize, instance.PageBar.CurPage);
             instance.PageBar.DataBind();
         }
 

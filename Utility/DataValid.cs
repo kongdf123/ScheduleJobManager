@@ -725,7 +725,7 @@ namespace JobMonitor.Utility
         /// </summary>
         public static string GetNullOrString(string value)
         {
-            if (string.IsNullOrEmpty(value)) return null;
+            if (string.IsNullOrEmpty(value)) return "";
             value = value.Trim();
             return value;
         }

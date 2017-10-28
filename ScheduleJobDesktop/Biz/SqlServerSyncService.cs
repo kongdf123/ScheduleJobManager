@@ -30,12 +30,12 @@ namespace JobMonitor.Desktop.Biz
 
                 List<SqlServerConfigInfo> listSqlServerConfig = SqlServerConfigInfoBLL.CreateInstance().GetAll();
                 
-                CustomJobDetail jobDetail = CustomJobDetailBLL.CreateInstance().Get(jobName);
-                DateTime startDate = CustomJobDetailBLL.CreateInstance().GetFetchingStartDate(jobDetail.IntervalType, jobDetail.Interval);
+                CustomJobDetail jobDetail =new CustomJobDetailBLL().Get(jobName);
+                DateTime startDate = new CustomJobDetailBLL().GetFetchingStartDate(jobDetail.IntervalType, jobDetail.Interval);
                 Parallel.ForEach(listSqlServerConfig, new ParallelOptions { MaxDegreeOfParallelism = 5 }, (sqlServerConfig) => {
                     Monitor.Enter(lockedObj);
                     try {
-                        List<EventLogDetail> listEventLogDetail = EventLogDetailBLL.CreateInstance().GetAll(sqlServerConfig.ConnString, startDate);
+                        List<EventLogDetail> listEventLogDetail = new EventLogDetailBLL().GetAll(sqlServerConfig.ConnString, startDate);
 
                         if ( listEventLogDetail != null && listEventLogDetail.Count > 0 ) {
                             int cvsFileCapacity = 1000;

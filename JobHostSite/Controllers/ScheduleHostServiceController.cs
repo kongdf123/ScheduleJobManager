@@ -27,7 +27,7 @@ namespace JobHostSite.Controllers
             {
                 int jobId = Convert.ToInt32(Request["jobId"]);
                 string jobName = Request["jobName"];
-                CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobId, jobName);
+                CustomJobDetail customJob = CustomJobDetailBLL.GetInstance().Get(jobId, jobName);
 
                 IScheduler scheduler = QuartzNetHelper.GetScheduler();
                 IJobDetail job = JobBuilder.Create<CustomHttpJob>()
@@ -67,7 +67,7 @@ namespace JobHostSite.Controllers
             {
                 int jobId = Convert.ToInt32(Request["jobId"]);
                 string jobName = Request["jobName"];
-                CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobId, jobName);
+                CustomJobDetail customJob = CustomJobDetailBLL.GetInstance().Get(jobId, jobName);
 
                 IScheduler scheduler = QuartzNetHelper.GetScheduler();
                 var jobKey = JobKey.Create(customJob.JobName, customJob.JobGroup);
@@ -114,7 +114,7 @@ namespace JobHostSite.Controllers
                 }
                 int jobId = Convert.ToInt32(Request["jobId"]);
                 string jobName = Request["jobName"];
-                CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobId, jobName);
+                CustomJobDetail customJob = CustomJobDetailBLL.GetInstance().Get(jobId, jobName);
                 //scheduler.ResumeTrigger(new TriggerKey(jobName, jobGroup));   
                 var jobKey = JobKey.Create(customJob.JobName, customJob.JobGroup);
                 if (scheduler.CheckExists(jobKey))
@@ -139,7 +139,7 @@ namespace JobHostSite.Controllers
                 }
 
                 customJob.State = (byte)JobState.Running;
-                CustomJobDetailBLL.CreateInstance().Update(customJob);
+                CustomJobDetailBLL.GetInstance().Update(customJob);
 
                 return Json(new { Code = 1, Message = "执行成功！" });
             }
@@ -168,7 +168,7 @@ namespace JobHostSite.Controllers
                 }
                 int jobId = Convert.ToInt32(Request["jobId"]);
                 string jobName = Request["jobName"];
-                CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobId, jobName);
+                CustomJobDetail customJob = CustomJobDetailBLL.GetInstance().Get(jobId, jobName);
 
                 var jobKey = JobKey.Create(customJob.JobName, customJob.JobGroup);
                 if (scheduler.CheckExists(jobKey))
@@ -194,7 +194,7 @@ namespace JobHostSite.Controllers
 
 
                 customJob.State = (byte)JobState.Stopping;
-                CustomJobDetailBLL.CreateInstance().Update(customJob);
+                CustomJobDetailBLL.GetInstance().Update(customJob);
 
                 return Json(new { Code = 1, Message = "执行成功！" });
             }
@@ -223,7 +223,7 @@ namespace JobHostSite.Controllers
                 }
                 int jobId = Convert.ToInt32(Request["jobId"]);
                 string jobName = Request["jobName"];
-                CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobId, jobName);
+                CustomJobDetail customJob = CustomJobDetailBLL.GetInstance().Get(jobId, jobName);
                 scheduler.PauseTrigger(new TriggerKey(customJob.JobName, customJob.JobGroup));
                 scheduler.UnscheduleJob(new TriggerKey(customJob.JobName, customJob.JobGroup));
 
@@ -234,7 +234,7 @@ namespace JobHostSite.Controllers
 
                     if (result)
                     {
-                        CustomJobDetailBLL.CreateInstance().Delete(customJob.JobId, customJob.JobName);
+                        CustomJobDetailBLL.GetInstance().Delete(customJob.JobId, customJob.JobName);
                     }
 
                     if (result)

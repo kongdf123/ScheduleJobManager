@@ -16,7 +16,7 @@ namespace JobHost.Common
             {
                 try
                 {
-                    CustomJobDetail customJob = CustomJobDetailBLL.CreateInstance().Get(jobName);
+                    CustomJobDetail customJob = CustomJobDetailBLL.GetInstance().Get(jobName);
                     HttpHelper.SendPost(customJob.JobServiceURL + "?jobName=" + customJob.JobName, "");
                 }
                 catch (Exception ex)
