@@ -179,21 +179,22 @@ namespace JobMonitor.Desktop.UI.ManageSettings
         }
 
         private void btnTestConnection_Click(object sender, EventArgs e) {
+            string connectionString = $"Provider=SQLOLEDB;PWD=;UID={TxtUserName.Text};Database={TxtDBName.Text};Server={TxtServerIP.Text}";
             OleDbConnection connection = new OleDbConnection();
             try {
-                connection.ConnectionString = instance.dbConfigInfo.ConnString;
+                connection.ConnectionString = connectionString;
                 connection.Open();
                 string sqlText = "SELECT COUNT(*) FROM mc_event_log ";
                 OleDbCommand sqlCommand = new OleDbCommand(sqlText, connection);
                 object result = sqlCommand.ExecuteScalar();
-                
-                var msg = "连接成功！\n sqlText: SELECT COUNT(*) FROM mc_event_log =>" + (string)Convert.ChangeType(result, typeof(string));
+
+                var msg = "连接成功！\n connectionString:"+ connectionString + "\n sqlText: SELECT COUNT(*) FROM mc_event_log =>" + (string)Convert.ChangeType(result, typeof(string));
                 FormSysMessage.ShowSuccessMsg(msg);
                 Log4NetHelper.WriteInfo(msg);
             }
             catch ( Exception ex ) {
                 Log4NetHelper.WriteExcepetion(ex);
-                FormSysMessage.ShowMessage("ConnectionString：" + instance.dbConfigInfo.ConnString + "\n" + "系统无法与数据库建立连结，请您与系统管理员联系。" + "错误信息：" + ex.ToString());
+                FormSysMessage.ShowMessage("ConnectionString：" + connectionString + "\n" + "系统无法与数据库建立连结，请您与系统管理员联系。" + "错误信息：" + ex.ToString());
             }
             finally {
                 connection.Close();
