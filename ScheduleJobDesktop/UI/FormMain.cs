@@ -73,5 +73,9 @@ namespace JobMonitor.Desktop
 				default: break;
             }
         }
+
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e) {
+            System.Environment.Exit(0);
+        }
     }
 }
